@@ -14,6 +14,8 @@ This file is an AI-facing pointer map. It does not replace the underlying source
   `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/authority-map.md`
 - Current structure method:
   `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/reality-to-requirements-method.md`
+- Current reconstruction and reconciliation method:
+  `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/reconstruction-reconciliation-method.md`
 - Shared Drive routing logic:
   `Dutch-Civilian-Action/dca-architecture/organisation/drive-architecture/routing-logic.md`
 
@@ -23,6 +25,18 @@ Use the current DCA Operational Reality source and preserve its explicit validat
 
 Use DCA Derived Organisational Reality as a working evidential inference source only. It is not the Operating Model.
 
+## Method boundaries
+
+Use the Structure Method when asking:
+
+**What does current reality justify DCA needing?**
+
+Use the Reconstruction & Reconciliation Method when asking:
+
+**How does distributed operational evidence or live capture become reliable reusable shared organisational information?**
+
+System support may move forward when the relevant requirement is sufficiently established. Do not impose an organisation-wide waterfall.
+
 ## Working sources
 
 Working organisational plans, workflow reconstructions, concept models, and structural-alignment material may inform reasoning but do not independently become architecture.
@@ -30,8 +44,15 @@ Working organisational plans, workflow reconstructions, concept models, and stru
 Examples currently include:
 
 - DCA System & Structure — Organisation-Wide Plan
-- DCA Workflow-Based Structural Alignment Logic
 - DCA Organisational Concepts & Relationships
+
+## Superseded predecessor material
+
+`DCA Workflow-Based Structural Alignment Logic` is no longer an active current method. Its useful workflow/dependency/consequence/function/requirement logic is incorporated into the current Structure Method.
+
+Do not apply its older principle “System Support Comes Later.” Use instead:
+
+**System support follows the relevant requirement once that requirement is sufficiently established.**
 
 ## Historical / non-current structural sources
 
@@ -52,4 +73,4 @@ These sources may be consulted for history, prior implementation logic, or reusa
 
 When current reality and an old model disagree, do not force current reality back into the old model.
 
-Use current evidence and the current Reality-to-Requirements method to determine what, if anything, remains justified.
+When information is distributed or conflicting, do not resolve uncertainty silently. Preserve provenance, apply the Reconstruction & Reconciliation Method, and only persist conclusions that satisfy the relevant validation boundary.
