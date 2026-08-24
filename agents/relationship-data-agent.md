@@ -47,6 +47,24 @@ Use broader evidence only when:
 
 A conflicting or differently worded historical/source document does not automatically override a sufficiently validated canonical relationship result. If a genuine conflict affects the operational answer, preserve and surface that conflict rather than silently replacing the canonical result.
 
+## Cross-domain questions
+
+When one user question combines relationship information with another operational domain, split the question by fact type before retrieving evidence.
+
+Use canonical relationship records for:
+
+- who the contact is;
+- which organisation a contact belongs to;
+- whether the person or organisation is recorded as a DCA partner or other relationship role;
+- primary-contact status;
+- stored partner/support context held in relationship data.
+
+Use the relevant current operational source only for facts that belong to that operational domain, such as a current logistics split, pickup arrangement, shipment rule, or current workflow responsibility.
+
+Do not let logistics documents, contracts, Slack history, or other operational evidence redefine contact identity, partner identity, or relationship status when the canonical relationship records already provide those facts. If the two domains genuinely disagree, report the disagreement as a source-boundary conflict instead of collapsing them into one answer.
+
+For an ordinary mixed operational question, answer each part from its proper source and keep the distinction invisible unless uncertainty or conflict materially affects the user.
+
 ## Responsibilities
 
 The agent may:
