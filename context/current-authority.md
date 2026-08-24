@@ -78,23 +78,32 @@ Surface material findings rather than generating exhaustive activity logs.
 
 ## Runtime boundary
 
-DCA capabilities, workflows, authority rules, and tests should remain provider-independent wherever practical.
+DCA agents, skills, workflows, authority rules, and tests should remain provider-independent wherever practical.
 
-For System & Structure, ChatGPT is currently used as the primary development and live-testing environment for architecture work, reconstruction, reconciliation, workflow design, testing, capability monitoring, and early operational execution where appropriate.
+Current runtime roles are:
 
-This is a current implementation fact, not permanent architecture.
+- **Claude — primary operational DCA AI runtime/interface.** Claude is the default organisation-facing runtime for operational AI capabilities, including intake and retrieval where the relevant capability has been sufficiently tested and validated.
+- **ChatGPT — current System & Structure development, reconstruction/reconciliation, testing, and monitoring environment.** ChatGPT also runs bounded S&S workflows where appropriate, including the current DCA Reality Watch implementation.
+- **Airtable Omni — current embedded testing runtime where direct Airtable system access is useful.** The current example is Relationship Data Agent reconciliation testing against `2 | DCA Relationships & Workflows`.
 
-A validated workflow may remain on ChatGPT, move to Claude, move to another suitable runtime, or use more than one runtime where there is a justified operational reason.
+These are current implementation roles, not organisational authority or permanent architecture.
+
+The Relationship Data Agent and `reconcile-relationship-data` workflow remain provider-independent. Airtable Omni currently tests the behaviour; Claude is the intended operational runtime/interface for intake and retrieval once the capability satisfies its testing and validation boundary.
+
+A bounded workflow may remain on ChatGPT, run in Claude, use Airtable Omni for embedded testing, move to another suitable runtime, or use more than one runtime where justified by actual requirements.
 
 **Runtime selection is an implementation decision, not part of DCA organisational authority.**
 
-Provider-specific prompts, scheduled tasks, tool bindings, and configuration must implement the provider-independent workflow rather than redefining it.
+Provider-specific prompts, scheduled tasks, tool bindings, packaging, and configuration must implement provider-independent DCA behaviour rather than redefining it.
 
 See:
 
-- `workflows/maintain-dca-reality.md`
 - `providers/runtime-selection.md`
+- `providers/claude/README.md`
 - `providers/chatgpt/dca-reality-watch.md`
+- `providers/airtable-omni/relationship-data-agent.md`
+- `workflows/maintain-dca-reality.md`
+- `workflows/reconcile-relationship-data.md`
 
 ## Working sources
 
