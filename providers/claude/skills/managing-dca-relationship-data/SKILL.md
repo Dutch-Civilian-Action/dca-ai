@@ -2,7 +2,7 @@
 name: managing-dca-relationship-data
 description: Retrieve and maintain DCA contact, organization, and relationship data in the canonical Airtable base. Use for contact lookup, additions, corrections, or reconciliation.
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   dca-agent: relationship-data-agent
   dca-workflow: reconcile-relationship-data
   mcp-server: airtable
@@ -20,7 +20,7 @@ This skill is an interface and execution adapter. It does not define DCA organis
 
 ```text
 DCA user
-→ Claude conversation / Slack
+→ Claude Chat / Cowork, or Slack where the same behaviour is available
 → this skill
 → Airtable connector
 → 2 | DCA Relationships & Workflows
@@ -41,11 +41,22 @@ Do not require users to know about:
 - `Contact_Intake`
 - `Contact_Organization_Roles`
 - `Review_Queue`
+- `Operators`
 - matching confidence fields
 - reconciliation states
 - Airtable field names
 
 Use those internally when needed. Surface uncertainty, confirmation, or review state only when it affects the user's requested result.
+
+Do not ask operational users to understand the model. Translate their ordinary operational question into the required internal workflow.
+
+Good user-facing language:
+
+- `Who is our contact at We Fashion?`
+- `That number is old. The new one is ...`
+- `I have a new contact at organisation X.`
+
+Do not answer those requests by teaching the user about agents, staging, reconciliation, or schema unless they explicitly ask.
 
 ## Canonical and internal objects
 
@@ -55,6 +66,10 @@ Canonical reusable relationship objects:
 - `Organizations`
 - `Contact_Organization_Roles`
 - `Partners`, only where partnership evidence exists
+
+Operational actor / provenance object:
+
+- `Operators` — internal DCA people who participate in operational work through the shared system
 
 Internal staging / uncertainty objects:
 
@@ -84,14 +99,43 @@ Return the supported contact route and useful relationship context. Do not expla
 
 When a user supplies new or corrected relationship information:
 
-1. Preserve the submission as source evidence before changing canonical shared information.
-2. For ordinary conversational intake, use `Contact_Intake` internally and preserve the original wording in `raw_submission`.
-3. Search canonical records before creating anything new.
-4. Reconcile identity and organization meaning from evidence.
-5. Apply only the consequence supported by the evidence.
-6. Link the staging record to the canonical result when reconciliation is complete.
-7. If identity or meaning remains unresolved, preserve the staging record and use the smallest bounded clarification or `Review_Queue` state rather than guessing.
-8. Tell the user only what was successfully updated, created, retrieved, or left unresolved.
+1. Identify the authenticated human DCA actor when the runtime provides one.
+2. Resolve that actor to an `Operators` record using stable identity evidence before using a display name.
+3. Preserve the submission as source evidence before changing canonical shared information.
+4. For ordinary conversational intake, use `Contact_Intake` internally and preserve the original wording in `raw_submission`.
+5. Record the human actor in `submitted_by_operator` and the runtime/interface in `submission_interface` when available.
+6. Search canonical records before creating anything new.
+7. Reconcile identity and organization meaning from evidence.
+8. Apply only the consequence supported by the evidence.
+9. Link the staging record to the canonical result when reconciliation is complete.
+10. If identity or meaning remains unresolved, preserve the staging record and use the smallest bounded clarification or `Review_Queue` state rather than guessing.
+11. Tell the user only what was successfully updated, created, retrieved, or left unresolved.
+
+### Operator attribution
+
+The human who supplied or requested the change and the AI/runtime that processed it are different provenance facts.
+
+Never record Claude as the human operator merely because Claude performed the Airtable write.
+
+For Slack:
+
+1. use the authenticated Slack user ID;
+2. match it to `Operators.slack_user_id`;
+3. if needed, use the verified DCA email as supporting identity evidence;
+4. do not resolve an Operator from display name alone when identity is ambiguous.
+
+If an authenticated, authorised DCA user performs a write-intent action and no Operator record exists, create the minimum Operator record needed to preserve attribution using only verified identity facts available from the runtime, such as:
+
+- `operator_name`
+- `email`
+- `slack_user_id`
+- `active`
+
+Do not infer `operator_roles` merely because the person used Claude.
+
+If the human actor cannot be resolved safely, do not invent an Operator identity. Preserve the submission and use the smallest clarification or unresolved state appropriate to the consequence.
+
+For fully automated intake, `submitted_by_operator` may remain blank. Record the automation/interface separately.
 
 ## Identity resolution
 
@@ -171,6 +215,20 @@ Ask for confirmation or clarification when the action would:
 If safe execution is impossible, preserve the source evidence and stop at the unresolved state.
 
 ## Airtable implementation map
+
+### Operators
+
+Use for authenticated internal DCA actors participating in shared operational workflows. Relevant fields include:
+
+- `operator_name`
+- `operator_id`
+- `email`
+- `phone`
+- `operator_roles`
+- `active`
+- `slack_user_id`
+
+`slack_user_id` is the preferred Slack identity binding because it is stable and does not depend on a display name.
 
 ### Contacts
 
@@ -252,7 +310,9 @@ Use internally for conversational staging and source preservation. Relevant fiel
 - `relationship_context`
 - `source_type`
 - `source_systems`
-- `submitted_by`
+- `submitted_by_operator`
+- `submission_interface`
+- `submitted_by` — legacy/free-text attribution only; do not use as authoritative human attribution for new Claude conversational intake
 - `submitted_at`
 - `clarification_needed`
 - `review_notes`
@@ -261,6 +321,13 @@ Use internally for conversational staging and source preservation. Relevant fiel
 - `raw_submission`
 
 Preserve `raw_submission` verbatim. Do not rewrite it into normalized prose.
+
+For Claude conversational intake:
+
+- `submitted_by_operator` = the authenticated human DCA operator when resolved;
+- `submission_interface` = `claude_slack` or `claude_chat` as applicable;
+- `raw_submission` = the human's original submission;
+- Claude itself is not the operator.
 
 ### Review_Queue
 
@@ -273,9 +340,10 @@ When this skill is invoked from Slack or another shared conversational surface:
 - answer the operational question directly;
 - prefer short natural-language results;
 - do not narrate internal reconciliation steps unless they materially affect the answer;
-- do not expose raw source submissions, review notes, confidence mechanics, or hidden fields;
+- do not expose raw source submissions, review notes, confidence mechanics, Operator internals, or hidden fields;
 - do not repeat personal contact details more broadly than the operational request requires;
-- keep uncertainty explicit when it affects the result.
+- keep uncertainty explicit when it affects the result;
+- translate internal structural distinctions into ordinary operational language.
 
 Examples of good user-facing completion messages:
 
@@ -285,7 +353,7 @@ Examples of good user-facing completion messages:
 
 ## Failure behaviour
 
-If identity, relationship meaning, permissions, or write consequence cannot be resolved safely:
+If identity, relationship meaning, operator attribution, permissions, or write consequence cannot be resolved safely:
 
 - do not guess;
 - do not perform the unsafe canonical write;
