@@ -10,14 +10,46 @@ workflow: reconcile-relationship-data
 
 ## Purpose
 
-Validate that the Claude implementation preserves the provider-independent Relationship Data Agent behaviour while using the Airtable MCP connector and a conversational interface.
+Validate that the Claude implementation preserves the provider-independent Relationship Data Agent behaviour while using the Airtable MCP connector and conversational interfaces.
 
 ## Preconditions
 
-- Claude has the `managing-dca-relationship-data` skill installed.
+- Claude has the `managing-dca-relationship-data` skill installed for Claude Chat/Cowork testing.
 - Airtable connector is enabled with access to `2 | DCA Relationships & Workflows`.
 - Tests do not use similarly named copy, rebuild, staging, or test bases unless the case explicitly says so.
 - Slack-facing tests are run only in a DCA channel where the intended users are authorised to receive the returned relationship information.
+
+## Test 0 — Slack / Claude Tag propagation boundary
+
+Purpose:
+
+Determine whether Claude Tag channel mode automatically applies the provisioned Relationship Data skill, or whether a Tag-specific adapter is required.
+
+Setup:
+
+- Claude Tag enabled in one bounded DCA test channel.
+- Airtable access configured for that Claude Tag scope.
+- DCA AI repository available to the runtime where appropriate.
+
+Prompt pattern:
+
+`Do we have a contact for We Fashion?`
+
+Expected if skill propagation is supported:
+
+- Claude applies the same relationship-data boundaries as Claude Chat without the user naming the skill.
+- It searches the canonical base and returns the supported contact result.
+- It does not expose implementation internals.
+
+Failure condition:
+
+- Claude answers from generic reasoning, cannot identify the canonical relationship workflow, exposes schema internals unnecessarily, or does not preserve the same relationship boundaries.
+
+If this test fails:
+
+- do not change the canonical agent or provider-independent workflow;
+- implement the smallest Claude Tag-specific adapter/instruction needed to invoke the same behaviour;
+- rerun the test before enabling Slack writes.
 
 ## Test 1 — ordinary retrieval
 
@@ -124,4 +156,6 @@ Expected:
 
 ## Pass condition
 
-The Claude implementation passes when all cases preserve the same identity, relationship, uncertainty, provenance, confirmation, and privacy boundaries defined by `workflows/reconcile-relationship-data.md`.
+The Claude implementation passes when all applicable cases preserve the same identity, relationship, uncertainty, provenance, confirmation, and privacy boundaries defined by `workflows/reconcile-relationship-data.md`.
+
+Claude Chat/Cowork and Claude Tag are separate runtime surfaces. Passing Claude Chat tests does not automatically prove Claude Tag behaviour.
