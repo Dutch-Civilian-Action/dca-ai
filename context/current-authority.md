@@ -125,7 +125,7 @@ Do not treat the following as current structural authority:
 - archived System Logic — Overview
 - archived DCA System — Airtable Schema
 - DCA System Builder v2 — Gem Instructions
-- nested June 2026 legacy skills under `dca-ai/dca-ai/`
+- historical pre-reality-first skills preserved under `skills/legacy/`
 
 These sources may be consulted for history, prior implementation logic, or reusable distinctions only after their status is made explicit.
 
