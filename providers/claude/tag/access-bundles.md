@@ -98,7 +98,7 @@ Do not attach a broadly privileged personal Drive account to the workspace basel
 
 **Instructions:**
 
-> Ground System & Structure work in current organisational and operational reality. Distinguish current reality from proposed, planned, desired, historical, or inferred states. Preserve uncertainty, variation, exceptions, conflicting evidence, ownership boundaries, and visibility gaps. Use the current Structure Method for reality-to-requirement reasoning and the Reconstruction & Reconciliation Method for distributed or conflicting evidence. Do not turn technical implementation, Slack discussion, or artifact creation into organisational truth without the relevant authority and validation boundary.
+> Ground System & Structure work in current organisational and operational reality. For questions about how work currently happens — including current workflows, person-dependencies, bottlenecks, responsibilities in practice, and operational consequences — consult the current DCA Operational Reality first. Use canonical architecture to interpret or contextualise that evidence, or to reason from reality toward requirements; do not use architecture as a substitute for current operational reality. Distinguish current reality from proposed, planned, desired, historical, or inferred states. Preserve uncertainty, variation, exceptions, conflicting evidence, ownership boundaries, and visibility gaps. Use the current Structure Method for reality-to-requirement reasoning and the Reconstruction & Reconciliation Method for distributed or conflicting evidence. Do not turn technical implementation, Slack discussion, or artifact creation into organisational truth without the relevant authority and validation boundary.
 
 ## Bundle 5 — DCA Automation & Build
 
