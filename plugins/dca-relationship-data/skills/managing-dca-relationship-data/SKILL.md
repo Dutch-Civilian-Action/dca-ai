@@ -2,7 +2,7 @@
 name: managing-dca-relationship-data
 description: Retrieve and maintain DCA contact, organization, and relationship data in the canonical Airtable base. Use for contact lookup, additions, corrections, or reconciliation.
 metadata:
-  version: 0.2.1
+  version: 0.2.0
   dca-agent: relationship-data-agent
   dca-workflow: reconcile-relationship-data
   mcp-server: airtable
@@ -32,20 +32,6 @@ Use only the canonical Airtable base:
 
 Do not choose similarly named rebuild, copy, staging, or test bases unless System & Structure explicitly requests a test against one of them.
 
-## Direct retrieval routing
-
-For ordinary read requests about contacts, organisations, partners, or relationship context, use the canonical Airtable base as the first and normally sufficient source.
-
-Do not begin by checking Claude shared memory, Slack history, Drive, GitHub, or other sources. Consult another source only when:
-
-- the canonical relationship data does not contain enough information to answer;
-- conflicting evidence genuinely requires reconciliation;
-- the user explicitly asks for provenance, verification, history, or a cross-source check.
-
-For a question that combines contact information with partner or logistics context, retrieve the supported contact and partner/goods context from the canonical base in the same operational read path where available.
-
-Do not narrate this routing to the user. The user-facing result should be the supported operational information, not a description of memory checks, agents, skills, Airtable, tools, searches, schemas, todos, or internal confirmation steps.
-
 ## User-facing principle
 
 Users should interact with relationship information, not the implementation schema.
@@ -70,7 +56,7 @@ Good user-facing language:
 - `That number is old. The new one is ...`
 - `I have a new contact at organisation X.`
 
-Do not answer those requests by teaching the user about agents, staging, reconciliation, schema, tools, memory, or routing unless they explicitly ask.
+Do not answer those requests by teaching the user about agents, staging, reconciliation, or schema unless they explicitly ask.
 
 ## Canonical and internal objects
 
@@ -96,19 +82,18 @@ Historical or retired donor tables are not current relationship authority and mu
 
 When a user asks for relationship information:
 
-1. Identify whether the request concerns a person, organization, partner, or relationship.
-2. Query current canonical relationship records directly.
+1. Identify whether the request concerns a person, organization, or relationship.
+2. Search current canonical records before using staging records.
 3. Reconcile identity when more than one plausible record exists.
-4. Keep person facts, organization facts, partner facts, and their relationships distinct.
+4. Keep person facts, organization facts, and their relationship distinct.
 5. Return only supported current information relevant to the request.
-6. Respect the current access boundary and do not expose hidden reconciliation or execution internals.
-7. If the canonical base is insufficient, say only what is missing or uncertain unless a broader source check is actually needed.
+6. Respect the current access boundary and do not expose hidden reconciliation internals.
 
 Example:
 
 `Do we have a contact for We Fashion?`
 
-Return the supported contact route and useful relationship context. Do not explain the table structure or execution path unless asked.
+Return the supported contact route and useful relationship context. Do not explain the table structure unless asked.
 
 ## Write flow
 
@@ -353,9 +338,8 @@ Use only when a real unresolved decision needs human input. Keep the review ques
 When this skill is invoked from Slack or another shared conversational surface:
 
 - answer the operational question directly;
-- for ordinary reads, go to the canonical relationship base first rather than checking shared memory;
 - prefer short natural-language results;
-- do not narrate source selection, tool use, searches, routing, agents, skills, schemas, todos, or internal reconciliation steps unless they materially affect the answer;
+- do not narrate internal reconciliation steps unless they materially affect the answer;
 - do not expose raw source submissions, review notes, confidence mechanics, Operator internals, or hidden fields;
 - do not repeat personal contact details more broadly than the operational request requires;
 - keep uncertainty explicit when it affects the result;
@@ -364,7 +348,6 @@ When this skill is invoked from Slack or another shared conversational surface:
 Examples of good user-facing completion messages:
 
 - `Yes — our contact at We Fashion is Pieter [surname]. I have the current phone number as …`
-- `Help4Ukraine is an active logistics partner. Our recorded contacts are Paul, Natalia Leshan, Johan, and Leo Shmaryan. They are recorded as providing animal supplies, baby products, hygiene products, and food.`
 - `Updated Pieter's phone number for We Fashion.`
 - `I found two plausible Pieter records, so I kept the new number in review rather than attaching it to the wrong person. Which Pieter do you mean?`
 
@@ -375,5 +358,4 @@ If identity, relationship meaning, operator attribution, permissions, or write c
 - do not guess;
 - do not perform the unsafe canonical write;
 - preserve the evidence internally;
-- return the smallest useful unresolved state or clarification question;
-- do not replace a simple missing-data answer with an explanation of internal systems or execution paths.
+- return the smallest useful unresolved state or clarification question.
