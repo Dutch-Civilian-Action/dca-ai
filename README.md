@@ -10,7 +10,9 @@ DCA AI capabilities, workflows, tests, and authority rules should remain provide
 
 For **System & Structure**, ChatGPT is currently used as the primary development and live-testing environment for architecture work, reconstruction, reconciliation, workflow design, testing, capability monitoring, and bounded operational workflows such as DCA Reality Watch.
 
-**Airtable Omni** is currently used as an embedded testing runtime where direct execution against Airtable system state is useful, including the current Relationship Data Agent reconciliation tests.
+**Airtable Omni** may be used as an embedded testing or inspection runtime where direct execution against Airtable system state is useful. It is not the primary conversational intake interface.
+
+The first current operational Claude implementation is the Relationship Data Agent, using the Airtable MCP connector against `2 | DCA Relationships & Workflows`, with Slack as the intended organisation-facing conversational surface where Claude is enabled.
 
 Runtime roles may change when workflow requirements, testing, access, reliability, governance, or operational fit justify it. A bounded workflow may remain on ChatGPT, run in Claude, use Airtable Omni for testing, move to another suitable runtime, or use more than one runtime where there is a justified reason.
 
