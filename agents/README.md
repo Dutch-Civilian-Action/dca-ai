@@ -3,3 +3,7 @@
 Role-based AI configurations that combine DCA context, governance, and skills for a defined organisational responsibility.
 
 Agents should not become alternate sources of organisational truth. They operate against canonical DCA sources and explicit authority boundaries.
+
+## Current agents
+
+- `relationship-data-agent.md` — controlled retrieval, reconciliation, and maintenance of DCA relationship data across canonical Contacts, Organizations, relationship structures, and partner context.
