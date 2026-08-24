@@ -11,7 +11,7 @@ provider_independent: true
 
 Define the provider-independent behaviour that concrete relationship-data tests should validate.
 
-Concrete cases and live Airtable Omni execution are intentionally left to the active test workstream.
+Concrete provider/runtime cases must test the same behavioural boundary rather than redefining expected DCA behaviour around the runtime.
 
 ## Behaviour to test
 
@@ -36,8 +36,12 @@ Tests should cover at minimum:
 
 Where another runtime is evaluated, rerun the same behavioural cases against that implementation rather than redefining the expected DCA behaviour around the provider.
 
-## Current first implementation
+## Current operational implementation target
 
-Airtable Omni against `2 | DCA Relationships & Workflows`.
+Claude using the Airtable MCP connector against `2 | DCA Relationships & Workflows`.
 
-During the initial Omni test phase, all writes to reusable relationship records require explicit confirmation.
+Slack is the intended organisation-facing conversational surface where Claude is enabled.
+
+Airtable Omni may still be used for bounded embedded regression, inspection, or comparison tests.
+
+Provider-specific tests for the Claude implementation belong under `tests/providers/claude/`.
