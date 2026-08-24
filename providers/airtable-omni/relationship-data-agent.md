@@ -1,6 +1,6 @@
 ---
 document_type: dca_ai_provider_implementation
-status: current-testing
+status: retained-test-reference
 provider: airtable-omni
 agent: relationship-data-agent
 workflow: reconcile-relationship-data
@@ -8,19 +8,25 @@ workflow: reconcile-relationship-data
 
 # Airtable Omni Implementation — Relationship Data Agent
 
+## Status
+
+This file is retained as a bounded Airtable Omni test/reference implementation of the provider-independent relationship-data workflow.
+
+It is not the current organisation-facing runtime for this capability. The current operational implementation target is Claude using the Airtable MCP connector; see `../claude/` and `../runtime-selection.md`.
+
 ## Canonical workflow
 
 `../../workflows/reconcile-relationship-data.md`
 
-This file records the current Airtable Omni implementation of the provider-independent relationship-data workflow. It is not organisational authority and does not make the current Airtable schema permanent architecture.
+This file records how the workflow was exercised inside Airtable Omni. It is not organisational authority and does not make the current Airtable schema permanent architecture.
 
-## Current implementation boundary
+## Retained test boundary
 
 - runtime: Airtable Omni / Airtable Assistant
-- current implementation base: `2 | DCA Relationships & Workflows`
+- implementation base: `2 | DCA Relationships & Workflows`
 - interaction surface: private Airtable Assistant / Omni interaction
-- canonical writes during testing: explicit confirmation required
-- Slack integration: out of scope
+- canonical writes during this retained test configuration: explicit confirmation required
+- purpose: embedded regression, inspection, or comparison testing when useful
 
 The current Airtable base is a current DCA implementation example under the Authority Map. Exact tables and fields below are therefore implementation details used for this test, not provider-independent requirements.
 
@@ -160,15 +166,15 @@ If unresolved, leave the affected reusable records unchanged and keep the intake
 
 Contact details are restricted operational data.
 
-Never reproduce personal phone numbers, personal email addresses, or other contact details into public or broad Slack channels.
+Never reproduce personal phone numbers, personal email addresses, or other contact details into public or broad communication surfaces.
 
-Only return contact information through the user’s private Airtable Assistant interaction and only where the user’s Airtable permissions allow access.
+Only return contact information where the user's active permissions and the intended interaction surface allow it.
 
-### Testing confirmation rule
+### Retained testing confirmation rule
 
-Before making consequential changes, show the user what records and fields you intend to create or update and obtain confirmation.
+Before making consequential changes in this retained Omni test configuration, show the user what records and fields you intend to create or update and obtain confirmation.
 
-For this initial Omni testing phase, treat all writes to reusable relationship records as requiring confirmation before execution.
+Treat all writes to reusable relationship records as requiring confirmation in this Omni test configuration only.
 
 ## Portability boundary
 
@@ -180,4 +186,4 @@ Do not generalize these implementation choices into the agent or workflow defini
 - private Airtable Assistant as interaction surface;
 - confirmation before every write.
 
-Any later runtime should implement the same provider-independent workflow and be tested against the same behavioural expectations.
+The current Claude runtime should implement the same provider-independent workflow and be tested against the same behavioural expectations.
