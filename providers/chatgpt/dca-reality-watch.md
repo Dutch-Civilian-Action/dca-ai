@@ -41,7 +41,9 @@ Current source classes include, where available:
 
 ## Testing publication boundary
 
-During the current testing phase, every material Reality Watch finding is published only to the DCA Slack channel `#test-automations`.
+During the current testing phase, every material Reality Watch finding is published only to the DCA Slack channel `#test-automations` (channel ID `C0A48P1UQ2Y`).
+
+Use the channel ID as the routing target rather than relying on channel-name resolution.
 
 This channel is the review surface for testing both finding quality and message format before broader organisational or domain publication is enabled.
 
@@ -49,7 +51,7 @@ During this phase:
 
 - do not post Reality Watch findings to `#organisation`, `#structural-alignment`, domain channels, or other operational channels;
 - no material change → no Slack post;
-- material change → one compact review message in `#test-automations`;
+- material change → one compact review message in channel ID `C0A48P1UQ2Y`;
 - broader routing rules should be introduced only after the publication format and usefulness have been tested against real findings.
 
 The testing destination is implementation-specific and does not change the provider-independent `maintain-dca-reality` workflow.
