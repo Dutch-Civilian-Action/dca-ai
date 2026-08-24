@@ -23,7 +23,7 @@ Claude Chat / Cowork
 → 2 | DCA Relationships & Workflows
 ```
 
-The intended organisation-facing Slack path remains:
+The intended organisation-facing Slack path is:
 
 ```text
 James / DCA user in Slack
@@ -32,11 +32,9 @@ James / DCA user in Slack
 → Airtable
 ```
 
-Claude Tag channel mode acts under an organisation identity with admin-configured tools and access. Current public Claude documentation does not explicitly confirm that organisation-provisioned custom Skills are automatically loaded in channel-tag mode. Therefore Slack execution must be validated as a provider/runtime boundary rather than assumed from Claude Chat skill behaviour.
+Claude Tag channel mode acts under an organisation-managed identity with admin-configured repositories, credentials, plugins/skills, instructions, memory, and access boundaries. Current Claude Tag configuration supports shaping channel behaviour with skills/plugins and instructions. DCA should therefore package reusable workflow behaviour as skills/plugins where practical and use access-bundle instructions only for small runtime routing and communication rules.
 
-If Claude Tag does not apply the provisioned skill automatically, implement the smallest Tag-specific adapter needed to invoke the same provider-independent agent/workflow. Do not move Tag-specific behaviour into the canonical agent or workflow definition.
-
-`Contact_Intake`, matching logic, reconciliation queues, and Airtable schema remain implementation details. They should not be exposed as the normal user interface.
+`Contact_Intake`, matching logic, reconciliation queues, Operator resolution mechanics, and Airtable schema remain implementation details. They should not be exposed as the normal user interface.
 
 Airtable Omni may still be used for bounded embedded testing or inspection. It is not the primary conversational intake interface.
 
@@ -45,8 +43,8 @@ See `../runtime-selection.md`.
 ## Provider-specific structure
 
 - `skills/` — Claude-specific packaging, configuration, or adapters for current provider-independent DCA skills when needed.
-- `skills/managing-dca-relationship-data/` — current Claude Chat/Cowork implementation of the Relationship Data Agent against Airtable.
-- Slack / Claude Tag — target operational surface; propagation of the Relationship Data Agent behaviour must be validated live before declaring the Slack adapter complete.
+- `skills/managing-dca-relationship-data/` — current Claude implementation of the Relationship Data Agent against Airtable.
+- `tag/access-bundles.md` — current Claude Tag access-bundle and channel-scope design.
 
 Legacy skills under `/skills/legacy/` must not be loaded as current Claude skills.
 
@@ -61,4 +59,4 @@ Any Claude implementation for DCA should apply, at minimum:
 
 Claude must not fall back to the pre-reality-first fixed Layer / Entry Point / Anchor model merely because legacy instructions or historical documents remain accessible.
 
-Provider-specific prompts and skills may adapt formatting and execution behaviour, but they must not redefine DCA organisational authority, agent meaning, skill meaning, or workflow meaning.
+Provider-specific prompts, access bundles, plugins, and skills may adapt formatting, access, and execution behaviour, but they must not redefine DCA organisational authority, agent meaning, skill meaning, or workflow meaning.
