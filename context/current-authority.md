@@ -76,6 +76,26 @@ AI may compare current S&S evidence across sources to identify material changes 
 
 Surface material findings rather than generating exhaustive activity logs.
 
+## Runtime boundary
+
+DCA capabilities, workflows, authority rules, and tests should remain provider-independent wherever practical.
+
+For System & Structure, ChatGPT is currently used as the primary development and live-testing environment for architecture work, reconstruction, reconciliation, workflow design, testing, capability monitoring, and early operational execution where appropriate.
+
+This is a current implementation fact, not permanent architecture.
+
+A validated workflow may remain on ChatGPT, move to Claude, move to another suitable runtime, or use more than one runtime where there is a justified operational reason.
+
+**Runtime selection is an implementation decision, not part of DCA organisational authority.**
+
+Provider-specific prompts, scheduled tasks, tool bindings, and configuration must implement the provider-independent workflow rather than redefining it.
+
+See:
+
+- `workflows/maintain-dca-reality.md`
+- `providers/runtime-selection.md`
+- `providers/chatgpt/dca-reality-watch.md`
+
 ## Working sources
 
 Working organisational plans, capability reconstructions, workflow reconstructions, concept models, and structural-alignment material may inform reasoning but do not independently become architecture.
