@@ -21,7 +21,7 @@ Runtime: **ChatGPT scheduled condition watch**
 
 Cadence: **daily**
 
-Notification rule: **notify only when materially new or changed DCA reality is detected**
+Notification rule: **publish only when materially new or changed DCA reality is detected**
 
 Current evidence views:
 
@@ -38,6 +38,21 @@ Current source classes include, where available:
 - Airtable/system state;
 - integrations, automations, and runtime evidence;
 - downstream use.
+
+## Testing publication boundary
+
+During the current testing phase, every material Reality Watch finding is published only to the DCA Slack channel `#test-automations`.
+
+This channel is the review surface for testing both finding quality and message format before broader organisational or domain publication is enabled.
+
+During this phase:
+
+- do not post Reality Watch findings to `#organisation`, `#structural-alignment`, domain channels, or other operational channels;
+- no material change → no Slack post;
+- material change → one compact review message in `#test-automations`;
+- broader routing rules should be introduced only after the publication format and usefulness have been tested against real findings.
+
+The testing destination is implementation-specific and does not change the provider-independent `maintain-dca-reality` workflow.
 
 ## Implementation requirements
 
@@ -58,6 +73,8 @@ The ChatGPT task must preserve the canonical workflow's:
 This implementation is part of System & Structure development and live testing.
 
 Operational use during testing is allowed where the workflow boundary is sufficiently clear. Running it in ChatGPT does not imply ChatGPT is the permanent runtime.
+
+The current Slack publication phase is explicitly a format and usefulness test. Organisation-facing routing remains disabled until that output has been reviewed.
 
 ## Runtime portability
 
