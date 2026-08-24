@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-marketplace.json",
+  "name": "dca-ai-plugins",
+  "owner": {
+    "name": "Dutch Civilian Action"
+  },
+  "description": "Internal DCA Claude plugins maintained as code in the dca-ai repository.",
+  "plugins": [
+    {
+      "name": "dca-relationship-data",
+      "displayName": "DCA Relationship Data",
+      "source": "./plugins/dca-relationship-data",
+      "description": "Retrieve, add, correct, and reconcile DCA contacts, organizations, and relationship data using the current DCA Relationship Data Agent.",
+      "version": "0.1.0",
+      "category": "operations",
+      "tags": [
+        "dca",
+        "relationship-data",
+        "airtable"
+      ]
+    }
+  ]
+}
