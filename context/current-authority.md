@@ -23,7 +23,29 @@ This file is an AI-facing pointer map. It does not replace the underlying source
 
 ## Current organisation-facing reality
 
-Use the current DCA Operational Reality source for claims about what happens in domain work and preserve its explicit validation, evidence, uncertainty, variation, pilot, and proposal statuses.
+### Current Operational Reality
+
+Primary current source:
+
+- **DCA Operational Reality — 2nd Pass**
+  - Google Drive document: `https://docs.google.com/document/d/11_JG166GB_OUydQdzHU7dMUYOCJUpxj_yFLkJgOOOLU/edit`
+  - Document ID: `11_JG166GB_OUydQdzHU7dMUYOCJUpxj_yFLkJgOOOLU`
+
+Use this source for claims about what currently happens in DCA domain work, including current workflows, dependencies, roles as observed in practice, variation, exceptions, validation state, uncertainty, pilots, and proposals. Preserve the source's explicit validation, evidence, uncertainty, variation, pilot, and proposal statuses.
+
+Do not select an older or similarly titled Operational Reality document merely because it appears in search results. If the current source above is unavailable, preserve that access gap rather than silently substituting a historical copy as current reality.
+
+When the canonical current Operational Reality source changes, update this pointer here so runtimes do not rely on title matching or memory to determine which document is current.
+
+### Derived Organisational Reality
+
+Current working inference source:
+
+- **DCA Derived Organisational Reality**
+  - Google Drive document: `https://docs.google.com/document/d/17AGt3ZqsQ8YChjJLlArLtjMechQai6xly3IKXBUnVfQ/edit`
+  - Document ID: `17AGt3ZqsQ8YChjJLlArLtjMechQai6xly3IKXBUnVfQ`
+
+Use DCA Derived Organisational Reality as a working evidential inference source only. It is not the Operating Model and does not override the current Operational Reality source or canonical architecture.
 
 When reasoning about System & Structure itself, do **not** limit the evidence base to domain Operational Reality or intended role descriptions.
 
@@ -44,8 +66,6 @@ Preserve these distinctions:
 - tool presence ≠ demonstrated capability;
 - activity ≠ successful outcome;
 - intended mandate ≠ current capability reality.
-
-Use DCA Derived Organisational Reality as a working evidential inference source only. It is not the Operating Model.
 
 ## Method boundaries
 
