@@ -18,6 +18,8 @@ This is a current implementation and operating decision. Claude applies current 
 
 A bounded DCA workflow is not required to run in Claude merely because Claude is the primary operational runtime.
 
+The Relationship Data Agent is the first current example being moved into Claude as an operational interface. Its first implementation uses the Airtable MCP connector against `2 | DCA Relationships & Workflows`, with Slack as the intended organisation-facing conversational surface where Claude is enabled.
+
 ### ChatGPT — System & Structure development, testing, and monitoring
 
 ChatGPT is currently used as the primary System & Structure AI environment for:
@@ -31,11 +33,11 @@ ChatGPT is currently used as the primary System & Structure AI environment for:
 
 This is a current implementation fact, not a commitment to a permanent provider.
 
-### Airtable Omni — embedded workflow testing
+### Airtable Omni — embedded workflow testing / inspection
 
-Airtable Omni is currently used as an embedded testing runtime where direct access to current Airtable state makes it useful.
+Airtable Omni may be used as an embedded testing or inspection runtime where direct access to current Airtable state makes it useful.
 
-The current example is the Relationship Data Agent / `reconcile-relationship-data` workflow against `2 | DCA Relationships & Workflows`.
+It is not the primary DCA conversational intake interface for the Relationship Data Agent.
 
 Omni testing does not make Airtable schema or Omni behaviour organisational architecture.
 
