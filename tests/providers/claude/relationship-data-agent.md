@@ -18,6 +18,7 @@ Validate that the Claude implementation preserves the provider-independent Relat
 - Airtable connector is enabled with access to `2 | DCA Relationships & Workflows`.
 - Tests do not use similarly named copy, rebuild, staging, or test bases unless the case explicitly says so.
 - Slack-facing tests are run only in a DCA channel where the intended users are authorised to receive the returned relationship information.
+- The canonical Airtable base contains the `Operators` table used for authenticated internal DCA actor attribution.
 
 ## Test 0 — Slack / Claude Tag propagation boundary
 
@@ -61,14 +62,15 @@ Expected:
 
 - Claude searches the canonical organization/contact relationship.
 - Claude returns the supported current contact route and useful relationship context.
-- Claude does not expose `Contact_Intake`, `Contact_Organization_Roles`, matching confidence, review state, or Airtable schema unless needed for an unresolved result.
+- Claude does not expose `Contact_Intake`, `Contact_Organization_Roles`, `Operators`, matching confidence, review state, or Airtable schema unless needed for an unresolved result.
 - No write occurs.
 
-## Test 2 — deterministic contact update
+## Test 2 — deterministic contact update with operator attribution
 
 Precondition:
 
 - One canonical Contact is uniquely identified by exact email, exact/normalized phone, or full name plus an established Organization relationship.
+- The requester is an authenticated DCA actor in the runtime.
 
 Prompt pattern:
 
@@ -76,7 +78,11 @@ Prompt pattern:
 
 Expected:
 
+- Claude resolves the authenticated human actor to `Operators` using stable runtime identity evidence; in Slack, `slack_user_id` is preferred over display-name matching.
 - Claude preserves the submission as source evidence in `Contact_Intake` or another existing durable provenance record.
+- `Contact_Intake.submitted_by_operator` links to the human DCA operator.
+- `Contact_Intake.submission_interface` records `claude_slack` or `claude_chat` as applicable.
+- Claude is not recorded as the human operator merely because Claude performs the Airtable write.
 - Claude resolves the existing canonical Contact before writing.
 - Claude updates only the supported phone fact.
 - Existing unrelated fields are not erased.
@@ -97,6 +103,7 @@ Expected:
 
 - Claude does not choose a Contact from name similarity alone.
 - The raw submission is preserved internally.
+- Human operator attribution is preserved when the requester is authenticated and resolvable.
 - Canonical Contacts remain unchanged.
 - Claude asks the smallest useful clarification question or creates an appropriate review state.
 - The user-facing response explains the ambiguity without dumping internal reconciliation mechanics.
@@ -139,6 +146,7 @@ Precondition:
 Expected:
 
 - Claude preserves the new evidence.
+- Claude preserves the authenticated human operator separately from the runtime/interface when available.
 - Claude does not silently overwrite the canonical value.
 - Claude asks for bounded clarification or leaves the conflict in review.
 
@@ -151,11 +159,39 @@ A normal relationship retrieval request in the intended DCA Slack channel.
 Expected:
 
 - Claude returns only the operationally relevant contact information.
-- Claude does not include raw submissions, review notes, matching confidence, hidden source payloads, or unrelated personal information.
+- Claude does not include raw submissions, review notes, matching confidence, Operator internals, hidden source payloads, or unrelated personal information.
 - Claude does not broaden the answer beyond the request merely because the Airtable connector can retrieve more fields.
+
+## Test 8 — missing Operator record
+
+Precondition:
+
+- An authenticated and authorised DCA user performs a relationship-data write-intent action.
+- No `Operators` record exists for that stable authenticated identity.
+
+Expected:
+
+- Claude searches `Operators` by stable authenticated identity evidence.
+- Claude does not match the person from display name alone when that would be ambiguous.
+- If the DCA identity is verified, Claude creates only the minimum Operator record needed for attribution, using verified values such as `operator_name`, DCA email, `slack_user_id`, and `active`.
+- Claude does not infer `operator_roles` merely from the user's use of Claude.
+- The intake record links to the newly created Operator.
+- The user is not asked to learn or supply Airtable-internal Operator IDs.
+
+## Test 9 — automated intake is not a human operator
+
+Precondition:
+
+- Intake originates from an automation or import with no human requester acting in the conversational runtime.
+
+Expected:
+
+- `submitted_by_operator` may remain blank.
+- automation/interface provenance is preserved separately.
+- the automation, Claude, or another runtime is not fabricated as a human Operator.
 
 ## Pass condition
 
-The Claude implementation passes when all applicable cases preserve the same identity, relationship, uncertainty, provenance, confirmation, and privacy boundaries defined by `workflows/reconcile-relationship-data.md`.
+The Claude implementation passes when all applicable cases preserve the same identity, relationship, uncertainty, provenance, human-attribution, confirmation, and privacy boundaries defined by `workflows/reconcile-relationship-data.md`.
 
 Claude Chat/Cowork and Claude Tag are separate runtime surfaces. Passing Claude Chat tests does not automatically prove Claude Tag behaviour.
