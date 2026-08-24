@@ -59,8 +59,12 @@ The agent must not:
 
 ## Current implementation state
 
-Airtable Omni is currently being evaluated as an embedded runtime for the first relationship-data reconciliation tests against `2 | DCA Relationships & Workflows`.
+Claude is the current primary operational runtime/interface for this capability.
 
-This is an implementation and testing fact, not permanent architecture.
+The first Claude implementation uses the Airtable MCP connector against the canonical base `2 | DCA Relationships & Workflows`. `Contact_Intake` is an internal staging/provenance mechanism and should not become part of the user-facing interaction model.
 
-Slack integration remains out of scope until reconciliation behaviour is sufficiently validated independently of the Slack interface.
+Slack is the intended organisation-facing conversational surface where Claude is enabled. Users should be able to retrieve or submit relationship information without understanding Airtable schema or reconciliation internals.
+
+Airtable Omni may still be used as a bounded embedded testing or inspection runtime where useful. It is not the operational conversational intake interface.
+
+These are current implementation facts, not permanent architecture.
