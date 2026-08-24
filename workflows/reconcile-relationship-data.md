@@ -10,7 +10,7 @@ provider_independent: true
 
 ## Purpose
 
-Turn new or requested relationship information into reliable reusable DCA information while preserving source evidence, identity boundaries, uncertainty, conflicts, validation requirements, and access boundaries.
+Turn new or requested relationship information into reliable reusable DCA information while preserving source evidence, identity boundaries, uncertainty, conflicts, validation requirements, human attribution, and access boundaries.
 
 This workflow is provider-independent. It implements the current DCA Reconstruction & Reconciliation Method for the bounded relationship-data use case.
 
@@ -40,6 +40,7 @@ The workflow does not require DCA to define a universal CRM architecture before 
 Relevant evidence may include, where available:
 
 - direct user submission;
+- authenticated identity of the DCA person supplying or requesting the change;
 - current shared relationship records;
 - source/provenance or intake records;
 - current Airtable relationship data;
@@ -77,7 +78,7 @@ When retrieving information:
 ```text
 new relationship information
         ↓
-preserve raw/source evidence
+preserve human attribution + raw/source evidence
         ↓
 search current reusable records
         ↓
@@ -96,13 +97,25 @@ return concise reconciliation result
 
 ## Source and provenance rule
 
-Before new information changes the reusable shared result, preserve enough source evidence to understand later:
+Before new information changes the reusable shared result, preserve enough provenance to understand later:
 
 - what was submitted;
-- where it came from;
+- which human DCA actor supplied or requested it, when that identity is available;
+- which runtime, interface, automation, or import captured or processed it;
+- where the underlying information came from;
 - what was normalised or interpreted;
 - what remains uncertain;
 - what resulting record or relationship was affected.
+
+Do not collapse the human actor, the AI/runtime, and the evidence source into one attribution field. They are different facts.
+
+An AI runtime that performs a write is not thereby the human operator who supplied the information.
+
+When an implementation has an organisation-held operator registry, use stable authenticated identity evidence to bind the human actor to that record. Do not resolve an operator from display-name similarity alone when identity is ambiguous.
+
+If an authenticated and authorised DCA actor is not yet represented in the operator registry, an implementation may create the minimum actor record needed for durable attribution using only verified identity facts. Do not infer operational roles merely from use of the interface.
+
+For fully automated intake, human operator attribution may legitimately remain blank while automation/interface provenance is preserved separately.
 
 The active implementation may use a staging/intake record such as `Contact_Intake`, but that table is an implementation choice, not the provider-independent workflow definition.
 
@@ -220,7 +233,7 @@ capture
 
 ## Failure behaviour
 
-If identity, relationship meaning, authority, permissions, or write consequence cannot be resolved safely:
+If identity, relationship meaning, human attribution, authority, permissions, or write consequence cannot be resolved safely:
 
 - do not guess;
 - do not perform the unsafe write;
