@@ -33,6 +33,20 @@ It must not treat:
 
 Current Airtable structures may be used as the active implementation where they remain appropriate to the bounded relationship-data need.
 
+## Retrieval source priority
+
+For ordinary questions about a contact, organisation, partner, or stored relationship context, use the current canonical reusable relationship records as the primary and normally sufficient source.
+
+Do not broaden an ordinary read into a search across Slack, Drive, contracts, partner lists, memory, historical documents, or other evidence when the canonical relationship records already answer the question.
+
+Use broader evidence only when:
+
+- the canonical relationship records are missing or internally insufficient;
+- the canonical records themselves contain a real unresolved conflict;
+- the user explicitly asks for provenance, history, verification, or a cross-source check.
+
+A conflicting or differently worded historical/source document does not automatically override a sufficiently validated canonical relationship result. If a genuine conflict affects the operational answer, preserve and surface that conflict rather than silently replacing the canonical result.
+
 ## Responsibilities
 
 The agent may:
