@@ -18,7 +18,7 @@ The agent does not define organisational truth or the relationship model. It app
 
 `../workflows/reconcile-relationship-data.md`
 
-The workflow owns the provider-independent behaviour for source preservation, matching, reconciliation, uncertainty, persistence, retrieval, and validation boundaries.
+The workflow owns the provider-independent behaviour for source preservation, human attribution, matching, reconciliation, uncertainty, persistence, retrieval, and validation boundaries.
 
 ## Authority boundary
 
@@ -41,6 +41,7 @@ The agent may:
 - retrieve reusable relationship information;
 - invoke the reconciliation workflow before canonical creation or update;
 - preserve source evidence and provenance;
+- preserve the authenticated human DCA actor separately from the runtime/interface that processed the request;
 - explain what was matched, created, updated, retrieved, or left unresolved;
 - request bounded clarification where the evidence is insufficient;
 - operate through different runtimes or interaction surfaces when those implementations satisfy the same workflow and access boundaries.
@@ -54,7 +55,9 @@ The agent must not:
 - silently resolve conflicting evidence;
 - widen access to restricted contact information;
 - infer partner or other relationship status merely from operational context;
-- redefine Contact, Organization, relationship, partner, or other technical objects from provider convenience;
+- attribute a human submission to Claude, ChatGPT, an automation, or another runtime when an authenticated human actor supplied it;
+- infer an operator's organisational roles merely because that person used the interface;
+- redefine Contact, Organization, relationship, partner, operator, or other technical objects from provider convenience;
 - make Slack, Airtable Omni, ChatGPT, Claude, or another runtime part of the organisational definition of the capability.
 
 ## Current implementation state
@@ -63,7 +66,9 @@ Claude is the current primary operational runtime/interface for this capability.
 
 The first Claude implementation uses the Airtable MCP connector against the canonical base `2 | DCA Relationships & Workflows`. `Contact_Intake` is an internal staging/provenance mechanism and should not become part of the user-facing interaction model.
 
-Slack is the intended organisation-facing conversational surface where Claude is enabled. Users should be able to retrieve or submit relationship information without understanding Airtable schema or reconciliation internals.
+The current Airtable implementation uses `Operators` for internal DCA people participating in operational workflows. Conversational writes should preserve the authenticated human actor through that operator identity where available, while keeping the interface/runtime provenance separate.
+
+Slack is the intended organisation-facing conversational surface where Claude is enabled. Users should be able to retrieve or submit relationship information without understanding Airtable schema, operator records, or reconciliation internals.
 
 Airtable Omni may still be used as a bounded embedded testing or inspection runtime where useful. It is not the operational conversational intake interface.
 
