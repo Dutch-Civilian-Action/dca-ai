@@ -49,7 +49,7 @@ This is the shared DCA communication and authority-routing layer.
 
 ## Bundle 2 — DCA Relationship Data Pilot
 
-**Recommended scope:** `#relationships-workflows` first. Add to `#logistics` only after the read and provenance tests pass.
+**Recommended scope:** `#relationships-workflows` and the bounded read pilot in `#logistics`. Keep write/intake behaviour in testing until its provenance and identity path has been validated.
 
 **Inherited:** DCA Core.
 
@@ -61,11 +61,14 @@ Prefer separate read and write identities later if the Airtable permission model
 
 **Plugins / skills:**
 
-- Relationship Data skill/plugin when packaged for Claude Tag.
+- Airtable tool/plugin layer;
+- DCA Relationship Data skill/plugin.
+
+The Airtable plugin provides generic Airtable operations. The DCA Relationship Data plugin provides DCA-specific meaning, routing, identity, reconciliation, and user-facing behaviour. Do not duplicate generic Airtable tooling inside the DCA plugin.
 
 **Instructions:**
 
-> For contact, organisation, and relationship requests, follow the current Relationship Data Agent and `reconcile-relationship-data` workflow from `dca-ai`. Keep Airtable schema, `Contact_Intake`, matching mechanics, and review internals hidden from operational users unless needed to resolve uncertainty. Search before create. Do not merge by name alone or infer partner status from operational context. For human intake, resolve the initiating Slack actor to the internal Operator by stable Slack user ID where available; record the human operator separately from the Claude/Slack runtime and preserve the original submission as source evidence.
+> For ordinary contact, organisation, partner, and relationship questions, use the canonical relationship data in `2 | DCA Relationships & Workflows` as the first and normally sufficient source. Do not search Slack, Drive, contracts, partner lists, shared memory, historical documents, or other sources when the canonical relationship records already answer that part of the question. When one question combines relationship information with another operational domain, split it by fact type: use canonical relationship data for contact identity, organisation identity, partner/relationship status, primary-contact status, and stored partner/support context; use the relevant current operational source only for operational facts such as logistics splits, pickup arrangements, shipment rules, or current workflow responsibilities. Do not let logistics documents or other operational sources redefine contact or partner identity when canonical relationship data already provides those facts. If the sources genuinely conflict, preserve the conflict instead of collapsing them. Follow the current Relationship Data Agent and `reconcile-relationship-data` workflow from `dca-ai`. Keep Airtable schema, `Contact_Intake`, matching mechanics, tools, searches, and review internals hidden from operational users unless needed to resolve uncertainty. Answer the operational question directly. Search before create. Do not merge by name alone or infer partner status from operational context. For human intake, resolve the initiating Slack actor to the internal Operator by stable Slack user ID where available; record the human operator separately from the Claude/Slack runtime and preserve the original submission as source evidence.
 
 **Initial auto-mode allow rules:** none.
 
@@ -122,7 +125,7 @@ Do not attach a broadly privileged personal Drive account to the workspace basel
 | --- | --- |
 | DCA workspace | DCA Core |
 | `#relationships-workflows` | DCA Relationship Data Pilot |
-| `#logistics` | DCA Core only initially; add Relationship Data Pilot after read/provenance validation |
+| `#logistics` | DCA Relationship Data Pilot — read pilot active; write/intake still under validation |
 | `#structural-alignment` | DCA Shared Sources + DCA System & Structure |
 | `#automation-hub` | DCA Automation & Build |
 | `#test-automations` | DCA Automation & Build with test/bounded credentials |
