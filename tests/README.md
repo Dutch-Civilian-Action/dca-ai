@@ -9,3 +9,4 @@ Where a capability is provider-independent, test the same behavioural contract a
 Current workflow tests:
 
 - `workflows/maintain-dca-reality.md` — Reality Watch behaviour, material-change detection, authority boundaries, uncertainty preservation, capability-health findings, and provider portability.
+- `workflows/relationship-data-reconciliation.md` — relationship identity, provenance, uncertainty, conflict handling, retrieval, write boundaries, privacy, and provider portability. Concrete live cases are developed separately from the workflow definition.

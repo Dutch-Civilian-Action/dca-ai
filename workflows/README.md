@@ -7,5 +7,6 @@ A workflow defines DCA behaviour, evidence boundaries, validation logic, outputs
 Current workflows:
 
 - `maintain-dca-reality.md` — maintain Operational Reality and System & Structure Capability Reality from materially changed evidence.
+- `reconcile-relationship-data.md` — preserve, reconcile, persist, and retrieve bounded DCA relationship information with provenance, uncertainty, and validation boundaries.
 
 Provider-specific scheduled tasks, prompts, tool bindings, or runtime configuration belong under `providers/` and must not redefine the workflow itself.
