@@ -1,0 +1,24 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Supporting tones" subtitle="Optional softer tones — use sparingly, never overpower primaries" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--surface-page); }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+  .sw { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); }
+  .chip { height: 76px; }
+  .meta { padding: var(--space-3); }
+  .name { font-family: var(--font-condensed); font-weight: 700; font-size: var(--text-sm); color: var(--text-strong); }
+  .hex { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--soft-peach)"></div><div class="meta"><div class="name">Soft Peach</div><div class="hex">#FFE3D4</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--light-orange)"></div><div class="meta"><div class="name">Light Orange</div><div class="hex">#FF9C66</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--light-grey-blue)"></div><div class="meta"><div class="name">Light Grey Blue</div><div class="hex">#E0EFEE</div></div></div>
+  </div>
+</body>
+</html>

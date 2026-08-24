@@ -1,0 +1,23 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Elevation" subtitle="Subtle, neutral-toned shadows — lift interactive surfaces only" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 28px; background: var(--surface-subtle); }
+  .row { display: flex; gap: var(--space-6); align-items: center; }
+  .item { text-align: center; }
+  .box { width: 110px; height: 64px; background: var(--neutral-000); border-radius: var(--radius-md); }
+  .name { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: var(--space-3); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-sm)"></div><div class="name">shadow-sm</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-md)"></div><div class="name">shadow-md</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-lg)"></div><div class="name">shadow-lg</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-focus)"></div><div class="name">focus ring</div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!-- @dsCard group="DCA Operations" viewport="1280x820" name="Operations Dashboard" subtitle="Internal logistics console — operations register, traceable detail, finance" -->
+<!-- @startingPoint section="DCA Operations" subtitle="Internal logistics & operations console with traceable detail panel" viewport="1280x860" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCA Operations</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-subtle); font-family: var(--font-body); }
+  .app { display: grid; grid-template-columns: 232px 1fr; min-height: 100vh; }
+  .side { background: var(--dca-black); color: rgba(255,255,255,0.72); padding: var(--space-5) var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+  .navitem { display: flex; align-items: center; gap: var(--space-3); padding: 10px var(--space-3); border-radius: var(--radius-md); cursor: pointer; font-family: var(--font-condensed); font-weight: 700; font-size: 14px; color: rgba(255,255,255,0.7); }
+  .navitem.active { background: rgba(255,255,255,0.10); color: #fff; }
+  .navitem:hover { color: #fff; }
+  .main { display: flex; flex-direction: column; min-width: 0; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-6); background: var(--neutral-000); border-bottom: 1px solid var(--border-subtle); }
+  .content { padding: var(--space-6); display: grid; grid-template-columns: 1fr 360px; gap: var(--space-5); align-items: start; }
+  .panel { background: var(--neutral-000); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-family: var(--font-condensed); font-weight: 700; font-size: 11px; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-subtle); }
+  td { padding: var(--space-4); border-bottom: 1px solid var(--border-subtle); font-size: 14px; color: var(--text-body); }
+  tr.row { cursor: pointer; }
+  tr.row:hover td { background: var(--neutral-050); }
+  tr.row.sel td { background: var(--dca-blue-050); }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Badge, Stat, Trace, Progress, Button, Card } = window.DesignSystem_cf89c3;
+
+  function LIcon({ name, size = 18, color = "currentColor", sw = 2 }) {
+    const ref = React.useRef(null);
+    React.useEffect(() => {
+      if (ref.current && window.lucide) {
+        ref.current.innerHTML = "";
+        const el = document.createElement("i");
+        el.setAttribute("data-lucide", name);
+        ref.current.appendChild(el);
+        window.lucide.createIcons({ attrs: { width: size, height: size, stroke: color, "stroke-width": sw } });
+      }
+    });
+    return <span ref={ref} style={{ display: "inline-flex", width: size, height: size }} />;
+  }
+
+  const OPS = [
+    { ref: "DCA-0421", op: "Winter generators — Kharkiv", domain: "Logistics", status: ["blue", "In transit"], cost: "€18,200",
+      trace: [
+        { stage: "Need", detail: "4 generators requested by Kharkiv hospitals", status: "need" },
+        { stage: "Action", detail: "Sourced & loaded in Rotterdam", status: "delivered" },
+        { stage: "Delivery", detail: "Convoy in transit — border cleared", status: "progress" },
+        { stage: "Impact", detail: "Pending handover", status: "planned" },
+      ] },
+    { ref: "DCA-0418", op: "Evacuation fuel — Donetsk corridor", domain: "Operations", status: ["orange", "Urgent"], cost: "€6,000",
+      trace: [
+        { stage: "Need", detail: "Diesel for evacuation transport", status: "need" },
+        { stage: "Action", detail: "Funding appeal active", status: "progress" },
+        { stage: "Delivery", detail: "Scheduled weekly", status: "planned" },
+        { stage: "Impact", detail: "Continuous support", status: "planned" },
+      ] },
+    { ref: "DCA-0410", op: "Medical supplies — Sumy clinics", domain: "Logistics", status: ["info", "Delivered"], cost: "€9,000",
+      trace: [
+        { stage: "Need", detail: "Trauma & first-aid kits, 2 clinics", status: "need" },
+        { stage: "Action", detail: "Sourced & packed", status: "delivered" },
+        { stage: "Delivery", detail: "Handover completed 09 Mar", status: "delivered" },
+        { stage: "Impact", detail: "Clinics restocked; April refill planned", status: "impact" },
+      ] },
+    { ref: "DCA-0405", op: "Warehouse intake — Rotterdam", domain: "Logistics", status: ["info", "Delivered"], cost: "€2,400",
+      trace: [
+        { stage: "Need", detail: "Storage for incoming donations", status: "need" },
+        { stage: "Action", detail: "Pallets received & sorted", status: "delivered" },
+        { stage: "Delivery", detail: "Catalogued into inventory", status: "delivered" },
+        { stage: "Impact", detail: "Ready for dispatch", status: "impact" },
+      ] },
+    { ref: "DCA-0399", op: "Transport coordination — convoy 12", domain: "Operations", status: ["blue", "In transit"], cost: "€5,100",
+      trace: [
+        { stage: "Need", detail: "Multi-stop delivery route", status: "need" },
+        { stage: "Action", detail: "Route planned, drivers briefed", status: "delivered" },
+        { stage: "Delivery", detail: "En route — 2 of 4 stops done", status: "progress" },
+        { stage: "Impact", detail: "Pending completion", status: "planned" },
+      ] },
+  ];
+
+  const NAV = [["operations", "Operations", "package"], ["deliveries", "Deliveries", "truck"], ["appeals", "Appeals", "megaphone"], ["finance", "Finance", "wallet"], ["reports", "Reports", "file-text"]];
+
+  function App() {
+    const [route, setRoute] = React.useState("operations");
+    const [sel, setSel] = React.useState(OPS[0]);
+    React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+    return (
+      <div className="app">
+        <aside className="side">
+          <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "0 var(--space-3) var(--space-5)" }}>
+            <img src="../../assets/logos/dca-mark.png" alt="DCA" style={{ height: 28 }} />
+            <span style={{ fontFamily: "var(--font-condensed)", fontWeight: 900, color: "#fff", fontSize: 15 }}>Operations</span>
+          </div>
+          {NAV.map(([k, l, ic]) => (
+            <div key={k} className={"navitem" + (route === k ? " active" : "")} onClick={() => setRoute(k)}>
+              <LIcon name={ic} size={17} /> {l}
+            </div>
+          ))}
+          <div style={{ marginTop: "auto", padding: "var(--space-3)", borderTop: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{ width: 30, height: 30, borderRadius: "var(--radius-pill)", background: "var(--dca-blue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-condensed)", fontWeight: 700, fontSize: 13 }}>JV</div>
+            <div style={{ fontSize: 13 }}><div style={{ color: "#fff", fontWeight: 700, fontFamily: "var(--font-condensed)" }}>J. de Vries</div><div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>Logistics lead</div></div>
+          </div>
+        </aside>
+
+        <div className="main">
+          <div className="topbar">
+            <div>
+              <div style={{ fontFamily: "var(--font-condensed)", fontWeight: 900, fontSize: 22, color: "var(--text-strong)" }}>Operations register</div>
+              <div style={{ fontSize: 13, color: "var(--text-muted)" }}>Live operational reality · Need → Action → Delivery → Impact</div>
+            </div>
+            <div style={{ display: "flex", gap: "var(--space-3)" }}>
+              <Button variant="secondary" size="sm" iconLeft={<LIcon name="download" size={15} />}>Export</Button>
+              <Button variant="primary" size="sm" iconLeft={<LIcon name="plus" size={15} />}>New operation</Button>
+            </div>
+          </div>
+
+          <div style={{ padding: "var(--space-6) var(--space-6) 0", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "var(--space-4)" }}>
+            <Card style={{ padding: "var(--space-4)" }}><Stat value="38" label="Active operations" /></Card>
+            <Card style={{ padding: "var(--space-4)" }}><Stat value="1,240" label="Boxes in transit" accent="orange" /></Card>
+            <Card style={{ padding: "var(--space-4)" }}><Stat value="€184k" label="Deployed 2026" accent="delivered" /></Card>
+            <Card style={{ padding: "var(--space-4)" }}><Stat value="9" label="Regions" accent="blue" /></Card>
+          </div>
+
+          <div className="content">
+            <div className="panel">
+              <table>
+                <thead><tr><th>Ref</th><th>Operation</th><th>Domain</th><th>Status</th><th>Cost</th></tr></thead>
+                <tbody>
+                  {OPS.map((o) => (
+                    <tr key={o.ref} className={"row" + (sel.ref === o.ref ? " sel" : "")} onClick={() => setSel(o)}>
+                      <td className="mono" style={{ color: "var(--text-muted)" }}>{o.ref}</td>
+                      <td style={{ fontWeight: 700, fontFamily: "var(--font-condensed)", color: "var(--text-strong)" }}>{o.op}</td>
+                      <td>{o.domain}</td>
+                      <td><Badge tone={o.status[0]}>{o.status[1]}</Badge></td>
+                      <td className="mono">{o.cost}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="panel" style={{ padding: "var(--space-5)", position: "sticky", top: "var(--space-6)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--space-3)" }}>
+                <span className="mono" style={{ fontSize: 13, color: "var(--text-muted)" }}>{sel.ref}</span>
+                <Badge tone={sel.status[0]}>{sel.status[1]}</Badge>
+              </div>
+              <h3 style={{ fontSize: "var(--text-h4)", margin: "0 0 var(--space-4)" }}>{sel.op}</h3>
+              <Progress label="Operation funding" raised={sel.cost} goal={sel.cost} value={1} max={1} tone="blue" showPercent={false} />
+              <div style={{ height: 1, background: "var(--border-subtle)", margin: "var(--space-5) 0" }} />
+              <div style={{ fontFamily: "var(--font-condensed)", fontWeight: 700, fontSize: 11, letterSpacing: "var(--tracking-label)", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "var(--space-4)" }}>Traceability</div>
+              <Trace orientation="vertical" steps={sel.trace} />
+              <Button variant="ghost" fullWidth iconRight={<LIcon name="arrow-up-right" size={15} />} style={{ marginTop: "var(--space-4)" }}>Open full report</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
