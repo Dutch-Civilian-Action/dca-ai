@@ -1,6 +1,6 @@
 ---
 name: managing-dca-relationship-data
-description: Retrieves and maintains DCA contact, organization, partner, and relationship information through the canonical Airtable relationship base. Use when a DCA user asks who a contact is, how to reach an organization, whether DCA already has a relationship record, or asks to add, correct, or reconcile contact or organization information.
+description: Retrieve and maintain DCA contact, organization, and relationship data in the canonical Airtable base. Use for contact lookup, additions, corrections, or reconciliation.
 metadata:
   version: 0.1.0
   dca-agent: relationship-data-agent
