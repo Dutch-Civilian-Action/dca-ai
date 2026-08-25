@@ -49,10 +49,11 @@ Claude Tag channel mode acts under an organisation-managed identity with admin-c
 
 Airtable Omni may still be used for bounded embedded testing or inspection. It is not the primary conversational intake interface.
 
-See `../runtime-selection.md`.
+See `../runtime-selection.md` for runtime/provider choice and `model-selection.md` for Claude model and effort choice once Claude is the selected runtime.
 
 ## Provider-specific structure
 
+- `model-selection.md` — current Claude model and effort guidance by work type.
 - `tag/access-bundles.md` — current Claude Tag access-bundle and channel-scope design.
 - `../../plugins/dca-core/` — packaged DCA source-routing and repository-navigation adapters for Claude runtimes.
 - `../../plugins/dca-relationship-data/` — packaged Claude implementation of the Relationship Data capability.
@@ -73,4 +74,4 @@ Any Claude implementation for DCA should apply, as relevant:
 
 Claude must not fall back to the pre-reality-first fixed Layer / Entry Point / Anchor model merely because legacy instructions or historical documents remain accessible.
 
-Provider-specific prompts, access bundles, plugins, and skills may adapt discovery, formatting, access, and execution behaviour, but they must not redefine DCA organisational authority, agent meaning, skill meaning, workflow meaning, or source-routing semantics.
+Provider-specific prompts, access bundles, plugins, skills, model choices, and effort settings may adapt discovery, formatting, access, execution behaviour, and resource use, but they must not redefine DCA organisational authority, agent meaning, skill meaning, workflow meaning, or source-routing semantics.
