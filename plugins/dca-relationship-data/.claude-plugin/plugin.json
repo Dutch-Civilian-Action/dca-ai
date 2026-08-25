@@ -2,7 +2,6 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "dca-relationship-data",
   "displayName": "DCA Relationship Data",
-  "version": "0.1.0",
   "description": "DCA relationship-data capability for retrieving, adding, correcting, and reconciling contacts, organizations, and their relationships through the current DCA Relationship Data Agent.",
   "author": {
     "name": "Dutch Civilian Action"
@@ -14,6 +13,5 @@
     "contacts",
     "organizations",
     "airtable"
-  ],
-  "skills": "./skills/"
+  ]
 }
