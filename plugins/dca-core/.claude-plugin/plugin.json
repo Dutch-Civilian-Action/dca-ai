@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "dca-core",
+  "displayName": "DCA Core",
+  "description": "Core DCA source-routing and repository-navigation skills for Claude runtimes.",
+  "author": {
+    "name": "Dutch Civilian Action"
+  },
+  "repository": "https://github.com/Dutch-Civilian-Action/dca-ai",
+  "keywords": [
+    "dca",
+    "routing",
+    "authority",
+    "navigation"
+  ]
+}
