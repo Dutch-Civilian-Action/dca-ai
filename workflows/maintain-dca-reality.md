@@ -135,15 +135,14 @@ Use only the headings that are relevant:
 - Capability / dependency / health impact
 - Required reconciliation or next update
 
-Keep Slack publication compact:
+Keep Slack publication readable:
 
-- do not insert a blank line after the title;
-- do not insert blank lines between sections;
-- place the first section heading immediately after the title;
-- place each following section heading immediately after the preceding content;
-- place bullets immediately under their heading;
-- omit unused sections entirely instead of leaving visual space;
-- use blank lines only when they carry meaning, not as decorative spacing.
+- insert one blank line after the title;
+- insert one blank line between sections;
+- keep each section heading visually separate from the previous bullet list;
+- place bullets directly under their heading;
+- omit unused sections entirely;
+- do not add extra decorative blank lines beyond the single separator needed for clear section boundaries.
 
 No material change → no unnecessary report.
 
