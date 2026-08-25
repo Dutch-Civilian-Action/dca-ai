@@ -146,7 +146,7 @@ Initial recommendation:
 - Channel member edits: Block
 - Auto-mode allow rules: none at workspace level
 - Auto-join patterns: none during pilot
-- Default model: use the current Sonnet-class model for ordinary operational channels; use the current Opus-class model only where deeper structural reasoning materially justifies it.
+- Model and effort selection: follow `../model-selection.md`; keep ordinary operational channels on the validated Sonnet baseline and use stronger models only for work that demonstrably requires them.
 
 ## Security boundary
 
