@@ -10,31 +10,32 @@ provider_independent: true
 
 ## Purpose
 
-Capture current Logistics operational-state evidence from DCA people with minimal friction so it can be preserved, reconciled, and later promoted into the appropriate shared operational records without forcing premature structure.
+Capture current Logistics operational evidence from DCA people with minimal friction so it can be preserved, reconstructed, reconciled, and later promoted into the appropriate shared records without forcing premature structure.
 
 This workflow supports two related uses:
 
 - **initial capture** — create the starting picture for a Logistics cycle;
-- **cycle update** — keep that picture current as goods are offered, expected, incoming, present, changed, cancelled, or resolved.
+- **cycle update** — keep that picture current as goods, people, organisations, locations, routes, arrangements, and other operational references change or become visible.
 
-It does not define the full Logistics workflow or the final Logistics schema.
+It does not define the full Logistics workflow, the final Logistics schema, or the final relationship between Logistics objects and Relationship Data.
 
 ## Current pilot storage
 
-During the bounded pilot, store intake evidence in:
+During the bounded pilot, store new mixed Logistics-cycle intake evidence in:
 
 `DCA Integrations & Reconciliation`
 
 using:
 
 - `Logistics_Intake_Submissions` — source/provenance envelope;
-- `Logistics_Intake_Facts` — minimally interpreted facts extracted from the submission.
+- `Logistics_Intake_Facts` — minimally interpreted goods/state facts extracted from the submission;
+- `Logistics_Intake_Operational_References` — minimally interpreted people, organisations, locations, contact routes, and other references tied to an operational function, step, handoff, or context.
 
-These tables are staging/reconciliation structures. Records in them are not automatically canonical Logistics objects and are not automatically claims in DCA Operational Reality.
+These tables are reconstruction/reconciliation staging. Records in them are not automatically canonical Logistics objects, canonical relationship records, or claims in DCA Operational Reality.
 
 ## What belongs in this intake
 
-Capture what is actually known about goods that are:
+Capture what is actually known about the current Logistics cycle, including goods that are:
 
 - currently in the warehouse;
 - offered;
@@ -47,13 +48,42 @@ Capture what is actually known about goods that are:
 - cancelled;
 - no longer expected.
 
+Also preserve operational references revealed in the same work, including when supported by the submission:
+
+- people involved;
+- organisations involved;
+- phone, WhatsApp, email, address, location, or other contact/operational routes;
+- which route is used for which operational purpose;
+- locations that differ by operational function;
+- who contacts whom, when, or for what step;
+- other context needed to understand how the work actually happens.
+
 Existing WhatsApp, email, Slack, screenshots, photos, or other messages may be supplied as source evidence.
 
 No cleanup or extra research is required from the human contributor. Unknown information may remain unknown.
 
+## Pilot principle: capture before modelling
+
+The current pilot is deliberately reconstruction-first.
+
+Do not require Claude or the human contributor to decide during intake whether a new statement ultimately belongs in a Contact, Organisation, Partner, contact-route structure, Logistics object, workflow step, location object, or another future model.
+
+Use this sequence:
+
+```text
+mixed current-cycle evidence
+→ preserve submission
+→ minimally extract supported facts/references
+→ reconstruction
+→ reconciliation
+→ stable shared structure only when justified
+```
+
+The point is to learn the structure the real work requires before imposing it.
+
 ## Core boundary
 
-Keep three things separate:
+Keep these things separate:
 
 ```text
 source evidence / live capture
@@ -66,9 +96,9 @@ material patterns about how the work happens
 
 The Operational Reality document describes how DCA currently works: roles, dependencies, handoffs, variation, exceptions, current practices, and visibility gaps.
 
-It is not a live inventory, offer queue, expected-intake list, or cycle ledger.
+It is not a live inventory, offer queue, expected-intake list, cycle ledger, contact-route register, or address book.
 
-A captured Logistics fact may later justify an Operational Reality update only when it reveals or confirms a material pattern, dependency, workflow change, variation, or visibility gap.
+Captured pilot records may later justify an Operational Reality update only when they reveal or confirm a material pattern, dependency, workflow change, variation, or visibility gap.
 
 ## Capture procedure
 
@@ -87,9 +117,9 @@ Preserve:
 
 Do not rewrite the raw submission into normalized prose.
 
-### 2. Extract only supported facts
+### 2. Extract only supported goods/state facts
 
-Create one or more `Logistics_Intake_Facts` records when the submission contains separable operational facts.
+Create one or more `Logistics_Intake_Facts` records when the submission contains separable operational goods/state facts.
 
 Use the smallest supported interpretation.
 
@@ -109,7 +139,31 @@ Supported fact types for the pilot are:
 
 Do not infer a more specific state merely to complete a field.
 
-### 3. Preserve uncertainty
+### 3. Preserve operational references without forcing a final model
+
+Create `Logistics_Intake_Operational_References` records when the submission contains operationally meaningful people, organisations, locations, routes, or other references that should remain connected to the context in which they are used.
+
+Use the smallest supported `reference_type`:
+
+- `person`
+- `organisation`
+- `location`
+- `contact_route`
+- `other`
+
+Use free-text reconstruction fields such as `function_or_step_text`, `operational_context`, `route_type`, `route_value`, and `direction_or_action_text` only when the submission supports them.
+
+Examples of useful preserved meaning:
+
+- this is the person Kees calls when a truck arrives;
+- this address is used for unloading rather than the organisation's general address;
+- intake information arrives from this person via WhatsApp;
+- transport information for the same goods arrives by email;
+- this number is associated with a specific operational handoff.
+
+Do not turn those observations into a final `Contact_Route`, `Workflow_Step_Contact`, `Partner_Location`, `Operational_Role`, or similar object during capture.
+
+### 4. Preserve uncertainty
 
 Unknown is a valid result.
 
@@ -123,26 +177,31 @@ Do not invent:
 - contact identity;
 - destination;
 - shipment assignment;
-- whether two mentions refer to the same underlying batch.
+- operational function;
+- whether a route is general or step-specific;
+- whether two mentions refer to the same person, location, route, goods batch, or operational object.
 
-Preserve approximate language in `quantity_text`, `timing_text`, and notes where needed.
+Preserve approximate language in `quantity_text`, `timing_text`, reference fields, and notes where needed.
 
-Use normalized numeric fields only when directly supported.
+Use normalized fields only when directly supported.
 
-### 4. Keep operational and relationship facts distinct
+### 5. Mixed Logistics and relationship information stays together during the pilot
 
-A Logistics submission may mention people or organisations because they offered goods, arranged pickup, receive goods, or appear in a message.
+A current-cycle Logistics submission may contain goods state, a person or organisation, a phone number, an address, an operational function, and a contact route in one message.
 
-During capture:
+During this reconstruction pilot:
 
-- preserve the named organisation/contact in the raw Logistics fact fields;
-- do not create or update canonical relationship records merely because they were mentioned;
-- do not infer partner status from Logistics context;
-- if a separate relationship fact or correction is actually supplied, route that fact through the Relationship Data capability.
+- preserve the entire submission in `DCA Integrations & Reconciliation`;
+- extract goods/state facts into `Logistics_Intake_Facts` when supported;
+- extract operational people/organisation/location/route references into `Logistics_Intake_Operational_References` when supported;
+- do not write new mixed intake directly into canonical Contacts, Organizations, Partners, or other Relationship Data records;
+- do not infer partner status, primary-contact status, general contact-route status, or a stable workflow role from Logistics context;
+- Relationship Data may be queried to check whether an identity already exists, but a match is reference/reconciliation context rather than permission to mutate the canonical record;
+- use `canonical_reference` / `canonical_references` only after a sufficiently supported match exists, and preserve unresolved identity when it does not.
 
-The same real-world submission may therefore support both a Logistics fact and a separate relationship-data consequence, but one does not silently redefine the other.
+A later reconstruction/reconciliation pass may determine which parts should be promoted into Relationship Data, Logistics records, operational-function structures, or another shared model.
 
-### 5. Do not promote prematurely
+### 6. Do not promote prematurely
 
 During the initial pilot, do not automatically create or mutate final objects such as:
 
@@ -151,21 +210,23 @@ During the initial pilot, do not automatically create or mutate final objects su
 - Logistics Unit;
 - Shipment Unit;
 - Shipment;
+- Contact Route;
+- Partner Location;
+- Workflow Step Contact;
+- Operational Role;
 - canonical relationship records.
-
-Use `canonical_references` only after a sufficiently supported reconciliation or promotion decision exists.
 
 The point of this pilot is to preserve the current picture and expose the structure the real work requires.
 
-### 6. Reconcile changes without deleting evidence
+### 7. Reconcile changes without deleting evidence
 
 Later submissions may change or cancel earlier information.
 
-Preserve the new submission as new evidence. Mark prior staging facts resolved, cancelled, or superseded only when the new evidence supports that consequence.
+Preserve the new submission as new evidence. Mark prior staging facts or references resolved, cancelled, superseded, matched, or reconciled only when the new evidence or later reconciliation supports that consequence.
 
-Do not delete the historical source submission merely because the current state changed.
+Do not delete historical source submissions merely because the current state changed.
 
-### 7. Return a simple operational confirmation
+### 8. Return a simple operational confirmation
 
 The human user should not need to understand staging tables, field names, reconciliation mechanics, or architecture.
 
@@ -174,18 +235,19 @@ After a successful capture, respond briefly with what was recorded and any mater
 Good examples:
 
 - `Recorded: 3 pallets currently in the warehouse, 2 expected Friday, and one pickup still unresolved.`
+- `Recorded the goods and the contact/address context you gave me. I left the exact operational role unresolved.`
 - `Recorded the update. The quantity for the hygiene goods is still unknown, which is fine.`
-- `I kept the offer from X separate from the incoming batch because the message does not establish that they are the same goods.`
+- `I kept the warehouse address and unloading address separate because the message shows they are used for different purposes.`
 
 Do not narrate internal Airtable mechanics unless the user explicitly asks.
 
 ## Initial capture behaviour
 
-For the first cycle capture, accept a broad dump of everything currently known that did not leave with the last truck.
+For the first cycle capture, accept a broad dump of everything currently known that did not leave with the last truck and the messages/context needed to understand it.
 
 The human does not need to organize the information first.
 
-Claude may split a long submission into multiple supported facts, but must preserve the original submission and must not manufacture missing structure.
+Claude may split a long submission into multiple supported facts and operational references, but must preserve the original submission and must not manufacture missing structure.
 
 ## Continuous cycle behaviour
 
@@ -200,7 +262,10 @@ Examples:
 - offer cancelled;
 - expected goods no longer coming;
 - remaining goods resolved;
-- new uncertainty discovered.
+- a new person/number/address appears in the operational flow;
+- an existing contact route is shown to be used for a different step;
+- a warehouse, pickup, or unloading location changes;
+- new uncertainty is discovered.
 
 Do not require the human to resubmit the full current picture every time.
 
@@ -214,9 +279,12 @@ Use them to learn, among other things:
 - what information is normally available at each point;
 - which information arrives through WhatsApp/email/private messages;
 - which facts are repeatedly missing;
-- where identity or batch matching becomes difficult;
+- which people, organisations, locations, and routes recur;
+- whether contact routes are general or tied to a specific function/step;
+- where different addresses or contacts serve different operational purposes;
+- where identity, route, location, or goods matching becomes difficult;
 - which person-held decisions or handoffs are required;
-- what should later become stable operational objects or interfaces.
+- what should later become stable operational objects, relationship structures, or interfaces.
 
 Only material findings about how the work operates should flow into the maintained Operational Reality document.
 
@@ -225,8 +293,8 @@ Only material findings about how the work operates should flow into the maintain
 If a submission is too ambiguous to split safely:
 
 - preserve the raw submission;
-- create the minimum `unresolved` fact if useful;
+- create the minimum `unresolved` fact and/or operational reference if useful;
 - ask only the smallest clarification needed for an operationally consequential distinction;
-- otherwise leave the uncertainty visible for later reconciliation.
+- otherwise leave the uncertainty visible for later reconstruction/reconciliation.
 
 Do not block capture merely because the information is incomplete.
