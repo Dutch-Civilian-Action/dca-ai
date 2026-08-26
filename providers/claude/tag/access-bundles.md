@@ -54,7 +54,7 @@ This is the shared DCA routing layer. It does not grant Google Drive, Airtable, 
 
 ## Bundle 2 — DCA Relationship Data Pilot
 
-**Recommended scope:** `#relationships-workflows` and the bounded read pilot in `#logistics`. Keep write/intake behaviour in testing until its provenance and identity path has been validated.
+**Recommended scope:** `#relationships-workflows` and bounded read/reference use in `#logistics`. In `#logistics`, use it to retrieve or reconcile against established relationship identity/context; do not use it as the direct write destination for mixed Logistics-cycle intake during the reconstruction pilot.
 
 **Inherited:** DCA Core.
 
@@ -79,13 +79,16 @@ The Airtable plugin provides generic Airtable operations. The DCA Relationship D
 
 ## Bundle 3 — DCA Logistics Intake Pilot
 
-**Recommended scope:** `#logistics` during the bounded current-state intake pilot.
+**Recommended scope:** `#logistics` during the bounded reconstruction/current-state intake pilot.
 
 **Inherited:** DCA Core.
 
 **Credentials:**
 
-- Airtable Agent Identity restricted to `DCA Integrations & Reconciliation` and only the Logistics intake staging tables required by the pilot where table-level restriction is possible.
+- Airtable Agent Identity restricted to `DCA Integrations & Reconciliation` and only the Logistics intake staging tables required by the pilot where table-level restriction is possible:
+  - `Logistics_Intake_Submissions`
+  - `Logistics_Intake_Facts`
+  - `Logistics_Intake_Operational_References`
 
 Do not reuse a broadly privileged Airtable identity merely for convenience.
 
@@ -96,7 +99,7 @@ Do not reuse a broadly privileged Airtable identity merely for convenience.
 
 **Instructions:**
 
-> Use the DCA Logistics Intake plugin when a Logistics user supplies new or changed information about goods currently in the warehouse, offered, expected, incoming, arranged for pickup/delivery, left from the previous movement, changed, cancelled, or unresolved. Preserve the human submission and uncertainty; do not require cleanup or complete fields. This is live operational-state capture, not the DCA Operational Reality document and not automatic creation of final Logistics objects. Keep people/organisation mentions as Logistics evidence unless a separate relationship-data fact is actually supplied. Confirm what was recorded in simple operational language and keep Airtable/reconciliation mechanics internal unless needed to resolve a material ambiguity.
+> Use the DCA Logistics Intake plugin when a Logistics user supplies new or changed current-cycle information, including goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, cancellations, or unresolved operational context. Preserve the full human submission and uncertainty; do not require cleanup or complete fields. During this reconstruction pilot, keep new mixed Logistics-cycle evidence in `DCA Integrations & Reconciliation` and minimally extract supported goods/state facts plus operational references there. Relationship Data may be read to check established identity/context, but do not directly mutate canonical relationship records from mixed Logistics intake. Do not invent final Logistics, contact-route, workflow-role, location, or relationship structures before reconstruction supports them. Confirm what was recorded in simple operational language and keep Airtable/reconciliation mechanics internal unless needed to resolve a material ambiguity.
 
 **Initial auto-mode allow rules:** none. Require explicit `@Claude` invocation during the pilot.
 
@@ -153,7 +156,7 @@ Do not attach a broadly privileged personal Drive account to the workspace basel
 | --- | --- |
 | DCA workspace | DCA Core |
 | `#relationships-workflows` | DCA Relationship Data Pilot |
-| `#logistics` | DCA Relationship Data Pilot (read) + DCA Logistics Intake Pilot (bounded write) |
+| `#logistics` | DCA Relationship Data Pilot (read/reference) + DCA Logistics Intake Pilot (bounded write to reconstruction staging) |
 | `#structural-alignment` | DCA Shared Sources + DCA System & Structure |
 | `#struct-system-build` | DCA Shared Sources + DCA System & Structure during S&S testing |
 | `#automation-hub` | DCA Automation & Build |
