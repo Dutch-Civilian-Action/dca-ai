@@ -10,8 +10,9 @@ This `.claude/` layer configures Claude Code when working in this repository. It
 
 - Do not infer authority from filenames, directory names, search ranking, detail, or recency alone.
 - DCA's provider-independent source-routing policy is `context/source-routing.md`; `context/current-authority.md` identifies current authority and source pointers.
-- When choosing which DCA source should answer a question, use the `route-dca-sources` skill.
-- When locating an AI definition, workflow, skill, provider implementation, plugin, test, or governance file in this repository, use the `navigate-dca-ai` skill.
+- For a question about **which source supports a DCA fact** — including current operational reality, relationship data, architecture, evidence, or current-vs-historical status — use `route-dca-sources` first.
+- For a question about **where an AI/configuration artifact lives inside this repository** — including agents, workflows, skills, provider configuration, plugins, tests, or governance files — use `navigate-dca-ai` first.
+- Do not use a provider-independent workflow definition in `workflows/` as evidence of how DCA currently operates in practice; route current operational-reality questions to the current operational source.
 - Keep provider-independent DCA behaviour separate from provider/runtime implementation.
 - `providers/`, `plugins/`, `.claude-plugin/`, and runtime configuration implement DCA behaviour; they do not create organisational authority.
 - Treat the nested `dca-ai/` directory and `skills/legacy/` as historical unless a task explicitly asks for historical material.
