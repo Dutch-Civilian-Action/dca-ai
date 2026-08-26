@@ -1,6 +1,6 @@
 ---
 name: route-dca-sources
-description: Route DCA questions to the correct current source before answering. Use when source choice matters, a request spans multiple DCA domains, or current versus historical status matters.
+description: Choose the correct current DCA evidence/source before answering or acting. Use for operational reality, relationship facts, architecture/authority, mixed-domain facts, or current-vs-historical source status. Do not use merely to locate an implementation/configuration file inside dca-ai; use navigate-dca-ai for that.
 ---
 
 # Route DCA sources
