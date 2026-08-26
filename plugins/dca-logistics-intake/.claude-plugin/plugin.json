@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "dca-logistics-intake",
   "displayName": "DCA Logistics Intake",
-  "description": "Capture current Logistics operational-state evidence through Claude into bounded DCA intake/reconciliation staging while preserving provenance and uncertainty.",
+  "description": "Capture mixed current Logistics-cycle evidence through Claude into bounded DCA reconstruction/reconciliation staging while preserving provenance, operational context, and uncertainty without forcing a final model.",
   "author": {
     "name": "Dutch Civilian Action"
   },
@@ -12,6 +12,7 @@
     "logistics",
     "intake",
     "airtable",
+    "reconstruction",
     "reconciliation"
   ]
 }
