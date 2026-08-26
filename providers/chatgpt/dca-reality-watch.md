@@ -13,24 +13,27 @@ workflow: maintain-dca-reality
 
 This file records the current ChatGPT implementation of that provider-independent DCA workflow. It is not the workflow authority itself.
 
+The ChatGPT runtime must execute the current canonical workflow, including its Output contract. Provider-specific instructions may define runtime access and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, or output eligibility rules.
+
 ## Current implementation
 
 Task name: **DCA Reality Watch**
 
 Runtime: **ChatGPT scheduled condition watch**
 
-Cadence: **daily**
+Cadence: **daily at 08:00 Europe/Amsterdam**
 
-Notification rule: **publish only when materially new or changed DCA reality is detected**
+Notification rule: **publish only when the canonical workflow identifies materially new or changed DCA reality**
 
-Current evidence views:
+Current maintained reality views include:
 
-- Operational Reality;
-- System & Structure Capability Reality.
+- DCA Operational Reality;
+- DCA Derived Organisational Reality;
+- DCA System & Structure — Capability Reality.
 
 Current source classes include, where available:
 
-- current Operational Reality and Derived Organisational Reality;
+- current maintained reality documents;
 - current DCA methods and authority map;
 - Google Drive;
 - GitHub;
@@ -39,22 +42,39 @@ Current source classes include, where available:
 - integrations, automations, and runtime evidence;
 - downstream use.
 
-## Testing publication boundary
+## Publication routing
 
-During the current testing phase, every material Reality Watch finding is published only to the DCA Slack channel `#test-automations` (channel ID `C0A48P1UQ2Y`).
+Organisation-facing publication routing is active.
 
-Use the channel ID as the routing target rather than relying on channel-name resolution.
+Route each material Reality Watch finding by its actual scope:
 
-This channel is the review surface for testing both finding quality and message format before broader organisational or domain publication is enabled.
+- **domain-specific operational finding** → the relevant public domain channel;
+- **cross-domain structural finding, shared-model change, capability dependency, architecture/reconciliation issue, or working organisational finding** → `#structural-alignment` (`C0AEEFTS495`);
+- **major organisation-wide finding, decision implication, or synthesis materially affecting DCA beyond one domain** → `#organisation` (`C038ABGL8SD`).
 
-During this phase:
+Rules:
 
-- do not post Reality Watch findings to `#organisation`, `#structural-alignment`, domain channels, or other operational channels;
-- no material change → no Slack post;
-- material change → one compact review message in channel ID `C0A48P1UQ2Y`;
-- broader routing rules should be introduced only after the publication format and usefulness have been tested against real findings.
+- route by scope rather than posting everything everywhere;
+- do not duplicate the same finding across channels unless separate audiences are genuinely required;
+- do not post routine implementation activity, low-signal changes, or unvalidated inference merely to keep the automation active;
+- `#test-automations` is no longer the normal publication target.
 
-The testing destination is implementation-specific and does not change the provider-independent `maintain-dca-reality` workflow.
+## Output implementation
+
+All output eligibility, authority, structure, and no-output behaviour are defined by the canonical workflow's **Output contract**.
+
+The ChatGPT runtime must therefore preserve the distinction between:
+
+1. Operational Reality updates;
+2. Derived Organisational Reality updates;
+3. System & Structure Capability Reality updates;
+4. top-level Reality Watch Slack publication;
+5. the optional **What this makes visible** thread;
+6. no-output conditions.
+
+When the canonical workflow supports a **What this makes visible** case, publish it as a thread reply beneath the relevant Reality Watch Slack post rather than as a separate top-level broadcast.
+
+The thread must remain grounded in the evidence and maintained reality that produced the parent finding. It must not create a new organisational finding, invent a benefit, or present a proposed future state as current reality.
 
 ## Implementation requirements
 
@@ -67,16 +87,18 @@ The ChatGPT task must preserve the canonical workflow's:
 - reconstruction and reconciliation rules;
 - material-change criteria;
 - validation boundary;
-- output discipline;
+- output contract;
 - no-change → no-notification behaviour.
+
+Provider implementation must not duplicate or silently override these rules. When the canonical workflow changes, the runtime should follow the current workflow unless a provider-specific technical limitation prevents it; any such limitation should be recorded here as implementation reality.
 
 ## Testing status
 
-This implementation is part of System & Structure development and live testing.
+This implementation remains part of System & Structure development and live organisational testing.
 
-Operational use during testing is allowed where the workflow boundary is sufficiently clear. Running it in ChatGPT does not imply ChatGPT is the permanent runtime.
+Operational publication is active. Testing now concerns finding quality, routing, usefulness, thread-case quality, source coverage, and whether outputs are actually used by DCA.
 
-The current Slack publication phase is explicitly a format and usefulness test. Organisation-facing routing remains disabled until that output has been reviewed.
+Running Reality Watch in ChatGPT does not imply ChatGPT is the permanent runtime.
 
 ## Runtime portability
 
