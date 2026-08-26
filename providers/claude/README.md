@@ -12,13 +12,23 @@ Claude is not required to execute every DCA AI workflow. System & Structure may 
 
 The Relationship Data Agent is now moving to Claude as its primary operational runtime/interface.
 
+## Claude configuration surfaces
+
+Do not assume one Claude configuration mechanism applies to every Claude runtime.
+
+- `.claude/CLAUDE.md`, `.claude/rules/`, and `.claude/skills/` are repository-native Claude Code configuration used when Claude Code is working in this repository.
+- Claude Tag is configured through organisation-managed access bundles, repositories, credentials, plugins/skills, and standing instructions.
+- Claude Chat / Cowork receive reusable packaged capability behaviour through supported plugins/skills and their configured connections.
+
+Therefore provider-independent DCA behaviour must not exist only inside `.claude/`. Put shared behaviour in the provider-independent repository structure, then use the relevant Claude mechanism as a thin runtime adapter.
+
 ## Relationship Data Agent implementation
 
 The first directly supported implementation surface is:
 
 ```text
 Claude Chat / Cowork
-→ managing-dca-relationship-data skill
+→ DCA Relationship Data plugin / managing-dca-relationship-data skill
 → Airtable connector / MCP
 → 2 | DCA Relationships & Workflows
 ```
@@ -28,35 +38,40 @@ The intended organisation-facing Slack path is:
 ```text
 James / DCA user in Slack
 → Claude Tag
+→ DCA Core + DCA Relationship Data plugins / access bundles
 → Relationship Data Agent behaviour
 → Airtable
 ```
 
-Claude Tag channel mode acts under an organisation-managed identity with admin-configured repositories, credentials, plugins/skills, instructions, memory, and access boundaries. Current Claude Tag configuration supports shaping channel behaviour with skills/plugins and instructions. DCA should therefore package reusable workflow behaviour as skills/plugins where practical and use access-bundle instructions only for small runtime routing and communication rules.
+Claude Tag channel mode acts under an organisation-managed identity with admin-configured repositories, credentials, plugins/skills, instructions, memory, and access boundaries. DCA should package reusable workflow behaviour as plugins/skills where practical and use access-bundle instructions only for small runtime routing, scope, and communication rules.
 
 `Contact_Intake`, matching logic, reconciliation queues, Operator resolution mechanics, and Airtable schema remain implementation details. They should not be exposed as the normal user interface.
 
 Airtable Omni may still be used for bounded embedded testing or inspection. It is not the primary conversational intake interface.
 
-See `../runtime-selection.md`.
+See `../runtime-selection.md` for runtime/provider choice and `model-selection.md` for Claude model and effort choice once Claude is the selected runtime.
 
 ## Provider-specific structure
 
-- `skills/` — Claude-specific packaging, configuration, or adapters for current provider-independent DCA skills when needed.
-- `skills/managing-dca-relationship-data/` — current Claude implementation of the Relationship Data Agent against Airtable.
+- `model-selection.md` — current Claude model and effort guidance by work type.
 - `tag/access-bundles.md` — current Claude Tag access-bundle and channel-scope design.
+- `../../plugins/dca-core/` — packaged DCA source-routing and repository-navigation adapters for Claude runtimes.
+- `../../plugins/dca-relationship-data/` — packaged Claude implementation of the Relationship Data capability.
+
+The packaged plugin skill is the maintained Claude implementation of Relationship Data. Do not maintain a second mirrored `SKILL.md` under `providers/claude/skills/`.
 
 Legacy skills under `/skills/legacy/` must not be loaded as current Claude skills.
 
 ## Required authority inputs
 
-Any Claude implementation for DCA should apply, at minimum:
+Any Claude implementation for DCA should apply, as relevant:
 
 - `../../governance/authority-rules.md`
+- `../../context/source-routing.md`
 - `../../context/current-authority.md`
 - the relevant provider-independent agent, workflow, or skill
 - the current canonical DCA architecture referenced by those files
 
 Claude must not fall back to the pre-reality-first fixed Layer / Entry Point / Anchor model merely because legacy instructions or historical documents remain accessible.
 
-Provider-specific prompts, access bundles, plugins, and skills may adapt formatting, access, and execution behaviour, but they must not redefine DCA organisational authority, agent meaning, skill meaning, or workflow meaning.
+Provider-specific prompts, access bundles, plugins, skills, model choices, and effort settings may adapt discovery, formatting, access, execution behaviour, and resource use, but they must not redefine DCA organisational authority, agent meaning, skill meaning, workflow meaning, or source-routing semantics.

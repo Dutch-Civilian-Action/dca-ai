@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "dca-logistics-intake",
+  "displayName": "DCA Logistics Intake",
+  "description": "Capture current Logistics operational-state evidence through Claude into bounded DCA intake/reconciliation staging while preserving provenance and uncertainty.",
+  "author": {
+    "name": "Dutch Civilian Action"
+  },
+  "repository": "https://github.com/Dutch-Civilian-Action/dca-ai",
+  "keywords": [
+    "dca",
+    "logistics",
+    "intake",
+    "airtable",
+    "reconciliation"
+  ]
+}

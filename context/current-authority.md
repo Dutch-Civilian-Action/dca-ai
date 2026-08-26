@@ -35,6 +35,8 @@ Use this source for claims about what currently happens in DCA domain work, incl
 
 Do not select an older or similarly titled Operational Reality document merely because it appears in search results. If the current source above is unavailable, preserve that access gap rather than silently substituting a historical copy as current reality.
 
+If the current Operational Reality is accessible but insufficient for a requested current operational fact, broaden to relevant current evidence and apply the Reconstruction & Reconciliation Method as needed. Do not treat a derived inference document as a substitute for missing operational evidence.
+
 When the canonical current Operational Reality source changes, update this pointer here so runtimes do not rely on title matching or memory to determine which document is current.
 
 ### Derived Organisational Reality
@@ -46,6 +48,8 @@ Current working inference source:
   - Document ID: `17AGt3ZqsQ8YChjJLlArLtjMechQai6xly3IKXBUnVfQ`
 
 Use DCA Derived Organisational Reality as a working evidential inference source only. It is not the Operating Model and does not override the current Operational Reality source or canonical architecture.
+
+Do not use Derived Organisational Reality as the default fallback when current Operational Reality lacks a current operational detail. Missing or conflicting operational detail should be reconstructed from relevant current evidence under the Reconstruction & Reconciliation Method. Derived Organisational Reality may then be used for the organisational findings or inferences it explicitly supports.
 
 When reasoning about System & Structure itself, do **not** limit the evidence base to domain Operational Reality or intended role descriptions.
 

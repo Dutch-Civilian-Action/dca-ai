@@ -7,16 +7,42 @@
   "description": "Internal DCA Claude plugins maintained as code in the dca-ai repository.",
   "plugins": [
     {
+      "name": "dca-core",
+      "displayName": "DCA Core",
+      "source": "./plugins/dca-core",
+      "description": "Core DCA source-routing and repository-navigation skills for Claude runtimes.",
+      "category": "productivity",
+      "tags": [
+        "dca",
+        "routing",
+        "authority",
+        "navigation"
+      ]
+    },
+    {
       "name": "dca-relationship-data",
       "displayName": "DCA Relationship Data",
       "source": "./plugins/dca-relationship-data",
       "description": "Retrieve, add, correct, and reconcile DCA contacts, organizations, and relationship data using the current DCA Relationship Data Agent.",
-      "version": "0.1.0",
       "category": "operations",
       "tags": [
         "dca",
         "relationship-data",
         "airtable"
+      ]
+    },
+    {
+      "name": "dca-logistics-intake",
+      "displayName": "DCA Logistics Intake",
+      "source": "./plugins/dca-logistics-intake",
+      "description": "Capture current DCA Logistics operational-state evidence into bounded Airtable intake/reconciliation staging while preserving provenance and uncertainty.",
+      "category": "operations",
+      "tags": [
+        "dca",
+        "logistics",
+        "intake",
+        "airtable",
+        "reconciliation"
       ]
     }
   ]
