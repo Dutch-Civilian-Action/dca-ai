@@ -187,6 +187,7 @@ Use only the headings that are relevant:
 
 Keep Slack publication readable:
 
+- begin the title with the robot icon: `🤖 **Reality Watch**`;
 - insert one blank line after the title;
 - insert one blank line between sections;
 - keep each section heading visually separate from the previous bullet list;
