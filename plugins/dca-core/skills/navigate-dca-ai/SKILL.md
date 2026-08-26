@@ -1,6 +1,6 @@
 ---
 name: navigate-dca-ai
-description: Navigate the DCA AI repository to find the current agent, workflow, skill, governance, provider configuration, plugin, test, or authority-routing source without broad searching.
+description: Locate a DCA AI implementation/configuration artifact inside the dca-ai repository without broad searching. Use for agents, workflows, skills, provider configuration (including Claude Tag), plugins, tests, governance files, or authority-routing files. Do not use this to answer how DCA currently operates in practice; use route-dca-sources for operational facts.
 ---
 
 # Navigate DCA AI
