@@ -35,13 +35,14 @@
       "name": "dca-logistics-intake",
       "displayName": "DCA Logistics Intake",
       "source": "./plugins/dca-logistics-intake",
-      "description": "Capture current DCA Logistics operational-state evidence into bounded Airtable intake/reconciliation staging while preserving provenance and uncertainty.",
+      "description": "Capture mixed current Logistics-cycle evidence into bounded Airtable reconstruction/reconciliation staging while preserving provenance, operational context, and uncertainty without forcing a final model.",
       "category": "operations",
       "tags": [
         "dca",
         "logistics",
         "intake",
         "airtable",
+        "reconstruction",
         "reconciliation"
       ]
     }
