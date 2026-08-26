@@ -19,9 +19,10 @@ Use `current-authority.md` when current authority, source status, or current-vs-
 
 - **Current operational work, dependencies, responsibilities in practice, variation, exceptions, bottlenecks, and current workflow consequences** → the current DCA Operational Reality identified in `current-authority.md`.
 - **Live operational state about specific current goods, offers, expected or incoming goods, pickup/delivery arrangements, unresolved carry-over, or other cycle-level Logistics facts** → the current Logistics operational-state source when one exists. During the bounded Logistics intake pilot, capture new or changed evidence in `DCA Integrations & Reconciliation` through the Logistics intake workflow; do not put the changing item-level/cycle-level state into the Operational Reality document merely because it is operational.
+- **New mixed current-cycle Logistics evidence containing goods state together with people, organisations, locations, contact routes, operational functions/steps, or other contextual references** → during the bounded reconstruction pilot, preserve the full submission and minimally extracted facts/references in `DCA Integrations & Reconciliation`. Do not force the new evidence directly into canonical Relationship Data or a final Logistics schema before reconstruction establishes the correct structure.
 - **Canonical organisational or system architecture, definitions, methods, and established requirements** → `Dutch-Civilian-Action/dca-architecture`.
 - **AI governance, agents, workflows, skills, provider behaviour, tests, runtime configuration, and AI implementation state** → `Dutch-Civilian-Action/dca-ai`.
-- **Contacts, organisations, partner identity or status, primary contacts, and reusable relationship context** → the current canonical Relationship Data implementation, currently `2 | DCA Relationships & Workflows`. The Relationship Data Agent and reconciliation workflow govern how this information is retrieved or reconciled; they are not themselves evidence sources for the contact or relationship fact.
+- **Established contacts, organisations, partner identity or status, primary contacts, and reusable relationship context** → the current canonical Relationship Data implementation, currently `2 | DCA Relationships & Workflows`. The Relationship Data Agent and reconciliation workflow govern how this information is retrieved or reconciled; they are not themselves evidence sources for the contact or relationship fact.
 - **Current logistics arrangements such as shipment splits, pickup arrangements, loading rules, transport steps, or current workflow responsibilities** → current Logistics or Operational Reality sources, not Relationship Data merely because a partner or contact is mentioned.
 - **Slack messages and other communications** → evidence or live conversation context, not organisational truth by themselves.
 - **Documents, spreadsheets, platforms, and system records** → sources or representations of facts; do not confuse the artifact with the underlying organisational fact.
@@ -42,9 +43,10 @@ Keep these two different questions separate.
 - what goods are in the warehouse now;
 - what has been offered or is expected now;
 - what is already incoming or arranged for pickup/delivery;
-- what changed, was cancelled, or remains unresolved in this cycle.
+- what changed, was cancelled, or remains unresolved in this cycle;
+- which person, organisation, route, or location is currently involved in a specific operational context.
 
-Operational-state records may become evidence for a later Operational Reality update when they reveal or confirm a material pattern, dependency, workflow change, variation, or visibility gap. Do not copy every changing operational-state record into the Operational Reality document.
+Operational-state and reconstruction-staging records may become evidence for a later Operational Reality update when they reveal or confirm a material pattern, dependency, workflow change, variation, or visibility gap. Do not copy every changing operational-state or reference record into the Operational Reality document.
 
 ## Source versus procedure
 
@@ -58,17 +60,19 @@ For example:
 
 A procedure file is not a fallback evidence source merely because the primary source is insufficient.
 
-## Mixed requests
+## Mixed requests and mixed intake
 
-Split a mixed request by fact type rather than forcing one source to answer every part.
+Split a mixed **question** by fact type rather than forcing one source to answer every part.
 
 For example:
 
-- contact identity → Relationship Data;
-- current pickup arrangement → Logistics reality;
+- established contact identity → Relationship Data;
+- current pickup arrangement → Logistics reality/state;
 - structural requirement derived from that reality → current Structure Method and canonical architecture.
 
 Do not let one domain source silently redefine facts owned by another sufficiently established source.
+
+A mixed **new Logistics-cycle submission** is different. During the bounded reconstruction pilot, preserve the full submission in the Logistics intake staging environment first, then minimally extract supported goods/state facts and operational references. Relationship Data may be queried to see whether an identity already exists, but the new mixed submission does not directly mutate canonical Contacts, Organizations, Partners, contact routes, or other relationship structures. Promotion follows later reconstruction/reconciliation.
 
 ## Broadening the evidence set
 
