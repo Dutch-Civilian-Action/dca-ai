@@ -122,13 +122,63 @@ Preserve unresolved uncertainty when evidence does not support a conclusion.
 
 A finding may be prepared for human validation when its consequence or authority boundary requires it.
 
-## Output
+## Output contract
 
-Notify only when materially changed reality exists.
+Reality Watch may produce several distinct outputs from the same evidence pass. Keep their functions and authority separate.
+
+### 1. Operational Reality update
+
+Update **DCA Operational Reality** only when new or changed evidence materially changes, confirms, corrects, qualifies, or makes visible current operational reality.
+
+Rules:
+
+- preserve provenance, uncertainty, variation, conflict, ownership, dependencies, and handoffs;
+- do not replace current reality with intended, proposed, or preferred future state;
+- do not create an update merely because source activity occurred;
+- bounded confirmation may strengthen existing reality without creating a new finding.
+
+### 2. Derived Organisational Reality update
+
+Update **DCA Derived Organisational Reality** only when the maintained evidence supports an organisationally meaningful pattern or implication beyond the isolated event.
+
+This may include, where supported:
+
+- recurring dependencies or loops;
+- repeated reconstruction;
+- person-held capability or continuity risk;
+- cross-functional consequences;
+- recurring visibility or information gaps;
+- structural contradictions;
+- trapped or underused organisational capacity;
+- patterns in how work, responsibility, information, decisions, or evidence move through DCA.
+
+Rules:
+
+- derivation must remain traceable to maintained reality and supporting evidence;
+- do not turn a single anecdote into an organisation-wide pattern without sufficient support;
+- preserve uncertainty and competing interpretations where the evidence does not justify one conclusion;
+- a derived finding does not automatically create a system requirement or organisational decision.
+
+### 3. System & Structure Capability Reality update
+
+Update **DCA System & Structure — Capability Reality** when material evidence changes what is known about an existing System & Structure capability, dependency, health condition, adoption state, continuity risk, or actual downstream use.
+
+Rules:
+
+- distinguish implemented capability from intended capability;
+- distinguish technical availability from demonstrated organisational use;
+- retain failures, drift, stale assumptions, unsupported dependencies, and non-adoption as reality rather than smoothing them away.
+
+### 4. Reality Watch Slack post
+
+Publish a top-level DCA Bot Reality Watch post only when there is a material update worth making visible to the organisation.
+
+The post may surface relevant changes from Operational Reality, Derived Organisational Reality, and System & Structure Capability Reality while preserving the distinctions between them.
 
 Use only the headings that are relevant:
 
 - Changed reality
+- Derived organisational reality
 - Evidence
 - Conflict / uncertainty
 - Validation status
@@ -144,7 +194,53 @@ Keep Slack publication readable:
 - omit unused sections entirely;
 - do not add extra decorative blank lines beyond the single separator needed for clear section boundaries.
 
+Do not publish a source-change dump. The Slack post is an organisationally meaningful view of maintained reality, not a log of every observed event.
+
+### 5. `What this makes visible` thread
+
+When a Reality Watch update contains a strong, concrete instance that makes an established or newly supported organisational pattern legible in everyday DCA work, DCA Bot may add one short thread reply beneath the relevant Reality Watch post.
+
+Purpose:
+
+- make Operational Reality and Derived Organisational Reality recognisable through a small concrete example;
+- show how a structural pattern manifests in actual DCA work without turning the main Reality Watch post into system advocacy;
+- create space for organisational recognition or discussion while keeping the maintained reality itself separate.
+
+A thread case must be grounded in:
+
+1. current observable evidence;
+2. the relevant maintained Operational Reality; and
+3. an established or sufficiently supported Derived Organisational Reality finding or implication.
+
+The thread may use this minimal structure when useful:
+
+**What this makes visible**
+
+- **Current:** what concretely happened or currently happens;
+- **If shared:** what relevant information or capability could persist or become reusable, only when this follows from the evidence;
+- **Effect:** the concrete work that could become easier, such as less waiting, reconstruction, repetition, coordination, dependency, or loss of context.
+
+Rules:
+
+- maximum one strong case per relevant Reality Watch post;
+- no strong case → no thread;
+- do not invent a hypothetical event, benefit, dependency, or improvement to fill the format;
+- do not create a new organisational finding solely in the thread;
+- do not present a proposed solution as current reality;
+- omit `If shared` or `Effect` when the evidence supports only making the current pattern visible;
+- use concrete DCA work and existing terminology rather than architecture language where possible;
+- keep the case short enough to be understood without opening supporting system documentation;
+- the thread is an organisational interface to maintained reality, not a replacement for Operational Reality or Derived Organisational Reality.
+
+### 6. No-output condition
+
 No material change → no unnecessary report.
+
+No sufficiently supported derived change → do not manufacture one.
+
+No strong concrete case → do not add a `What this makes visible` thread.
+
+The workflow is not required to produce every output type on every run.
 
 ## Runtime independence
 
