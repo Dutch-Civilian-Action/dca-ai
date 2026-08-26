@@ -77,7 +77,30 @@ The Airtable plugin provides generic Airtable operations. The DCA Relationship D
 
 **Initial auto-mode allow rules:** none.
 
-## Bundle 3 — DCA Shared Sources
+## Bundle 3 — DCA Logistics Intake Pilot
+
+**Recommended scope:** `#logistics` during the bounded current-state intake pilot.
+
+**Inherited:** DCA Core.
+
+**Credentials:**
+
+- Airtable Agent Identity restricted to `DCA Integrations & Reconciliation` and only the Logistics intake staging tables required by the pilot where table-level restriction is possible.
+
+Do not reuse a broadly privileged Airtable identity merely for convenience.
+
+**Plugins / skills:**
+
+- Airtable tool/plugin layer;
+- DCA Logistics Intake plugin.
+
+**Instructions:**
+
+> Use the DCA Logistics Intake plugin when a Logistics user supplies new or changed information about goods currently in the warehouse, offered, expected, incoming, arranged for pickup/delivery, left from the previous movement, changed, cancelled, or unresolved. Preserve the human submission and uncertainty; do not require cleanup or complete fields. This is live operational-state capture, not the DCA Operational Reality document and not automatic creation of final Logistics objects. Keep people/organisation mentions as Logistics evidence unless a separate relationship-data fact is actually supplied. Confirm what was recorded in simple operational language and keep Airtable/reconciliation mechanics internal unless needed to resolve a material ambiguity.
+
+**Initial auto-mode allow rules:** none. Require explicit `@Claude` invocation during the pilot.
+
+## Bundle 4 — DCA Shared Sources
 
 **Recommended scope:** channels that genuinely need current shared Drive material, beginning with `#structural-alignment`.
 
@@ -93,7 +116,7 @@ Do not attach a broadly privileged personal Drive account to the workspace basel
 
 > Use current shared DCA sources according to DCA Core source routing and current authority. Treat documents as sources or representations of reality, not automatic truth. Preserve document status, validation state, recency, evidence boundaries, and conflicts. Do not substitute an older document for a current source merely because it is easier to retrieve.
 
-## Bundle 4 — DCA System & Structure
+## Bundle 5 — DCA System & Structure
 
 **Recommended scope:** `#structural-alignment` and other explicitly bounded System & Structure channels such as `#struct-system-build` during testing.
 
@@ -108,7 +131,7 @@ Do not attach a broadly privileged personal Drive account to the workspace basel
 
 > For questions about how work currently happens, start from the current DCA Operational Reality available through the shared-source route. Use canonical architecture to interpret that evidence or reason from reality toward requirements; do not use architecture as a substitute for current operational reality. Use the current Structure Method and Reconstruction & Reconciliation Method when relevant. Preserve uncertainty, variation, ownership boundaries, and visibility gaps.
 
-## Bundle 5 — DCA Automation & Build
+## Bundle 6 — DCA Automation & Build
 
 **Recommended scope:** `#automation-hub` and `#test-automations`.
 
@@ -130,7 +153,7 @@ Do not attach a broadly privileged personal Drive account to the workspace basel
 | --- | --- |
 | DCA workspace | DCA Core |
 | `#relationships-workflows` | DCA Relationship Data Pilot |
-| `#logistics` | DCA Relationship Data Pilot — read pilot active; write/intake still under validation |
+| `#logistics` | DCA Relationship Data Pilot (read) + DCA Logistics Intake Pilot (bounded write) |
 | `#structural-alignment` | DCA Shared Sources + DCA System & Structure |
 | `#struct-system-build` | DCA Shared Sources + DCA System & Structure during S&S testing |
 | `#automation-hub` | DCA Automation & Build |
