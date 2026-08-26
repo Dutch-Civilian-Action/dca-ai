@@ -30,6 +30,20 @@
         "relationship-data",
         "airtable"
       ]
+    },
+    {
+      "name": "dca-logistics-intake",
+      "displayName": "DCA Logistics Intake",
+      "source": "./plugins/dca-logistics-intake",
+      "description": "Capture current DCA Logistics operational-state evidence into bounded Airtable intake/reconciliation staging while preserving provenance and uncertainty.",
+      "category": "operations",
+      "tags": [
+        "dca",
+        "logistics",
+        "intake",
+        "airtable",
+        "reconciliation"
+      ]
     }
   ]
 }
