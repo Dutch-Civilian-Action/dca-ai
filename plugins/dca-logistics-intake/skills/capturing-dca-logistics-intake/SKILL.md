@@ -1,8 +1,8 @@
 ---
 name: capturing-dca-logistics-intake
-description: Capture new or changed DCA Logistics state such as goods in the warehouse, offered, expected, incoming, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
+description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -13,7 +13,7 @@ metadata:
 
 Provide the Claude runtime adapter for the provider-independent `capture-logistics-intake` workflow.
 
-This skill captures live Logistics operational-state evidence. It does not define DCA Logistics architecture, the full Logistics workflow, or organisational truth by itself.
+This skill captures live Logistics-cycle evidence for reconstruction and reconciliation. It does not define DCA Logistics architecture, the full Logistics workflow, final contact-route structures, or organisational truth by itself.
 
 ## Runtime path
 
@@ -22,14 +22,16 @@ DCA user in Slack / Claude
 → this skill
 → Airtable connector
 → DCA Integrations & Reconciliation
-→ Logistics_Intake_Submissions + Logistics_Intake_Facts
+→ Logistics_Intake_Submissions
+→ Logistics_Intake_Facts
+→ Logistics_Intake_Operational_References
 ```
 
-Use only the intended base:
+Use only the intended staging base for new Logistics intake:
 
 `DCA Integrations & Reconciliation`
 
-Do not select similarly named bases or the canonical Relationship Data base for Logistics intake staging.
+Do not select similarly named bases or use the canonical Relationship Data base as the write destination for mixed Logistics-cycle intake during this pilot.
 
 ## Before writing
 
@@ -42,18 +44,18 @@ Do not reconstruct this behaviour from old Logistics implementation documents wh
 
 ## What users may submit
 
-Accept ordinary operational language about goods that are:
+Accept ordinary operational language about the current Logistics cycle, including:
 
-- in the warehouse now;
-- offered;
-- expected;
-- incoming;
-- arranged for pickup;
-- arranged for delivery;
-- left or unresolved from the previous movement;
-- changed;
-- cancelled;
-- no longer expected.
+- goods in the warehouse now;
+- goods offered, expected, or incoming;
+- pickup or delivery arrangements;
+- carry-over from the previous movement;
+- changes or cancellations;
+- people and organisations involved;
+- phone, WhatsApp, email, address, location, or other routes;
+- which person, route, or location is relevant to which operational purpose or step;
+- who contacts whom and when;
+- unresolved or incomplete operational context.
 
 Users may paste or summarize WhatsApp/email/Slack messages or attach supporting evidence where the runtime supports it.
 
@@ -65,11 +67,13 @@ Do not require cleanup, complete fields, or extra research. Unknown may remain u
 2. Keep `raw_submission` verbatim.
 3. Preserve the authenticated human actor separately from the Claude/runtime identity.
 4. Use `capture_type = initial_capture` for the starting picture and `cycle_update` for later changes.
-5. Extract only separable, evidence-supported facts into `Logistics_Intake_Facts`.
-6. Preserve approximate/unknown quantities, timing, identity, destination, and status without inventing precision.
-7. Keep organisation/contact mentions as raw operational references unless a separate relationship fact is actually supplied.
-8. Do not create canonical Logistics or Relationship Data objects as a side effect of intake.
-9. Return a concise summary of what was recorded and any ambiguity that materially affects operational meaning.
+5. Extract only separable, evidence-supported goods/state facts into `Logistics_Intake_Facts`.
+6. Extract only separable, evidence-supported people/organisation/location/route references into `Logistics_Intake_Operational_References`.
+7. Preserve approximate or unknown quantities, timing, identity, destination, route, function, location, and status without inventing precision.
+8. Keep mixed new Logistics-cycle evidence in the Integrations staging base during this reconstruction pilot.
+9. Relationship Data may be queried to check whether a person or organisation already exists, but do not mutate canonical Relationship Data as a side effect of mixed Logistics intake.
+10. Do not create canonical Logistics, contact-route, workflow-role, location, or Relationship Data objects as a side effect of intake.
+11. Return a concise summary of what was recorded and any ambiguity that materially affects operational meaning.
 
 ## Table map
 
@@ -91,7 +95,7 @@ Use for source/provenance envelope. Relevant fields:
 
 ### Logistics_Intake_Facts
 
-Use for minimally interpreted operational facts. Relevant fields:
+Use for minimally interpreted goods/state facts. Relevant fields:
 
 - `fact_id`
 - `submission`
@@ -112,7 +116,37 @@ Use for minimally interpreted operational facts. Relevant fields:
 - `canonical_references`
 - `notes`
 
-## Supported fact types
+### Logistics_Intake_Operational_References
+
+Use for people, organisations, locations, contact routes, and other references whose operational meaning must stay connected to the context in which they are used. Relevant fields:
+
+- `reference_id`
+- `submission`
+- `related_fact`
+- `reference_type`
+- `reference_text`
+- `related_party_text`
+- `function_or_step_text`
+- `operational_context`
+- `route_type`
+- `route_value`
+- `direction_or_action_text`
+- `certainty`
+- `reconciliation_status`
+- `canonical_reference`
+- `notes`
+
+Use `reference_type` only as a minimal staging class:
+
+- `person`
+- `organisation`
+- `location`
+- `contact_route`
+- `other`
+
+Do not manufacture a final operational object from these fields.
+
+## Supported goods/state fact types
 
 Use only when supported by the submission:
 
@@ -130,20 +164,34 @@ Use only when supported by the submission:
 
 If the best interpretation is unclear, preserve `unresolved` rather than guessing.
 
-## Relationship boundary
+## Mixed information boundary
 
-A Logistics message may contain a person or organisation name. That does not automatically make it a relationship-data update.
+A Logistics message may contain several kinds of evidence at once. Do not force the message into one canonical domain during intake.
 
-- Preserve the name in the Logistics intake fact as evidence.
-- Do not infer partner status or primary-contact status.
-- Do not create/update Contacts or Organizations merely because they are mentioned in a Logistics fact.
-- If the human actually supplies a contact correction/addition or asks to maintain relationship data, route that separate consequence through the DCA Relationship Data capability.
+Example:
+
+```text
+"Olga from Help Window says 3 pallets are ready Friday. Call her on this WhatsApp number when the truck reaches the unloading address."
+```
+
+May support:
+
+- a goods/state fact about 3 pallets and timing;
+- a person reference;
+- an organisation reference;
+- a WhatsApp route;
+- an unloading-location reference;
+- an operational action/context connecting the route to that step.
+
+Preserve those together through the same submission. Do not infer that the number is Olga's general canonical contact route, that the unloading address is the organisation's general address, or that Olga has a stable formal Logistics role.
+
+Relationship Data can be read for identity lookup/reconciliation context. New mixed Logistics-cycle intake stays in Integrations staging until reconstruction determines what should later be promoted where.
 
 ## Operational Reality boundary
 
-Do not write the changing goods list into the DCA Operational Reality document.
+Do not write the changing goods list, contact-route details, or item-level operational references into the DCA Operational Reality document.
 
-Live goods state belongs in operational-state records. The maintained Operational Reality describes how the work currently happens, including roles, dependencies, handoffs, variation, exceptions, and visibility gaps.
+Live/staging records preserve specific changing evidence. The maintained Operational Reality describes how the work currently happens, including roles, dependencies, handoffs, variation, exceptions, and visibility gaps.
 
 Captured intake may later become evidence for an Operational Reality update when it reveals a material pattern or change.
 
@@ -154,8 +202,9 @@ Keep the implementation hidden.
 Good completion messages:
 
 - `Recorded: 4 pallets still in the warehouse, 2 expected Friday, and one pickup still unresolved.`
+- `Recorded the goods and the contact/address context. I kept the unloading address separate from the general organisation context.`
 - `Recorded the update. The exact quantity is unknown, so I left it unknown.`
-- `Recorded the cancellation and kept the earlier information as history.`
+- `Recorded the route and when it is used. I left the person's broader role unresolved.`
 
 Do not teach the user about staging tables or reconciliation unless they ask.
 
