@@ -106,6 +106,8 @@ Captured pilot records may later justify an Operational Reality update only when
 
 Create one `Logistics_Intake_Submissions` record for the human submission.
 
+`submission_id` is this table's primary field. Generate a stable identifier and set it at creation time; the field has no automatic default, and leaving it blank leaves this record unnamed everywhere it is linked from `Logistics_Intake_Facts` and `Logistics_Intake_Operational_References`.
+
 Preserve:
 
 - `raw_submission` verbatim;
@@ -120,6 +122,8 @@ Do not rewrite the raw submission into normalized prose.
 ### 2. Extract only supported goods/state facts
 
 Create one or more `Logistics_Intake_Facts` records when the submission contains separable operational goods/state facts.
+
+`fact_id` is this table's primary field. Generate a stable identifier and set it at creation time, for the same reason as `submission_id` above.
 
 Use the smallest supported interpretation.
 
@@ -142,6 +146,8 @@ Do not infer a more specific state merely to complete a field.
 ### 3. Preserve operational references without forcing a final model
 
 Create `Logistics_Intake_Operational_References` records when the submission contains operationally meaningful people, organisations, locations, routes, or other references that should remain connected to the context in which they are used.
+
+`reference_id` is this table's primary field. Generate a stable identifier and set it at creation time, for the same reason as `submission_id` above.
 
 Use the smallest supported `reference_type`:
 

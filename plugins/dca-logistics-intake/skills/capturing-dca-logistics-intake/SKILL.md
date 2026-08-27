@@ -63,12 +63,12 @@ Do not require cleanup, complete fields, or extra research. Unknown may remain u
 
 ## Write flow
 
-1. Preserve one `Logistics_Intake_Submissions` record for the human submission.
+1. Preserve one `Logistics_Intake_Submissions` record for the human submission. Generate a stable `submission_id` and set it at creation time — it is this table's primary field and has no automatic default; leaving it blank is what makes this record show up unnamed everywhere it is linked from `Logistics_Intake_Facts` and `Logistics_Intake_Operational_References`.
 2. Keep `raw_submission` verbatim.
 3. Preserve the authenticated human actor separately from the Claude/runtime identity.
 4. Use `capture_type = initial_capture` for the starting picture and `cycle_update` for later changes.
-5. Extract only separable, evidence-supported goods/state facts into `Logistics_Intake_Facts`.
-6. Extract only separable, evidence-supported people/organisation/location/route references into `Logistics_Intake_Operational_References`.
+5. Extract only separable, evidence-supported goods/state facts into `Logistics_Intake_Facts`. Generate a stable `fact_id` and set it at creation time — same primary-field reason as `submission_id`.
+6. Extract only separable, evidence-supported people/organisation/location/route references into `Logistics_Intake_Operational_References`. Generate a stable `reference_id` and set it at creation time — same primary-field reason as `submission_id`.
 7. Preserve approximate or unknown quantities, timing, identity, destination, route, function, location, and status without inventing precision.
 8. Keep mixed new Logistics-cycle evidence in the Integrations staging base during this reconstruction pilot.
 9. Relationship Data may be queried to check whether a person or organisation already exists, but do not mutate canonical Relationship Data as a side effect of mixed Logistics intake.
@@ -76,6 +76,8 @@ Do not require cleanup, complete fields, or extra research. Unknown may remain u
 11. Return a concise summary of what was recorded and any ambiguity that materially affects operational meaning.
 
 ## Table map
+
+`submission_id`, `fact_id`, and `reference_id` are each table's primary field and are plain text — Airtable does not generate them automatically. Always set one at creation time, using a short prefix plus the UTC creation timestamp (and an index when a submission produces more than one fact or reference in the same call), e.g. `SUB-20260827T140205Z`, `FACT-20260827T140205Z-1`, `REF-20260827T140205Z-1`. Leaving the field blank is what makes a record display unnamed wherever another table links to it.
 
 ### Logistics_Intake_Submissions
 
