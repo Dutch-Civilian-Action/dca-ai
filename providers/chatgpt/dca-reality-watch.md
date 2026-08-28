@@ -13,7 +13,7 @@ workflow: maintain-dca-reality
 
 This file records the current ChatGPT implementation of that provider-independent DCA workflow. It is not the workflow authority itself.
 
-The ChatGPT runtime must execute the current canonical workflow, including its Output contract. Provider-specific instructions may define runtime access and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, or output eligibility rules.
+The ChatGPT runtime must execute the current canonical workflow, including its Output contract. Provider-specific instructions may define runtime access, persistence mechanics and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, or output eligibility rules.
 
 ## Current implementation
 
@@ -41,6 +41,30 @@ Current source classes include, where available:
 - Airtable/system state;
 - integrations, automations, and runtime evidence;
 - downstream use.
+
+## Maintained-reality persistence
+
+Maintaining reality means **persisting supported changes into the current maintained reality documents**, not merely detecting, summarising, or reporting them in the scheduled run.
+
+For every run:
+
+1. resolve and read the current maintained Operational Reality, Derived Organisational Reality, and System & Structure Capability Reality documents before evaluating change;
+2. determine evidence coverage from what is actually represented in the maintained reality and its provenance, not from the scheduled task's `last_run_time` and not from Google Drive modification time alone;
+3. inspect materially relevant evidence that has not yet been represented, including backlog created by a previous incomplete or failed run;
+4. when the canonical Output contract supports an update, write that update into the relevant maintained document;
+5. re-read or otherwise verify the persisted document after the write before treating that output as completed;
+6. only after persistence has succeeded may the run treat the maintained-reality output as complete or publish a Slack summary of that maintained change.
+
+A task execution, generated finding, Slack message, or successful source read is **not** evidence that maintained reality was updated.
+
+If a required maintained-document write cannot be completed or verified:
+
+- preserve the finding as unpersisted work rather than silently treating it as maintained;
+- do not advance evidence coverage past the failed material;
+- do not claim that Operational Reality, Derived Organisational Reality, or Capability Reality was updated;
+- surface the persistence failure as System & Structure capability/runtime evidence at the next appropriate human-visible check rather than masking it as a no-change run.
+
+Recovery rule: after any maintenance gap, process the unrepresented evidence backlog before limiting attention to the newest day. A later successful scheduled run must therefore recover materially relevant evidence missed by earlier runs rather than assuming that prior task execution means prior evidence was processed.
 
 ## Publication routing
 
@@ -88,6 +112,8 @@ The ChatGPT task must preserve the canonical workflow's:
 - material-change criteria;
 - validation boundary;
 - output contract;
+- maintained-document persistence and verification;
+- backlog recovery after incomplete runs;
 - no-change → no-notification behaviour.
 
 Provider implementation must not duplicate or silently override these rules. When the canonical workflow changes, the runtime should follow the current workflow unless a provider-specific technical limitation prevents it; any such limitation should be recorded here as implementation reality.
@@ -96,7 +122,7 @@ Provider implementation must not duplicate or silently override these rules. Whe
 
 This implementation remains part of System & Structure development and live organisational testing.
 
-Operational publication is active. Testing now concerns finding quality, routing, usefulness, thread-case quality, source coverage, and whether outputs are actually used by DCA.
+Operational publication is active. Testing now concerns finding quality, routing, usefulness, thread-case quality, source coverage, maintained-document persistence, recovery after failed/incomplete runs, and whether outputs are actually used by DCA.
 
 Running Reality Watch in ChatGPT does not imply ChatGPT is the permanent runtime.
 
