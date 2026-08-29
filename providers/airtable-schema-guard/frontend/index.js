@@ -29,6 +29,16 @@ function SchemaGuard() {
   const [busy, setBusy] = useState(false);
   const [runMessage, setRunMessage] = useState('');
 
+  // In an Airtable Interface Extension, useBase() is scoped to the table/page
+  // context exposed by the interface. Schema Guard intentionally audits that
+  // available table context rather than claiming a base-wide scan.
+  const auditedTables = base.tables ?? [];
+  const scopeLabel = auditedTables.length === 1
+    ? auditedTables[0].name
+    : auditedTables.length > 1
+      ? `${auditedTables.length} tables in current interface context`
+      : 'No table context';
+
   const findings = useMemo(() => auditBase(base), [base, revision]);
   const summary = useMemo(() => summarizeIssues(findings), [findings]);
 
@@ -39,7 +49,7 @@ function SchemaGuard() {
   async function fixSafe() {
     const safeFindings = findings.filter(item => item.safeFix);
     if (!safeFindings.length) {
-      setRunMessage('No deterministic safe fixes are currently available.');
+      setRunMessage('No explicitly cleared safe fixes are currently available.');
       return;
     }
 
@@ -64,7 +74,7 @@ function SchemaGuard() {
     }
 
     const suffix = skipped.length ? ` ${skipped.length} skipped: ${skipped.join(' | ')}` : '';
-    setRunMessage(`${applied} safe fix${applied === 1 ? '' : 'es'} applied.${suffix}`);
+    setRunMessage(`${applied} safe fix${applied === 1 ? '' : 'es'} applied and the table was re-audited.${suffix}`);
   }
 
   return (
@@ -74,6 +84,7 @@ function SchemaGuard() {
           <p className="eyebrow">DCA Systems & Data</p>
           <h1>DCA Schema Guard</h1>
           <p className="subtitle">Audit Airtable implementation without inventing organisational structure.</p>
+          <p className="scope"><strong>Auditing:</strong> {scopeLabel}</p>
         </div>
         <span className="version">rules {rules.version}</span>
       </header>
@@ -96,7 +107,7 @@ function SchemaGuard() {
       </section>
 
       <section className="boundary">
-        <strong>Boundary:</strong> naming and explicit implementation drift can be enforced here. Type migrations, primary-field changes, relationship design, reconciliation semantics, areas of involvement, and contextual CRM decisions remain review-required.
+        <strong>Scope:</strong> this Interface Extension audits the table context Airtable exposes on the current interface page. Cross-table/base-wide reconciliation is a separate capability. <strong>Boundary:</strong> naming and explicit implementation drift can be enforced here. Type migrations, primary-field changes, relationship design, reconciliation semantics, areas of involvement, and contextual CRM decisions remain review-required until an exact migration is approved.
       </section>
 
       <section className="findings">
