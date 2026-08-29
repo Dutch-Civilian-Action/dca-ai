@@ -122,6 +122,21 @@ Preserve unresolved uncertainty when evidence does not support a conclusion.
 
 A finding may be prepared for human validation when its consequence or authority boundary requires it.
 
+### Validation contact and reminders
+
+When bounded validation requires input from a particular person:
+
+- identify the person relevant to the specific fact, uncertainty, dependency, or work being validated;
+- resolve that person to the runtime's available communication identity when needed, for example a Slack user ID; do not require a hard-coded person-to-platform-ID mapping in this workflow;
+- place the validation question in the relevant Reality Watch thread when the validation belongs to a published Watch;
+- contact the relevant person directly with a short reminder that points them to the validation request;
+- prefer a response in the Reality Watch thread so the confirmation, correction, or clarification remains visible and traceable;
+- allow a direct/private response when that is more appropriate or easier for the person;
+- treat a private response as evidence and reconcile its supported result back into the maintained reality and visible correction path where appropriate;
+- stop reminders once the validation is resolved.
+
+Reminder cadence is runtime configuration and should not be inferred by this provider-independent workflow.
+
 ## Reality Watch feedback and correction loop
 
 Reality Watch threads are an ongoing evidence surface. Feedback beneath a Watch can correct, qualify, challenge, confirm, or add missing context to the maintained reality that produced the post.
