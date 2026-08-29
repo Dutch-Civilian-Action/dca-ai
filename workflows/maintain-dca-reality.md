@@ -122,6 +122,63 @@ Preserve unresolved uncertainty when evidence does not support a conclusion.
 
 A finding may be prepared for human validation when its consequence or authority boundary requires it.
 
+## Reality Watch feedback and correction loop
+
+Reality Watch threads are an ongoing evidence surface. Feedback beneath a Watch can correct, qualify, challenge, confirm, or add missing context to the maintained reality that produced the post.
+
+Before producing a new Reality Watch:
+
+- review the immediately previous Reality Watch thread for unprocessed corrections, clarifications, confirmations, disagreements, or missing context;
+- review older Reality Watch threads where correction cases remain unresolved;
+- reconcile confirmed corrections before deriving or publishing new findings;
+- carry unresolved corrections forward explicitly rather than silently dropping them.
+
+Published Reality Watch threads should continue to be inspected for substantive feedback during later evidence checks. A comment, reaction, or disagreement is evidence of a possible correction; it does not automatically overwrite maintained organisational reality.
+
+When feedback indicates a possible correction:
+
+1. acknowledge the point in the relevant thread;
+2. identify the affected Watch observation, finding, or interpretation;
+3. state the proposed corrected interpretation as specifically as the evidence permits;
+4. preserve both the current and proposed interpretation where uncertainty remains;
+5. request bounded confirmation from the relevant person or evidence source when confirmation is required.
+
+Until sufficiently resolved, keep the correction **pending / unresolved**. Do not silently promote it into maintained reality.
+
+Once a correction is sufficiently confirmed:
+
+- reconcile it into the relevant maintained reality;
+- preserve the correction's provenance and confirmation basis;
+- check connected findings, dependencies, derived conclusions, capability implications, or downstream outputs that may also be affected;
+- update those connected elements where the evidence supports a change;
+- reply in the original Reality Watch thread with what was reconciled and what it affects.
+
+When evidence conflicts:
+
+- preserve the conflict explicitly;
+- do not silently select one version merely because it is newer or stated more confidently;
+- identify what evidence or confirmation is still needed to resolve it.
+
+Do not rewrite the historical Reality Watch post as though the original observation never existed. The post remains a snapshot of what was maintained at that time; correction and reconciliation are additive and traceable.
+
+The visible correction lifecycle is:
+
+```text
+Observation
+    ↓
+Correction / clarification
+    ↓
+Proposed correction
+    ↓
+Confirmation
+    ↓
+Reconciliation
+```
+
+Every new Reality Watch must begin from the **reconciled maintained reality**, not from the previous Watch post itself.
+
+A new Watch should not proceed as though the previous state is settled while material corrections from earlier Watch threads remain unreviewed. Each unresolved case must either be reconciled or explicitly carried forward as unresolved.
+
 ## Output contract
 
 Reality Watch may produce several distinct outputs from the same evidence pass. Keep their functions and authority separate.
