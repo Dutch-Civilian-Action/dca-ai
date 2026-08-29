@@ -122,6 +122,78 @@ Preserve unresolved uncertainty when evidence does not support a conclusion.
 
 A finding may be prepared for human validation when its consequence or authority boundary requires it.
 
+### Validation contact and reminders
+
+When bounded validation requires input from a particular person:
+
+- identify the person relevant to the specific fact, uncertainty, dependency, or work being validated;
+- resolve that person to the runtime's available communication identity when needed, for example a Slack user ID; do not require a hard-coded person-to-platform-ID mapping in this workflow;
+- place the validation question in the relevant Reality Watch thread when the validation belongs to a published Watch;
+- contact the relevant person directly with a short reminder that points them to the validation request;
+- prefer a response in the Reality Watch thread so the confirmation, correction, or clarification remains visible and traceable;
+- allow a direct/private response when that is more appropriate or easier for the person;
+- treat a private response as evidence and reconcile its supported result back into the maintained reality and visible correction path where appropriate;
+- stop reminders once the validation is resolved.
+
+Reminder cadence is runtime configuration and should not be inferred by this provider-independent workflow.
+
+## Reality Watch feedback and correction loop
+
+Reality Watch threads are an ongoing evidence surface. Feedback beneath a Watch can correct, qualify, challenge, confirm, or add missing context to the maintained reality that produced the post.
+
+Before producing a new Reality Watch:
+
+- review the immediately previous Reality Watch thread for unprocessed corrections, clarifications, confirmations, disagreements, or missing context;
+- review older Reality Watch threads where correction cases remain unresolved;
+- reconcile confirmed corrections before deriving or publishing new findings;
+- carry unresolved corrections forward explicitly rather than silently dropping them.
+
+Published Reality Watch threads should continue to be inspected for substantive feedback during later evidence checks. A comment, reaction, or disagreement is evidence of a possible correction; it does not automatically overwrite maintained organisational reality.
+
+When feedback indicates a possible correction:
+
+1. acknowledge the point in the relevant thread;
+2. identify the affected Watch observation, finding, or interpretation;
+3. state the proposed corrected interpretation as specifically as the evidence permits;
+4. preserve both the current and proposed interpretation where uncertainty remains;
+5. request bounded confirmation from the relevant person or evidence source when confirmation is required.
+
+Until sufficiently resolved, keep the correction **pending / unresolved**. Do not silently promote it into maintained reality.
+
+Once a correction is sufficiently confirmed:
+
+- reconcile it into the relevant maintained reality;
+- preserve the correction's provenance and confirmation basis;
+- check connected findings, dependencies, derived conclusions, capability implications, or downstream outputs that may also be affected;
+- update those connected elements where the evidence supports a change;
+- reply in the original Reality Watch thread with what was reconciled and what it affects.
+
+When evidence conflicts:
+
+- preserve the conflict explicitly;
+- do not silently select one version merely because it is newer or stated more confidently;
+- identify what evidence or confirmation is still needed to resolve it.
+
+Do not rewrite the historical Reality Watch post as though the original observation never existed. The post remains a snapshot of what was maintained at that time; correction and reconciliation are additive and traceable.
+
+The visible correction lifecycle is:
+
+```text
+Observation
+    ↓
+Correction / clarification
+    ↓
+Proposed correction
+    ↓
+Confirmation
+    ↓
+Reconciliation
+```
+
+Every new Reality Watch must begin from the **reconciled maintained reality**, not from the previous Watch post itself.
+
+A new Watch should not proceed as though the previous state is settled while material corrections from earlier Watch threads remain unreviewed. Each unresolved case must either be reconciled or explicitly carried forward as unresolved.
+
 ## Output contract
 
 Reality Watch may produce several distinct outputs from the same evidence pass. Keep their functions and authority separate.
@@ -185,15 +257,34 @@ Use only the headings that are relevant:
 - Capability / dependency / health impact
 - Required reconciliation or next update
 
+#### Channel routing
+
+Choose the publication channel from the affected reality after reconstruction, not merely from the channel or source where the evidence was observed.
+
+- route a domain-specific update to the closest relevant operational channel;
+- route a genuinely cross-domain or organisation-wide finding to `#organisation`;
+- do not duplicate the same Reality Watch across multiple channels;
+- where a domain-specific Watch has a material cross-domain consequence, surface that consequence organisation-wide only when it is itself a material organisational finding.
+
+Current routing examples include:
+
+- Logistics → `#logistics`;
+- Fundraising → `#fundraising`;
+- Marketing → `#marketing`;
+- Ukraine / missions → `#ukraine`;
+- structural or system implications → `#structural-alignment`.
+
 Keep Slack publication readable:
 
-- begin the title with the robot icon: `🤖 **Reality Watch**`;
+- begin the title with the robot icon and format the title bold and italic: `🤖 *_Reality Watch_*`;
+- format each section heading in italics, for example `_Changed reality_`;
 - insert one blank line after the title;
 - insert one blank line between sections;
 - keep each section heading visually separate from the previous bullet list;
 - place bullets directly under their heading;
 - omit unused sections entirely;
-- do not add extra decorative blank lines beyond the single separator needed for clear section boundaries.
+- do not add extra decorative blank lines beyond the single separator needed for clear section boundaries;
+- end every Reality Watch post with the italic line `_P.S. Tell me when I’m wrong — I learn from corrections._`.
 
 Do not publish a source-change dump. The Slack post is an organisationally meaningful view of maintained reality, not a log of every observed event.
 
