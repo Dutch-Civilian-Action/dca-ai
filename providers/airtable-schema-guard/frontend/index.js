@@ -1,9 +1,12 @@
 import {initializeBlock, useBase} from '@airtable/blocks/interface/ui';
 import React, {useMemo, useState} from 'react';
-import {auditBase, summarizeIssues, applySafeFix, rules} from './audit';
+import {auditBase, summarizeIssues, applySafeFix, applyApprovedAction, rules} from './audit';
 import './style.css';
 
-function Finding({finding}) {
+function Finding({finding, mode, busyKey, onApprove}) {
+  const key = `${finding.code}-${finding.tableId}-${finding.fieldId ?? 'table'}`;
+  const isBusy = busyKey === key;
+
   return (
     <article className={`finding finding--${finding.severity}`}>
       <div className="finding__header">
@@ -18,6 +21,15 @@ function Finding({finding}) {
         </dl>
       )}
       {finding.safeFix && <p className="safe-fix">Safe fix: rename to <code>{finding.safeFix.targetName}</code></p>}
+      {mode === 'plan' && finding.reviewAction && (
+        <div className="review-action">
+          <p><strong>Proposed action:</strong> {finding.reviewAction.label}</p>
+          <p>{finding.reviewAction.risk}</p>
+          <button onClick={() => onApprove(finding, key)} disabled={Boolean(busyKey)}>
+            {isBusy ? 'Applying…' : 'Approve & apply'}
+          </button>
+        </div>
+      )}
     </article>
   );
 }
@@ -27,11 +39,9 @@ function SchemaGuard() {
   const [mode, setMode] = useState('audit');
   const [revision, setRevision] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [busyKey, setBusyKey] = useState(null);
   const [runMessage, setRunMessage] = useState('');
 
-  // In an Airtable Interface Extension, useBase() is scoped to the table/page
-  // context exposed by the interface. Schema Guard intentionally audits that
-  // available table context rather than claiming a base-wide scan.
   const auditedTables = base.tables ?? [];
   const scopeLabel = auditedTables.length === 1
     ? auditedTables[0].name
@@ -43,7 +53,7 @@ function SchemaGuard() {
   const summary = useMemo(() => summarizeIssues(findings), [findings]);
 
   const visibleFindings = mode === 'plan'
-    ? findings.filter(item => !item.safeFix || item.severity === 'review' || item.severity === 'error')
+    ? findings.filter(item => item.severity === 'review' || item.severity === 'error' || item.reviewAction)
     : findings;
 
   async function fixSafe() {
@@ -77,6 +87,26 @@ function SchemaGuard() {
     setRunMessage(`${applied} safe fix${applied === 1 ? '' : 'es'} applied and the table was re-audited.${suffix}`);
   }
 
+  async function approveAndApply(finding, key) {
+    if (!finding.reviewAction) return;
+
+    setBusyKey(key);
+    setRunMessage('');
+    try {
+      const result = await applyApprovedAction(base, finding);
+      if (result.applied) {
+        setRunMessage(`Approved change applied: ${finding.reviewAction.label}. Re-auditing current table.`);
+      } else {
+        setRunMessage(`Approved change was not applied: ${result.reason}`);
+      }
+    } catch (error) {
+      setRunMessage(`Approved change failed: ${error.message ?? String(error)}`);
+    } finally {
+      setBusyKey(null);
+      setRevision(value => value + 1);
+    }
+  }
+
   return (
     <main className="app">
       <header className="hero">
@@ -91,8 +121,8 @@ function SchemaGuard() {
 
       <section className="controls" aria-label="Schema Guard mode">
         <button className={mode === 'audit' ? 'active' : ''} onClick={() => setMode('audit')}>Audit</button>
-        <button className={mode === 'plan' ? 'active' : ''} onClick={() => setMode('plan')}>Plan</button>
-        <button onClick={fixSafe} disabled={busy || summary.safeFixes === 0}>
+        <button className={mode === 'plan' ? 'active' : ''} onClick={() => setMode('plan')}>Plan ({summary.approvable} approvable)</button>
+        <button onClick={fixSafe} disabled={busy || Boolean(busyKey) || summary.safeFixes === 0}>
           {busy ? 'Applying…' : `Fix safe (${summary.safeFixes})`}
         </button>
       </section>
@@ -102,12 +132,12 @@ function SchemaGuard() {
       <section className="summary" aria-label="Audit summary">
         <div><strong>{summary.total}</strong><span>findings</span></div>
         <div><strong>{summary.review}</strong><span>review</span></div>
-        <div><strong>{summary.warning}</strong><span>mechanical</span></div>
+        <div><strong>{summary.approvable}</strong><span>approvable</span></div>
         <div><strong>{summary.safeFixes}</strong><span>safe fixes</span></div>
       </section>
 
       <section className="boundary">
-        <strong>Scope:</strong> this Interface Extension audits the table context Airtable exposes on the current interface page. Cross-table/base-wide reconciliation is a separate capability. <strong>Boundary:</strong> naming and explicit implementation drift can be enforced here. Type migrations, primary-field changes, relationship design, reconciliation semantics, areas of involvement, and contextual CRM decisions remain review-required until an exact migration is approved.
+        <strong>Scope:</strong> this Interface Extension audits the table context Airtable exposes on the current interface page. Cross-table/base-wide reconciliation is a separate capability. <strong>Behaviour:</strong> deterministic safe changes may execute directly; review-required findings only become executable when Schema Guard can define the exact change and you explicitly approve it. Unsupported or unresolved migrations remain review-only.
       </section>
 
       <section className="findings">
@@ -118,7 +148,15 @@ function SchemaGuard() {
         {visibleFindings.length === 0 ? (
           <p className="empty">No findings in this view.</p>
         ) : (
-          visibleFindings.map((finding, index) => <Finding key={`${finding.code}-${finding.tableId}-${finding.fieldId ?? 'table'}-${index}`} finding={finding} />)
+          visibleFindings.map((finding, index) => (
+            <Finding
+              key={`${finding.code}-${finding.tableId}-${finding.fieldId ?? 'table'}-${index}`}
+              finding={finding}
+              mode={mode}
+              busyKey={busyKey}
+              onApprove={approveAndApply}
+            />
+          ))
         )}
       </section>
     </main>
