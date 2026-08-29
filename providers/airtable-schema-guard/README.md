@@ -11,8 +11,10 @@ The architecture remains authoritative outside this implementation. The machine-
 ## v0.1 behaviour
 
 - **Audit** — scans tables and fields and reports implementation drift.
-- **Fix safe** — applies only deterministic mechanical renames when the runtime exposes the required schema mutation method and no collision exists.
+- **Fix safe** — applies only explicitly configured mechanical renames after dependency clearance has been recorded in the rules, the target remains collision-free, and the Airtable runtime exposes the required mutation method.
 - **Plan** — shows review-required changes without applying them.
+
+A mechanically obvious rename is not automatically safe. Interfaces, automations, scripts, syncs, APIs, formulas, or external consumers may depend on an existing name, so an unverified rename remains review-required.
 
 v0.1 deliberately does not auto-change populated field types, primary fields, formulas, linked-record targets/cardinality, table splits/merges, or contextual/organisational structures.
 
@@ -25,7 +27,7 @@ v0.1 deliberately does not auto-change populated field types, primary fields, fo
 - Exact canonical field-name mappings are checked for known semantic types such as `email`, `phone`, `website`, `notes`, `validation_status`, `confirmation_status`, `created_at`, and `last_modified`.
 - Type mismatches are reported, never auto-fixed.
 - Known external-source/reconciliation fields are treated as evidence surfaces; Schema Guard does not infer last-write-wins behaviour or overwrite policy.
-- Communication/language requirements are exposed as advisory checks only where the table is explicitly configured as communication-related. v0.1 does not infer organisational semantics from field names alone.
+- Communication/language requirements are checked only where a table is explicitly configured as communication-related. v0.1 does not infer organisational semantics from field names alone.
 
 ## Source of truth
 
