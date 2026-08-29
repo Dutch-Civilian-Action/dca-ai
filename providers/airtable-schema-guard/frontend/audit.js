@@ -4,7 +4,7 @@ const tableNamePattern = new RegExp(rules.naming.tablePattern);
 const fieldNamePattern = new RegExp(rules.naming.fieldPattern);
 const vagueDescriptionPatterns = rules.descriptions.vagueOnlyPatterns.map(pattern => new RegExp(pattern, 'i'));
 
-function issue({code, severity, scope, table, field, message, expected, actual, safeFix = null}) {
+function issue({code, severity, scope, table, field, message, expected, actual, safeFix = null, reviewAction = null}) {
   return {
     code,
     severity,
@@ -17,6 +17,7 @@ function issue({code, severity, scope, table, field, message, expected, actual, 
     expected: expected ?? null,
     actual: actual ?? null,
     safeFix,
+    reviewAction,
   };
 }
 
@@ -93,11 +94,17 @@ function auditTableName(base, table, issues) {
     message: safe
       ? `Table name does not follow ${rules.naming.tableStyle}; an explicitly cleared mechanical rename is configured.`
       : candidate
-        ? `Table name does not follow ${rules.naming.tableStyle}. A mechanical candidate exists, but dependency clearance is not configured, so the rename remains review-required.`
+        ? `Table name does not follow ${rules.naming.tableStyle}. The exact mechanical rename can be executed after explicit approval.`
         : `Table name does not follow ${rules.naming.tableStyle}, and no unambiguous rename candidate is available.`,
     expected: candidate ? target : rules.naming.tableStyle,
     actual: table.name,
     safeFix: safe ? {kind: 'rename_table', targetName: target} : null,
+    reviewAction: !safe && candidate ? {
+      kind: 'rename_table',
+      targetName: target,
+      label: `Approve rename to ${target}`,
+      risk: 'Renaming may affect external consumers that reference the current table name. Approval authorizes this exact rename; Schema Guard will re-check collisions before applying it.',
+    } : null,
   }));
 }
 
@@ -117,11 +124,17 @@ function auditFieldName(table, field, issues) {
     message: safe
       ? `Field name does not follow ${rules.naming.fieldStyle}; an explicitly cleared mechanical rename is configured.`
       : candidate
-        ? `Field name does not follow ${rules.naming.fieldStyle}. A mechanical candidate exists, but dependency clearance is not configured, so the rename remains review-required.`
+        ? `Field name does not follow ${rules.naming.fieldStyle}. The exact mechanical rename can be executed after explicit approval.`
         : `Field name does not follow ${rules.naming.fieldStyle}, and no unambiguous rename candidate is available.`,
     expected: candidate ? target : rules.naming.fieldStyle,
     actual: field.name,
     safeFix: safe ? {kind: 'rename_field', targetName: target} : null,
+    reviewAction: !safe && candidate ? {
+      kind: 'rename_field',
+      targetName: target,
+      label: `Approve rename to ${target}`,
+      risk: 'Renaming may affect formulas, automations, interfaces, scripts, APIs, syncs, or external consumers that reference the current field name. Approval authorizes this exact rename; Schema Guard will re-check collisions before applying it.',
+    } : null,
   }));
 }
 
@@ -186,7 +199,7 @@ function auditPrimaryField(table, issues) {
       scope: 'field',
       table,
       field: primary,
-      message: 'Primary field is not a formula. Changing a primary field is review-required.',
+      message: 'Primary field is not a formula. Changing a primary field is review-required and needs an exact migration definition before Schema Guard can execute it.',
       expected: rules.primaryField.preferredType,
       actual: primary.type,
     }));
@@ -203,7 +216,7 @@ function auditCanonicalType(table, field, issues) {
     scope: 'field',
     table,
     field,
-    message: 'Field name has an established semantic type mapping, but the current Airtable type differs. Type changes are never auto-applied.',
+    message: 'Field name has an established semantic type mapping, but the current Airtable type differs. Type changes require an exact migration definition and are never auto-applied from the name alone.',
     expected: allowed.join(' or '),
     actual: field.type,
   }));
@@ -222,7 +235,7 @@ function auditConfiguredLanguage(table, issues) {
         severity: 'review',
         scope: 'table',
         table,
-        message: `Configured communication-related table is missing ${fieldName}. Language fields are contextual and are not auto-created.`,
+        message: `Configured communication-related table is missing ${fieldName}. Language fields are contextual and are not auto-created without a complete field definition.`,
         expected: fieldName,
         actual: null,
       }));
@@ -255,55 +268,67 @@ export function summarizeIssues(issues) {
       summary.total += 1;
       summary[current.severity] = (summary[current.severity] ?? 0) + 1;
       if (current.safeFix) summary.safeFixes += 1;
+      if (current.reviewAction) summary.approvable += 1;
       return summary;
     },
-    {total: 0, warning: 0, review: 0, error: 0, safeFixes: 0},
+    {total: 0, warning: 0, review: 0, error: 0, safeFixes: 0, approvable: 0},
   );
+}
+
+async function resolveTable(base, finding) {
+  return base.getTableByIdIfExists
+    ? base.getTableByIdIfExists(finding.tableId)
+    : base.tables.find(item => item.id === finding.tableId);
 }
 
 export async function applySafeFix(base, finding) {
   if (!finding.safeFix) return {applied: false, reason: 'No explicitly cleared safe fix configured'};
+  return applyAction(base, finding, finding.safeFix, false);
+}
 
-  const table = base.getTableByIdIfExists
-    ? base.getTableByIdIfExists(finding.tableId)
-    : base.tables.find(item => item.id === finding.tableId);
+export async function applyApprovedAction(base, finding) {
+  if (!finding.reviewAction) return {applied: false, reason: 'No approval-executable action is available'};
+  return applyAction(base, finding, finding.reviewAction, true);
+}
 
+async function applyAction(base, finding, action, approvedByUser) {
+  const table = await resolveTable(base, finding);
   if (!table) return {applied: false, reason: 'Table no longer exists'};
 
-  if (finding.safeFix.kind === 'rename_table') {
-    if (!approvedTableRename(table, finding.safeFix.targetName)) {
+  if (action.kind === 'rename_table') {
+    if (!approvedByUser && !approvedTableRename(table, action.targetName)) {
       return {applied: false, reason: 'Dependency clearance is no longer configured for this rename'};
     }
     if (typeof table.updateNameAsync !== 'function') {
       return {applied: false, reason: 'This Interface Extensions runtime does not expose table.updateNameAsync'};
     }
-    if (tableHasNameCollision(base, table, finding.safeFix.targetName)) {
+    if (tableHasNameCollision(base, table, action.targetName)) {
       return {applied: false, reason: 'Target table name now collides with another table'};
     }
-    await table.updateNameAsync(finding.safeFix.targetName);
+    await table.updateNameAsync(action.targetName);
     return {applied: true};
   }
 
-  if (finding.safeFix.kind === 'rename_field') {
+  if (action.kind === 'rename_field') {
     const field = table.getFieldByIdIfExists
       ? table.getFieldByIdIfExists(finding.fieldId)
       : table.fields.find(item => item.id === finding.fieldId);
 
     if (!field) return {applied: false, reason: 'Field no longer exists'};
-    if (!approvedFieldRename(table, field, finding.safeFix.targetName)) {
+    if (!approvedByUser && !approvedFieldRename(table, field, action.targetName)) {
       return {applied: false, reason: 'Dependency clearance is no longer configured for this rename'};
     }
     if (typeof field.updateNameAsync !== 'function') {
       return {applied: false, reason: 'This Interface Extensions runtime does not expose field.updateNameAsync'};
     }
-    if (fieldHasNameCollision(table, field, finding.safeFix.targetName)) {
+    if (fieldHasNameCollision(table, field, action.targetName)) {
       return {applied: false, reason: 'Target field name now collides with another field'};
     }
-    await field.updateNameAsync(finding.safeFix.targetName);
+    await field.updateNameAsync(action.targetName);
     return {applied: true};
   }
 
-  return {applied: false, reason: 'Unknown safe-fix kind'};
+  return {applied: false, reason: 'Unknown action kind'};
 }
 
 export {rules};
