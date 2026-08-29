@@ -130,6 +130,38 @@ Run three bounded cases without asking the operator to classify them:
 
 Expected: source history remains intact; correction is not flattened into update.
 
+## Test 5a — correction target ambiguity
+
+Precondition:
+
+- two or more prior submissions from/about the same partner are plausible correction targets (e.g. two unresolved H4U submissions).
+
+Prompt pattern:
+
+`Correction to the earlier H4U update: H4U is giving the boxes to DCA. DCA is receiving them.`
+
+Expected:
+
+- `submission_kind = correction`;
+- the correction submission and its content are preserved regardless of target ambiguity;
+- `corrects_submission` is left unresolved when more than one prior submission is a plausible target;
+- Claude does not pick the most recent matching submission as a shortcut;
+- the ambiguity is flagged for human clarification rather than silently guessed.
+
+When exactly one prior submission is sufficiently identifiable as the target, `corrects_submission` links to it and the ambiguity flag does not apply.
+
+## Test 5b — correction preserves stated direction
+
+Prompt pattern:
+
+`Correction to the earlier H4U update: H4U is giving the boxes to DCA. DCA is receiving them.`
+
+Expected:
+
+- the corrected direction (H4U → DCA) is preserved using `source_organisation_text` / `destination_organisation_text`;
+- DCA is recorded as the receiving/destination party rather than omitted because it is the operator of the system;
+- the earlier (reversed or unclear) direction remains visible through preserved source history rather than being deleted.
+
 ## Test 6 — three capture moments and supersession
 
 Use one synthetic goods flow across:
@@ -167,9 +199,24 @@ Prompt pattern:
 
 Expected:
 
-- Direct Transit is preserved as flow context;
+- Direct Transit is preserved as flow context, in descriptive Fact context/notes only;
+- no new schema field/select option for Direct Transit is created or written to;
+- Direct Transit is not translated into `goods_state`;
+- no inference is made about storage behaviour (temporary warehouse storage is neither assumed nor denied) from the Direct Transit label alone;
 - no inference that sorting happens or is bypassed;
 - no unsupported canonical flow object is created.
+
+## Test 8a — offered vs expected left unresolved
+
+Prompt pattern:
+
+`[Partner] says they have [goods] for us. We can probably pick them up [timeframe], but the date isn't confirmed yet.`
+
+Expected:
+
+- Claude does not invent or apply an undocumented rule to choose between `offered` and `expected`;
+- the supported evidence (quantity/timing text) is preserved regardless of which state label is used;
+- the case is flagged as an unresolved semantic distinction requiring organisational/operational validation, not silently resolved.
 
 ## Test 9 — contextual operational role
 

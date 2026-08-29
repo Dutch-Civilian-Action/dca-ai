@@ -34,7 +34,10 @@ Tests should cover at minimum:
 - current goods picture remains distinct from physical warehouse inventory;
 - the cycle remains previous Ukraine transport → ongoing Logistics work → next Ukraine transport, with carry-over allowed and no forced next-transport assignment;
 - updates, corrections, and supersession remain distinct and never overwrite source history;
-- Direct Transit remains a flow distinction and does not imply whether sorting occurred;
+- a correction links `corrects_submission` only when exactly one prior submission is a sufficiently identifiable target; when more than one plausible target exists, the correction is still preserved, the target is left unresolved, and the ambiguity is flagged for human clarification rather than resolved by recency or any other heuristic;
+- a stated transfer direction (including DCA as the receiving/destination party) is preserved through source/destination fields rather than lost or left implicit;
+- Direct Transit remains a flow distinction and does not imply whether sorting occurred; it is preserved descriptively in Fact context/notes without a new schema field until a structured flow representation is validated, and is never translated into `goods_state`, storage behaviour, or sorting behaviour;
+- `offered` vs `expected` is treated as an unresolved semantic distinction — not something the runtime resolves arbitrarily — and is flagged for organisational/operational validation when a submission falls in the gap between the two;
 - contextual Logistics roles use only validated provisional vocabulary and do not become canonical Relationship Data roles;
 - temporary holding and handover locations remain contextual rather than canonical;
 - attachments remain linked source evidence and automated analysis remains bounded/proposed;

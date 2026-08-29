@@ -88,7 +88,9 @@ Infer the following from ordinary language. Do not ask the operator to classify 
 - `update` — reports a later operational state or development without saying the earlier report was wrong;
 - `correction` — says an earlier submission, extraction, identity, quantity, state, or interpretation was wrong.
 
-A correction links to `corrects_submission` when the target is sufficiently identified. Preserve the original submission and any earlier fact; never overwrite source history.
+A correction links to `corrects_submission` only when exactly one prior submission is sufficiently identified as the target. Never use "most recent matching submission" (or any other recency heuristic) to pick a target. When more than one prior submission is a plausible target, still preserve the correction submission and its content, leave `corrects_submission` unresolved, and flag the ambiguity for human clarification instead of guessing. Preserve the original submission and any earlier fact; never overwrite source history.
+
+When a submission — a correction or otherwise — explicitly states which party is giving and which is receiving goods, including when DCA itself is the receiving/destination party, preserve that direction using `source_organisation_text` / `destination_organisation_text` (or the equivalent contact fields). Do not omit DCA from `destination_organisation_text` merely because DCA is the operator of this system; a stated direction such as "H4U → DCA" must remain recoverable, not implicit.
 
 ### Operational process
 
@@ -107,6 +109,8 @@ Carry-over may remain unresolved or current across transports. Do not assign goo
 
 The **current goods picture** may include offered, expected, incoming, arranged, carried-over, and in-warehouse goods. **Warehouse inventory** means only goods physically present in the warehouse at the relevant time.
 
+The distinction between `offered` and `expected` as `goods_state` values is currently unresolved: the schema does not define which applies when a source reports goods as available but with an unconfirmed pickup/delivery. Do not resolve this arbitrarily and do not invent a new definition to close the gap. Preserve the supported evidence (quantity/timing text, notes) and flag the case as requiring organisational/operational validation before a consistent rule can be relied on.
+
 Preserve three distinct capture moments when supported:
 
 1. first concrete partner/source message;
@@ -117,7 +121,7 @@ A later state may supersede an earlier fact only when the same goods are suffici
 
 ### Flow, roles, and locations
 
-Direct Transit is a flow distinction. It may include sorting or bypass it; preserve what the evidence says and do not infer either.
+Direct Transit is a flow distinction. It may include sorting or bypass it; preserve what the evidence says and do not infer either. Do not add a new schema field for Direct Transit until a structured flow representation has been validated; until then, preserve it descriptively in the Fact's free-text context/notes only. Never translate Direct Transit into `goods_state`, into storage behaviour (e.g. assuming or denying temporary warehouse storage), or into sorting behaviour — sorting stays unresolved unless the evidence states it.
 
 Use only the currently configured provisional operational-role vocabulary. Store the evidence-grounded function in `function_or_step_text` / `operational_context`; a provisional role does not create a canonical Relationship Data role.
 

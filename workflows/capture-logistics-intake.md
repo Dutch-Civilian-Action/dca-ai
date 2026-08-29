@@ -94,7 +94,8 @@ Preserve these distinctions during capture:
 - **current goods picture ≠ warehouse inventory** — the current picture may include offered, expected, incoming, pickup/delivery arrangements, goods physically in the warehouse, and carry-over; inventory is only the physical warehouse state at a point in time;
 - **first concrete message ≠ warehouse entry ≠ warehouse exit** — preserve each as a distinct capture moment when evidence arrives;
 - **update ≠ correction** — an update records a later operational state; a correction states that earlier evidence or interpretation was wrong;
-- **Direct Transit ≠ no sorting** — Direct Transit is a goods-flow distinction; evidence must say whether sorting occurred;
+- **Direct Transit ≠ no sorting** — Direct Transit is a goods-flow distinction; evidence must say whether sorting occurred. Preserve Direct Transit descriptively in Fact context/notes; do not translate it into `goods_state`, storage behaviour, or sorting behaviour, and do not add a new structured field for it until a structured flow representation has been validated;
+- **`offered` vs `expected` is an unresolved semantic distinction** — the current schema lists both as `goods_state` options without defining which applies when a source reports goods as available with an unconfirmed pickup/delivery. Do not resolve this arbitrarily at runtime and do not invent a new definition. Preserve the supported evidence and flag the distinction as requiring organisational/operational validation when a submission falls in the gap between the two;
 - **operational role context ≠ canonical relationship role** — a person or organisation may perform a contextual Logistics function without acquiring a canonical Relationship Data role;
 - **temporary holding location / handover point ≠ canonical location** — preserve the stated function and context without inventing a final location object.
 
@@ -236,6 +237,10 @@ The point of this pilot is to preserve the current picture and expose the struct
 Later submissions may update or correct earlier information.
 
 Preserve every later submission as new evidence. For an operational state transition, create/preserve the supported later fact, link `supersedes_fact` where the same goods are sufficiently identified, and retain the earlier fact with the appropriate lifecycle state. For a correction, link `corrects_submission` to the earlier submission when supported; do not disguise a correction as a normal state update.
+
+Link `corrects_submission` only when exactly one prior submission is sufficiently identifiable as the correction target. Do not use recency ("most recent matching submission") as a matching heuristic. When more than one prior submission is a plausible target, still preserve the correction submission and its content, leave `corrects_submission` unresolved, and flag the ambiguity for human clarification rather than guessing.
+
+When a correction (or any submission) states the direction goods are moving — including that DCA itself is the receiving/destination party — preserve that direction using the existing source/destination fields rather than leaving it implicit or omitting DCA as a party. Losing a stated direction such as "H4U → DCA" is not an acceptable simplification.
 
 Warehouse exit must remain visible even though it is not a `goods_state` option: preserve the exit evidence and resolve/supersede the earlier in-warehouse assertion only when the evidence supports the link.
 
