@@ -244,7 +244,8 @@ Use only the headings that are relevant:
 
 Keep Slack publication readable:
 
-- begin the title with the robot icon: `🤖 **Reality Watch**`;
+- begin the title with the robot icon and format the title bold and italic: `🤖 *_Reality Watch_*`;
+- format each section heading in italics, for example `_Changed reality_`;
 - insert one blank line after the title;
 - insert one blank line between sections;
 - keep each section heading visually separate from the previous bullet list;
