@@ -54,8 +54,14 @@ h2 {
 }
 
 .subtitle {
-  margin-bottom: 0;
+  margin-bottom: 4px;
   color: #5b6168;
+}
+
+.scope {
+  margin: 0;
+  font-size: 13px;
+  color: #444a50;
 }
 
 .version,
@@ -74,7 +80,8 @@ h2 {
   margin: 22px 0 14px;
 }
 
-.controls button {
+.controls button,
+.review-action button {
   border: 1px solid #bfc2bd;
   border-radius: 7px;
   padding: 8px 13px;
@@ -87,7 +94,8 @@ h2 {
   font-weight: 700;
 }
 
-.controls button:disabled {
+.controls button:disabled,
+.review-action button:disabled {
   cursor: not-allowed;
   opacity: 0.45;
 }
@@ -191,6 +199,24 @@ h2 {
 .safe-fix {
   margin-bottom: 0 !important;
   font-size: 13px;
+}
+
+.review-action {
+  margin-top: 12px;
+  border-top: 1px solid #e1e2de;
+  padding-top: 12px;
+}
+
+.review-action p {
+  margin-bottom: 7px;
+  font-size: 13px;
+  color: #444a50;
+}
+
+.review-action button {
+  margin-top: 2px;
+  border-color: #1f2328;
+  font-weight: 700;
 }
 
 code {
