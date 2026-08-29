@@ -283,7 +283,8 @@ Keep Slack publication readable:
 - keep each section heading visually separate from the previous bullet list;
 - place bullets directly under their heading;
 - omit unused sections entirely;
-- do not add extra decorative blank lines beyond the single separator needed for clear section boundaries.
+- do not add extra decorative blank lines beyond the single separator needed for clear section boundaries;
+- end every Reality Watch post with the italic line `_P.S. Tell me when I’m wrong — I learn from corrections._`.
 
 Do not publish a source-change dump. The Slack post is an organisationally meaningful view of maintained reality, not a log of every observed event.
 
