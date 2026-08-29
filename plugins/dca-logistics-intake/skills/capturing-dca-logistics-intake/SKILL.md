@@ -2,7 +2,7 @@
 name: capturing-dca-logistics-intake
 description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.3.0
+  version: 0.4.0
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -78,15 +78,69 @@ Users may paste or summarize WhatsApp/email/Slack messages or attach supporting 
 
 Do not require cleanup, complete fields, or extra research. Unknown may remain unknown.
 
+## Operational interpretation rules
+
+Infer the following from ordinary language. Do not ask the operator to classify the submission.
+
+### Submission kind
+
+- `new_information` — introduces evidence not already being updated or corrected;
+- `update` — reports a later operational state or development without saying the earlier report was wrong;
+- `correction` — says an earlier submission, extraction, identity, quantity, state, or interpretation was wrong.
+
+A correction links to `corrects_submission` when the target is sufficiently identified. Preserve the original submission and any earlier fact; never overwrite source history.
+
+### Operational process
+
+- `goods_intake` — the submission is evidence in a concrete goods-intake progression, beginning with the first concrete partner/source message that goods are coming and continuing through warehouse entry and warehouse exit;
+- `logistics_information_intake` — the submission reconstructs, reviews, or maintains Logistics information but is not itself evidence of a concrete goods-intake progression.
+
+Do not label an ordinary message about concrete goods as `logistics_information_intake` merely because Claude is recording it.
+
+### Cycle and state boundaries
+
+Treat the cycle as:
+
+`previous Ukraine transport → ongoing Logistics work → next Ukraine transport`
+
+Carry-over may remain unresolved or current across transports. Do not assign goods to the next transport without evidence.
+
+The **current goods picture** may include offered, expected, incoming, arranged, carried-over, and in-warehouse goods. **Warehouse inventory** means only goods physically present in the warehouse at the relevant time.
+
+Preserve three distinct capture moments when supported:
+
+1. first concrete partner/source message;
+2. warehouse entry;
+3. warehouse exit.
+
+A later state may supersede an earlier fact only when the same goods are sufficiently identified. Warehouse exit is preserved through the submission, lifecycle/provenance, notes, and supersession/resolution handling; do not invent a non-existent `goods_state`.
+
+### Flow, roles, and locations
+
+Direct Transit is a flow distinction. It may include sorting or bypass it; preserve what the evidence says and do not infer either.
+
+Use only the currently configured provisional operational-role vocabulary. Store the evidence-grounded function in `function_or_step_text` / `operational_context`; a provisional role does not create a canonical Relationship Data role.
+
+Use descriptive `temporary holding location` and `handover point` vocabulary in location/function context where supported. Do not create a canonical location or new select option as a side effect.
+
+### Attachments
+
+Preserve attachments on the source submission. Attachment analysis is bounded, proposed extraction only:
+
+- do not treat generated analysis as validated operational fact;
+- do not let it create canonical objects or broaden the write scope;
+- connect extracted proposals back to the attachment/submission;
+- leave materially uncertain extraction for human review.
+
 ## Write flow
 
 1. Preserve one `Logistics_Intake_Submissions` record for the human submission.
 2. Keep `raw_submission` verbatim.
 3. Preserve the authenticated human actor separately from the Claude/runtime identity.
-4. Use `submission_kind` to distinguish `new_information`, `update`, or `correction` according to the current configured option set.
-5. Use `baseline_capture` only when the submission is part of the initial reconstruction of the current Logistics picture.
-6. Use `controlled_test` when the submission is also being used as a controlled pilot/test. This marker must not change operator-facing language.
-7. Use `operational_process` to distinguish the operational intake process when supported by the current configured option set.
+4. Infer `submission_kind` as `new_information`, `update`, or `correction`.
+5. Infer `operational_process` as `goods_intake` or `logistics_information_intake`.
+6. Use `baseline_capture` only when the submission is part of initial reconstruction of the current goods picture.
+7. Use `controlled_test` when the submission is also a controlled pilot/test; this marker must not change operator-facing language.
 8. Preserve evidence form and evidence channel separately in `evidence_forms` and `evidence_channels`.
 9. Extract only separable, evidence-supported goods/state facts into `Logistics_Intake_Facts`.
 10. Extract only separable, evidence-supported people/organisation/location/route references into `Logistics_Intake_Operational_References`.
@@ -120,8 +174,9 @@ Use for the preserved source/provenance envelope. Current relevant fields includ
 - `operational_process`
 - `corrects_submission`
 - `attachments`
+- `attachment_analysis`
 
-Do not write new values to legacy `capture_type` or `source_types`.
+Do not write new values to legacy `capture_type` or `source_types`. Treat `attachment_analysis` as proposed extraction rather than validated source evidence.
 
 ### Logistics_Intake_Facts
 
@@ -154,7 +209,9 @@ Use for minimally interpreted goods/state facts. Current relevant fields include
 
 Do not write new values to legacy `fact_type` or legacy `certainty`.
 
-Use `goods_state` only when the current evidence supports the operational state. Change/correction/cancellation history is represented through submission/lifecycle/provenance fields rather than by forcing those concepts into `goods_state`.
+Use `goods_state` only when the current evidence supports the operational state. Change, correction, cancellation, warehouse exit, and carry-over context are represented through submission/lifecycle/provenance fields rather than by forcing those concepts into `goods_state`.
+
+For a supported state transition, preserve the later fact and link `supersedes_fact` only when the same goods are sufficiently identified. Keep the earlier assertion and source evidence visible. A correction uses `corrects_submission`; it is not automatically a new goods state.
 
 Use `quantity_text` as the preserved quantity wording. Populate `quantity_value` and `quantity_unit` only when the supported structured value does not erase ambiguity. Use `quantity_precision` to preserve whether the stated quantity is exact, approximate, vague, or unknown according to the current configured option set.
 
@@ -188,7 +245,7 @@ Do not write new values to legacy `reference_type` or legacy `certainty`.
 
 Use `entity_type` only as the current minimal staging class for the underlying entity/reference according to the configured options. A contact route remains in `route_type` / `route_value`; it is not itself treated as an entity type.
 
-`proposed_operational_roles` is provisional terminology only. Do not treat an extracted role label as canonical merely because the field exists. Role validation and identity reconciliation remain separate.
+`proposed_operational_roles` is provisional terminology only. Use only the configured vocabulary: `source_partner`, `goods_source`, `offering_party`, `potential_goods_source`, `coordinating_partner`, `coordinator`, `source_contact`, `intermediary`, `associated_organisation`, `pickup_location`, `dropoff_location`, and `partner_organisation`. Do not treat an extracted role label as canonical merely because the field exists. Role validation and identity reconciliation remain separate.
 
 ## Mixed information boundary
 

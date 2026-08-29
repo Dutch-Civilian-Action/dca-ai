@@ -12,10 +12,12 @@ provider_independent: true
 
 Capture current Logistics operational evidence from DCA people with minimal friction so it can be preserved, reconstructed, reconciled, and later promoted into the appropriate shared records without forcing premature structure.
 
-This workflow supports two related uses:
+This workflow supports two related operational processes:
 
-- **initial capture** — create the starting picture for a Logistics cycle;
-- **cycle update** — keep that picture current as goods, people, organisations, locations, routes, arrangements, and other operational references change or become visible.
+- **goods intake** — the recurring operational process beginning with the first concrete partner/source message that goods are coming and continuing through later warehouse entry, handling, and warehouse exit;
+- **Logistics information intake** — reconstruction or maintenance of shared Logistics information when the submission is not itself evidence of a concrete goods-intake progression.
+
+A submission separately expresses whether it is **new information**, an **update**, or a **correction**. Do not ask the operator to classify either distinction; infer both from ordinary language and preserve ambiguity when the evidence does not support one safely.
 
 It does not define the full Logistics workflow, the final Logistics schema, or the final relationship between Logistics objects and Relationship Data.
 
@@ -34,6 +36,8 @@ using:
 These tables are reconstruction/reconciliation staging. Records in them are not automatically canonical Logistics objects, canonical relationship records, or claims in DCA Operational Reality.
 
 ## What belongs in this intake
+
+Treat a Logistics cycle as the interval from the previous Ukraine transport, through ongoing Logistics work, toward the next Ukraine transport. Goods may carry over across that boundary; do not force them into the next transport merely because they remain current.
 
 Capture what is actually known about the current Logistics cycle, including goods that are:
 
@@ -60,6 +64,8 @@ Also preserve operational references revealed in the same work, including when s
 
 Existing WhatsApp, email, Slack, screenshots, photos, or other messages may be supplied as source evidence.
 
+Attachments remain bounded source evidence. Preserve the file and its relationship to the submission. Any automated attachment analysis is proposed extraction, not validated fact, and must not trigger broad or canonical writes.
+
 No cleanup or extra research is required from the human contributor. Unknown information may remain unknown.
 
 ## Pilot principle: capture before modelling
@@ -80,6 +86,17 @@ mixed current-cycle evidence
 ```
 
 The point is to learn the structure the real work requires before imposing it.
+
+## Validated operational distinctions
+
+Preserve these distinctions during capture:
+
+- **current goods picture ≠ warehouse inventory** — the current picture may include offered, expected, incoming, pickup/delivery arrangements, goods physically in the warehouse, and carry-over; inventory is only the physical warehouse state at a point in time;
+- **first concrete message ≠ warehouse entry ≠ warehouse exit** — preserve each as a distinct capture moment when evidence arrives;
+- **update ≠ correction** — an update records a later operational state; a correction states that earlier evidence or interpretation was wrong;
+- **Direct Transit ≠ no sorting** — Direct Transit is a goods-flow distinction; evidence must say whether sorting occurred;
+- **operational role context ≠ canonical relationship role** — a person or organisation may perform a contextual Logistics function without acquiring a canonical Relationship Data role;
+- **temporary holding location / handover point ≠ canonical location** — preserve the stated function and context without inventing a final location object.
 
 ## Core boundary
 
@@ -111,9 +128,14 @@ Preserve:
 - `raw_submission` verbatim;
 - authenticated human actor where available;
 - submission interface/runtime separately from the human actor;
-- capture type (`initial_capture` or `cycle_update`);
-- source types and references supplied by the human;
-- optional cycle/task reference.
+- inferred `submission_kind` (`new_information`, `update`, or `correction`);
+- inferred `operational_process` (`goods_intake` or `logistics_information_intake`);
+- `baseline_capture` only for initial reconstruction of the current picture;
+- `controlled_test` when the submission is also a bounded test;
+- evidence forms and evidence channels separately;
+- source references supplied by the human;
+- optional cycle/task reference only when established;
+- `corrects_submission` when a correction target is supported.
 
 Do not rewrite the raw submission into normalized prose.
 
@@ -123,33 +145,24 @@ Create one or more `Logistics_Intake_Facts` records when the submission contains
 
 Use the smallest supported interpretation.
 
-Supported fact types for the pilot are:
+Use `goods_state` only for supported current goods states:
 
-- `in_warehouse`
 - `offered`
 - `expected`
 - `incoming`
 - `pickup_arranged`
 - `delivery_arranged`
-- `remaining_from_previous_movement`
-- `change`
-- `cancellation`
-- `no_longer_expected`
-- `unresolved`
+- `in_warehouse`
 
-Do not infer a more specific state merely to complete a field.
+Represent change, cancellation, uncertainty, warehouse exit, and replacement through the preserved submission, `lifecycle_status`, notes, and supersession/correction links. Do not force those events into `goods_state`.
+
+Preserve `quantity_text` exactly as reported. Populate normalized value/unit only when doing so loses no ambiguity, and preserve quantity precision separately.
 
 ### 3. Preserve operational references without forcing a final model
 
 Create `Logistics_Intake_Operational_References` records when the submission contains operationally meaningful people, organisations, locations, routes, or other references that should remain connected to the context in which they are used.
 
-Use the smallest supported `reference_type`:
-
-- `person`
-- `organisation`
-- `location`
-- `contact_route`
-- `other`
+Use the smallest supported `entity_type`: `person`, `organisation`, `location`, or `other`. A contact route belongs in `route_type` / `route_value`; it is not an entity type.
 
 Use free-text reconstruction fields such as `function_or_step_text`, `operational_context`, `route_type`, `route_value`, and `direction_or_action_text` only when the submission supports them.
 
@@ -220,11 +233,13 @@ The point of this pilot is to preserve the current picture and expose the struct
 
 ### 7. Reconcile changes without deleting evidence
 
-Later submissions may change or cancel earlier information.
+Later submissions may update or correct earlier information.
 
-Preserve the new submission as new evidence. Mark prior staging facts or references resolved, cancelled, superseded, matched, or reconciled only when the new evidence or later reconciliation supports that consequence.
+Preserve every later submission as new evidence. For an operational state transition, create/preserve the supported later fact, link `supersedes_fact` where the same goods are sufficiently identified, and retain the earlier fact with the appropriate lifecycle state. For a correction, link `corrects_submission` to the earlier submission when supported; do not disguise a correction as a normal state update.
 
-Do not delete historical source submissions merely because the current state changed.
+Warehouse exit must remain visible even though it is not a `goods_state` option: preserve the exit evidence and resolve/supersede the earlier in-warehouse assertion only when the evidence supports the link.
+
+Do not overwrite or delete historical source submissions merely because the current state changed or earlier interpretation was wrong.
 
 ### 8. Return a simple operational confirmation
 
@@ -298,3 +313,4 @@ If a submission is too ambiguous to split safely:
 - otherwise leave the uncertainty visible for later reconstruction/reconciliation.
 
 Do not block capture merely because the information is incomplete.
+

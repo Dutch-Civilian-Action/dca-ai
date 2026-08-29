@@ -17,6 +17,7 @@ The test should prove that messy current-cycle evidence can be preserved without
 
 Tests should cover at minimum:
 
+- `submission_kind` and `operational_process` are inferred from ordinary language without asking the operator to classify them;
 - the original human submission is preserved verbatim;
 - authenticated human actor remains distinct from runtime/interface identity;
 - one mixed submission may produce multiple goods/state facts and multiple operational references;
@@ -29,6 +30,14 @@ Tests should cover at minimum:
 - unknown identity, function, route ownership, or location meaning remains unresolved rather than guessed;
 - no final Logistics, contact-route, workflow-role, location, or relationship object is created during intake merely to complete structure;
 - user-facing confirmation summarizes what was recorded without exposing staging/schema mechanics;
+- first concrete message, warehouse entry, and warehouse exit remain separately recoverable;
+- current goods picture remains distinct from physical warehouse inventory;
+- the cycle remains previous Ukraine transport → ongoing Logistics work → next Ukraine transport, with carry-over allowed and no forced next-transport assignment;
+- updates, corrections, and supersession remain distinct and never overwrite source history;
+- Direct Transit remains a flow distinction and does not imply whether sorting occurred;
+- contextual Logistics roles use only validated provisional vocabulary and do not become canonical Relationship Data roles;
+- temporary holding and handover locations remain contextual rather than canonical;
+- attachments remain linked source evidence and automated analysis remains bounded/proposed;
 - later reconstruction/reconciliation can still recover the source submission and the context linking facts and operational references.
 
 ## Controlled mixed-message case
@@ -62,3 +71,4 @@ Claude using the Airtable connector against `DCA Integrations & Reconciliation` 
 Canonical `2 | DCA Relationships & Workflows` may be available read-only/reference-only in the Logistics channel for established identity lookup during the pilot.
 
 Provider-specific Claude Tag validation belongs under `tests/providers/claude/`.
+
