@@ -21,13 +21,12 @@ function issue({code, severity, scope, table, field, message, expected, actual, 
 }
 
 export function toSnakeCase(name) {
-  const normalized = String(name)
+  return String(name)
     .trim()
     .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
     .replace(/[^A-Za-z0-9]+/g, '_')
     .replace(/^_+|_+$/g, '')
     .toLowerCase();
-  return normalized;
 }
 
 export function toTitleCaseUnderscore(name) {
@@ -65,11 +64,26 @@ function fieldHasNameCollision(table, field, targetName) {
   return table.fields.some(other => other.id !== field.id && other.name.toLowerCase() === targetName.toLowerCase());
 }
 
+function configuredTableRule(table) {
+  return rules.configuredTables?.[table.name] ?? null;
+}
+
+function approvedTableRename(table, targetName) {
+  const configured = configuredTableRule(table);
+  return configured?.dependencyClearance === true && configured?.approvedRenameTarget === targetName;
+}
+
+function approvedFieldRename(table, field, targetName) {
+  const configured = configuredTableRule(table)?.fields?.[field.name];
+  return configured?.dependencyClearance === true && configured?.approvedRenameTarget === targetName;
+}
+
 function auditTableName(base, table, issues) {
   if (tableNamePattern.test(table.name)) return;
 
   const target = toTitleCaseUnderscore(table.name);
-  const safe = target && target !== table.name && tableNamePattern.test(target) && !tableHasNameCollision(base, table, target);
+  const candidate = target && target !== table.name && tableNamePattern.test(target) && !tableHasNameCollision(base, table, target);
+  const safe = candidate && approvedTableRename(table, target);
 
   issues.push(issue({
     code: 'table_name',
@@ -77,9 +91,11 @@ function auditTableName(base, table, issues) {
     scope: 'table',
     table,
     message: safe
-      ? `Table name does not follow ${rules.naming.tableStyle}.`
-      : `Table name does not follow ${rules.naming.tableStyle}, and no unambiguous safe rename is available.`,
-    expected: rules.naming.tableStyle,
+      ? `Table name does not follow ${rules.naming.tableStyle}; an explicitly cleared mechanical rename is configured.`
+      : candidate
+        ? `Table name does not follow ${rules.naming.tableStyle}. A mechanical candidate exists, but dependency clearance is not configured, so the rename remains review-required.`
+        : `Table name does not follow ${rules.naming.tableStyle}, and no unambiguous rename candidate is available.`,
+    expected: candidate ? target : rules.naming.tableStyle,
     actual: table.name,
     safeFix: safe ? {kind: 'rename_table', targetName: target} : null,
   }));
@@ -89,7 +105,8 @@ function auditFieldName(table, field, issues) {
   if (fieldNamePattern.test(field.name)) return;
 
   const target = toSnakeCase(field.name);
-  const safe = target && target !== field.name && fieldNamePattern.test(target) && !fieldHasNameCollision(table, field, target);
+  const candidate = target && target !== field.name && fieldNamePattern.test(target) && !fieldHasNameCollision(table, field, target);
+  const safe = candidate && approvedFieldRename(table, field, target);
 
   issues.push(issue({
     code: 'field_name',
@@ -98,9 +115,11 @@ function auditFieldName(table, field, issues) {
     table,
     field,
     message: safe
-      ? `Field name does not follow ${rules.naming.fieldStyle}.`
-      : `Field name does not follow ${rules.naming.fieldStyle}, and no unambiguous safe rename is available.`,
-    expected: rules.naming.fieldStyle,
+      ? `Field name does not follow ${rules.naming.fieldStyle}; an explicitly cleared mechanical rename is configured.`
+      : candidate
+        ? `Field name does not follow ${rules.naming.fieldStyle}. A mechanical candidate exists, but dependency clearance is not configured, so the rename remains review-required.`
+        : `Field name does not follow ${rules.naming.fieldStyle}, and no unambiguous rename candidate is available.`,
+    expected: candidate ? target : rules.naming.fieldStyle,
     actual: field.name,
     safeFix: safe ? {kind: 'rename_field', targetName: target} : null,
   }));
@@ -145,7 +164,7 @@ function auditDescriptions(table, field, issues) {
 }
 
 function auditPrimaryField(table, issues) {
-  const configured = rules.configuredTables?.[table.name];
+  const configured = configuredTableRule(table);
   if (configured?.primaryFieldException === true) return;
 
   const primary = table.primaryField;
@@ -191,7 +210,7 @@ function auditCanonicalType(table, field, issues) {
 }
 
 function auditConfiguredLanguage(table, issues) {
-  const configured = rules.configuredTables?.[table.name];
+  const configured = configuredTableRule(table);
   if (!configured?.communicationRelated) return;
 
   const required = configured.languageFields ?? ['communication_language'];
@@ -243,7 +262,7 @@ export function summarizeIssues(issues) {
 }
 
 export async function applySafeFix(base, finding) {
-  if (!finding.safeFix) return {applied: false, reason: 'No safe fix configured'};
+  if (!finding.safeFix) return {applied: false, reason: 'No explicitly cleared safe fix configured'};
 
   const table = base.getTableByIdIfExists
     ? base.getTableByIdIfExists(finding.tableId)
@@ -252,6 +271,9 @@ export async function applySafeFix(base, finding) {
   if (!table) return {applied: false, reason: 'Table no longer exists'};
 
   if (finding.safeFix.kind === 'rename_table') {
+    if (!approvedTableRename(table, finding.safeFix.targetName)) {
+      return {applied: false, reason: 'Dependency clearance is no longer configured for this rename'};
+    }
     if (typeof table.updateNameAsync !== 'function') {
       return {applied: false, reason: 'This Interface Extensions runtime does not expose table.updateNameAsync'};
     }
@@ -268,6 +290,9 @@ export async function applySafeFix(base, finding) {
       : table.fields.find(item => item.id === finding.fieldId);
 
     if (!field) return {applied: false, reason: 'Field no longer exists'};
+    if (!approvedFieldRename(table, field, finding.safeFix.targetName)) {
+      return {applied: false, reason: 'Dependency clearance is no longer configured for this rename'};
+    }
     if (typeof field.updateNameAsync !== 'function') {
       return {applied: false, reason: 'This Interface Extensions runtime does not expose field.updateNameAsync'};
     }
