@@ -48,11 +48,13 @@
     "semanticRule": "Operational datetimes preserve the event or schedule timezone where local time matters; Europe/Amsterdam is not a universal semantic timezone."
   },
   "safety": {
+    "requireExplicitDependencyClearanceForRenames": true,
     "safeFixes": [
-      "mechanical_table_name_repair",
-      "mechanical_field_name_repair"
+      "explicitly_configured_mechanical_table_name_repair",
+      "explicitly_configured_mechanical_field_name_repair"
     ],
     "reviewRequired": [
+      "unverified_table_or_field_rename",
       "populated_field_type_change",
       "primary_field_change",
       "primary_formula_change",
