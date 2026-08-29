@@ -242,6 +242,23 @@ Use only the headings that are relevant:
 - Capability / dependency / health impact
 - Required reconciliation or next update
 
+#### Channel routing
+
+Choose the publication channel from the affected reality after reconstruction, not merely from the channel or source where the evidence was observed.
+
+- route a domain-specific update to the closest relevant operational channel;
+- route a genuinely cross-domain or organisation-wide finding to `#organisation`;
+- do not duplicate the same Reality Watch across multiple channels;
+- where a domain-specific Watch has a material cross-domain consequence, surface that consequence organisation-wide only when it is itself a material organisational finding.
+
+Current routing examples include:
+
+- Logistics → `#logistics`;
+- Fundraising → `#fundraising`;
+- Marketing → `#marketing`;
+- Ukraine / missions → `#ukraine`;
+- structural or system implications → `#structural-alignment`.
+
 Keep Slack publication readable:
 
 - begin the title with the robot icon and format the title bold and italic: `🤖 *_Reality Watch_*`;
