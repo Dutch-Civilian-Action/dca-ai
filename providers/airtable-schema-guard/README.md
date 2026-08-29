@@ -17,14 +17,22 @@ The architecture remains authoritative outside this implementation. The machine-
 ## v0.1 behaviour
 
 - **Audit** — scans the current Airtable table context and reports implementation drift.
-- **Fix safe** — applies only explicitly configured mechanical renames after dependency clearance has been recorded in the rules, the target remains collision-free, and the Airtable runtime exposes the required mutation method; after execution the table is re-audited.
-- **Plan** — shows review-required changes without applying them.
+- **Fix safe** — applies only explicitly configured safe changes and re-audits after execution.
+- **Plan** — shows review-required changes. When Schema Guard can define an exact executable change, Plan exposes **Approve & apply** rather than leaving a manual checklist.
 
-A mechanically obvious rename is not automatically safe. Interfaces, automations, scripts, syncs, APIs, formulas, or external consumers may depend on an existing name, so an unverified rename remains review-required.
+For an approval-executable change, Schema Guard must:
 
-v0.1 deliberately does not auto-change populated field types, primary fields, formulas, linked-record targets/cardinality, table splits/merges, or contextual/organisational structures.
+1. state the exact proposed change and relevant risk;
+2. wait for explicit approval;
+3. re-check current state and collisions immediately before execution;
+4. apply only that approved change;
+5. re-audit the table and report the result.
 
-Review-required does not mean that a human must manually perform the eventual Airtable edit. A later controlled migration may execute an exact approved change where the Airtable runtime/API supports it. The distinction is authorization and safety, not manual versus automated execution.
+Mechanical table/field rename candidates are the first approval-executable action in v0.1. An approval authorizes only the exact proposed rename. Unsupported migrations remain review-only.
+
+v0.1 deliberately does not auto-change populated field types, primary fields, formulas, linked-record targets/cardinality, table splits/merges, or contextual/organisational structures without an exact migration definition.
+
+Review-required does not mean that a human must manually perform the eventual Airtable edit. A controlled migration may execute an exact approved change where the Airtable runtime/API supports it. The distinction is authorization and safety, not manual versus automated execution.
 
 ## Initial rules enforced
 
@@ -33,7 +41,7 @@ Review-required does not mean that a human must manually perform the eventual Ai
 - Maintained tables and fields require descriptions.
 - Primary field should be a formula unless an explicitly configured exception exists.
 - Exact canonical field-name mappings are checked for known semantic types such as `email`, `phone`, `website`, `notes`, `validation_status`, `confirmation_status`, `created_at`, and `last_modified`.
-- Type mismatches are reported, never auto-fixed in v0.1.
+- Type mismatches are reported and require an exact migration definition before execution.
 - Known external-source/reconciliation fields are treated as evidence surfaces; Schema Guard does not infer last-write-wins behaviour or overwrite policy.
 - Communication/language requirements are checked only where a table is explicitly configured as communication-related. v0.1 does not infer organisational semantics from field names alone.
 
