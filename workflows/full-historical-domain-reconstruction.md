@@ -154,6 +154,89 @@ Determine status from content, provenance, validation, later evidence, actual us
 
 A document proves that the document existed and contained particular claims. It does not automatically prove organisational adoption or operational execution.
 
+## Gmail / shared DCA mailboxes
+
+When a connected DCA shared Gmail account is available, treat email as a first-class organisational evidence surface.
+
+This is especially important for areas where relationship, partner, donor, supplier, volunteer, campaign, logistics, finance, communication, or other external-party history may exist outside Slack and Asana.
+
+Inspect relevant:
+
+- message threads;
+- sent and received messages;
+- replies and forwards;
+- attachments;
+- dates and participants;
+- quoted prior messages where they carry historical context;
+- later corrections, confirmations, rejections, changes, and follow-up outcomes.
+
+Use the actual email thread as evidence where available. Do not rely only on a later summary of the thread.
+
+Preserve distinctions between:
+
+- a message being sent;
+- a recipient replying;
+- an agreement or commitment being made;
+- a request being accepted;
+- a task being executed;
+- a relationship continuing afterwards.
+
+Do not infer that a sent email was read, accepted, acted upon, or represented an organisational decision merely because it exists.
+
+Where the same relationship/event appears in Gmail and another platform, do not treat repeated copies of the same underlying communication as independent corroboration.
+
+Use stable Gmail thread/message identifiers where available. Store only the evidence needed for reconstruction, and do not promote personal contact details or confidential content into canonical structures through this workflow.
+
+When several shared DCA mailboxes exist, record which mailbox was actually processed and which were inaccessible or unprocessed in `coverage_summary` and `coverage_gaps`.
+
+## Prior research, correction packets, and evidence bundles
+
+Earlier research outputs, correction packets, exports, evidence bundles, and prior reconstruction material may contain substantial already-discovered evidence, especially for System & Structure.
+
+Treat these as high-value navigation and provenance packages, but not as automatic organisational truth.
+
+For each supplied bundle:
+
+- inspect its contents;
+- identify the underlying source material it contains or references;
+- preserve the bundle itself as provenance where useful;
+- prefer underlying original Slack, Asana, Drive, Gmail, GitHub, Airtable, transcript, or third-party-service evidence when accessible;
+- do not count a bundle summary and its underlying source as independent corroboration;
+- preserve prior corrections and interpretations separately;
+- follow references into original systems where possible;
+- record inaccessible underlying sources as coverage limitations.
+
+Reuse prior System & Structure research so evidence does not have to be rediscovered from zero, but re-ground material claims in the strongest accessible underlying evidence before treating them as reconstructed reality.
+
+## Third-party services — audit historical operational evidence
+
+Historical reconstruction may require inspecting third-party services DCA used to execute, track, communicate, fundraise, publish, automate, reconcile, analyse, or otherwise perform work.
+
+Examples may include donor, newsletter, payment, website, CRM, campaign, logistics, forms, automation, analytics, storage, messaging, and integration platforms.
+
+Do not assume current third-party configuration reflects historical state.
+
+For every materially relevant service, reconstruct where possible:
+
+- what service was used;
+- what organisational function it supported;
+- when it was introduced, changed, or stopped;
+- what records, events, workflows, campaigns, lists, integrations, or automations existed there;
+- who appeared to operate or maintain it;
+- what data flowed into or out of DCA systems;
+- what information existed there that was not visible elsewhere;
+- whether records were canonical, staging, operational, duplicated, derived, or merely technical;
+- what evidence exists of actual use rather than configuration alone;
+- what later replaced, superseded, disconnected, or abandoned it.
+
+Treat third-party data as evidence, not automatically canonical truth.
+
+Preserve source identity, external record/reference, disagreement, uncertainty, and synchronization state separately where those distinctions matter.
+
+Do not apply last-write-wins logic when third-party values disagree with DCA shared data.
+
+If a relevant service cannot currently be accessed, record the service and missing access as a reconstruction coverage gap so it can be audited later.
+
 ## Additional evidence surfaces
 
 Where materially relevant, inspect:
@@ -321,16 +404,20 @@ Use stable source identifiers wherever possible:
 - Slack file ID;
 - Asana project/task/comment ID;
 - Google Drive file ID;
+- Gmail thread/message ID;
 - Airtable record ID;
 - GitHub repository/PR/commit/path;
+- third-party service + external record/event ID;
 - equivalent stable source identifier.
 
 Do not create duplicate evidence merely because:
 
 - the same document exists in two summaries;
 - a Slack message is later quoted elsewhere;
+- an email quotes an earlier email already preserved;
 - a meeting summary repeats something in the transcript;
 - an AI summary describes an underlying source;
+- a prior evidence bundle summarizes an underlying source;
 - the same source is relevant to several reconstruction objects.
 
 One Evidence record may support many Reconstruction_Objects.
@@ -343,9 +430,11 @@ Examples:
 
 - **Slack:** usually one message or thread reply.
 - **Asana:** task, subtask, comment, or status update where independently meaningful.
+- **Email:** one message or bounded thread segment where independently meaningful; preserve enough thread context to distinguish request, reply, confirmation, correction, and later outcome.
 - **Document:** the document may be one evidence item when its status/existence is the relevant evidence; create bounded evidence segments when different portions support materially different claims.
 - **Huddle transcript:** do not create one enormous evidence record for a long transcript if different portions support different claims. Preserve bounded transcript segments with enough surrounding context to interpret them safely.
 - **Agreement:** preserve the agreement as agreement evidence. Do not treat clauses as proof that operational execution always followed them.
+- **Third-party service:** use the smallest stable event, record, configuration, or runtime artifact needed to support the claim without flooding Airtable with irrelevant technical records.
 
 ## Evidence fields
 
@@ -604,10 +693,12 @@ Reconstruct relevant use of:
 - Asana;
 - Drive;
 - Slack;
+- Gmail/shared mailboxes;
 - Claude;
 - ChatGPT;
 - automation;
 - GitHub;
+- third-party services;
 - other software.
 
 Preserve capability stages separately.
@@ -746,6 +837,8 @@ Update `coverage_gaps` with:
 
 - inaccessible channels;
 - missing DMs;
+- inaccessible or unprocessed DCA shared mailboxes;
+- relevant third-party services not yet audited or inaccessible;
 - inaccessible files;
 - missing transcripts;
 - unavailable history;
@@ -774,15 +867,19 @@ This workflow does not authorise modification of:
 - Logistics operational staging;
 - other operational Airtable records;
 - Slack;
+- Gmail;
 - Asana;
 - Google Drive;
 - GitHub;
+- third-party services;
 - organisational standards;
 - procedures;
 - Operational Reality;
 - Derived Organisational Reality;
 - Claude configuration;
 - live systems.
+
+Read/search Gmail and third-party services only where access is explicitly available through the active runtime. Do not alter mail, labels, contacts, service records, subscriptions, campaigns, integrations, configuration, or external data during reconstruction.
 
 Do not promote reconstruction objects into canonical organisational objects during this investigation.
 
