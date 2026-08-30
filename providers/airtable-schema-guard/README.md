@@ -1,6 +1,6 @@
 # DCA Schema Guard
 
-Airtable Interface Extension for auditing DCA Airtable schema against the current DCA Airtable Implementation Standard.
+Airtable Interface Extension for auditing and repairing DCA Airtable schema against the current DCA Airtable Implementation Standard.
 
 ## Runtime scope
 
@@ -14,13 +14,36 @@ Schema Guard enforces established Airtable implementation rules. It does not def
 
 The architecture remains authoritative outside this implementation. The machine-readable rules in this directory contain only enforceable Airtable conventions and explicit configuration.
 
+## Repair ownership
+
+Schema Guard owns normal Airtable schema enforcement and repair.
+
+The intended operational loop is:
+
+```text
+detect
+→ determine exact repair
+→ approve when consequential
+→ Schema Guard executes
+→ Schema Guard re-audits and verifies
+```
+
+A user should not normally be sent into Airtable to perform a detected schema repair manually.
+
+If Schema Guard cannot execute a repair safely yet, it must keep the finding visible as **Guard support pending** and state what is missing: for example authoritative wording, an exact migration definition, or runtime/executor support. That is an implementation gap in Schema Guard, not a default instruction for the operator to repair Airtable by hand.
+
+Direct manual Airtable editing remains an exceptional development/troubleshooting path, not the normal Schema Guard workflow.
+
 ## v0.1 behaviour
 
 - **Audit** — scans the current Airtable table context and reports implementation drift.
-- **Fix safe** — applies only explicitly configured safe changes and re-audits after execution.
-- **Plan** — shows review-required changes. When Schema Guard can define an exact executable change, Plan exposes **Approve & apply** rather than leaving a manual checklist.
+- **Repair safe** — applies only explicitly configured safe repairs and re-audits after execution.
+- **Plan** — turns findings into repair states:
+  - safe repair available;
+  - exact repair available after approval;
+  - Guard support pending.
 
-For an approval-executable change, Schema Guard must:
+For an approval-executable repair, Schema Guard must:
 
 1. state the exact proposed change and relevant risk;
 2. wait for explicit approval;
@@ -28,11 +51,13 @@ For an approval-executable change, Schema Guard must:
 4. apply only that approved change;
 5. re-audit the table and report the result.
 
-Mechanical table/field rename candidates are the first approval-executable action in v0.1. An approval authorizes only the exact proposed rename. Unsupported migrations remain review-only.
+Mechanical table/field rename candidates are the first approval-executable repairs in v0.1. An approval authorizes only the exact proposed rename.
 
-v0.1 deliberately does not auto-change populated field types, primary fields, formulas, linked-record targets/cardinality, table splits/merges, or contextual/organisational structures without an exact migration definition.
+For findings that are not yet executable, Schema Guard must not quietly fall back to a manual checklist. It should identify the missing capability and retain ownership of the repair path.
 
-Review-required does not mean that a human must manually perform the eventual Airtable edit. A controlled migration may execute an exact approved change where the Airtable runtime/API supports it. The distinction is authorization and safety, not manual versus automated execution.
+v0.1 deliberately does not blindly change populated field types, primary fields, formulas, linked-record targets/cardinality, table splits/merges, or contextual/organisational structures. Those require an exact migration definition and a supported executor before they can move from **Guard support pending** to **Approve & repair**.
+
+Review-required does not mean that a human must manually perform the eventual Airtable edit. The distinction is authorization and safety, not manual versus automated execution.
 
 ## Initial rules enforced
 
