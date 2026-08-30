@@ -17,6 +17,7 @@ The test should prove that messy current-cycle evidence can be preserved without
 
 Tests should cover at minimum:
 
+- `submission_kind` and `operational_process` are inferred from ordinary language without asking the operator to classify them;
 - the original human submission is preserved verbatim;
 - authenticated human actor remains distinct from runtime/interface identity;
 - one mixed submission may produce multiple goods/state facts and multiple operational references;
@@ -29,6 +30,17 @@ Tests should cover at minimum:
 - unknown identity, function, route ownership, or location meaning remains unresolved rather than guessed;
 - no final Logistics, contact-route, workflow-role, location, or relationship object is created during intake merely to complete structure;
 - user-facing confirmation summarizes what was recorded without exposing staging/schema mechanics;
+- first concrete message, warehouse entry, and warehouse exit remain separately recoverable;
+- current goods picture remains distinct from physical warehouse inventory;
+- the cycle remains previous Ukraine transport → ongoing Logistics work → next Ukraine transport, with carry-over allowed and no forced next-transport assignment;
+- updates, corrections, and supersession remain distinct and never overwrite source history;
+- a correction links `corrects_submission` only when exactly one prior submission is a sufficiently identifiable target; when more than one plausible target exists, the correction is still preserved, the target is left unresolved, and the ambiguity is flagged for human clarification rather than resolved by recency or any other heuristic;
+- a stated transfer direction (including DCA as the receiving/destination party) is preserved through source/destination fields rather than lost or left implicit;
+- Direct Transit remains a flow distinction and does not imply whether sorting occurred; it is preserved descriptively in Fact context/notes without a new schema field until a structured flow representation is validated, and is never translated into `goods_state`, storage behaviour, or sorting behaviour;
+- `offered` vs `expected` is treated as an unresolved semantic distinction — not something the runtime resolves arbitrarily — and is flagged for organisational/operational validation when a submission falls in the gap between the two;
+- contextual Logistics roles use only validated provisional vocabulary and do not become canonical Relationship Data roles;
+- temporary holding and handover locations remain contextual rather than canonical;
+- attachments remain linked source evidence and automated analysis remains bounded/proposed;
 - later reconstruction/reconciliation can still recover the source submission and the context linking facts and operational references.
 
 ## Controlled mixed-message case
@@ -53,12 +65,15 @@ Expected staging result:
 
 ## Current pilot implementation target
 
-Claude using the Airtable connector against `DCA Integrations & Reconciliation` with write access restricted to:
+Claude using the Airtable connector against `DCA Integrations & Reconciliation`, with the write boundary limited to:
 
 - `Logistics_Intake_Submissions`
 - `Logistics_Intake_Facts`
 - `Logistics_Intake_Operational_References`
 
-Canonical `2 | DCA Relationships & Workflows` may be available read-only/reference-only in the Logistics channel for established identity lookup during the pilot.
+This write boundary is a required behavioural rule, not a credential restriction: the current Airtable implementation cannot scope an identity to specific tables within a base, so the attached identity can technically read/write any table in `DCA Integrations & Reconciliation`. Tests must verify this boundary by observing that no write occurs outside these three tables, not by asserting the identity cannot reach other tables.
+
+Canonical `2 | DCA Relationships & Workflows` is a separate base and may be available read-only/reference-only in the Logistics channel for established identity lookup during the pilot; that base-level separation is a real credential restriction and is not affected by the table-level limitation above.
 
 Provider-specific Claude Tag validation belongs under `tests/providers/claude/`.
+

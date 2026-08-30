@@ -85,12 +85,14 @@ The Airtable plugin provides generic Airtable operations. The DCA Relationship D
 
 **Credentials:**
 
-- Airtable Agent Identity restricted to `DCA Integrations & Reconciliation` and only the Logistics intake staging tables required by the pilot where table-level restriction is possible:
+- Airtable Agent Identity restricted at the base level to `DCA Integrations & Reconciliation` only. The current Airtable implementation does not support restricting a single identity to specific tables within a base, so this identity can read/write any table in that base, not only the three Logistics intake staging tables. Table-level restriction is not a credential control here and must not be described as one anywhere in this repository.
+- The write boundary to only the three Logistics intake staging tables is therefore enforced procedurally at runtime by the skill/workflow rules, not by the credential:
   - `Logistics_Intake_Submissions`
   - `Logistics_Intake_Facts`
   - `Logistics_Intake_Operational_References`
+- Do not treat "the credential only reaches these tables" as true or as a pass condition in any test. The only valid check is observed write behavior: after any intake activity, confirm no records were created or changed in any other table in `DCA Integrations & Reconciliation`.
 
-Do not reuse a broadly privileged Airtable identity merely for convenience.
+Do not reuse a broadly privileged Airtable identity merely for convenience. Base-level restriction (this base only, not the wider workspace or canonical Relationship Data base) remains a real and required control even though table-level restriction is not available.
 
 **Plugins / skills:**
 
@@ -179,3 +181,5 @@ Initial recommendation:
 A Claude Tag channel grants the channel's Claude identity the configured access, independently of whether each human channel member has equivalent direct access to the underlying system. Therefore every credential or repository attached to a channel must be appropriate for the least-privileged intended member of that channel.
 
 Prefer narrow credentials and bounded channel scopes over broad workspace-wide tool access.
+
+Where the underlying system does not support restricting a credential to the exact scope a bundle needs — for example, the current Airtable implementation cannot restrict an identity to specific tables within a base — do not describe or test the credential as if that restriction exists. State the true credential-level boundary (here: base-level only) and treat the finer boundary as a procedural/runtime rule enforced by the skill or workflow, verified by observing actual behaviour rather than by inspecting the credential.

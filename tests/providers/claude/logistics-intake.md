@@ -15,7 +15,7 @@ Validate that Claude Tag applies the reconstruction-first Logistics intake workf
 
 - DCA Core is available to the `#logistics` Claude runtime.
 - DCA Logistics Intake plugin is installed and attached to the Logistics intake access bundle.
-- Airtable access for the Logistics intake bundle is restricted to `DCA Integrations & Reconciliation` and the three pilot staging tables.
+- Airtable access for the Logistics intake bundle is restricted at the base level to `DCA Integrations & Reconciliation` only; the current Airtable implementation cannot restrict the identity to the three pilot staging tables specifically, so the identity can technically read/write any table in that base. Writing only to `Logistics_Intake_Submissions`, `Logistics_Intake_Facts`, and `Logistics_Intake_Operational_References` is a procedural/runtime requirement enforced by the skill, verified by checking actual writes after each test, not a credential-level guarantee. Do not treat "the identity cannot reach other tables" as a pass criterion in any test below.
 - DCA Relationship Data is available in `#logistics` only for bounded read/reference lookup during this pilot.
 - Automatic responses are off; tests use explicit `@Claude` invocation.
 - Auto-mode allow rules are empty during the pilot.
@@ -45,7 +45,11 @@ Expected source submission:
 - raw submission preserved verbatim;
 - authenticated Slack human actor preserved separately from Claude/runtime identity;
 - `submission_interface = claude_slack`;
-- `capture_type = cycle_update`.
+- `submission_kind = new_information` unless the test explicitly supplies an earlier record being updated;
+- `operational_process = goods_intake`;
+- `controlled_test = true`;
+- evidence form/channel remain separate;
+- no legacy `capture_type` or `source_types` write.
 
 Expected goods/state extraction:
 
@@ -116,6 +120,139 @@ Expected:
 - neither is silently promoted to a general organisation address/contact route;
 - no final `Partner_Location`, `Contact_Route`, or `Workflow_Step_Contact` object is invented during capture.
 
+## Test 5 — ordinary-language submission-kind inference
+
+Run three bounded cases without asking the operator to classify them:
+
+- a first report about new goods → `new_information`;
+- a later supported state change for the same goods → `update`;
+- an explicit statement that the earlier quantity/state/extraction was wrong → `correction` with `corrects_submission` when the target is known.
+
+Expected: source history remains intact; correction is not flattened into update.
+
+## Test 5a — correction target ambiguity
+
+Precondition:
+
+- two or more prior submissions from/about the same partner are plausible correction targets (e.g. two unresolved H4U submissions).
+
+Prompt pattern:
+
+`Correction to the earlier H4U update: H4U is giving the boxes to DCA. DCA is receiving them.`
+
+Expected:
+
+- `submission_kind = correction`;
+- the correction submission and its content are preserved regardless of target ambiguity;
+- `corrects_submission` is left unresolved when more than one prior submission is a plausible target;
+- Claude does not pick the most recent matching submission as a shortcut;
+- the ambiguity is flagged for human clarification rather than silently guessed.
+
+When exactly one prior submission is sufficiently identifiable as the target, `corrects_submission` links to it and the ambiguity flag does not apply.
+
+## Test 5b — correction preserves stated direction
+
+Prompt pattern:
+
+`Correction to the earlier H4U update: H4U is giving the boxes to DCA. DCA is receiving them.`
+
+Expected:
+
+- the corrected direction (H4U → DCA) is preserved using `source_organisation_text` / `destination_organisation_text`;
+- DCA is recorded as the receiving/destination party rather than omitted because it is the operator of the system;
+- the earlier (reversed or unclear) direction remains visible through preserved source history rather than being deleted.
+
+## Test 6 — three capture moments and supersession
+
+Use one synthetic goods flow across:
+
+1. first concrete source message;
+2. warehouse entry;
+3. warehouse exit.
+
+Expected:
+
+- all three submissions remain preserved;
+- the first two produce only supported goods states;
+- the same-goods link is made only when identity is sufficiently supported;
+- warehouse exit remains visible through lifecycle/provenance handling without inventing a goods-state option;
+- prior facts are retained and appropriately resolved/superseded rather than overwritten.
+
+## Test 7 — current goods picture versus warehouse inventory and cycle carry-over
+
+Prompt pattern:
+
+`Some goods remained after the previous Ukraine transport, another batch is expected, and only the first batch is physically in the warehouse. Nothing is assigned to the next transport yet.`
+
+Expected:
+
+- the current goods picture contains all supported evidence;
+- warehouse inventory includes only physically present goods;
+- carry-over is preserved without forced next-transport assignment;
+- cycle meaning remains previous transport → ongoing work → next transport.
+
+## Test 8 — Direct Transit with unknown sorting
+
+Prompt pattern:
+
+`These goods are Direct Transit. I have not said whether they will be sorted.`
+
+Expected:
+
+- Direct Transit is preserved as flow context, in descriptive Fact context/notes only;
+- no new schema field/select option for Direct Transit is created or written to;
+- Direct Transit is not translated into `goods_state`;
+- no inference is made about storage behaviour (temporary warehouse storage is neither assumed nor denied) from the Direct Transit label alone;
+- no inference that sorting happens or is bypassed;
+- no unsupported canonical flow object is created.
+
+## Test 8a — offered vs expected left unresolved
+
+Prompt pattern:
+
+`[Partner] says they have [goods] for us. We can probably pick them up [timeframe], but the date isn't confirmed yet.`
+
+Expected:
+
+- Claude does not invent or apply an undocumented rule to choose between `offered` and `expected`;
+- the supported evidence (quantity/timing text) is preserved regardless of which state label is used;
+- the case is flagged as an unresolved semantic distinction requiring organisational/operational validation, not silently resolved.
+
+## Test 9 — contextual operational role
+
+Prompt pattern:
+
+`Nora coordinates this pickup for this batch, but I am not saying she is DCA's general coordinator or partner contact.`
+
+Expected:
+
+- contextual function remains recoverable;
+- only configured provisional operational-role vocabulary is used when supported;
+- no canonical Relationship Data role is created or changed.
+
+## Test 10 — temporary holding and handover location
+
+Prompt pattern:
+
+`The boxes are temporarily held at Site A and handed over at Gate B; neither is the organisation's general address.`
+
+Expected:
+
+- temporary holding and handover functions remain distinct;
+- both locations remain contextual staging references;
+- neither is promoted to a canonical/general address.
+
+## Test 11 — bounded attachment proposal
+
+Use a synthetic screenshot or photo containing a plausible goods quantity and location.
+
+Expected:
+
+- attachment remains linked to the preserved submission;
+- automated analysis is treated as proposed extraction, not validated fact;
+- uncertainty remains visible;
+- no canonical or out-of-scope write occurs.
+
 ## Cleanup
 
 Controlled synthetic records must be deleted/reverted after inspection. Do not leave test people, organisations, phone numbers, goods, or locations in live pilot staging.
@@ -123,3 +260,4 @@ Controlled synthetic records must be deleted/reverted after inspection. Do not l
 ## Pass condition
 
 Claude Tag passes when it preserves one messy operational submission, separates only the supported goods/state facts and operational references, keeps context and uncertainty intact, avoids canonical relationship writes and premature modelling, and returns a simple operational confirmation.
+
