@@ -20,14 +20,20 @@ function Finding({finding, mode, busyKey, onApprove}) {
           {finding.actual && <><dt>Current</dt><dd>{String(finding.actual)}</dd></>}
         </dl>
       )}
-      {finding.safeFix && <p className="safe-fix">Safe fix: rename to <code>{finding.safeFix.targetName}</code></p>}
+      {finding.safeFix && <p className="safe-fix"><strong>Ready:</strong> Schema Guard can apply this repair directly.</p>}
       {mode === 'plan' && finding.reviewAction && (
         <div className="review-action">
-          <p><strong>Proposed action:</strong> {finding.reviewAction.label}</p>
+          <p><strong>Proposed repair:</strong> {finding.reviewAction.label}</p>
           <p>{finding.reviewAction.risk}</p>
           <button onClick={() => onApprove(finding, key)} disabled={Boolean(busyKey)}>
-            {isBusy ? 'Applying…' : 'Approve & apply'}
+            {isBusy ? 'Applying…' : 'Approve & repair'}
           </button>
+        </div>
+      )}
+      {mode === 'plan' && finding.executionState === 'unavailable' && (
+        <div className="execution-unavailable">
+          <p><strong>Guard repair not available yet.</strong></p>
+          {finding.executionNote && <p>{finding.executionNote}</p>}
         </div>
       )}
     </article>
@@ -53,13 +59,13 @@ function SchemaGuard() {
   const summary = useMemo(() => summarizeIssues(findings), [findings]);
 
   const visibleFindings = mode === 'plan'
-    ? findings.filter(item => item.severity === 'review' || item.severity === 'error' || item.reviewAction)
+    ? findings.filter(item => item.severity === 'review' || item.severity === 'error' || item.reviewAction || item.executionState === 'unavailable')
     : findings;
 
   async function fixSafe() {
     const safeFindings = findings.filter(item => item.safeFix);
     if (!safeFindings.length) {
-      setRunMessage('No explicitly cleared safe fixes are currently available.');
+      setRunMessage('No explicitly cleared safe repairs are currently available.');
       return;
     }
 
@@ -84,7 +90,7 @@ function SchemaGuard() {
     }
 
     const suffix = skipped.length ? ` ${skipped.length} skipped: ${skipped.join(' | ')}` : '';
-    setRunMessage(`${applied} safe fix${applied === 1 ? '' : 'es'} applied and the table was re-audited.${suffix}`);
+    setRunMessage(`${applied} safe repair${applied === 1 ? '' : 's'} applied and the table was re-audited.${suffix}`);
   }
 
   async function approveAndApply(finding, key) {
@@ -95,12 +101,12 @@ function SchemaGuard() {
     try {
       const result = await applyApprovedAction(base, finding);
       if (result.applied) {
-        setRunMessage(`Approved change applied: ${finding.reviewAction.label}. Re-auditing current table.`);
+        setRunMessage(`Approved repair applied: ${finding.reviewAction.label}. Re-auditing current table.`);
       } else {
-        setRunMessage(`Approved change was not applied: ${result.reason}`);
+        setRunMessage(`Approved repair was not applied: ${result.reason}`);
       }
     } catch (error) {
-      setRunMessage(`Approved change failed: ${error.message ?? String(error)}`);
+      setRunMessage(`Approved repair failed: ${error.message ?? String(error)}`);
     } finally {
       setBusyKey(null);
       setRevision(value => value + 1);
@@ -113,7 +119,7 @@ function SchemaGuard() {
         <div>
           <p className="eyebrow">DCA Systems & Data</p>
           <h1>DCA Schema Guard</h1>
-          <p className="subtitle">Audit Airtable implementation without inventing organisational structure.</p>
+          <p className="subtitle">Audit and repair Airtable implementation without inventing organisational structure.</p>
           <p className="scope"><strong>Auditing:</strong> {scopeLabel}</p>
         </div>
         <span className="version">rules {rules.version}</span>
@@ -123,7 +129,7 @@ function SchemaGuard() {
         <button className={mode === 'audit' ? 'active' : ''} onClick={() => setMode('audit')}>Audit</button>
         <button className={mode === 'plan' ? 'active' : ''} onClick={() => setMode('plan')}>Plan ({summary.approvable} approvable)</button>
         <button onClick={fixSafe} disabled={busy || Boolean(busyKey) || summary.safeFixes === 0}>
-          {busy ? 'Applying…' : `Fix safe (${summary.safeFixes})`}
+          {busy ? 'Repairing…' : `Repair safe (${summary.safeFixes})`}
         </button>
       </section>
 
@@ -131,18 +137,18 @@ function SchemaGuard() {
 
       <section className="summary" aria-label="Audit summary">
         <div><strong>{summary.total}</strong><span>findings</span></div>
-        <div><strong>{summary.review}</strong><span>review</span></div>
-        <div><strong>{summary.approvable}</strong><span>approvable</span></div>
-        <div><strong>{summary.safeFixes}</strong><span>safe fixes</span></div>
+        <div><strong>{summary.approvable}</strong><span>ready for approval</span></div>
+        <div><strong>{summary.safeFixes}</strong><span>safe repairs</span></div>
+        <div><strong>{summary.awaitingExecutor}</strong><span>Guard support pending</span></div>
       </section>
 
       <section className="boundary">
-        <strong>Scope:</strong> this Interface Extension audits the table context Airtable exposes on the current interface page. Cross-table/base-wide reconciliation is a separate capability. <strong>Behaviour:</strong> deterministic safe changes may execute directly; review-required findings only become executable when Schema Guard can define the exact change and you explicitly approve it. Unsupported or unresolved migrations remain review-only.
+        <strong>Scope:</strong> this Interface Extension audits the table context Airtable exposes on the current interface page. Cross-table/base-wide reconciliation is a separate capability. <strong>Ownership:</strong> Schema Guard owns schema enforcement and repair. Safe deterministic repairs execute here; consequential repairs execute here after explicit approval. If the current Guard runtime cannot safely execute a repair yet, the finding stays visible as <em>Guard support pending</em> rather than becoming a normal manual Airtable task.
       </section>
 
       <section className="findings">
         <div className="section-heading">
-          <h2>{mode === 'plan' ? 'Review plan' : 'Audit findings'}</h2>
+          <h2>{mode === 'plan' ? 'Repair plan' : 'Audit findings'}</h2>
           <span>{visibleFindings.length}</span>
         </div>
         {visibleFindings.length === 0 ? (
