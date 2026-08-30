@@ -48,10 +48,14 @@ supersession case in step 5 depends on step 1 having landed correctly).
 `CONTROLLED TEST. Foodbank Nova says they have around 20 boxes of mixed food for DCA. We can probably pick them up next week, but the date is not confirmed.`
 
 Expected: `submission_kind=new_information`; `operational_process=goods_intake`;
-`quantity_text="around 20 boxes"`; `goods_state` ∈ {`offered`, `expected`} —
-and, per the new rule, the reply/notes should surface the offered/expected
-gap rather than silently resolving it with false confidence. Maps to
-Test 5/8a in `tests/providers/claude/logistics-intake.md`.
+`quantity_text="around 20 boxes"`. `goods_state` may contain `offered` or
+`expected` only as the current schema-level representation — that field
+alone is not the pass criterion. The run **passes only if** the unresolved
+semantic distinction is explicitly preserved in notes/confirmation **and**
+Claude does not present the selected value as an authoritative
+classification. A confident pick of either value with no surfaced caveat is
+a FAIL, even if the value itself is defensible. Maps to Test 5/8a in
+`tests/providers/claude/logistics-intake.md`.
 
 ### 2 — contextual role, no goods change (baseline)
 
@@ -124,10 +128,13 @@ than forced. Maps to Test 10.
 
 Delete/revert all controlled-test submissions, facts, and operational
 references created in steps 1–7 (Foodbank Nova, Ridgeline Amenities, Petra,
-H7X ×2, Dana, the medical-equipment/Direct Transit case) from
-`DCA Integrations & Reconciliation` after inspection. Nothing synthetic
-should remain in live staging, per the Cleanup rule in
-`tests/providers/claude/logistics-intake.md`.
+all H7X submissions and related facts/references created by steps 3a–4b,
+Dana, the medical-equipment/Direct Transit case) from
+`DCA Integrations & Reconciliation` after inspection. Steps 3a–4b create
+four H7X submissions in total (3a, 3b, 4a, 4b) plus whatever facts/references
+were extracted from them — all of them must be removed, not just the two
+correction messages. Nothing synthetic should remain in live staging, per
+the Cleanup rule in `tests/providers/claude/logistics-intake.md`.
 
 ## Why this plan differs from the earlier ad hoc prompt
 
