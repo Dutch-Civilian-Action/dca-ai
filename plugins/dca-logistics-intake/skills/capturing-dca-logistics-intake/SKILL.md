@@ -2,7 +2,7 @@
 name: capturing-dca-logistics-intake
 description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.4.0
+  version: 0.5.0
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -32,6 +32,8 @@ Use only the intended staging base for new Logistics intake:
 `DCA Integrations & Reconciliation`
 
 Do not select similarly named bases or use the canonical Relationship Data base as the write destination for mixed Logistics-cycle intake during this pilot.
+
+The attached Airtable identity may technically be able to read/write any table in `DCA Integrations & Reconciliation`, not only the three tables below — the current Airtable implementation does not support restricting an identity to specific tables within a base. This makes the three-table boundary a rule this skill must follow itself, not a limit enforced by the credential. Never write to any table in this base other than `Logistics_Intake_Submissions`, `Logistics_Intake_Facts`, and `Logistics_Intake_Operational_References`, even though nothing prevents it technically.
 
 ## Schema-bound execution rule
 

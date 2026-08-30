@@ -65,13 +65,15 @@ Expected staging result:
 
 ## Current pilot implementation target
 
-Claude using the Airtable connector against `DCA Integrations & Reconciliation` with write access restricted to:
+Claude using the Airtable connector against `DCA Integrations & Reconciliation`, with the write boundary limited to:
 
 - `Logistics_Intake_Submissions`
 - `Logistics_Intake_Facts`
 - `Logistics_Intake_Operational_References`
 
-Canonical `2 | DCA Relationships & Workflows` may be available read-only/reference-only in the Logistics channel for established identity lookup during the pilot.
+This write boundary is a required behavioural rule, not a credential restriction: the current Airtable implementation cannot scope an identity to specific tables within a base, so the attached identity can technically read/write any table in `DCA Integrations & Reconciliation`. Tests must verify this boundary by observing that no write occurs outside these three tables, not by asserting the identity cannot reach other tables.
+
+Canonical `2 | DCA Relationships & Workflows` is a separate base and may be available read-only/reference-only in the Logistics channel for established identity lookup during the pilot; that base-level separation is a real credential restriction and is not affected by the table-level limitation above.
 
 Provider-specific Claude Tag validation belongs under `tests/providers/claude/`.
 

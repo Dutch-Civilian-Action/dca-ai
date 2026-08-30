@@ -15,7 +15,7 @@ Validate that Claude Tag applies the reconstruction-first Logistics intake workf
 
 - DCA Core is available to the `#logistics` Claude runtime.
 - DCA Logistics Intake plugin is installed and attached to the Logistics intake access bundle.
-- Airtable access for the Logistics intake bundle is restricted to `DCA Integrations & Reconciliation` and the three pilot staging tables.
+- Airtable access for the Logistics intake bundle is restricted at the base level to `DCA Integrations & Reconciliation` only; the current Airtable implementation cannot restrict the identity to the three pilot staging tables specifically, so the identity can technically read/write any table in that base. Writing only to `Logistics_Intake_Submissions`, `Logistics_Intake_Facts`, and `Logistics_Intake_Operational_References` is a procedural/runtime requirement enforced by the skill, verified by checking actual writes after each test, not a credential-level guarantee. Do not treat "the identity cannot reach other tables" as a pass criterion in any test below.
 - DCA Relationship Data is available in `#logistics` only for bounded read/reference lookup during this pilot.
 - Automatic responses are off; tests use explicit `@Claude` invocation.
 - Auto-mode allow rules are empty during the pilot.
