@@ -4,7 +4,20 @@ const tableNamePattern = new RegExp(rules.naming.tablePattern);
 const fieldNamePattern = new RegExp(rules.naming.fieldPattern);
 const vagueDescriptionPatterns = rules.descriptions.vagueOnlyPatterns.map(pattern => new RegExp(pattern, 'i'));
 
-function issue({code, severity, scope, table, field, message, expected, actual, safeFix = null, reviewAction = null}) {
+function issue({
+  code,
+  severity,
+  scope,
+  table,
+  field,
+  message,
+  expected,
+  actual,
+  safeFix = null,
+  reviewAction = null,
+  executionState = 'unavailable',
+  executionNote = null,
+}) {
   return {
     code,
     severity,
@@ -18,6 +31,8 @@ function issue({code, severity, scope, table, field, message, expected, actual, 
     actual: actual ?? null,
     safeFix,
     reviewAction,
+    executionState,
+    executionNote,
   };
 }
 
@@ -92,19 +107,21 @@ function auditTableName(base, table, issues) {
     scope: 'table',
     table,
     message: safe
-      ? `Table name does not follow ${rules.naming.tableStyle}; an explicitly cleared mechanical rename is configured.`
+      ? `Table name does not follow ${rules.naming.tableStyle}; an explicitly cleared mechanical repair is ready.`
       : candidate
-        ? `Table name does not follow ${rules.naming.tableStyle}. The exact mechanical rename can be executed after explicit approval.`
-        : `Table name does not follow ${rules.naming.tableStyle}, and no unambiguous rename candidate is available.`,
+        ? `Table name does not follow ${rules.naming.tableStyle}. Schema Guard can repair this after explicit approval.`
+        : `Table name does not follow ${rules.naming.tableStyle}, and no unambiguous repair can currently be generated.`,
     expected: candidate ? target : rules.naming.tableStyle,
     actual: table.name,
     safeFix: safe ? {kind: 'rename_table', targetName: target} : null,
     reviewAction: !safe && candidate ? {
       kind: 'rename_table',
       targetName: target,
-      label: `Approve rename to ${target}`,
-      risk: 'Renaming may affect external consumers that reference the current table name. Approval authorizes this exact rename; Schema Guard will re-check collisions before applying it.',
+      label: `Rename to ${target}`,
+      risk: 'Renaming may affect external consumers that reference the current table name. Approval authorizes only this exact rename; Schema Guard re-checks collisions immediately before applying it.',
     } : null,
+    executionState: safe ? 'safe' : candidate ? 'approval' : 'unavailable',
+    executionNote: candidate ? null : 'Schema Guard cannot derive one exact repair from the current evidence.',
   }));
 }
 
@@ -122,19 +139,21 @@ function auditFieldName(table, field, issues) {
     table,
     field,
     message: safe
-      ? `Field name does not follow ${rules.naming.fieldStyle}; an explicitly cleared mechanical rename is configured.`
+      ? `Field name does not follow ${rules.naming.fieldStyle}; an explicitly cleared mechanical repair is ready.`
       : candidate
-        ? `Field name does not follow ${rules.naming.fieldStyle}. The exact mechanical rename can be executed after explicit approval.`
-        : `Field name does not follow ${rules.naming.fieldStyle}, and no unambiguous rename candidate is available.`,
+        ? `Field name does not follow ${rules.naming.fieldStyle}. Schema Guard can repair this after explicit approval.`
+        : `Field name does not follow ${rules.naming.fieldStyle}, and no unambiguous repair can currently be generated.`,
     expected: candidate ? target : rules.naming.fieldStyle,
     actual: field.name,
     safeFix: safe ? {kind: 'rename_field', targetName: target} : null,
     reviewAction: !safe && candidate ? {
       kind: 'rename_field',
       targetName: target,
-      label: `Approve rename to ${target}`,
-      risk: 'Renaming may affect formulas, automations, interfaces, scripts, APIs, syncs, or external consumers that reference the current field name. Approval authorizes this exact rename; Schema Guard will re-check collisions before applying it.',
+      label: `Rename to ${target}`,
+      risk: 'Renaming may affect formulas, automations, interfaces, scripts, APIs, syncs, or external consumers that reference the current field name. Approval authorizes only this exact rename; Schema Guard re-checks collisions immediately before applying it.',
     } : null,
+    executionState: safe ? 'safe' : candidate ? 'approval' : 'unavailable',
+    executionNote: candidate ? null : 'Schema Guard cannot derive one exact repair from the current evidence.',
   }));
 }
 
@@ -145,9 +164,11 @@ function auditDescriptions(table, field, issues) {
       severity: 'review',
       scope: 'table',
       table,
-      message: 'Maintained table is missing a usage description. Schema Guard must not invent one.',
+      message: 'Maintained table is missing a usage description. Schema Guard owns the repair, but it must not invent the authoritative wording.',
       expected: 'Clear table purpose and usage description',
       actual: null,
+      executionState: 'unavailable',
+      executionNote: 'Add an authoritative description to Schema Guard configuration; once configured, this should become an executable repair rather than a manual Airtable task.',
     }));
   }
 
@@ -158,9 +179,11 @@ function auditDescriptions(table, field, issues) {
       scope: 'field',
       table,
       field,
-      message: 'Maintained field is missing a usage description. Schema Guard must not invent one.',
+      message: 'Maintained field is missing a usage description. Schema Guard owns the repair, but it must not invent the authoritative wording.',
       expected: 'Clear field purpose and usage description',
       actual: null,
+      executionState: 'unavailable',
+      executionNote: 'Add an authoritative description to Schema Guard configuration; once configured, this should become an executable repair rather than a manual Airtable task.',
     }));
   } else if (field && descriptionIsVague(field.description)) {
     issues.push(issue({
@@ -169,9 +192,11 @@ function auditDescriptions(table, field, issues) {
       scope: 'field',
       table,
       field,
-      message: 'Field description is too vague to establish correct usage.',
+      message: 'Field description is too vague to establish correct usage. Schema Guard must receive authoritative replacement wording before it can repair it.',
       expected: 'Explicit meaning, usage, boundaries, and blank/uncertainty semantics where applicable',
       actual: field.description,
+      executionState: 'unavailable',
+      executionNote: 'Awaiting authoritative replacement wording in Schema Guard configuration.',
     }));
   }
 }
@@ -188,6 +213,8 @@ function auditPrimaryField(table, issues) {
       scope: 'table',
       table,
       message: 'Primary field could not be inspected.',
+      executionState: 'unavailable',
+      executionNote: 'Schema Guard cannot safely plan a repair until the primary field can be inspected.',
     }));
     return;
   }
@@ -199,9 +226,11 @@ function auditPrimaryField(table, issues) {
       scope: 'field',
       table,
       field: primary,
-      message: 'Primary field is not a formula. Changing a primary field is review-required and needs an exact migration definition before Schema Guard can execute it.',
+      message: 'Primary field is not a formula. Schema Guard owns this repair, but execution stays unavailable until the exact formula migration and supported executor are defined.',
       expected: rules.primaryField.preferredType,
       actual: primary.type,
+      executionState: 'unavailable',
+      executionNote: 'Do not repair this manually as part of normal Guard use. Add an exact migration/executor to Schema Guard, then approve and execute it through the Guard.',
     }));
   }
 }
@@ -216,9 +245,11 @@ function auditCanonicalType(table, field, issues) {
     scope: 'field',
     table,
     field,
-    message: 'Field name has an established semantic type mapping, but the current Airtable type differs. Type changes require an exact migration definition and are never auto-applied from the name alone.',
+    message: 'Field name has an established semantic type mapping, but the current Airtable type differs. Schema Guard must use an exact migration rather than blindly converting the field.',
     expected: allowed.join(' or '),
     actual: field.type,
+    executionState: 'unavailable',
+    executionNote: 'Awaiting an exact, data-safe migration executor in Schema Guard.',
   }));
 }
 
@@ -235,9 +266,11 @@ function auditConfiguredLanguage(table, issues) {
         severity: 'review',
         scope: 'table',
         table,
-        message: `Configured communication-related table is missing ${fieldName}. Language fields are contextual and are not auto-created without a complete field definition.`,
+        message: `Configured communication-related table is missing ${fieldName}. Schema Guard must have the complete authoritative field definition before creating it.`,
         expected: fieldName,
         actual: null,
+        executionState: 'unavailable',
+        executionNote: 'Awaiting complete configured field definition and a supported field-creation executor.',
       }));
     }
   }
@@ -269,9 +302,10 @@ export function summarizeIssues(issues) {
       summary[current.severity] = (summary[current.severity] ?? 0) + 1;
       if (current.safeFix) summary.safeFixes += 1;
       if (current.reviewAction) summary.approvable += 1;
+      if (current.executionState === 'unavailable') summary.awaitingExecutor += 1;
       return summary;
     },
-    {total: 0, warning: 0, review: 0, error: 0, safeFixes: 0, approvable: 0},
+    {total: 0, warning: 0, review: 0, error: 0, safeFixes: 0, approvable: 0, awaitingExecutor: 0},
   );
 }
 
@@ -282,12 +316,12 @@ async function resolveTable(base, finding) {
 }
 
 export async function applySafeFix(base, finding) {
-  if (!finding.safeFix) return {applied: false, reason: 'No explicitly cleared safe fix configured'};
+  if (!finding.safeFix) return {applied: false, reason: 'No explicitly cleared safe repair is configured'};
   return applyAction(base, finding, finding.safeFix, false);
 }
 
 export async function applyApprovedAction(base, finding) {
-  if (!finding.reviewAction) return {applied: false, reason: 'No approval-executable action is available'};
+  if (!finding.reviewAction) return {applied: false, reason: 'No approval-executable repair is available'};
   return applyAction(base, finding, finding.reviewAction, true);
 }
 
@@ -300,7 +334,7 @@ async function applyAction(base, finding, action, approvedByUser) {
       return {applied: false, reason: 'Dependency clearance is no longer configured for this rename'};
     }
     if (typeof table.updateNameAsync !== 'function') {
-      return {applied: false, reason: 'This Interface Extensions runtime does not expose table.updateNameAsync'};
+      return {applied: false, reason: 'Schema Guard runtime cannot execute table renames here'};
     }
     if (tableHasNameCollision(base, table, action.targetName)) {
       return {applied: false, reason: 'Target table name now collides with another table'};
@@ -319,7 +353,7 @@ async function applyAction(base, finding, action, approvedByUser) {
       return {applied: false, reason: 'Dependency clearance is no longer configured for this rename'};
     }
     if (typeof field.updateNameAsync !== 'function') {
-      return {applied: false, reason: 'This Interface Extensions runtime does not expose field.updateNameAsync'};
+      return {applied: false, reason: 'Schema Guard runtime cannot execute field renames here'};
     }
     if (fieldHasNameCollision(table, field, action.targetName)) {
       return {applied: false, reason: 'Target field name now collides with another field'};
@@ -328,7 +362,7 @@ async function applyAction(base, finding, action, approvedByUser) {
     return {applied: true};
   }
 
-  return {applied: false, reason: 'Unknown action kind'};
+  return {applied: false, reason: 'Schema Guard has no executor for this repair yet'};
 }
 
 export {rules};
