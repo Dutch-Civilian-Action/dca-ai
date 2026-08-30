@@ -1,0 +1,93 @@
+{
+  "version": "0.1.0",
+  "authority": {
+    "name": "DCA Airtable Implementation Standard",
+    "scope": "Airtable implementation only",
+    "architectureRepository": "Dutch-Civilian-Action/dca-architecture"
+  },
+  "naming": {
+    "tablePattern": "^[A-Z][A-Za-z0-9]*(?:_[A-Z][A-Za-z0-9]*)*$",
+    "fieldPattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+    "tableStyle": "Title_Case",
+    "fieldStyle": "snake_case"
+  },
+  "descriptions": {
+    "requiredForTables": true,
+    "requiredForFields": true,
+    "minimumUsefulLength": 20,
+    "vagueOnlyPatterns": [
+      "^status$",
+      "^helper$",
+      "^related$",
+      "^general notes$",
+      "^for tracking$"
+    ]
+  },
+  "primaryField": {
+    "preferredType": "formula",
+    "reviewRequiredWhenDifferent": true,
+    "exceptions": []
+  },
+  "canonicalFieldTypes": {
+    "created_at": ["createdTime"],
+    "last_modified": ["lastModifiedTime"],
+    "email": ["email"],
+    "phone": ["phoneNumber"],
+    "website": ["url"],
+    "notes": ["multilineText", "richText"],
+    "validation_status": ["singleSelect"],
+    "confirmation_status": ["singleSelect"],
+    "source_reference": ["singleLineText", "url"]
+  },
+  "dateTime": {
+    "technicalMetadataDisplay": {
+      "dateFormat": "iso",
+      "timeFormat": "24hour",
+      "timeZone": "Europe/Amsterdam"
+    },
+    "semanticRule": "Operational datetimes preserve the event or schedule timezone where local time matters; Europe/Amsterdam is not a universal semantic timezone."
+  },
+  "safety": {
+    "requireExplicitDependencyClearanceForRenames": true,
+    "safeFixes": [
+      "explicitly_configured_mechanical_table_name_repair",
+      "explicitly_configured_mechanical_field_name_repair"
+    ],
+    "reviewRequired": [
+      "unverified_table_or_field_rename",
+      "populated_field_type_change",
+      "primary_field_change",
+      "primary_formula_change",
+      "field_delete",
+      "table_delete",
+      "linked_record_target_change",
+      "linked_record_cardinality_change",
+      "table_merge",
+      "table_split",
+      "identifier_formula_change",
+      "canonical_staging_data_move",
+      "contextual_semantic_change"
+    ]
+  },
+  "language": {
+    "rule": "Tables that store or directly reference communication with people require explicit language context where language affects communication meaning or routing.",
+    "fields": {
+      "communication_language": "Language of a specific communication or communication record.",
+      "preferred_language": "Preferred language within the applicable relationship or involvement context; not automatically a global Contact property.",
+      "source_language": "Language in which source evidence was originally supplied."
+    },
+    "inference": "Do not infer communication-related tables from names alone in v0.1; configure them explicitly."
+  },
+  "reconciliation": {
+    "rule": "External-system data is evidence, not automatically canonical truth.",
+    "noImplicitLastWriteWins": true,
+    "preserveSourceValues": true,
+    "separateSyncFromResolution": true,
+    "implementation": "Do not prescribe one field per service or a universal reconciliation table until the specific service and reconciliation behaviour are established."
+  },
+  "areasOfInvolvement": {
+    "rule": "Model involvement and context first. Extract shared structure only when it is proven to be shared.",
+    "noPrematureGlobalFields": true
+  },
+  "configuredTables": {}
+}
