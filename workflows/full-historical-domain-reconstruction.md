@@ -895,7 +895,55 @@ If Airtable becomes unavailable:
 - report the write failure as a coverage/processing gap;
 - when Airtable becomes available again, search-before-create before ingesting the queue.
 
-# 20. Final synthesis
+# 20. Mandatory handoff: self-evaluation and routing
+
+Reconstruction does not end when evidence collection and synthesis are complete.
+
+Before any reconstructed object is treated as established, classified for a canonical destination, proposed for promotion, or used as the basis for structural/system change, continue with:
+
+**`workflows/reconstruction-self-evaluation-and-routing.md`**
+
+The required sequence is:
+
+```text
+Evidence collection
+→ Reconstruction
+→ Reconciliation
+→ Reconstruction self-evaluation
+   ├─ insufficient → continue investigation and preserve the gaps
+   └─ sufficient → establish what the evidence supports
+→ human validation where required
+→ object classification
+→ destination/routing assessment
+→ promotion assessment
+```
+
+The self-evaluation gate is mandatory. A reconstruction must not advance merely because a large amount of evidence was processed or a plausible synthesis can be written.
+
+The self-evaluation must test, at minimum:
+
+- source and date coverage;
+- source diversity and duplicate-source inflation;
+- temporal completeness;
+- unresolved contradictions;
+- correction and supersession lineage;
+- attribution quality;
+- capability-stage certainty;
+- current-state confidence;
+- discovered but unprocessed adjacent sources, people, systems, or services;
+- genuine unknowns versus evidence not yet searched;
+- readiness of individual objects for validation or promotion assessment.
+
+If the self-evaluation identifies material insufficiency, return to investigation. Update `coverage_summary`, `coverage_gaps`, Evidence, Reconstruction_Objects, and relationships as appropriate, then run self-evaluation again.
+
+Do not substitute AI self-evaluation for human validation. They are separate gates:
+
+- **self-evaluation** assesses whether the reconstruction process and evidence base are sufficiently complete and reliable to proceed;
+- **human validation** establishes organisational meaning or responsible-owner confirmation where required.
+
+Classification and routing do not themselves authorise canonical writes. The downstream workflow determines the proposed organisational destination and promotion readiness while preserving the write boundaries defined here.
+
+# 21. Final synthesis
 
 The Airtable reconstruction layer is the detailed evidence graph.
 
@@ -930,6 +978,9 @@ End with:
 - **F. Reconstruction objects ready for validation/promotion assessment**
 - **G. Objects that must remain reconstruction/staging**
 - **H. Airtable reconstruction run status and remaining coverage gaps**
+- **I. Self-evaluation result and downstream handoff status**
+
+The final synthesis must not bypass the mandatory self-evaluation and routing workflow. If self-evaluation has not passed, say so explicitly and do not present the reconstruction as promotion-ready.
 
 # Final constraint
 
@@ -940,5 +991,7 @@ Do not optimise DCA.
 Do not make the evidence fit the current system.
 
 First reconstruct the domain correctly.
+
+Then self-evaluate it before acting on it.
 
 **Reality authorises the model.**
