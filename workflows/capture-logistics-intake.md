@@ -19,6 +19,8 @@ This workflow supports two related operational processes:
 
 A submission separately expresses whether it is **new information**, an **update**, or a **correction**. Do not ask the operator to classify either distinction; infer both from ordinary language and preserve ambiguity when the evidence does not support one safely.
 
+Do not classify an ordinary message about concrete goods as `logistics_information_intake` merely because an AI or system is recording it. If the submission itself is evidence in a concrete goods progression, use `goods_intake`.
+
 It does not define the full Logistics workflow, the final Logistics schema, or the final relationship between Logistics objects and Relationship Data.
 
 ## Current pilot storage
@@ -140,6 +142,8 @@ Preserve:
 
 Do not rewrite the raw submission into normalized prose.
 
+`controlled_test` is provenance/test metadata only. It must not change the operational interpretation of the evidence or cause test/placeholder commentary to appear in the ordinary operator-facing completion message unless the user explicitly asks about the test mechanics.
+
 ### 2. Extract only supported goods/state facts
 
 Create one or more `Logistics_Intake_Facts` records when the submission contains separable operational goods/state facts.
@@ -236,11 +240,26 @@ The point of this pilot is to preserve the current picture and expose the struct
 
 Later submissions may update or correct earlier information.
 
-Preserve every later submission as new evidence. For an operational state transition, create/preserve the supported later fact, link `supersedes_fact` where the same goods are sufficiently identified, and retain the earlier fact with the appropriate lifecycle state. For a correction, link `corrects_submission` to the earlier submission when supported; do not disguise a correction as a normal state update.
+Preserve every later submission as new evidence. For an operational state transition, create/preserve the supported later fact and link `supersedes_fact` only when the same goods are sufficiently identified.
+
+Supersession is a two-sided lifecycle transition. When a later fact validly supersedes an earlier fact whose `lifecycle_status` is `current`:
+
+- preserve the earlier fact and its source evidence;
+- set the earlier fact's `lifecycle_status` to `superseded`;
+- keep the later fact's own lifecycle status according to the supported later state (`current`, `resolved`, or another existing supported non-invented value).
+
+Do not leave a directly superseded predecessor marked `current`. Do not force an already resolved, cancelled, or superseded predecessor into `superseded` merely because a link is added; preserve its existing non-current lifecycle unless the evidence itself establishes a correction to that lifecycle.
+
+For a correction, link `corrects_submission` to the earlier submission when supported; do not disguise a correction as a normal state update.
 
 Link `corrects_submission` only when exactly one prior submission is sufficiently identifiable as the correction target. Do not use recency ("most recent matching submission") as a matching heuristic. When more than one prior submission is a plausible target, still preserve the correction submission and its content, leave `corrects_submission` unresolved, and flag the ambiguity for human clarification rather than guessing.
 
-When a correction (or any submission) states the direction goods are moving — including that DCA itself is the receiving/destination party — preserve that direction using the existing source/destination fields rather than leaving it implicit or omitting DCA as a party. Losing a stated direction such as "H4U → DCA" is not an acceptable simplification.
+When a correction or any other submission states the direction goods are moving, preserve that direction using the existing source/destination fields rather than leaving it implicit.
+
+- Explicit wording such as `X is handing the goods to DCA` or `for DCA` supports DCA as the destination.
+- In an authenticated DCA Logistics context, `for us` may support DCA as the destination only when the immediate conversational referent is unambiguous.
+- Preserve third-party direction such as `Organisation X hands the goods to Organisation Y`; do not replace either party with DCA merely because DCA operates the system.
+- If the submission does not establish direction, leave source/destination unresolved rather than inferring it from warehouse context or system ownership.
 
 Warehouse exit must remain visible even though it is not a `goods_state` option: preserve the exit evidence and resolve/supersede the earlier in-warehouse assertion only when the evidence supports the link.
 
@@ -260,6 +279,8 @@ Good examples:
 - `I kept the warehouse address and unloading address separate because the message shows they are used for different purposes.`
 
 Do not narrate internal Airtable mechanics unless the user explicitly asks.
+
+A test marker such as `controlled_test` must not by itself change this operator-facing language.
 
 ## Initial capture behaviour
 
@@ -318,4 +339,3 @@ If a submission is too ambiguous to split safely:
 - otherwise leave the uncertainty visible for later reconstruction/reconciliation.
 
 Do not block capture merely because the information is incomplete.
-
