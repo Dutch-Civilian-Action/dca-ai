@@ -1,0 +1,84 @@
+/* ===========================================================================
+   DCA — Base layer
+   Light element defaults + a few utility primitives. Kept minimal so the
+   tokens do the work. Body type is Roboto Condensed Regular per brand.
+   =========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings: Roboto Condensed, strong hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.4em;
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+h1 { font-size: var(--text-h1); font-weight: var(--weight-black); line-height: var(--leading-tight); }
+h2 { font-size: var(--text-h2); font-weight: var(--weight-extrabold); }
+h3 { font-size: var(--text-h3); font-weight: var(--weight-bold); }
+h4 { font-size: var(--text-h4); font-weight: var(--weight-bold); }
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+
+a { color: var(--text-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+strong, b { font-weight: var(--weight-bold); }
+
+small { font-size: var(--text-sm); }
+
+code, kbd, samp { font-family: var(--font-mono); font-size: 0.92em; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin: var(--space-6) 0;
+}
+
+::selection { background: var(--dca-yellow); color: var(--dca-black); }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ---- Small text utilities used by specimen cards / components ---- */
+.dca-eyebrow {
+  font-family: var(--font-condensed);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--dca-blue);
+}
+.dca-mono {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-mono);
+  font-variant-numeric: tabular-nums;
+}
+.dca-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-black);
+  font-size: var(--text-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+}

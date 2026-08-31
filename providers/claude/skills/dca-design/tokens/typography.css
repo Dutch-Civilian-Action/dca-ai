@@ -1,0 +1,47 @@
+/* ===========================================================================
+   DCA — Typography tokens
+   Roboto Condensed drives the system: Black/ExtraBold for headings and major
+   operational statements, Bold for emphasis, Regular for body. Strong, clean
+   hierarchy; large headings; readable body; minimal mixing. Roboto Mono is
+   reserved for operational data (figures, codes, timestamps).
+   =========================================================================== */
+
+:root {
+  /* ---- Families ---- */
+  --font-condensed: "Roboto Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-display:   var(--font-condensed);   /* headings / hierarchy */
+  --font-body:      var(--font-condensed);   /* DCA body is Condensed Regular */
+  --font-sans:      "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif; /* readable alternate */
+  --font-mono:      "Roboto Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ---- Weights ---- */
+  --weight-regular:  400;
+  --weight-bold:     700;
+  --weight-extrabold:800;
+  --weight-black:    900;
+
+  /* ---- Type scale (clamped for fluid headings) ---- */
+  --text-display:    clamp(2.75rem, 1.6rem + 4.6vw, 4.5rem);  /* @kind other */ /* 44 → 72 */
+  --text-h1:         clamp(2.25rem, 1.5rem + 3vw, 3.25rem);   /* @kind other */ /* 36 → 52 */
+  --text-h2:         clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);  /* @kind other */ /* 28 → 40 */
+  --text-h3:         1.5rem;     /* 24 */
+  --text-h4:         1.25rem;    /* 20 */
+  --text-lead:       1.25rem;    /* 20 — intro/lede paragraphs */
+  --text-body-lg:    1.125rem;   /* 18 */
+  --text-base:       1rem;       /* 16 */
+  --text-sm:         0.875rem;   /* 14 */
+  --text-xs:         0.75rem;    /* 12 — labels/metadata */
+  --text-eyebrow:    0.8125rem;  /* 13 — overline labels */
+
+  /* ---- Line heights ---- */
+  --leading-tight:   1.04;   /* display / large headings */
+  --leading-snug:    1.18;   /* headings */
+  --leading-normal:  1.5;    /* body */
+  --leading-relaxed: 1.65;   /* long-form body */
+
+  /* ---- Letter spacing ---- */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-label:  0.06em;   /* eyebrows / labels (UPPERCASE) */
+  --tracking-mono:   0.02em;
+}

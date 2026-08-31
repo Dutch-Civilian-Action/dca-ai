@@ -1,0 +1,27 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Spacing scale" subtitle="4px base grid — structured layouts with room to breathe" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-page); }
+  .stack { display: flex; flex-direction: column; gap: var(--space-2); }
+  .row { display: flex; align-items: center; gap: var(--space-4); }
+  .tag { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); width: 132px; flex: none; }
+  .bar { height: 14px; background: var(--dca-blue); border-radius: 2px; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="row"><span class="tag">--space-1 · 4</span><div class="bar" style="width:4px"></div></div>
+    <div class="row"><span class="tag">--space-2 · 8</span><div class="bar" style="width:8px"></div></div>
+    <div class="row"><span class="tag">--space-3 · 12</span><div class="bar" style="width:12px"></div></div>
+    <div class="row"><span class="tag">--space-4 · 16</span><div class="bar" style="width:16px"></div></div>
+    <div class="row"><span class="tag">--space-5 · 24</span><div class="bar" style="width:24px"></div></div>
+    <div class="row"><span class="tag">--space-6 · 32</span><div class="bar" style="width:32px"></div></div>
+    <div class="row"><span class="tag">--space-7 · 48</span><div class="bar" style="width:48px"></div></div>
+    <div class="row"><span class="tag">--space-8 · 64</span><div class="bar" style="width:64px"></div></div>
+  </div>
+</body>
+</html>

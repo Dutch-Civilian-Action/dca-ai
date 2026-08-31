@@ -1,0 +1,32 @@
+/* ===========================================================================
+   DCA — Spacing & layout tokens
+   A 4px base grid keeps layouts structured and consistent. Generous spacing
+   gives operational content room to breathe. Container widths support clean,
+   readable, report-style layouts.
+   =========================================================================== */
+
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-0:   0;
+  --space-1:   0.25rem;  /* 4 */
+  --space-2:   0.5rem;   /* 8 */
+  --space-3:   0.75rem;  /* 12 */
+  --space-4:   1rem;     /* 16 */
+  --space-5:   1.5rem;   /* 24 */
+  --space-6:   2rem;     /* 32 */
+  --space-7:   3rem;     /* 48 */
+  --space-8:   4rem;     /* 64 */
+  --space-9:   6rem;     /* 96 */
+  --space-10:  8rem;     /* 128 */
+
+  /* ---- Containers ---- */
+  --container-sm:   640px;
+  --container-md:   820px;   /* report / long-form reading width */
+  --container-lg:   1080px;
+  --container-xl:   1280px;
+  --container-page: 1280px;
+
+  /* ---- Gutters ---- */
+  --gutter-page:    clamp(1.25rem, 4vw, 4rem);  /* @kind spacing */
+  --section-y:      clamp(3rem, 6vw, 6rem);     /* @kind spacing */
+}

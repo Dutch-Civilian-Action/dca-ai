@@ -1,0 +1,115 @@
+/* ===========================================================================
+   DCA — Colour tokens
+   Primary palette and supporting tones are taken verbatim from the DCA Brand
+   Guidelines 2026. Neutrals and operational-status tokens are derived to
+   support structured, traceable interfaces. Readability always takes priority.
+   =========================================================================== */
+
+:root {
+  /* ---- Brand primaries (from guidelines) ---- */
+  --dca-blue:        #1863B5;  /* operational trust, logistics, structure, links */
+  --dca-yellow:      #FBD149;  /* visibility, highlights, campaign emphasis */
+  --dca-orange:      #FF813D;  /* warmth, urgency, calls to action */
+  --dca-black:       #010000;  /* typography, hierarchy, strong contrast */
+
+  /* ---- Supporting tones (use sparingly; never overpower primaries) ---- */
+  --soft-peach:      #FFE3D4;  /* calm backgrounds, breathing room */
+  --light-orange:    #FF9C66;  /* secondary highlights, soft CTA backgrounds */
+  --light-grey-blue: #E0EFEE;  /* neutral sections, report/info cards */
+
+  /* ---- Brand tints / shades (derived, for hovers + fills) ---- */
+  --dca-blue-900:    #0E3D70;
+  --dca-blue-700:    #14559C;
+  --dca-blue-600:    #1863B5;
+  --dca-blue-300:    #6FA3D8;
+  --dca-blue-100:    #DCEAF7;
+  --dca-blue-050:    #EEF5FB;
+
+  --dca-orange-700:  #E1631F;
+  --dca-orange-600:  #FF813D;
+  --dca-orange-100:  #FFE3D4;
+  --dca-orange-050:  #FFF3EC;
+
+  --dca-yellow-700:  #E0B026;
+  --dca-yellow-600:  #FBD149;
+  --dca-yellow-100:  #FEF3CF;
+
+  /* ---- Neutral scale (warm-cool balanced grey) ---- */
+  --neutral-000:     #FFFFFF;
+  --neutral-050:     #F7F8F8;
+  --neutral-100:     #EDEFEF;
+  --neutral-200:     #DDE1E1;
+  --neutral-300:     #C3C9C9;
+  --neutral-400:     #9AA1A1;
+  --neutral-500:     #6E7676;
+  --neutral-600:     #4F5656;
+  --neutral-700:     #333838;
+  --neutral-800:     #1E2222;
+  --neutral-900:     #010000;
+
+  /* ---- Operational status (traceability: Need → Action → Delivery → Impact) ---- */
+  --status-need:     #E1631F;  /* identified need / urgent */
+  --status-planned:  #6E7676;  /* planned / queued */
+  --status-progress: #1863B5;  /* in progress / in transit */
+  --status-delivered:#1E8F5B;  /* delivered / completed */
+  --status-impact:   #FBD149;  /* impact / ongoing support */
+  --status-delivered-soft: #E3F3EB;
+  --status-progress-soft:  #DCEAF7;
+  --status-need-soft:      #FFE3D4;
+
+  /* ---- Domain colours (one stable identity per DCA domain) ---- *
+   * Logistics      → DCA Blue     #1863B5  structural backbone, transport systems
+   * Operations     → Deep Orange  #E1631F  field action, urgency, direct delivery
+   * Fundraising    → DCA Yellow   #FBD149  campaign visibility, community energy
+   * Finance        → Forest Green #1E7A55  universal financial signal, accountability
+   * Communication  → Sky Blue     #4A8EC2  broadcast, outreach, blue family lighter
+   * Reporting      → Slate        #5C6A72  documentation, neutral authority
+   * Partnerships   → Plum         #7B5EA7  bridge-building, institutional connection
+   * Community      → Coral        #D45E3C  human warmth, belonging, volunteers
+   * ---- */
+  --domain-logistics:          #1863B5;
+  --domain-logistics-soft:     #DCEAF7;
+  --domain-operations:         #E1631F;
+  --domain-operations-soft:    #FFE3D4;
+  --domain-fundraising:        #FBD149;
+  --domain-fundraising-soft:   #FEF3CF;
+  --domain-finance:            #1E7A55;
+  --domain-finance-soft:       #DFF0E9;
+  --domain-communication:      #4A8EC2;
+  --domain-communication-soft: #DCF0FF;
+  --domain-reporting:          #5C6A72;
+  --domain-reporting-soft:     #EBEEEF;
+  --domain-partnerships:       #7B5EA7;
+  --domain-partnerships-soft:  #EDE8F5;
+  --domain-community:          #D45E3C;
+  --domain-community-soft:     #FAEAE4;
+
+  /* ---- Semantic aliases ---- */
+  --text-strong:     var(--dca-black);
+  --text-body:       var(--neutral-700);
+  --text-muted:      var(--neutral-500);
+  --text-inverse:    var(--neutral-000);
+  --text-link:       var(--dca-blue);
+  --text-on-accent:  var(--dca-black);
+
+  --surface-page:    var(--neutral-000);
+  --surface-card:    var(--neutral-000);
+  --surface-subtle:  var(--neutral-050);
+  --surface-calm:    var(--soft-peach);
+  --surface-info:    var(--light-grey-blue);
+  --surface-inverse: var(--dca-black);
+  --surface-brand:   var(--dca-blue);
+
+  --border-subtle:   var(--neutral-200);
+  --border-default:  var(--neutral-300);
+  --border-strong:   var(--neutral-700);
+
+  --action-primary:        var(--dca-blue);
+  --action-primary-hover:  var(--dca-blue-700);
+  --action-primary-active: var(--dca-blue-900);
+  --action-accent:         var(--dca-orange);
+  --action-accent-hover:   var(--dca-orange-700);
+  --highlight:             var(--dca-yellow);
+
+  --focus-ring:      var(--dca-blue);
+}
