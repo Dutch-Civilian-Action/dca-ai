@@ -33,27 +33,40 @@ A write-boundary failure or canonical Relationship Data mutation fails the regre
 
 ## Regression 1 — direction is resolved per fact, not by batch default
 
-Submit one mixed message with four distinct goods facts:
+### Message A — DCA destination plus no-direction control
+
+Submit one mixed message with three distinct goods facts:
 
 ```text
 CONTROLLED TEST.
 Northstar Aid is handing 5 pallets of blankets to DCA.
 Riverside Depot has 6 boxes of hygiene goods for us.
-Delta Foundation is handing 2 pallets of medical goods to Eastside Clinic.
 7 walking frames are in the warehouse now.
 ```
 
-Precondition: invocation occurs in the authenticated DCA Logistics context so `for us` has an unambiguous DCA referent.
+Precondition: invocation occurs in the authenticated DCA Logistics context so `for us` has an unambiguous DCA referent in this message.
 
 Pass:
 
 - Northstar Aid fact preserves `Northstar Aid → DCA`;
-- Riverside Depot fact preserves DCA as destination because `for us` is unambiguous in this context;
-- Delta Foundation fact preserves `Delta Foundation → Eastside Clinic`; DCA is not substituted;
+- Riverside Depot fact preserves DCA as destination because `for us` is unambiguous in this immediate conversational context;
 - walking-frames fact leaves direction unresolved because none was stated;
-- direction is evaluated independently for all four facts rather than copied from another clause.
+- direction is evaluated independently for all three facts rather than copied from another clause.
 
-This regression fails if the runtime "fixes" direction by always writing DCA.
+### Message B — third-party direction control
+
+Submit separately:
+
+```text
+CONTROLLED TEST. Delta Foundation is handing 2 pallets of medical goods to Eastside Clinic.
+```
+
+Pass:
+
+- the fact preserves `Delta Foundation → Eastside Clinic`;
+- DCA is not substituted as destination merely because the message was posted in DCA Logistics.
+
+This regression fails if the runtime "fixes" direction by always writing DCA, or if it ignores an unambiguous `for us` referent in Message A.
 
 ## Regression 2 — location functions remain distinct while valid pickup still works
 
@@ -192,14 +205,20 @@ Pass after exit:
 
 Post-write verification must read back the predecessor lifecycle state, not only the new record and forward link.
 
-### Case B — non-current predecessor guard
+### Case B — non-current predecessor guard derived from Case A
 
-Prepare a controlled fixture in which the predecessor already has a legitimate non-current lifecycle such as `resolved`, `cancelled`, or `superseded`, then execute a supported operation that references/links the later fact without evidence that the predecessor lifecycle itself was wrong.
+Use the records produced by Case A; do not create a manual Airtable fixture.
+
+After warehouse exit, the original first fact is already legitimately `superseded`. Send a further supported follow-up about the same goods that clearly refers back to the original report but adds only non-lifecycle context, for example a source/contact detail or other operational context that does not state that the original lifecycle was wrong.
 
 Pass:
 
-- the runtime does not blindly overwrite the legitimate non-current predecessor lifecycle with `superseded` merely because a supersession/reference link exists;
+- the follow-up may preserve/link the additional evidence according to the normal workflow;
+- the original first fact remains `superseded`;
+- the runtime does not blindly rewrite an already legitimate non-current lifecycle merely because the later operation references or links back to that earlier evidence;
 - lifecycle changes occur only when the provider-independent workflow rule and evidence support them.
+
+This case must be executable entirely through the normal intake path; no manual lifecycle edit or special Airtable setup is part of the test.
 
 ## Non-regression — correction targeting
 
