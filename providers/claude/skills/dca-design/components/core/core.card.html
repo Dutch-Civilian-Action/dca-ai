@@ -1,0 +1,71 @@
+<!-- @dsCard group="Components" viewport="700x430" name="Core — Button, Badge, Card, Eyebrow, Stat" subtitle="Brand primitives: actions, labels, surfaces, overlines, figures" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-subtle); font-family: var(--font-body); }
+  .group { background: var(--neutral-000); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); margin-bottom: var(--space-4); }
+  .lbl { font-family: var(--font-condensed); font-weight: 700; font-size: 12px; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-4); }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Button, Badge, Card, Eyebrow, Stat } = window.DesignSystem_cf89c3;
+  function Demo() {
+    return (
+      <React.Fragment>
+        <div className="group">
+          <div className="lbl">Button — variants & sizes</div>
+          <div className="row">
+            <Button variant="primary">Donate now</Button>
+            <Button variant="accent">Support appeal</Button>
+            <Button variant="secondary">Read report</Button>
+            <Button variant="ghost">Learn more</Button>
+            <Button variant="primary" disabled>Disabled</Button>
+            <Button variant="primary" size="sm">Small</Button>
+            <Button variant="primary" size="lg">Large</Button>
+          </div>
+        </div>
+        <div className="group">
+          <div className="lbl">Badge — tones</div>
+          <div className="row">
+            <Badge tone="blue">In transit</Badge>
+            <Badge tone="orange">Urgent</Badge>
+            <Badge tone="yellow">Campaign</Badge>
+            <Badge tone="info">Report</Badge>
+            <Badge tone="neutral">Planned</Badge>
+            <Badge tone="blue" soft={false}>Solid</Badge>
+          </div>
+        </div>
+        <div className="group">
+          <div className="lbl">Card — tones · Eyebrow · Stat</div>
+          <div className="row" style={{ alignItems: "stretch" }}>
+            <Card style={{ flex: 1, minWidth: 180 }}>
+              <Eyebrow>Logistics</Eyebrow>
+              <Stat value="1,240" label="Boxes delivered" context="Kharkiv · March" style={{ marginTop: 12 }} />
+            </Card>
+            <Card tone="info" style={{ flex: 1, minWidth: 180 }}>
+              <Eyebrow color="muted">Report</Eyebrow>
+              <Stat value="€20,000" label="Appeal goal" accent="orange" style={{ marginTop: 12 }} />
+            </Card>
+            <Card tone="calm" style={{ flex: 1, minWidth: 180 }}>
+              <Eyebrow color="orange">Urgent appeal</Eyebrow>
+              <Stat value="7 days" label="Fuel funded" accent="delivered" style={{ marginTop: 12 }} />
+            </Card>
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

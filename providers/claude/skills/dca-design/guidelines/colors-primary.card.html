@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Brand primaries" subtitle="The four core DCA colours — blue, yellow, orange, black" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--surface-page); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+  .sw { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); }
+  .chip { height: 76px; }
+  .meta { padding: var(--space-3); }
+  .name { font-family: var(--font-condensed); font-weight: 700; font-size: var(--text-sm); color: var(--text-strong); }
+  .hex { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--dca-blue)"></div><div class="meta"><div class="name">DCA Blue</div><div class="hex">#1863B5</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--dca-yellow)"></div><div class="meta"><div class="name">DCA Yellow</div><div class="hex">#FBD149</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--dca-orange)"></div><div class="meta"><div class="name">DCA Orange</div><div class="hex">#FF813D</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--dca-black)"></div><div class="meta"><div class="name">DCA Black</div><div class="hex">#010000</div></div></div>
+  </div>
+</body>
+</html>

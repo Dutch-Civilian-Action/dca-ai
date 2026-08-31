@@ -1,0 +1,69 @@
+/* ===========================================================================
+   DCA — Webfonts
+   Roboto Condensed is the primary DCA typeface (Black / ExtraBold / Bold /
+   Regular). Roboto is the readable alternate for long-form/UI; Roboto Mono is
+   used for operational data, codes, timestamps and figures.
+   Font binaries extracted from the official DCA Brand Guidelines 2026 document.
+   =========================================================================== */
+
+/* ---- Roboto Condensed (primary) ---- */
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/RobotoCondensed-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/RobotoCondensed-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../assets/fonts/RobotoCondensed-ExtraBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../assets/fonts/RobotoCondensed-Black.ttf") format("truetype");
+}
+
+/* ---- Roboto (readable alternate / UI) ---- */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/Roboto-Bold.ttf") format("truetype");
+}
+
+/* ---- Roboto Mono (operational data / figures) ---- */
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/RobotoMono-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/RobotoMono-Bold.ttf") format("truetype");
+}

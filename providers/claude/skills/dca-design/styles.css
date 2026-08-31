@@ -1,0 +1,12 @@
+/* ===========================================================================
+   Dutch Civilian Action — Design System
+   Global stylesheet. This is the single entry point consumers link.
+   It only @imports the token + base layers below.
+   =========================================================================== */
+
+@import "tokens/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/elevation.css";
+@import "tokens/base.css";

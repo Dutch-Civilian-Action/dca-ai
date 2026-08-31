@@ -1,0 +1,143 @@
+<!-- @dsCard group="Colors" viewport="700x220" name="Operational status" subtitle="Need → Planned → In progress → Delivered → Impact — each colour carries a distinct semantic signal" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 20px 16px; background: var(--surface-page); }
+  .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+  .step { display: flex; flex-direction: column; position: relative; }
+  .step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -8px;
+    top: 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+    z-index: 1;
+  }
+  .chip {
+    height: 44px;
+    border-radius: var(--radius-sm);
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+  }
+  .chip-label {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+  .meta { padding-right: 10px; margin-top: 8px; }
+  .name {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-strong);
+  }
+  .hex {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 1px;
+    margin-bottom: 4px;
+  }
+  .rationale {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--text-body);
+    line-height: 1.4;
+  }
+  .source-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .source-tag span {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .from-brand { background: var(--dca-orange); color: white; }
+  .from-brand-blue { background: var(--dca-blue); color: white; }
+  .from-brand-yellow { background: var(--dca-yellow); color: var(--dca-black); }
+  .from-universal { background: var(--neutral-200); color: var(--text-strong); }
+</style>
+</head>
+<body>
+  <div class="flow">
+
+    <div class="step">
+      <div class="chip" style="background: var(--status-need)">
+        <span class="chip-label" style="color: white">Need</span>
+      </div>
+      <div class="meta">
+        <div class="name">Need</div>
+        <div class="hex">#E1631F</div>
+        <div class="rationale">Urgent attention required. Warm orange signals alarm without panic — a humanitarian call.</div>
+        <div class="source-tag"><span class="from-brand">Brand orange</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="chip" style="background: var(--status-planned)">
+        <span class="chip-label" style="color: white">Planned</span>
+      </div>
+      <div class="meta">
+        <div class="name">Planned</div>
+        <div class="hex">#6E7676</div>
+        <div class="rationale">Queued but not yet moving. Neutral grey = dormant, reserved, waiting on activation.</div>
+        <div class="source-tag"><span class="from-universal">Neutral</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="chip" style="background: var(--status-progress)">
+        <span class="chip-label" style="color: white">In progress</span>
+      </div>
+      <div class="meta">
+        <div class="name">In progress</div>
+        <div class="hex">#1863B5</div>
+        <div class="rationale">Actively operational. DCA Blue = the primary trust + action colour — work in motion.</div>
+        <div class="source-tag"><span class="from-brand-blue">Brand blue</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="chip" style="background: var(--status-delivered)">
+        <span class="chip-label" style="color: white">Delivered</span>
+      </div>
+      <div class="meta">
+        <div class="name">Delivered</div>
+        <div class="hex">#1E8F5B</div>
+        <div class="rationale">Completed. Green is universal for success/safe arrival — cross-cultural, unambiguous.</div>
+        <div class="source-tag"><span class="from-universal">Universal green</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="chip" style="background: var(--status-impact)">
+        <span class="chip-label" style="color: var(--dca-black)">Impact</span>
+      </div>
+      <div class="meta">
+        <div class="name">Impact</div>
+        <div class="hex">#FBD149</div>
+        <div class="rationale">Ongoing positive effect. DCA Yellow = brightness, visibility, the glow of outcome.</div>
+        <div class="source-tag"><span class="from-brand-yellow">Brand yellow</span></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

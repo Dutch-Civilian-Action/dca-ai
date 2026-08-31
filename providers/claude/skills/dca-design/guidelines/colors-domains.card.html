@@ -1,0 +1,171 @@
+<!-- @dsCard group="Colors" viewport="700x290" name="Domain colours" subtitle="One stable colour identity per DCA domain — anchored to brand primaries, extended harmoniously" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 18px 20px; background: var(--surface-page); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .cell {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+  .strip {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+  }
+  .strip-label {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+  .body {
+    padding: 8px 10px 10px;
+    background: var(--surface-page);
+  }
+  .domain-name {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--text-strong);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .hex {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+  .rationale {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--text-body);
+    line-height: 1.4;
+  }
+  .tag {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-logistics)">
+        <span class="strip-label" style="color: white">Logistics</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Logistics</div>
+        <div class="hex">#1863B5 · --domain-logistics</div>
+        <div class="rationale">Structural backbone. Transport systems, routes, physical movement. Blue = infrastructure &amp; trust.</div>
+        <span class="tag" style="background: var(--dca-blue-100); color: var(--dca-blue-900)">Brand blue</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-operations)">
+        <span class="strip-label" style="color: white">Operations</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Operations</div>
+        <div class="hex">#E1631F · --domain-operations</div>
+        <div class="rationale">Direct field action, evacuation, urgency. Orange = alarm converting into action.</div>
+        <span class="tag" style="background: var(--dca-orange-100); color: var(--dca-orange-700)">Brand orange ↓</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-fundraising)">
+        <span class="strip-label" style="color: var(--dca-black)">Fundraising</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Fundraising</div>
+        <div class="hex">#FBD149 · --domain-fundraising</div>
+        <div class="rationale">Campaign visibility, donor appeals, community energy. Yellow = draw attention, invite participation.</div>
+        <span class="tag" style="background: var(--dca-yellow-100); color: var(--dca-yellow-700)">Brand yellow</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-finance)">
+        <span class="strip-label" style="color: white">Finance</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Finance</div>
+        <div class="hex">#1E7A55 · --domain-finance</div>
+        <div class="rationale">Budget tracking, accountability, financial transparency. Green = universal money/balance signal.</div>
+        <span class="tag" style="background: var(--domain-finance-soft); color: var(--domain-finance)">Extended</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-communication)">
+        <span class="strip-label" style="color: white">Communication</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Communication</div>
+        <div class="hex">#4A8EC2 · --domain-communication</div>
+        <div class="rationale">Public content, social media, broadcast. Blue family, lighter register = voices reaching outward.</div>
+        <span class="tag" style="background: var(--domain-communication-soft); color: var(--domain-communication)">Blue family ↑</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-reporting)">
+        <span class="strip-label" style="color: white">Reporting</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Reporting</div>
+        <div class="hex">#5C6A72 · --domain-reporting</div>
+        <div class="rationale">Donor reports, traceability, operational records. Slate = neutral authority, documented, structured.</div>
+        <span class="tag" style="background: var(--domain-reporting-soft); color: var(--domain-reporting)">Extended</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-partnerships)">
+        <span class="strip-label" style="color: white">Partnerships</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Partnerships</div>
+        <div class="hex">#7B5EA7 · --domain-partnerships</div>
+        <div class="rationale">External orgs, institutions, local partners. Plum = bridge-building, connection between distinct entities.</div>
+        <span class="tag" style="background: var(--domain-partnerships-soft); color: var(--domain-partnerships)">Extended</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="strip" style="background: var(--domain-community)">
+        <span class="strip-label" style="color: white">Community</span>
+      </div>
+      <div class="body">
+        <div class="domain-name">Community</div>
+        <div class="hex">#D45E3C · --domain-community</div>
+        <div class="rationale">Volunteers, supporters, long-term trust. Coral = human warmth and belonging — orange family, personal register.</div>
+        <span class="tag" style="background: var(--domain-community-soft); color: var(--domain-community)">Orange family ↓</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
