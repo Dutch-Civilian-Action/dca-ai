@@ -4,18 +4,18 @@ status: test-design
 provider: claude
 workflow: capture-logistics-intake
 skill_version: 0.6.0
-scenario_source: 2026-08-31-logistics-live-acceptance
+scenario_source: 2026-08-31-live-acceptance-and-historical-logistics-channel
 ---
 
 # Claude Logistics Intake 0.6.0 — Realistic Acceptance Cases
 
 ## Purpose
 
-Keep the difficult, messy, multi-signal situations that exposed the real behaviour of Logistics Intake during the 31 August 2026 `#logistics` live acceptance run.
+Keep the difficult, messy, multi-signal situations that exposed the real behaviour of Logistics Intake during the 31 August 2026 `#logistics` live acceptance run, plus recurring operational patterns found in historical `#logistics` conversations.
 
 The invariant regression suite in `logistics-intake-0.6.0-regressions.md` isolates individual rules. This file does the opposite: it deliberately recombines them into realistic operator messages so DCA can test whether the capability still works when several valid distinctions must be preserved at once.
 
-These cases are derived from real Logistics-channel test patterns, but permanent fixtures use synthetic names, routes, locations, and quantities. Do not commit live canonical IDs, phone numbers, partner identities, or controlled-run Airtable record IDs here. Record execution-specific IDs only in temporary execution notes.
+These cases are derived from real Logistics-channel patterns, but permanent fixtures use synthetic names, routes, locations, and quantities. Do not commit live canonical IDs, phone numbers, partner identities, addresses, or controlled-run Airtable record IDs here. Record execution-specific IDs only in temporary execution notes.
 
 Use explicit `@Claude` invocation in `#logistics`. Apply the same cross-cutting write-boundary, canonical non-mutation, provenance, and read-back checks as the regression suite.
 
@@ -29,7 +29,7 @@ realistic acceptance cases
 = can the runtime preserve several rules simultaneously in the kind of messy input Logistics actually produces?
 ```
 
-Passing the invariant suite is necessary but not sufficient. These scenarios guard against failures that only appear under mixed load, thread context, longitudinal updates, or interactions between Relationship Data and Logistics staging.
+Passing the invariant suite is necessary but not sufficient. These scenarios guard against failures that only appear under mixed load, thread context, longitudinal updates, conflicting source information, or interactions between Relationship Data and Logistics staging.
 
 ## Case 1 — messy multi-party current-picture dump
 
@@ -289,14 +289,54 @@ The 0.5.0 live run produced one missing `submitted_at` on a very short message w
 - Claude read-back catches and deterministically repairs an omitted source timestamp before reporting completion;
 - short input does not receive a reduced provenance envelope compared with longer submissions.
 
+## Case 11 — historical `#logistics` pattern: conflicting delivery location, physical drop, and paperwork identity
+
+### Source pattern
+
+This scenario is derived from an August 2026 `#logistics` transport-planning thread where DCA had several unloading points, one partner location was known first only through a map pin, two people held different address representations, the physical drop still had to happen at that partner's location, and the partner was represented under another organisation's CMR paperwork.
+
+The permanent fixture below deliberately removes the real organisations, people, addresses, phone numbers, and map links. What matters is the structure of the operational ambiguity.
+
+### Prompt
+
+```text
+@Claude CONTROLLED TEST. transport update, bit messy.
+
+We want 20 pallets on the truck. 3 pallets need to go to Partner Alpha before the other two unload places.
+
+For Partner Alpha I first only had a google maps pin, not a proper address. The place is at a rural road / small square. I found an address across the road that can be used as a reference, but James Test has a different street address for the same Partner Alpha location, so I am not sure which written address is correct.
+
+The driver still needs to drop the 3 pallets at Partner Alpha and will call contact Nora Test before arrival because otherwise the place is difficult to find.
+
+Important: on the transport paperwork Partner Alpha is included under Main Aid Hub's CMRs. That does NOT mean the pallets should be physically unloaded at Main Aid Hub.
+
+The other unloads are Aid Point Beta and Aid Point Gamma. Their addresses are known.
+```
+
+### Pass
+
+- three operational unloading destinations remain separately recoverable;
+- `3 pallets → Partner Alpha` remains distinct from the rest of the load;
+- the map pin, descriptive rural-place context, across-the-road reference address, and conflicting street address remain evidence about the same unresolved physical destination without one being silently promoted to canonical truth;
+- the runtime does not pick the newest/most complete-looking Partner Alpha address merely to produce a clean field;
+- Nora Test remains a person/contact reference and the pre-arrival call remains a step-specific operational route/function;
+- Main Aid Hub's paperwork/CMR representation does not merge Partner Alpha into Main Aid Hub, redefine Partner Alpha's identity, or change the physical delivery destination;
+- `paperwork representation ≠ physical unloading location ≠ organisation identity` remains explicit;
+- known Aid Point Beta/Gamma addresses remain separate from the unresolved Partner Alpha location;
+- the whole submission can be captured without requiring the operator to solve the address conflict first;
+- unresolved address conflict is surfaced for operational clarification rather than silently normalized.
+
+This is intentionally a historical-realism test: it checks whether Claude can preserve the exact kind of fragmented, person-held transport context that appears in actual Logistics coordination instead of flattening it into one clean address record.
+
 ## Execution discipline
 
 - Run invariant regressions and realistic cases as two distinct layers; do not score one as a substitute for the other.
 - Use synthetic permanent fixtures. Live canonical identities may be selected only when a test explicitly requires reconciliation; keep their IDs/names in execution notes rather than committing them here.
+- Historical channel-derived cases must preserve the **structure of the operational problem**, not the live identifying data.
 - Preserve exact controlled-run Airtable record IDs until the run is fully audited and accepted.
 - Do not delete standing evidence from a previous acceptance run before the replacement regression/acceptance run is complete when that evidence is still being used to verify a previously passing behaviour.
 - Cleanup controlled synthetic records by exact ID after the complete run and audit, never by a broad `controlled_test = true` filter.
 
 ## Acceptance condition
 
-0.6.0 should not be considered operationally accepted merely because the isolated regressions pass. The capability should also survive these realistic mixed cases without reintroducing cross-fact leakage, object collapse, provenance loss, lifecycle inconsistency, premature canonicalisation, or schema-driven invention.
+0.6.0 should not be considered operationally accepted merely because the isolated regressions pass. The capability should also survive these realistic mixed cases without reintroducing cross-fact leakage, object collapse, provenance loss, lifecycle inconsistency, premature canonicalisation, schema-driven invention, or false resolution of real operational conflict.
