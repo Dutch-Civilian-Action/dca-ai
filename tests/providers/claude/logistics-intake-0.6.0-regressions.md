@@ -14,7 +14,11 @@ Retest the seven defects demonstrated during the 31 August 2026 live Claude Tag 
 
 Use explicit `@Claude` invocation in `#logistics`. Use synthetic data only. Inspect both Slack output and Airtable state after each write.
 
-These tests supplement `logistics-intake.md`. They test the underlying invariants rather than replaying the exact acceptance-run entities and wording.
+These tests supplement `logistics-intake.md`. They isolate the underlying invariants rather than replaying the exact acceptance-run entities and wording.
+
+Run the companion `logistics-intake-0.6.0-realistic-acceptance-cases.md` as a separate acceptance layer. That file preserves the difficult mixed scenarios derived from the live `#logistics` run — messy multi-party dumps, thread-vs-top-level corrections, longitudinal warehouse progression, Direct Transit/location combinations, and mixed Relationship Data context — using synthetic permanent fixtures.
+
+Passing this invariant suite does not replace the realistic acceptance cases, and passing the realistic cases does not replace the isolated regressions.
 
 ## Cross-cutting checks for every write test
 
@@ -267,4 +271,5 @@ Not part of this 0.6.0 regression gate unless separately requested:
 - write scope stays inside the three Logistics staging tables;
 - canonical Relationship Data is not mutated by mixed Logistics intake;
 - `controlled_test` remains operator-language neutral;
-- previously passing correction, uncertainty, carry-over, Direct Transit, and warehouse-exit behaviour does not regress.
+- previously passing correction, uncertainty, carry-over, Direct Transit, and warehouse-exit behaviour does not regress;
+- the separate realistic acceptance-case layer also passes before operational acceptance is declared.
