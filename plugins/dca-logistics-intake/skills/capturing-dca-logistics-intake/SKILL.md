@@ -29,6 +29,8 @@ DCA user in Slack / Claude
 
 Use only `DCA Integrations & Reconciliation` for new mixed Logistics-cycle intake during the current pilot.
 
+Do not select a similarly named copy, test, rebuild, staging, snapshot, or historical base merely because search returns it first. Resolve the intended base explicitly before writing. The same principle applies to Relationship Data lookups: use the current canonical base named by the workflow/source-routing policy, not a similarly named copy.
+
 The attached Airtable identity is restricted at base level, not table level. It can technically write other tables in that base. Therefore the three-table boundary is a runtime rule, not a credential guarantee.
 
 Never create or change records in any other table in that base as a side effect of Logistics intake.
@@ -53,6 +55,8 @@ Current legacy fields that must not receive new writes include:
 - Facts: `fact_type`, legacy `certainty`;
 - Operational References: `reference_type`, legacy `certainty`.
 
+When an exact technical omission or correction is already established and can be repaired safely without changing organisational meaning, execute the deterministic repair directly and verify it. Do not turn a safe implementation repair into manual work for the operator. If the repair would choose between plausible meanings, overwrite conflicting evidence, change canonical identity/relationship meaning, or otherwise have a consequential interpretation, require the workflow's normal clarification/approval boundary instead.
+
 ## Runtime execution invariants
 
 The live 0.5.0 acceptance run established the following execution requirements. Apply them as a checklist, not as new organisational semantics.
@@ -61,9 +65,7 @@ The live 0.5.0 acceptance run established the following execution requirements. 
 
 Evaluate direction independently for each extracted goods fact.
 
-When the supporting clause explicitly identifies or clearly establishes who is giving and who is receiving, populate the supported source/destination fields for that fact. Do not let direction captured for one item in a long submission substitute for checking the other items.
-
-In a DCA Logistics conversation, wording such as `for DCA` is explicit. Wording such as `for us` may support DCA as destination only when the immediate authenticated DCA context makes that referent unambiguous.
+When the supporting clause establishes who is giving and who is receiving according to the provider-independent workflow, populate the supported source/destination fields for that fact. Do not let direction captured for one item in a long submission substitute for checking the other items.
 
 Do not invent direction when it is merely implied by warehouse context or by DCA operating the system.
 
@@ -107,17 +109,13 @@ For Slack intake, use the human source-message timestamp, not the later Airtable
 
 Before confirming success, read the submission back and verify that `submitted_at` is populated and matches the source message time. If the source timestamp is available and the field was omitted, repair this deterministic omission before reporting completion.
 
-### 6. Supersession is a two-sided lifecycle transition
+### 6. Verify supersession consequences on predecessor records
 
-When a new fact validly sets `supersedes_fact` to an earlier current fact:
+The provider-independent workflow defines the lifecycle transition when a fact is superseded. Claude's responsibility here is to verify that the transition was actually executed.
 
-- preserve the earlier fact and its evidence;
-- set the earlier fact's `lifecycle_status` to `superseded`;
-- keep the new fact's own lifecycle status according to the supported new state (`current`, `resolved`, etc.).
+Whenever a new fact sets `supersedes_fact`, read back the directly superseded predecessor and confirm that its lifecycle state matches the workflow rule. Do not verify only the forward link on the new fact.
 
-Do not leave a directly superseded predecessor marked `current`.
-
-Do not alter an already resolved/cancelled/superseded predecessor merely to force this rule; preserve the existing non-current state unless the evidence itself requires a correction.
+If the predecessor state does not match the deterministic workflow consequence and no semantic ambiguity is involved, repair the implementation omission and verify again before reporting success.
 
 ### 7. Verify semantic consequences, not only record existence
 
