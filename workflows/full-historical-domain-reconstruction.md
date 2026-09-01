@@ -916,6 +916,8 @@ Evidence collection
 → object classification
 → destination/routing assessment
 → promotion assessment
+→ maintained-reality reconciliation
+→ verified persistence or an explicit bounded non-write outcome
 ```
 
 The self-evaluation gate is mandatory. A reconstruction must not advance merely because a large amount of evidence was processed or a plausible synthesis can be written.
@@ -942,6 +944,14 @@ Do not substitute AI self-evaluation for human validation. They are separate gat
 - **human validation** establishes organisational meaning or responsible-owner confirmation where required.
 
 Classification and routing do not themselves authorise canonical writes. The downstream workflow determines the proposed organisational destination and promotion readiness while preserving the write boundaries defined here.
+
+For every object that is ready for target assessment, continue with:
+
+**`workflows/reconcile-established-findings-into-maintained-reality.md`**
+
+That workflow resolves the current authoritative target, compares the established candidate, records a controlled outcome, routes and persists any justified change, verifies persistence, and writes the downstream result back to the originating lineage.
+
+Do not compare with current maintained reality before the source-first reconstruction, self-evaluation, and required human validation are complete. The target is a downstream comparison surface, not evidence used to make the reconstruction conform.
 
 # 21. Final synthesis
 
@@ -979,8 +989,9 @@ End with:
 - **G. Objects that must remain reconstruction/staging**
 - **H. Airtable reconstruction run status and remaining coverage gaps**
 - **I. Self-evaluation result and downstream handoff status**
+- **J. Maintained-reality reconciliation outcomes, target revisions, persistence verification, and remaining blocked/not-ready objects**
 
-The final synthesis must not bypass the mandatory self-evaluation and routing workflow. If self-evaluation has not passed, say so explicitly and do not present the reconstruction as promotion-ready.
+The final synthesis must not bypass the mandatory self-evaluation and routing workflow or the maintained-reality reconciliation handoff. If self-evaluation has not passed, say so explicitly and do not present the reconstruction as promotion-ready. If target reconciliation has not run, say so explicitly and do not imply that promotion, persistence, or maintained-state reconciliation occurred.
 
 # Final constraint
 

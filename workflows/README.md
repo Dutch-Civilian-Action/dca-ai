@@ -6,7 +6,10 @@ A workflow defines DCA behaviour, evidence boundaries, validation logic, outputs
 
 Current workflows:
 
-- `maintain-dca-reality.md` — maintain Operational Reality and System & Structure Capability Reality from materially changed evidence.
+- `full-historical-domain-reconstruction.md` — reconstruct a bounded domain source-first and preserve its evidence graph.
+- `reconstruction-self-evaluation-and-routing.md` — test reconstruction sufficiency, establish what the evidence supports, and prepare bounded routing/promotion assessment.
+- `reconcile-established-findings-into-maintained-reality.md` — shared handoff used by Historical Reconstruction and Reality Watch to compare established findings with authoritative maintained targets, classify outcomes, route, persist, verify, and record what happened.
+- `maintain-dca-reality.md` — maintain Operational Reality, Derived Organisational Reality, and System & Structure Capability Reality from materially changed evidence through the shared reconciliation handoff.
 - `reconcile-relationship-data.md` — preserve, reconcile, persist, and retrieve bounded DCA relationship information with provenance, uncertainty, and validation boundaries.
 
 Provider-specific scheduled tasks, prompts, tool bindings, or runtime configuration belong under `providers/` and must not redefine the workflow itself.

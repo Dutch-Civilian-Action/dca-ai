@@ -28,7 +28,8 @@ Use the current DCA authority and method layer, including:
 - DCA Capability Reality foundation;
 - DCA Authority Map;
 - DCA System & Structure — Capability Reality;
-- relevant current domain/system specifications where the evidence requires them.
+- relevant current domain/system specifications where the evidence requires them;
+- `workflows/reconcile-established-findings-into-maintained-reality.md` for every established candidate that may affect maintained reality.
 
 ## Evidence surfaces
 
@@ -55,17 +56,20 @@ reconstruct what the evidence supports
         ↓
 reconcile identity, meaning, conflict, or state where needed
         ↓
-compare with maintained current reality
+invoke maintained-reality reconciliation
+compare / classify / route
         ↓
-detect material change
+persist required change
+        ↓
+verify target + record outcome
         ↓
 preserve provenance, authority, uncertainty, variation, conflict
         ↓
 identify affected reality / dependency / capability health / architecture
         ↓
-prepare required update or bounded validation
+continue bounded validation when unresolved
         ↓
-notify only when material
+notify only after a material maintained change
 ```
 
 ## Operational Reality change criteria
@@ -121,6 +125,8 @@ Do not request broad revalidation when only a bounded uncertainty needs confirma
 Preserve unresolved uncertainty when evidence does not support a conclusion.
 
 A finding may be prepared for human validation when its consequence or authority boundary requires it.
+
+Validation does not complete maintenance. After required validation, run `workflows/reconcile-established-findings-into-maintained-reality.md` to determine whether the finding is already represented, confirms, adds, corrects, qualifies, conflicts with, or belongs outside the maintained target. A change-bearing validation thread remains open until the supported target change is persisted and verified.
 
 ### Validation contact and reminders
 
@@ -197,6 +203,8 @@ A new Watch should not proceed as though the previous state is settled while mat
 ## Output contract
 
 Reality Watch may produce several distinct outputs from the same evidence pass. Keep their functions and authority separate.
+
+Every candidate that reaches this contract must first have an auditable maintained-reality reconciliation result. A claimed update requires `addition`, `correction`, or `qualification` plus verified persistence. `already_represented` and `confirmation_only` are valid no-change outcomes. `conflict_unresolved`, `historical_only`, `proposed_future`, `alternate_destination`, and `not_ready` remain explicitly bounded and must not be described as maintained-target changes.
 
 ### 1. Operational Reality update
 
@@ -326,7 +334,9 @@ Rules:
 
 ### 6. No-output condition
 
-No material change → no unnecessary report.
+No material maintained change → no unnecessary report.
+
+Processing activity, validation completion, task completion, a generated draft, or an unverified write is not a material maintained change.
 
 No sufficiently supported derived change → do not manufacture one.
 

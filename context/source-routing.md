@@ -17,7 +17,7 @@ Use `current-authority.md` when current authority, source status, or current-vs-
 
 ## Route by fact type
 
-- **Current operational work, dependencies, responsibilities in practice, variation, exceptions, bottlenecks, and current workflow consequences** → the current DCA Operational Reality identified in `current-authority.md`.
+- **Current operational work, dependencies, responsibilities in practice, variation, exceptions, bottlenecks, and current workflow consequences** → compare established candidates through `workflows/reconcile-established-findings-into-maintained-reality.md`, then update the current DCA Operational Reality identified in `current-authority.md` only when the recorded outcome and target rules justify it.
 - **Live operational state about specific current goods, offers, expected or incoming goods, pickup/delivery arrangements, unresolved carry-over, or other cycle-level Logistics facts** → the current Logistics operational-state source when one exists. During the bounded Logistics intake pilot, capture new or changed evidence in `DCA Integrations & Reconciliation` through the Logistics intake workflow; do not put the changing item-level/cycle-level state into the Operational Reality document merely because it is operational.
 - **New mixed current-cycle Logistics evidence containing goods state together with people, organisations, locations, contact routes, operational functions/steps, or other contextual references** → during the bounded reconstruction pilot, preserve the full submission and minimally extracted facts/references in `DCA Integrations & Reconciliation`. Do not force the new evidence directly into canonical Relationship Data or a final Logistics schema before reconstruction establishes the correct structure.
 - **Canonical organisational or system architecture, definitions, methods, and established requirements** → `Dutch-Civilian-Action/dca-architecture`.
@@ -48,6 +48,8 @@ Keep these two different questions separate.
 
 Operational-state and reconstruction-staging records may become evidence for a later Operational Reality update when they reveal or confirm a material pattern, dependency, workflow change, variation, or visibility gap. Do not copy every changing operational-state or reference record into the Operational Reality document.
 
+Once such a candidate is sufficiently established, route it through `workflows/reconcile-established-findings-into-maintained-reality.md`. Record whether it was already represented, confirmation only, an addition, correction, qualification, unresolved conflict, historical only, proposed future state, alternate destination, or not ready. Reconstruction staging records the downstream outcome but does not become the maintained truth source.
+
 ## Source versus procedure
 
 Keep the source that supports a fact separate from the method, agent, workflow, or skill that governs how the fact is found, reconciled, interpreted, or acted on.
@@ -72,7 +74,7 @@ For example:
 
 Do not let one domain source silently redefine facts owned by another sufficiently established source.
 
-A mixed **new Logistics-cycle submission** is different. During the bounded reconstruction pilot, preserve the full submission in the Logistics intake staging environment first, then minimally extract supported goods/state facts and operational references. Relationship Data may be queried to see whether an identity already exists, but the new mixed submission does not directly mutate canonical Contacts, Organizations, Partners, contact routes, or other relationship structures. Promotion follows later reconstruction/reconciliation.
+A mixed **new Logistics-cycle submission** is different. During the bounded reconstruction pilot, preserve the full submission in the Logistics intake staging environment first, then minimally extract supported goods/state facts and operational references. Relationship Data may be queried to see whether an identity already exists, but the new mixed submission does not directly mutate canonical Contacts, Organizations, Partners, contact routes, or other relationship structures. Promotion follows later reconstruction/reconciliation and the shared maintained-reality handoff. Validation or a promotion recommendation is not itself evidence that the target was updated.
 
 ## Broadening the evidence set
 

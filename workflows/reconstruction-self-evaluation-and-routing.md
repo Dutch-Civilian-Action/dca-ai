@@ -39,6 +39,9 @@ RECONSTRUCTION SELF-EVALUATION
                 ↓
         promotion assessment
                 ↓
+        MAINTAINED-REALITY RECONCILIATION
+        compare / classify / route / persist / verify
+                ↓
         maintained organisational structure / operational system
 ```
 
@@ -406,6 +409,12 @@ The reconstruction layer must retain:
 
 Do not delete reconstruction evidence after promotion.
 
+For every object ready for target assessment, the required next stage is:
+
+`workflows/reconcile-established-findings-into-maintained-reality.md`
+
+This workflow does not mark an object promoted. The maintained-reality workflow must record the comparison outcome, apply the target's own rules, persist any supported change, verify it, and write the downstream result back to the reconstruction lineage.
+
 ## 9. Required handoff output
 
 At the end of a sufficiently complete reconstruction, produce a bounded handoff containing:
@@ -419,7 +428,10 @@ At the end of a sufficiently complete reconstruction, produce a bounded handoff 
 7. objects ready for promotion assessment;
 8. objects that must remain reconstruction/staging;
 9. target-system rules that must be consulted before any promotion;
-10. next evidence or validation action where required.
+10. objects ready to enter maintained-reality reconciliation;
+11. next evidence or validation action where required.
+
+After this handoff is produced, run the maintained-reality reconciliation workflow for each ready object. Append or link the actual outcomes, target revisions, persistence verification, and blocked/not-ready cases; do not leave “ready for promotion assessment” as if it were the downstream result.
 
 ## Final constraint
 

@@ -36,8 +36,12 @@ Expected behaviour:
 - identify the changed claim;
 - preserve both source and conflict;
 - classify validation status;
+- invoke the shared maintained-reality reconciliation workflow;
 - do not silently choose the newer or more detailed source;
-- notify because current reality may materially change.
+- persist and verify a supported correction or keep the conflict unresolved;
+- record the target revision and verification state;
+- close the source review only after verified persistence;
+- notify only after current reality materially changed.
 
 ## Test 3 — GitHub commit without adoption evidence
 
@@ -141,6 +145,33 @@ Expected invariant behaviour:
 - no provider-specific concept becomes DCA organisational truth;
 - output differences may exist in wording, not in governing meaning.
 
+## Test 11 — validation without maintained reconciliation
+
+Input condition:
+
+- a finding has been validated;
+- no comparison target, controlled outcome, target revision, or persistence verification exists.
+
+Expected behaviour:
+
+- do not treat validation as maintenance completion;
+- run `workflows/reconcile-established-findings-into-maintained-reality.md`;
+- preserve a no-change, write, unresolved, alternate-destination, or not-ready result explicitly;
+- do not publish or close a change-bearing review before verified persistence.
+
+## Test 12 — task completed without persisted output
+
+Input condition:
+
+- an implementation or maintenance task is marked complete;
+- no maintained-target revision or read-back verification exists.
+
+Expected behaviour:
+
+- retain task completion as work evidence only;
+- do not infer `persisted_verified`;
+- keep the affected reconciliation pending or blocked.
+
 ## Pass criterion
 
-A runtime is suitable for this workflow when it consistently preserves DCA authority and evidence boundaries, detects material changes without over-reporting, retains uncertainty, and produces usable bounded findings across representative real DCA cases.
+A runtime is suitable for this workflow when it consistently preserves DCA authority and evidence boundaries, detects material changes without over-reporting, retains uncertainty, uses the shared maintained-reality handoff, verifies required persistence, records outcomes, and produces usable bounded findings across representative real DCA cases.
