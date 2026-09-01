@@ -11,6 +11,10 @@ workflow: maintain-dca-reality
 
 `../../workflows/maintain-dca-reality.md`
 
+Shared maintained-reality handoff:
+
+`../../workflows/reconcile-established-findings-into-maintained-reality.md`
+
 This file records the current ChatGPT implementation of that provider-independent DCA workflow. It is not the workflow authority itself.
 
 The ChatGPT runtime must execute the current canonical workflow, including its Output contract. Provider-specific instructions may define runtime access, persistence mechanics and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, or output eligibility rules.
@@ -51,9 +55,12 @@ For every run:
 1. resolve and read the current maintained Operational Reality, Derived Organisational Reality, and System & Structure Capability Reality documents before evaluating change;
 2. determine evidence coverage from what is actually represented in the maintained reality and its provenance, not from the scheduled task's `last_run_time` and not from Google Drive modification time alone;
 3. inspect materially relevant evidence that has not yet been represented, including backlog created by a previous incomplete or failed run;
-4. when the canonical Output contract supports an update, write that update into the relevant maintained document;
-5. re-read or otherwise verify the persisted document after the write before treating that output as completed;
-6. only after persistence has succeeded may the run treat the maintained-reality output as complete or publish a Slack summary of that maintained change.
+4. invoke the shared maintained-reality reconciliation workflow for each established candidate;
+5. record its controlled outcome, destination, comparison target/revision, and required action;
+6. when the canonical Output contract supports an update, write that update into the relevant maintained document;
+7. re-read or otherwise verify the persisted document after the write before treating that output as completed;
+8. record the persisted target/revision, actor/time, and verification state in the originating lineage or equivalent run-result record;
+9. only after persistence has succeeded may the run close a change-bearing source review, treat the maintained-reality output as complete, or publish a Slack summary of that maintained change.
 
 A task execution, generated finding, Slack message, or successful source read is **not** evidence that maintained reality was updated.
 
@@ -112,7 +119,8 @@ The ChatGPT task must preserve the canonical workflow's:
 - material-change criteria;
 - validation boundary;
 - output contract;
-- maintained-document persistence and verification;
+- maintained-document comparison outcome, persistence, verification, and source-review closure;
+- an auditable originating-lineage/result record;
 - backlog recovery after incomplete runs;
 - no-change → no-notification behaviour.
 
