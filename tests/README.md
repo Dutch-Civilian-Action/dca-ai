@@ -6,6 +6,10 @@ Tests should check behaviour against DCA authority rules, evidence handling, unc
 
 Where a capability is provider-independent, test the same behavioural contract across any runtime being considered rather than writing provider-specific organisational expectations.
 
+Current skill tests:
+
+- `skills/dca-output-routing.md` — output-family selection, explicit-format preservation, maintained destination defaults, document-like HTML/web artifacts, interface/application separation, runtime capability limits, and multi-output derivatives.
+
 Current workflow tests:
 
 - `workflows/maintain-dca-reality.md` — Reality Watch behaviour, material-change detection, authority boundaries, uncertainty preservation, capability-health findings, and provider portability.
