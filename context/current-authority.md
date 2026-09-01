@@ -18,6 +18,8 @@ This file is an AI-facing pointer map. It does not replace the underlying source
   `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/reality-to-requirements-method.md`
 - Current Reconstruction & Reconciliation Method:
   `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/reconstruction-reconciliation-method.md`
+- Established finding → maintained reality workflow:
+  `Dutch-Civilian-Action/dca-ai/workflows/reconcile-established-findings-into-maintained-reality.md`
 - Shared Drive routing logic:
   `Dutch-Civilian-Action/dca-architecture/organisation/drive-architecture/routing-logic.md`
 
@@ -82,6 +84,10 @@ Relevant reality may be Operational Reality, Capability Reality, or both.
 Use the Reconstruction & Reconciliation Method when asking:
 
 **How does distributed organisational or operational evidence, or live capture, become reliable reusable shared organisational information?**
+
+After a finding is sufficiently established, validation alone does not make it maintained reality. Use `workflows/reconcile-established-findings-into-maintained-reality.md` to resolve the authoritative target, compare, classify, route, persist any justified change, verify it, and record the result.
+
+Full Historical Reconstruction invokes that handoff only after source-first reconstruction, self-evaluation, and required human validation. Maintain DCA Reality invokes the same handoff for incremental candidates and pending feedback corrections.
 
 System support may move forward when the relevant requirement is sufficiently established. Do not impose an organisation-wide waterfall.
 
