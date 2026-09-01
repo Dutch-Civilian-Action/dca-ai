@@ -6,6 +6,11 @@ A skill should define a clear trigger or input, rules, procedure, expected outpu
 
 ## Current skills
 
+Current provider-independent skills:
+
+- `dca-document-authoring/` — constructs professional native DCA documents while preserving semantic hierarchy, source authority, visual treatment boundaries, and document QA.
+- `dca-output-routing/` — selects the correct output family, native destination, construction capability, and useful derivatives before artifact creation begins.
+
 Current skills belong directly under `/skills/` and should remain provider-independent wherever practical.
 
 Provider-specific packaging or configuration belongs under the relevant `/providers/<runtime>/` area and must not redefine the skill itself.
