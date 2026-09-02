@@ -128,6 +128,19 @@ A finding may be prepared for human validation when its consequence or authority
 
 Validation does not complete maintenance. After required validation, run `workflows/reconcile-established-findings-into-maintained-reality.md` to determine whether the finding is already represented, confirms, adds, corrects, qualifies, conflicts with, or belongs outside the maintained target. A change-bearing validation thread remains open until the supported target change is persisted and verified.
 
+When validation is requested from an operational person:
+
+- ask in normal working language about what they did, saw, decided, received, handed over, what varies, what currently happens, a concrete example, or where a record exists;
+- provide **Confirm as written**, **Correct**, **Missing**, **Unsure**, and **Not mine to confirm** as clear response paths;
+- give the packet's purpose, status/authority boundary, intended audience/action, scope/date, response guidance, limitations, uncertainty, validation state, and the exact operational statement being checked;
+- identify each material source in reader-usable terms: name/title, platform and account/container, date/coverage, what it supports, limitations, and a stable reference where access permits; keep internal trace IDs secondary;
+- keep Reconstruction Object fields, evidence-link types, routing, promotion, target revisions, persistence, architecture, and other System & Structure mechanics out of the operator-facing request;
+- treat “Not mine to confirm” as information about the validation route, not as disagreement;
+- when meaning changes, always show the precise revised operational wording back to the reviewer for confirmation;
+- when the response is “correct”, record the bounded validation and continue to the maintained-target comparison. Resolve without a cosmetic edit or new task only when the comparison establishes a no-change outcome and any target-required evidence/status write is verified; otherwise complete the supported addition, correction, or qualification.
+
+When Asana work is needed to establish or materially re-establish shared operational reality, create or reuse the **Establish** parent and A–E/C1–C3 structure defined in `workflows/reconstruction-self-evaluation-and-routing.md`. Link it to the relevant operational project where useful; do not assign System & Structure mechanics to the operational reviewer.
+
 ### Validation contact and reminders
 
 When bounded validation requires input from a particular person:
@@ -205,6 +218,17 @@ A new Watch should not proceed as though the previous state is settled while mat
 Reality Watch may produce several distinct outputs from the same evidence pass. Keep their functions and authority separate.
 
 Every candidate that reaches this contract must first have an auditable maintained-reality reconciliation result. A claimed update requires `addition`, `correction`, or `qualification` plus verified persistence. `already_represented` and `confirmation_only` are valid no-change outcomes. `conflict_unresolved`, `historical_only`, `proposed_future`, `alternate_destination`, and `not_ready` remain explicitly bounded and must not be described as maintained-target changes.
+
+### Reader context and source visibility
+
+Every organisation-facing document or Reality Watch post must be understandable without the reader having seen the reconstruction run, an earlier draft, private chat, or correction packet.
+
+- state the maintained fact or change directly, with its relevant scope and period;
+- identify status, uncertainty, and requested validation where those matter;
+- name evidence in reader-usable terms—source title/type, platform and account/container, relevant date/coverage, what it supports, material limitations/gaps, and a stable reference where access permits—rather than exposing only internal Evidence or Reconstruction Object IDs;
+- do not use phrases such as “former gap”, “earlier claim”, “new source”, “current outcome”, “remaining issue”, or “this run” unless the same output identifies the antecedent and the comparison is meaningful to the audience;
+- keep technical reconciliation and persistence detail in the auditable lineage or linked System & Structure work unless the audience genuinely needs it;
+- use `skills/dca-document-authoring/SKILL.md` for maintained documents and other native document outputs, including its standalone-reader, source-guide, and native-structure quality gates.
 
 ### 1. Operational Reality update
 

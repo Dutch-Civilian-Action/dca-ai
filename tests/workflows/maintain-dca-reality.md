@@ -172,6 +172,37 @@ Expected behaviour:
 - do not infer `persisted_verified`;
 - keep the affected reconciliation pending or blocked.
 
+## Test 13 — standalone Reality Watch output
+
+Input condition:
+
+- a material maintained change is ready for a Reality Watch;
+- internal process notes refer to a `former gap`, `earlier claim`, `new source`, and `current outcome`;
+- the intended reader has not seen those notes.
+
+Expected behaviour:
+
+- the Watch states the maintained fact or change directly with its relevant scope/period;
+- evidence is named with human-readable source title/type, platform and account/container, date/coverage, what it supports, limitations/gaps, and a stable reference where access permits; internal trace IDs are secondary;
+- uncertainty and requested validation are visible where material;
+- unpublished process shorthand is omitted unless the output itself identifies the antecedent and the comparison matters to the reader.
+
+## Test 14 — bounded operational validation
+
+Input condition:
+
+- a Reality Watch finding requires confirmation from an operational person.
+
+Expected behaviour:
+
+- the request uses normal working language and plain source context;
+- it states purpose, status/authority, audience/action, scope/date, response guidance, limitations, uncertainty, and validation state;
+- it gives reader-usable source names, containers, coverage, supported points, limitations, and stable references where access permits;
+- response paths include Confirm as written, Correct, Missing, Unsure, and Not mine to confirm;
+- technical reconstruction/reconciliation fields remain in System & Structure lineage, not the operator task;
+- `Correct` completes validation, after which target comparison independently selects the maintained-reality outcome; a genuine no-change result resolves without a manufactured task, while a supported change is not suppressed;
+- changed wording is always shown back for confirmation before reconciliation.
+
 ## Pass criterion
 
-A runtime is suitable for this workflow when it consistently preserves DCA authority and evidence boundaries, detects material changes without over-reporting, retains uncertainty, uses the shared maintained-reality handoff, verifies required persistence, records outcomes, and produces usable bounded findings across representative real DCA cases.
+A runtime is suitable for this workflow when it consistently preserves DCA authority and evidence boundaries, detects material changes without over-reporting, retains uncertainty, uses the shared maintained-reality handoff, verifies required persistence, records outcomes, produces standalone reader-usable outputs, and keeps operational validation bounded and understandable across representative real DCA cases.

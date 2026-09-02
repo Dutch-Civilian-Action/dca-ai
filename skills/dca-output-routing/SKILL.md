@@ -2,7 +2,7 @@
 name: dca-output-routing
 description: Determine the correct DCA output family, editable master, implementation format, and useful derivatives before construction begins. Use when the requested output could be a document, presentation, spreadsheet, web artifact, interface/application, visual asset, or structured-data export.
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # DCA Output Routing
@@ -52,6 +52,9 @@ Examples:
 "Put this in Google Docs"
 → Google Doc
 
+"Put this in the Logistics Slack Canvas"
+→ document / existing collaborative canvas
+
 "Create an Excel file"
 → XLSX
 
@@ -93,10 +96,13 @@ Examples:
 - decision document;
 - operator guide;
 - vacancy document.
+- Slack Canvas or another collaborative text canvas used for reading, reference, validation, or shared editing.
 
 Construction owner: `dca-document-authoring`.
 
 Default editable destination when no other constraint exists and the runtime can create it: **Google Docs** for maintained collaborative DCA documents.
+
+Use an existing Slack Canvas or other collaborative text canvas when it is the explicit or established destination. Treat it as a document surface: apply `dca-document-authoring`, preserve semantic headings and real list structures supported by the platform, and apply the same standalone-reader and source-context quality gate. Do not make a canvas the parallel maintained master of a canonical Google Doc without a reason.
 
 Use DOCX when Microsoft compatibility is explicitly required or is the established destination.
 
@@ -300,7 +306,7 @@ If the preferred destination is unavailable in the current runtime, do not prete
 
 After routing:
 
-- document → `dca-document-authoring`;
+- document or collaborative text canvas → `dca-document-authoring`;
 - presentation → runtime native presentation capability;
 - spreadsheet → runtime native spreadsheet capability;
 - web artifact → semantic web construction, using `dca-document-authoring` principles when it is document-like;
@@ -336,6 +342,7 @@ Do not:
 - use `dca-document-authoring` as the primary constructor for interfaces or slides;
 - let `dca-design` decide organisational content or output purpose;
 - create parallel maintained masters without a reason.
+- treat a Slack Canvas or similar collaborative text surface as unstructured chat text that can bypass document-authoring quality rules.
 
 ## Boundary
 

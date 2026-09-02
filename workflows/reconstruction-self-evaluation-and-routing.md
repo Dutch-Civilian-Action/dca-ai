@@ -268,6 +268,58 @@ Human validation may:
 
 Any correction becomes new evidence and must be reconciled back through the reconstruction lineage before promotion assessment.
 
+### Operational validation interface
+
+When validation is assigned to an operational person, translate the candidate into normal working language. Ask only about matters the person can know through the work, such as:
+
+- what they did, saw, decided, received, handed over, or expected;
+- what currently happens;
+- the normal case, variations, and exceptions;
+- what is wrong, missing, or uncertain;
+- a concrete example and where a supporting record exists, if one exists.
+
+Offer clear response paths: **Confirm as written**, **Correct**, **Missing**, **Unsure**, and **Not mine to confirm**. Treat “Not mine to confirm” as routing evidence, not disagreement or rejection.
+
+Do not expose `Reconstruction_Object`, `Evidence_Link`, epistemic or promotion fields, routing destinations, target revisions, persistence verification, architecture mechanics, or reconciliation terminology in the operational task. A platform name such as Asana, Airtable, Drive, or WhatsApp may appear only when it is part of the person's actual work or identifies a reader-usable source.
+
+Every validation packet must state in plain language:
+
+- what the packet is and why the review is needed;
+- its status and authority boundary;
+- the intended operational audience and exact requested action;
+- the relevant scope, date, or coverage period;
+- how to respond, including the available response paths;
+- material limitations, uncertainty, and current validation state.
+
+For each material source or source group, provide a reader-usable name/title, platform and account/container, date/coverage, what it supports, limitations, and a stable reference where access permits. Internal Evidence or Reconstruction Object IDs remain secondary trace keys. Link technical lineage separately for System & Structure.
+
+If the reviewer changes or qualifies the meaning, System & Structure processes the comment as new evidence and always shows the precise revised operational wording back to that reviewer for confirmation. Do not close the validation or advance the candidate on the basis of an unconfirmed paraphrase.
+
+A response equivalent to “correct” completes the validation of that wording without requiring a validation correction. Record its scope and provenance, then continue to the maintained-target comparison. If the target already represents the meaning, close the bounded work after the no-change outcome and any required evidence/status persistence are verified. If the target does not represent the validated meaning, complete the supported addition, correction, or qualification instead. Do not manufacture validation work, and do not use “correct” to suppress real maintained-reality work.
+
+### Establish-task structure
+
+Use one main Asana task of type **Establish** when shared operational reality must be established or materially re-established. Use this work breakdown unless a bounded case genuinely does not require a stage:
+
+```text
+Establish [bounded operational reality]
+├─ A. Provide input
+├─ B. Reconstruct
+├─ C. Validate
+│  ├─ C1. Review the operational description
+│  ├─ C2. Process comments and corrections
+│  └─ C3. Reply / confirm revised wording
+├─ D. Reconcile with current maintained reality
+└─ E. Test / put in use
+```
+
+Assignment boundary:
+
+- operational people receive only the bounded input, review, confirmation, and live-use actions relevant to their work—normally A where needed, C1, C3 where wording changed, and E where they actually use or test the result;
+- System & Structure or the responsible reconstruction runtime owns B, C2, D, technical lineage, and system/structure translation;
+- do not assign an operational person a task whose description requires them to understand the reconstruction method, schemas, routing, promotion, or architecture;
+- link the Establish task into the relevant operational project when that makes the work visible in the person's normal project without moving technical subtasks into that person's operational responsibility.
+
 ## 6. Object classification and destination
 
 After sufficient reconstruction and any required validation, classify established organisational objects by their actual meaning and route them toward the appropriate maintained structure.
@@ -429,7 +481,8 @@ At the end of a sufficiently complete reconstruction, produce a bounded handoff 
 8. objects that must remain reconstruction/staging;
 9. target-system rules that must be consulted before any promotion;
 10. objects ready to enter maintained-reality reconciliation;
-11. next evidence or validation action where required.
+11. next evidence or validation action where required;
+12. the linked Establish task and operational-validation packet where human input is required, including whether wording confirmation remains open.
 
 After this handoff is produced, run the maintained-reality reconciliation workflow for each ready object. Append or link the actual outcomes, target revisions, persistence verification, and blocked/not-ready cases; do not leave “ready for promotion assessment” as if it were the downstream result.
 

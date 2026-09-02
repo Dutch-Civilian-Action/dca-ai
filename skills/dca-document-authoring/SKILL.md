@@ -2,7 +2,7 @@
 name: dca-document-authoring
 description: Use when creating, editing, restructuring, formatting, or finalising DCA documents. Turns source-grounded DCA content into professional native documents while preserving semantic hierarchy, current organisational authority, DCA design conventions, and document quality.
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # DCA Document Authoring
@@ -44,6 +44,36 @@ Apply authority in this order:
 A document template may define presentation and semantic organisation without becoming authority for current DCA facts.
 
 Neither this skill nor `dca-design` may invent or redefine organisational reality.
+
+## Audience and publication context
+
+Before constructing a document, distinguish the working source from the artifact its audience will receive.
+
+A process maintainer may need drafting history, technical lineage, evidence identifiers, routing, or implementation detail. A general DCA reader or operational validator usually does not. Do not expose private drafting shorthand or assume the audience has read an earlier draft, chat, correction packet, or reconstruction log.
+
+For a synthesis, report, handover, validation packet, method, or other independently shareable document, make the opening sufficient for a reader arriving without process context. State, as relevant:
+
+- what the document is and why it exists;
+- its status and authority boundary;
+- the intended audience and any requested action;
+- its scope and relevant date or coverage period;
+- how to read or respond to it;
+- material limitations, uncertainty, and validation state.
+
+Write audience-visible facts directly. Relative or backward-looking wording such as `former`, `earlier`, `new`, `updated`, `remaining`, `now closed`, `current outcome`, or `this run` is acceptable only when the document itself identifies the antecedent, relevant time, and why the comparison matters to the reader. Otherwise remove the process comparison and state the present fact. For example, private drafting history that a source gap was “formerly open” becomes the reader-visible fact that the named source and coverage period are included.
+
+When the document relies on evidence, include a human-usable source guide appropriate to the audience. For every material source or source group, provide as available:
+
+- human-readable name or title;
+- platform and account, mailbox, channel, Drive, repository, or other container;
+- relevant date, date range, or coverage period;
+- what the source supports;
+- material limitations or gaps;
+- a stable reader-usable link or reference where access permits.
+
+Internal Evidence or Reconstruction Object identifiers may be included as secondary trace keys. They do not replace reader-usable source references.
+
+For a general DCA reader, keep technical process detail in a maintainer-facing section, technical appendix, linked artifact, or separate task when including it would obscure the document. For an operational validation artifact, keep reconstruction, schema, routing, promotion, architecture, and reconciliation mechanics out of the artifact entirely; place them in a separate linked System & Structure artifact or task.
 
 ## Document construction rules
 
@@ -224,6 +254,10 @@ Before completion, verify:
 
 - all required source content is present
 - no unsupported content has been introduced
+- the intended audience can understand the document without unpublished drafting or chat context
+- independently shareable documents identify their purpose, status/authority, audience/action, scope/coverage, and material limitations as relevant
+- backward-looking or relative wording names its antecedent and time inside the document, or has been rewritten as a direct reader-visible fact
+- material sources are represented by a human-usable source guide; internal identifiers are secondary trace keys
 - title is structurally a title
 - heading hierarchy is coherent
 - lists are native lists

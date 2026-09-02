@@ -167,6 +167,38 @@ Expected:
 - both use the same outcome, routing, persistence, verification, and closure vocabulary;
 - provider/runtime differences do not change organisational meaning.
 
+## Test 13 — reviewer says correct
+
+Input:
+
+- a bounded operational statement has been sent for validation;
+- the reviewer responds `Correct` or an equivalent confirmation;
+- the authoritative maintained target already represents the same material meaning.
+
+Expected:
+
+- the response and scope are preserved as validation provenance;
+- comparison with the maintained target produces `already_represented` or `confirmation_only` as appropriate;
+- no cosmetic target edit, correction task, or extra reviewer action is created;
+- persistence verification is `not_required` when the target has no evidence/status write requirement;
+- when a target-required evidence/status write exists, it is persisted and verified before closure;
+- the review thread resolves only after the outcome and any required write are verified.
+
+## Test 14 — corrected wording still needs confirmation
+
+Input:
+
+- a reviewer supplies a substantive correction;
+- System & Structure has drafted revised operational wording;
+- the reviewer has not confirmed the revision.
+
+Expected:
+
+- the candidate remains `not_ready` in bounded validation;
+- revised wording is returned for precise confirmation;
+- no maintained-target correction is claimed before required confirmation;
+- after confirmation, the supported outcome is reconciled, persisted, and verified normally.
+
 ## Pass criterion
 
-The workflow passes when every candidate has a traceable establishment state, authoritative comparison target, controlled outcome, routing decision, target/persistence result, and closure state without turning reconstruction staging, tasks, or publications into substitute truth.
+The workflow passes when every candidate has a traceable establishment state, authoritative comparison target, controlled outcome, routing decision, target/persistence result, and closure state; no-change confirmations close without invented work, corrected wording completes its required confirmation loop, and reconstruction staging, tasks, or publications never become substitute truth.

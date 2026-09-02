@@ -118,7 +118,9 @@ The ChatGPT task must preserve the canonical workflow's:
 - reconstruction and reconciliation rules;
 - material-change criteria;
 - validation boundary;
+- operational-review language and role boundary, including `Not mine to confirm`, no-change closure, and changed-wording confirmation;
 - output contract;
+- standalone-reader context, reader-usable source visibility, and native document structure through the canonical document-authoring skill;
 - maintained-document comparison outcome, persistence, verification, and source-review closure;
 - an auditable originating-lineage/result record;
 - backlog recovery after incomplete runs;
