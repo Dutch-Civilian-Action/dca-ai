@@ -2,7 +2,7 @@
 name: capturing-dca-logistics-intake
 description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.6.0
+  version: 0.6.1
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -49,6 +49,8 @@ If one of these required current sources is unavailable, preserve the configurat
 
 Inspect the current Airtable schema before writing. Do not write legacy/deprecated fields and do not invent fields, select options, tables, relationships, or canonical structures to make the submission fit.
 
+Confirm that `Logistics_Intake_Submissions` exposes both `controlled_test` and `synthetic_test_data`. They express different provenance dimensions and must never be collapsed into one inference.
+
 Current legacy fields that must not receive new writes include:
 
 - Submissions: `capture_type`, `source_types`;
@@ -59,7 +61,20 @@ When an exact technical omission or correction is already established and can be
 
 ## Runtime execution invariants
 
-The live 0.5.0 acceptance run established the following execution requirements. Apply them as a checklist, not as new organisational semantics.
+The live acceptance runs established the following execution requirements. Apply them as a checklist, not as new organisational semantics.
+
+### 0. Separate a controlled processing run from synthetic content
+
+Determine the two markers independently:
+
+- `controlled_test = true` only when the intake capability is deliberately being tested or observed;
+- `synthetic_test_data = true` only when the submission content itself is intentionally fictional or simulated.
+
+Genuine operational evidence used during a controlled run has `controlled_test = true` and `synthetic_test_data = false`. A fictional write fixture has both markers set to `true`. Never infer that evidence is fictional merely because `controlled_test` is true.
+
+Before search-before-create, predecessor matching, correction targeting, current-goods reconstruction, warehouse-inventory answers, or promotion, exclude every submission with `synthetic_test_data = true` and every fact/reference supported only by such submissions. Synthetic records can never become a match or predecessor for genuine evidence.
+
+For a synthetic write test, retain the exact created submission/fact/reference IDs and remove the entire linked fixture after inspection. Never clean by a broad `controlled_test = true` filter because genuine evidence may carry that marker.
 
 ### 1. Preserve source/destination per separable goods fact
 
@@ -125,7 +140,8 @@ After a write, read back:
 - every new fact/reference;
 - every pre-existing record intentionally changed by the operation, including superseded predecessors or correction flags;
 - the relevant source/destination, entity type, location function, quantity, lifecycle, provenance, and correction/supersession links;
-- observed write scope, confirming no unintended table or canonical Relationship Data mutation occurred.
+- observed write scope, confirming no unintended table or canonical Relationship Data mutation occurred;
+- the independently supported values of `controlled_test` and `synthetic_test_data`.
 
 A successful create/link response is not sufficient verification when the operation also changes the semantic status of existing records.
 
@@ -162,6 +178,14 @@ Attachment analysis is proposed extraction only:
 - do not let it create canonical objects or broaden the write scope;
 - connect extracted proposals back to the attachment/submission;
 - leave materially uncertain extraction for human review.
+
+When the source is an exported AI-assisted chat or notebook:
+
+- treat the human's own messages as source evidence;
+- treat assistant replies, cleaned tables, totals, inferred locations, category suggestions, and unit conversions as derived interpretation;
+- preserve the full transcript as provenance, but construct `raw_submission` from the human messages rather than substituting the assistant's cleaned version;
+- an assistant-suggested label becomes supported only when the human explicitly confirms it, and the confirmation must remain traceable;
+- a local image path in the transcript is not an attachment. Preserve the actual image separately when supplied.
 
 ## User-facing behaviour
 
