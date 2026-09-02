@@ -97,6 +97,18 @@ Search and inspect relevant:
 - linked evidence;
 - cross-channel continuation when work moves elsewhere.
 
+For Slack huddles, broad message search is not a sufficient coverage check. Maintain a huddle coverage ledger for the bounded domain and period. Discover huddles through all applicable routes:
+
+- the domain channel and adjacent operational channels;
+- DMs with the reconstruction owner and named operational participants;
+- cross-domain channels where operational work was discussed;
+- canvases, huddle notes, transcript files, derivative transcript copies, and messages that share or quote them;
+- source references already present in maintained Operational Reality, prior reconstructions, validation material, or later Reality Watch findings.
+
+For every discovered huddle, record the stable canvas/transcript identifiers and one explicit outcome: `processed_material`, `processed_context_only`, `reviewed_insufficient_content`, `duplicate_derivative`, `out_of_scope`, or `unavailable`. A low-content or inaccessible transcript remains visible in the ledger; it must not disappear merely because no Reconstruction_Object can responsibly be derived from it.
+
+Before closing Slack coverage, compare the reconstruction run's Evidence provenance with domain-relevant source references already used by maintained reality or another reconstruction run. Backfill or cross-link a relevant underlying source when it is absent. Do not assume that processing a source in Reality Watch or a different domain reconstruction automatically gives this run complete provenance.
+
 Do not infer that absence of a reply or reaction means a message was ignored, rejected, or unread.
 
 When AI-generated Slack notes or summaries exist alongside an underlying transcript, use the transcript as the stronger evidence. Summaries may help navigation but must not silently replace the underlying evidence.
@@ -345,6 +357,7 @@ Use these existing tables:
 - `Reconstruction_Objects`
 - `Evidence_Links`
 - `Object_Relationships`
+- `Meetings`
 
 This is a reconstruction and reconciliation layer.
 
@@ -458,6 +471,8 @@ Populate where supported:
 - `access_or_coverage_limit`
 - `notes`
 - `reconstruction_run`
+
+`evidence_display_name` is mandatory for every created Evidence record. Construct a concise deterministic value from the source date, source/container and bounded subject before the write. Do not rely on a later cleanup pass to make the record identifiable.
 
 Preserve exact source wording in `evidence_excerpt` where useful.
 
@@ -587,6 +602,8 @@ Use `owner_validated` only when evidence supports actual responsible-owner/human
 # 12. Evidence Links
 
 Every substantive Reconstruction_Object should be connected to its source evidence through `Evidence_Links`.
+
+The Evidence Link display name is mandatory. Construct it deterministically from the linked Evidence, relationship type and Reconstruction_Object before the write. A successful link write with a blank primary/display field is a failed ingestion invariant, even when the foreign keys are intact.
 
 Create one relationship per Evidence ↔ Reconstruction_Object pair.
 
@@ -821,6 +838,18 @@ search
 → revise evidence assessment/current-state interpretation as later evidence appears
 ```
 
+When the source is a meeting or huddle, also create or update the corresponding `Meetings` source-register record with its date, participants, domain, stable source references, processing outcome, validation boundary, summary and limitations. `Meetings` records aid source discovery and coverage audit; they do not replace bounded Evidence records or Evidence Links.
+
+After each write batch, verify at minimum:
+
+- zero blank primary/display names in records created or updated by the batch;
+- every material Evidence record is linked to the intended reconstruction run;
+- every substantive object derived or changed by the batch has at least one Evidence Link;
+- each discovered huddle has an explicit coverage-ledger outcome;
+- returned record counts and IDs match the intended batch.
+
+If any invariant fails, keep the affected material in `coverage_gaps`, repair it, and verify again before advancing coverage.
+
 The conversation is a working environment.
 
 Airtable is the durable reconstruction staging layer.
@@ -847,6 +876,8 @@ Update `coverage_gaps` with:
 - source failures;
 - important evidence not yet processed.
 
+Do not summarize Slack coverage as complete from message/thread counts alone. Report huddle coverage separately, including material huddles processed, context-only huddles, low-content exclusions, unavailable transcripts and any maintained-reality sources not yet represented in the run.
+
 Absence of accessible evidence is not evidence of absence.
 
 # 18. Write boundary
@@ -858,6 +889,7 @@ During this investigation, writes are authorised only to these Airtable staging 
 - `Reconstruction_Objects`
 - `Evidence_Links`
 - `Object_Relationships`
+- `Meetings`
 
 This workflow does not authorise modification of:
 
