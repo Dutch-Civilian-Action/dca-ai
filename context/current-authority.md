@@ -25,10 +25,6 @@ This file is an AI-facing pointer map. It does not replace the underlying source
 - Shared Drive routing logic:
   `Dutch-Civilian-Action/dca-architecture/organisation/drive-architecture/routing-logic.md`
 
-Reference-only boundary:
-
-- `Dutch-Civilian-Action/sigproc-operational-reality` is **REFERENCE-ONLY / NON-AUTHORITATIVE**. It is not the current Operational Reality source, the current reconstruction method, or a callable DCA AI workflow. Do not use its templates for current DCA reconstruction or operational validation.
-
 ## Current organisation-facing reality
 
 ### Current Operational Reality
