@@ -68,6 +68,14 @@ Existing WhatsApp, email, Slack, screenshots, photos, or other messages may be s
 
 Attachments remain bounded source evidence. Preserve the file and its relationship to the submission. Any automated attachment analysis is proposed extraction, not validated fact, and must not trigger broad or canonical writes.
 
+When supplied evidence is a transcript from an AI-assisted notebook or chat, distinguish the human evidence from the assistant's transformation of it:
+
+- the human's own messages are source evidence;
+- assistant replies, cleaned tables, category suggestions, calculations, and summaries are derived interpretation;
+- preserve the complete transcript and attachments as provenance, but do not substitute assistant-generated prose for the human's `raw_submission`;
+- an assistant-suggested label may be used as supported evidence only when the human explicitly confirms it; preserve both the suggestion and the human confirmation;
+- a referenced image path is not the image itself. Preserve the actual attachment separately when it is available.
+
 No cleanup or extra research is required from the human contributor. Unknown information may remain unknown.
 
 ## Pilot principle: capture before modelling
@@ -134,7 +142,8 @@ Preserve:
 - inferred `submission_kind` (`new_information`, `update`, or `correction`);
 - inferred `operational_process` (`goods_intake` or `logistics_information_intake`);
 - `baseline_capture` only for initial reconstruction of the current picture;
-- `controlled_test` when the submission is also a bounded test;
+- `controlled_test` when the processing capability is deliberately being tested or observed;
+- `synthetic_test_data` only when the submitted content itself is intentionally fictional or simulated;
 - evidence forms and evidence channels separately;
 - source references supplied by the human;
 - optional cycle/task reference only when established;
@@ -142,7 +151,16 @@ Preserve:
 
 Do not rewrite the raw submission into normalized prose.
 
-`controlled_test` is provenance/test metadata only. It must not change the operational interpretation of the evidence or cause test/placeholder commentary to appear in the ordinary operator-facing completion message unless the user explicitly asks about the test mechanics.
+`controlled_test` and `synthetic_test_data` answer different questions:
+
+- `controlled_test` — was the intake processing capability deliberately being tested or observed?
+- `synthetic_test_data` — is the submitted content intentionally fictional or simulated?
+
+A genuine operational submission processed during a controlled capability run has `controlled_test = true` and `synthetic_test_data = false`. A synthetic write fixture has both fields set to `true`. Never treat `controlled_test` alone as evidence that the content is fictional, and never use it as a broad cleanup filter.
+
+Synthetic submissions, and any facts or operational references supported only by them, must not participate in search-before-create matching, current-goods answers, warehouse-inventory answers, reconciliation with genuine evidence, or promotion into production objects. If a bounded write test must use live staging, mark the synthetic submission explicitly, retain its exact created record IDs for audit, and remove the complete linked test set by exact ID after inspection.
+
+Neither marker changes the operational interpretation of the evidence or causes test mechanics to appear in the ordinary operator-facing completion message unless the user explicitly asks about them.
 
 ### 2. Extract only supported goods/state facts
 
