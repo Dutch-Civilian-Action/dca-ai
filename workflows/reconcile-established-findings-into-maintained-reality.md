@@ -53,6 +53,8 @@ Do not enter a candidate merely because it is plausible, repeated by one source,
 
 A candidate that fails the gate receives `not_ready` and remains in reconstruction, evidence, or bounded validation work.
 
+When a validator has corrected or qualified wording, the revised operational wording must be shown back to that validator for bounded confirmation before the candidate passes this gate. An unconfirmed System & Structure paraphrase remains `not_ready`.
+
 ## Historical-reconstruction anti-bias boundary
 
 Full Historical Reconstruction must remain source-first.
@@ -77,7 +79,7 @@ For each candidate:
 
 3. **Read the current target**
    - retrieve the current authoritative target and revision/version before comparing;
-   - if the target cannot be resolved or read, record `not_ready` or `alternate_destination` as appropriate and stop before any claimed write.
+   - if the target cannot be resolved or read, record `not_ready` or blocked as appropriate and stop before any claimed write; use `alternate_destination` only when evidence establishes that the finding actually belongs elsewhere.
 
 4. **Compare atomically**
    - compare material meaning, scope, time, attribution, status, variation, uncertainty, and provenance;
@@ -87,6 +89,7 @@ For each candidate:
 5. **Classify the maintained-reality outcome**
    - use exactly one primary outcome from the controlled vocabulary below;
    - use reconciliation notes for connected or secondary effects.
+   - when a reviewer said “correct” or the equivalent, preserve that response as validation provenance; then classify independently from the target comparison. The result may be `already_represented`, `confirmation_only`, `addition`, `correction`, `qualification`, or another supported outcome. Do not manufacture a change, and do not suppress a real one.
 
 6. **Prepare the smallest supported action**
    - no-change outcomes do not generate cosmetic edits;
@@ -113,7 +116,8 @@ For each candidate:
     - do not invent downstream consequences merely because the candidate changed one target.
 
 11. **Close or continue the source review**
-    - close a confirmation/no-change thread after the outcome is recorded;
+    - close a confirmation/no-change thread after the outcome and validation provenance are recorded and any target-required evidence/status write is persisted and verified;
+    - do not create a cosmetic edit, correction task, or extra validator action merely because the recorded response was “correct”;
     - close a change-bearing thread only after persistence is verified;
     - leave `conflict_unresolved`, `not_ready`, failed, or blocked cases open or transfer them to an explicit validation/reconciliation item with a traceable link.
 
@@ -235,7 +239,8 @@ For each materially changed candidate:
 - begin from the current maintained target, not the previous Watch post;
 - process pending corrections from earlier review threads first;
 - use this workflow for the comparison, action, persistence, verification, and closure decision;
-- record no-change confirmations as outcomes without cosmetic rewrites;
+- record “correct” as validation provenance, then classify the maintained-target outcome independently; do not create cosmetic rewrites or manufactured tasks for a genuine no-change result, and do not suppress a supported target change;
+- always return materially changed wording to the reviewer for bounded confirmation before persistence;
 - do not publish a claimed maintained change before verification;
 - do not advance evidence coverage past a failed material write.
 
@@ -251,6 +256,8 @@ Stop the affected candidate when:
 - the result would require silently resolving a conflict.
 
 Preserve the previous maintained target. Record the candidate as `not_ready`, `conflict_unresolved`, or blocked as appropriate. Create or update a bounded validation/reconciliation task when human action is genuinely required.
+
+When the purpose of that work is to establish shared operational reality, place it under the existing or newly created **Establish** parent defined in `workflows/reconstruction-self-evaluation-and-routing.md`. Keep technical reconciliation work with System & Structure and give an operational person only the bounded operational review or confirmation action.
 
 Do not conceal failure as `already_represented`, no material change, or successful completion.
 

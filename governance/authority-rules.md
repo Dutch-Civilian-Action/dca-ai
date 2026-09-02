@@ -22,6 +22,10 @@ For reconstruction, matching, reconciliation, provenance, validation, persistenc
 
 `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/reconstruction-reconciliation-method.md`
 
+For the practical operational-review boundary, Establish task structure, post-validation routing, implementation, testing, and return to live use, use:
+
+`Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/evidence-validation-to-live-use-loop.md`
+
 For the distinction between domain Operational Reality and evidence-backed organisational Capability Reality, use:
 
 `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/capability-reality.md`
@@ -31,6 +35,7 @@ The methods answer different questions:
 - **Capability Reality:** What does an organisational capability actually do and maintain, based on evidence?
 - **Structure Method:** What does relevant current reality justify DCA needing?
 - **Reconstruction & Reconciliation Method:** How does distributed evidence or live capture become reliable reusable shared organisational information?
+- **Evidence → Validation → Live Use Loop:** How does a bounded finding move through operational review, role-separated work, routing, implementation, and live testing?
 
 Do not default to the earlier fixed sequence:
 

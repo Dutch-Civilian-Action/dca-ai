@@ -18,6 +18,8 @@ This file is an AI-facing pointer map. It does not replace the underlying source
   `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/reality-to-requirements-method.md`
 - Current Reconstruction & Reconciliation Method:
   `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/reconstruction-reconciliation-method.md`
+- Practical Evidence → Validation → Live Use Loop, including operational-review and Establish-task boundaries:
+  `Dutch-Civilian-Action/dca-architecture/organisation/shared-foundations/evidence-validation-to-live-use-loop.md`
 - Established finding → maintained reality workflow:
   `Dutch-Civilian-Action/dca-ai/workflows/reconcile-established-findings-into-maintained-reality.md`
 - Shared Drive routing logic:
@@ -84,6 +86,8 @@ Relevant reality may be Operational Reality, Capability Reality, or both.
 Use the Reconstruction & Reconciliation Method when asking:
 
 **How does distributed organisational or operational evidence, or live capture, become reliable reusable shared organisational information?**
+
+Use the Evidence → Validation → Live Use Loop for the practical handoff into operational review, the Establish task structure, role-separated validation work, routing, implementation, testing, and return to live use.
 
 After a finding is sufficiently established, validation alone does not make it maintained reality. Use `workflows/reconcile-established-findings-into-maintained-reality.md` to resolve the authoritative target, compare, classify, route, persist any justified change, verify it, and record the result.
 

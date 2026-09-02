@@ -903,6 +903,8 @@ Before any reconstructed object is treated as established, classified for a cano
 
 **`workflows/reconstruction-self-evaluation-and-routing.md`**
 
+When the run uses Asana to obtain input, validate operational meaning, reconcile maintained reality, or test live use, create or reuse the **Establish** parent and A–E/C1–C3 task structure defined by that workflow. Do not create a standalone engineer-facing validation task for an operational person.
+
 The required sequence is:
 
 ```text
@@ -957,7 +959,29 @@ Do not compare with current maintained reality before the source-first reconstru
 
 The Airtable reconstruction layer is the detailed evidence graph.
 
-The final chat response should synthesize the reconstruction rather than dumping every stored record.
+Produce two separate outputs:
+
+1. a durable, standalone reconstruction synthesis for the intended DCA readers; and
+2. a concise chat or task handoff that links to the synthesis and states the next bounded action.
+
+The handoff does not substitute for the standalone synthesis. Construct the synthesis through `skills/dca-document-authoring/SKILL.md`, including native headings and native lists in the destination platform.
+
+Before the synthesis is shared, its opening must identify:
+
+- what the document is and why it exists;
+- its status and authority boundary;
+- its intended audience and any requested action;
+- the domain, time period, and source coverage;
+- how confirmed, validation-pending, uncertain, historical, and proposed material are labelled;
+- material limitations and remaining gaps.
+
+Include a human-usable source guide. For each material source or source group, provide its name/title, platform and account/container, date or coverage period, what it supports, material limitations, and a stable reader-usable reference where access permits. Airtable Evidence IDs and other internal trace keys are secondary references, not the reader's only citation.
+
+The synthesis must stand on its own. Do not expose private drafting shorthand or write as though the reader saw an earlier draft, correction packet, chat, or reconstruction log. Wording such as “former gap”, “earlier claim”, “new source”, “current outcome”, “remaining issue”, or “this run” is permitted only when the document itself names the antecedent, relevant period, and reader-relevant comparison. Otherwise state the audience-visible fact directly.
+
+Keep process-maintainer detail—object identifiers, schema fields, routing, promotion, persistence mechanics, and technical reconciliation notes—in the evidence graph or a linked System & Structure handoff. Use a technical appendix only when the synthesis itself is explicitly maintainer-facing.
+
+The synthesis should integrate the reconstruction rather than dumping every stored record.
 
 Produce:
 
@@ -985,13 +1009,20 @@ End with:
 - **C. Genuinely unknown**
 - **D. Earlier DCA/system assumptions contradicted by evidence**
 - **E. Evidence that should be processed next**
+
+Put the following in the linked process-maintainer handoff, not unconditionally in a general-reader synthesis:
+
 - **F. Reconstruction objects ready for validation/promotion assessment**
 - **G. Objects that must remain reconstruction/staging**
 - **H. Airtable reconstruction run status and remaining coverage gaps**
 - **I. Self-evaluation result and downstream handoff status**
 - **J. Maintained-reality reconciliation outcomes, target revisions, persistence verification, and remaining blocked/not-ready objects**
 
+In the general-reader synthesis, surface only the bounded reader-relevant maintained-reality status, unresolved limitations, and next requested action. Include F–J there only when the named audience is a process maintainer and the technical detail is needed.
+
 The final synthesis must not bypass the mandatory self-evaluation and routing workflow or the maintained-reality reconciliation handoff. If self-evaluation has not passed, say so explicitly and do not present the reconstruction as promotion-ready. If target reconciliation has not run, say so explicitly and do not imply that promotion, persistence, or maintained-state reconciliation occurred.
+
+Do not share the synthesis until the document-authoring quality gate and the standalone-reader checks above pass.
 
 # Final constraint
 

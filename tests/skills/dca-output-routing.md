@@ -146,6 +146,17 @@ Expected:
 - no decorative or document formatting added;
 - CSV is not treated as a maintained spreadsheet unless separately requested.
 
+## Test 13 — existing operational Canvas
+
+Request: `Update the Logistics Slack Canvas with this validated operational description.`
+
+Expected:
+
+- family: document;
+- existing Canvas destination is preserved;
+- `dca-document-authoring` governs standalone-reader context, source visibility, semantic headings, and real supported list structures;
+- the Canvas is not flattened into chat prose and does not become a second canonical master when a maintained source already exists.
+
 ## Pass criterion
 
-Routing passes when explicit destinations are honoured, purpose determines the family when unspecified, maintained Google Workspace defaults are used only when supported, document/presentation/spreadsheet construction remains separated, HTML web artifacts remain first-class, operational interfaces remain distinct from document-like HTML, and no runtime pretends to create an unavailable destination.
+Routing passes when explicit destinations are honoured, purpose determines the family when unspecified, maintained Google Workspace defaults are used only when supported, collaborative text canvases receive document-authoring safeguards, document/presentation/spreadsheet construction remains separated, HTML web artifacts remain first-class, operational interfaces remain distinct from document-like HTML, and no runtime pretends to create an unavailable destination.
