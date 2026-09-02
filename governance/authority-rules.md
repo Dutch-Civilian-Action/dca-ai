@@ -83,8 +83,6 @@ In particular, the following instruction is superseded:
 
 Current DCA AI must remain able to revise structural interpretation when current evidence and current architecture justify revision.
 
-`Dutch-Civilian-Action/sigproc-operational-reality` is **REFERENCE-ONLY / NON-AUTHORITATIVE**. It is not a current DCA method, current Operational Reality source, or callable AI workflow; current reconstruction and validation work must use the current architecture methods and provider-independent workflows.
-
 ## Source-status discipline
 
 Before relying on a DCA source, identify where possible:
