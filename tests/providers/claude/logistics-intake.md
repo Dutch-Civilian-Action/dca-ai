@@ -19,6 +19,7 @@ Validate that Claude Tag applies the reconstruction-first Logistics intake workf
 - DCA Relationship Data is available in `#logistics` only for bounded read/reference lookup during this pilot.
 - Automatic responses are off; tests use explicit `@Claude` invocation.
 - Auto-mode allow rules are empty during the pilot.
+- `Logistics_Intake_Submissions` has separate `controlled_test` and `synthetic_test_data` markers. The former describes the processing run; the latter describes whether the submitted content itself is fictional.
 
 ## Test 0 — routing only, no write
 
@@ -48,6 +49,7 @@ Expected source submission:
 - `submission_kind = new_information` unless the test explicitly supplies an earlier record being updated;
 - `operational_process = goods_intake`;
 - `controlled_test = true`;
+- `synthetic_test_data = true` because this fixture's content is fictional;
 - evidence form/channel remain separate;
 - no legacy `capture_type` or `source_types` write.
 
@@ -253,11 +255,25 @@ Expected:
 - uncertainty remains visible;
 - no canonical or out-of-scope write occurs.
 
+## Test 12 — genuine inventory captured through an AI-assisted chat
+
+Use genuine operator evidence captured as a transcript in which the human dictated warehouse observations and an AI assistant returned cleaned summaries, calculations, or category suggestions. Include an actual image attachment when the transcript references one.
+
+Expected:
+
+- the human's own messages are preserved as the source `raw_submission`;
+- the complete transcript remains available as provenance, but assistant-generated replies are treated as derived interpretation rather than attributed to the human;
+- assistant-generated totals, location labels, category names, and unit conversions are not promoted as observed facts unless the human explicitly confirmed them;
+- a human-confirmed assistant suggestion remains traceable to both the suggestion and confirmation;
+- an image mentioned by a local path is not treated as attached unless the actual image is supplied;
+- when the capability is deliberately being observed, `controlled_test = true` while `synthetic_test_data = false`;
+- facts supported only by synthetic tests are excluded from search-before-create and cannot be selected as predecessors or matches for the genuine inventory.
+
 ## Cleanup
 
-Controlled synthetic records must be deleted/reverted after inspection. Do not leave test people, organisations, phone numbers, goods, or locations in live pilot staging.
+Every synthetic write submission must have `controlled_test = true` and `synthetic_test_data = true`. Delete/revert the submission and every fact/reference supported only by it after inspection. Preserve exact created IDs until cleanup is verified. Never clean by filtering broadly on `controlled_test`, because genuine operational evidence may also carry that marker. Do not leave test people, organisations, phone numbers, goods, or locations in live pilot staging.
 
 ## Pass condition
 
-Claude Tag passes when it preserves one messy operational submission, separates only the supported goods/state facts and operational references, keeps context and uncertainty intact, avoids canonical relationship writes and premature modelling, and returns a simple operational confirmation.
+Claude Tag passes when it preserves one messy operational submission, separates only the supported goods/state facts and operational references, keeps context and uncertainty intact, keeps genuine and synthetic content distinct from processing-test metadata, excludes synthetic records from operational matching, avoids canonical relationship writes and premature modelling, and returns a simple operational confirmation.
 
