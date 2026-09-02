@@ -64,6 +64,60 @@ Expected:
 - System & Structure retains reconstruction, comment processing, reconciliation, and technical detail;
 - no duplicate standalone technical validation task is assigned to the operator.
 
+## Test 5 — huddles cannot disappear behind broad Slack coverage
+
+Input:
+
+- a domain channel contains a material huddle between operational owners;
+- the reconstruction-owner DM contains the huddle canvas or transcript;
+- a later Reality Watch finding cites that source;
+- the reconstruction run otherwise contains many Slack messages and threads.
+
+Expected:
+
+- channel, DM, canvas/transcript and maintained-reality provenance routes are checked;
+- the huddle is represented in the huddle coverage ledger by stable source identifiers;
+- material transcript segments become Evidence and Evidence Links for this domain, even when the source was already processed by another run;
+- derivative copies are not counted as independent corroboration;
+- broad Slack record counts do not permit a complete-coverage claim while the huddle is absent.
+
+## Test 6 — reviewed low-content huddle remains auditable
+
+Input:
+
+- a discovered huddle transcript contains too little intelligible content to support a claim.
+
+Expected:
+
+- the huddle receives a `reviewed_insufficient_content` coverage outcome and source-register record;
+- no unsupported Reconstruction_Object is created;
+- the absence of a derived finding is distinguishable from an unprocessed source gap.
+
+## Test 7 — primary display-name invariant
+
+Input:
+
+- an Evidence or Evidence Link write includes valid substantive fields and relationships but omits its manual primary/display field.
+
+Expected:
+
+- the batch fails the post-write quality gate;
+- coverage does not advance;
+- a deterministic display name is written and the zero-blank check passes before the run proceeds.
+
+## Test 8 — cross-run and maintained-reality back-propagation
+
+Input:
+
+- a source informed maintained Operational Reality or a different domain reconstruction but is absent from the active domain run.
+
+Expected:
+
+- the underlying source is backfilled or cross-linked when relevant;
+- the active run receives its own domain-appropriate Evidence interpretation where an existing bounded excerpt describes a different claim;
+- the source is not treated as new independent corroboration;
+- the reconstruction synthesis and validation material receive reader-usable source context.
+
 ## Pass criterion
 
-The workflow passes when evidence remains source-first and traceable, the final synthesis is independently understandable and source-usable, validation work follows the Establish role boundary, and no publication or task substitutes for maintained-reality reconciliation.
+The workflow passes when evidence remains source-first and traceable, huddle coverage and post-write invariants are explicit, cross-run provenance is reconciled, the final synthesis is independently understandable and source-usable, validation work follows the Establish role boundary, and no publication or task substitutes for maintained-reality reconciliation.
