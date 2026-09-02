@@ -20,6 +20,8 @@ Tests should cover at minimum:
 - `submission_kind` and `operational_process` are inferred from ordinary language without asking the operator to classify them;
 - the original human submission is preserved verbatim;
 - authenticated human actor remains distinct from runtime/interface identity;
+- `controlled_test` describes whether processing is being tested, while `synthetic_test_data` independently describes whether the content itself is fictional;
+- genuine evidence processed during a controlled run remains operational evidence; synthetic submissions and facts/references supported only by them are excluded from all matching, current-state answers, and promotion;
 - one mixed submission may produce multiple goods/state facts and multiple operational references;
 - approximate quantity and timing remain approximate rather than being normalized beyond the evidence;
 - people, organisations, locations, and routes remain connected to the operational context in which they were supplied;
@@ -41,6 +43,7 @@ Tests should cover at minimum:
 - contextual Logistics roles use only validated provisional vocabulary and do not become canonical Relationship Data roles;
 - temporary holding and handover locations remain contextual rather than canonical;
 - attachments remain linked source evidence and automated analysis remains bounded/proposed;
+- for an AI-assisted chat transcript, human messages remain source evidence while assistant summaries, category suggestions, calculations, and inferred labels remain derived interpretation unless explicitly confirmed by the human;
 - later reconstruction/reconciliation can still recover the source submission and the context linking facts and operational references.
 
 ## Controlled mixed-message case
@@ -54,6 +57,7 @@ Mila from Test Partner says about 3 pallets of hygiene goods should be ready Fri
 Expected staging result:
 
 - one source submission preserving the complete text;
+- `controlled_test = true` and `synthetic_test_data = true` for this fictional fixture;
 - one approximate `expected` goods/state fact for hygiene goods, about 3 pallets, Friday;
 - a person reference for Mila;
 - an organisation reference for Test Partner;
@@ -62,6 +66,19 @@ Expected staging result:
 - no inference that the WhatsApp number is a general canonical contact route;
 - no inference that Dock B is the organisation's canonical/general address;
 - no canonical Contact/Organization/Partner mutation from this intake alone.
+
+## AI-assisted inventory-transcript case
+
+Use a synthetic transcript in which a warehouse operator dictates messy observations to an AI assistant, the assistant produces cleaned tables and calculated totals, the operator confirms one assistant-suggested item name, and the transcript references a photograph.
+
+Expected boundary:
+
+- preserve the operator's messages as source evidence and the complete transcript as provenance;
+- do not attribute assistant-generated clean prose, totals, location labels, categories, or unit conversions to the operator;
+- treat the confirmed suggested item name as supported only through the explicit human confirmation;
+- require the actual photograph as an attachment rather than treating a local path as image evidence;
+- for a genuine version of this scenario processed under observation, use `controlled_test = true` and `synthetic_test_data = false`;
+- exclude all synthetic test facts from matching against the genuine inventory.
 
 ## Current pilot implementation target
 
