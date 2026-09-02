@@ -64,8 +64,10 @@ Synthetic entities only — never real DCA partner or person names:
 - `Dana` — person referenced in the temporary-location case
 
 Send each numbered item below as its **own** `@Claude` message/turn, not
-batched. Prefix every message with `CONTROLLED TEST.` After each turn, read
-(do not write) the Airtable base to confirm two things before sending the
+batched. Prefix every message with `CONTROLLED TEST.` Every submission in this
+plan is fictional and must therefore be written with both
+`controlled_test = true` and `synthetic_test_data = true`. After each turn,
+read (do not write) the Airtable base to confirm two things before sending the
 next turn:
 
 1. the expected fields in the relevant Logistics intake staging table(s);
@@ -163,15 +165,18 @@ than forced. Maps to Test 10.
 
 ## Cleanup
 
-Delete/revert all controlled-test submissions, facts, and operational
+Delete/revert all synthetic controlled-test submissions, facts, and operational
 references created in steps 1–7 (Foodbank Nova, Ridgeline Amenities, Petra,
 all H7X submissions and related facts/references created by steps 3a–4b,
 Dana, the medical-equipment/Direct Transit case) from
-`DCA Integrations & Reconciliation` after inspection. Steps 3a–4b create
+`DCA Integrations & Reconciliation` after inspection. Clean by the exact IDs
+retained during the run, never by a broad `controlled_test = true` filter. Steps 3a–4b create
 four H7X submissions in total (3a, 3b, 4a, 4b) plus whatever facts/references
 were extracted from them — all of them must be removed, not just the two
 correction messages. Nothing synthetic should remain in live staging, per
-the Cleanup rule in `tests/providers/claude/logistics-intake.md`.
+the Cleanup rule in `tests/providers/claude/logistics-intake.md`. Verify that
+no remaining current fact or operational reference is supported only by a
+synthetic submission.
 
 ## Why this plan differs from the earlier ad hoc prompt
 
