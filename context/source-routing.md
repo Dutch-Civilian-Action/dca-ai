@@ -15,8 +15,6 @@ This file defines provider-independent source-selection behaviour. Provider impl
 
 Use `current-authority.md` when current authority, source status, or current-vs-historical selection matters.
 
-`Dutch-Civilian-Action/sigproc-operational-reality` is a reference-only historical template repository. Never route a current Operational Reality, reconstruction, validation, or workflow request to it. Use the current source and method pointers in `current-authority.md`.
-
 ## Route by fact type
 
 - **Current operational work, dependencies, responsibilities in practice, variation, exceptions, bottlenecks, and current workflow consequences** → compare established candidates through `workflows/reconcile-established-findings-into-maintained-reality.md`, then update the current DCA Operational Reality identified in `current-authority.md` only when the recorded outcome and target rules justify it.
