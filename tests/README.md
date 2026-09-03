@@ -22,4 +22,4 @@ Current workflow tests:
 
 Current provider tests:
 
-- `providers/claude/airtable-workspace-routing.md` — Airtable destination resolution by workspace + base identity, keeping production `DCA` bases distinct from the non-production `DCA Dev/Test` workspace, keeping staging-only `DCA Integrations & Reconciliation` distinct from canonical `DCA Logistics`, and keeping the `DCA Dev/Test` legacy-source base distinct from both the never-selectable dev/test bases and any production destination.
+- `providers/claude/airtable-workspace-routing.md` — Airtable destination resolution by workspace + base identity, keeping production `DCA` bases distinct from the non-production `DCA Dev/Test` workspace, keeping staging-only `DCA Integrations & Reconciliation` distinct from canonical `DCA Logistics`, and keeping the one established `DCA Dev/Test` legacy-source base distinct from any production destination and from the other `DCA Dev/Test` bases (production-destination-excluded like it, but not established as sources).

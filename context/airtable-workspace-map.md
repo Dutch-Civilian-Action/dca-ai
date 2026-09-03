@@ -33,9 +33,9 @@ A base ID recorded above as "not yet recorded here" is a gap, not a license to g
 
 These bases exist in a separate, non-production workspace. None of them is ever a valid destination for new production writes, but one of them is a legitimate legacy source under specific conditions — see the two subsections below.
 
-### Never selectable — not a destination, not a source
+### Never selectable as a production destination
 
-These bases must **never** be selected as the destination for a production routing request, and are not treated as a legacy source either — they are test/scaffolding data, not historical operational fact:
+These bases must **never** be selected as the destination for a production routing request, full stop:
 
 - `[LEGACY] DCA Promotion Pipelines & Workflows`
 - `[TEST] 2 | DCA Relationships & Workflows`
@@ -46,6 +46,8 @@ These bases must **never** be selected as the destination for a production routi
 
 `3 | DCA Logistics` in particular must never be confused with the production `DCA Logistics` base above. Same/overlapping words, different workspace, different base — resolve by workspace + base identity, not by substring or fuzzy match on "DCA Logistics".
 
+Whether any of these bases also holds historical or operational facts worth reading for some bounded non-production task is **not established here** — this map only settles that none of them is a production write destination. Do not assert they are pure test/scaffolding data with no historical value, and do not treat any of them as a legitimate legacy source either, absent a separate, explicit determination. Reading one of them for a bounded task is out of scope unless a human authority explicitly names that specific base for that task (see "Out of scope" below); it does not get the same standing `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing` has below.
+
 ### Non-production, but a legitimate legacy source when explicitly requested
 
 - `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing`
@@ -54,9 +56,9 @@ This base is different from the rest of `DCA Dev/Test`:
 
 - it is **never** a destination for new production writes, exactly like every other `DCA Dev/Test` base;
 - it **is** a legitimate legacy active-data source, but only when a human explicitly requests migration, reconstruction, or reconciliation work that references it — do not read it, cite it, or fold its contents into current operational answers on your own initiative, and do not treat it as interchangeable with the current `DCA Logistics` production base;
-- it must not be globally dismissed as irrelevant test data — its content is legacy operational history, not a scaffolding fixture, and remains available as evidence for the kind of bounded reconstruction/reconciliation work described in `workflows/capture-logistics-intake.md` and the Reconstruction & Reconciliation Method, when a human directs that work at it by name.
+- it must not be dismissed as irrelevant test data — its content is legacy operational history, not a scaffolding fixture, and remains available as evidence for the kind of bounded reconstruction/reconciliation work described in `workflows/capture-logistics-intake.md` and the Reconstruction & Reconciliation Method, when a human directs that work at it by name. This is an established status for this one base specifically, not an inference extended to it from the rest of `DCA Dev/Test`.
 
-Do not extend this legacy-source treatment to any other `DCA Dev/Test` base without an explicit correction from a human authority — it applies to this one named base only.
+Do not extend this legacy-source treatment to any other `DCA Dev/Test` base without an explicit correction from a human authority — it applies to this one named base only. The other `DCA Dev/Test` bases are simply not established as legacy sources either way; that is a different, weaker claim than affirmatively calling them scaffolding with no historical value.
 
 ## Do not confuse: Integrations & Reconciliation vs. canonical Logistics
 
