@@ -2,7 +2,7 @@
 name: capturing-dca-logistics-intake
 description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.6.1
+  version: 0.6.2
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -145,6 +145,20 @@ After a write, read back:
 - the independently supported values of `controlled_test` and `synthetic_test_data`.
 
 A successful create/link response is not sufficient verification when the operation also changes the semantic status of existing records.
+
+### 8. `operational_process` depends only on concrete goods progression
+
+`workflows/capture-logistics-intake.md` defines `operational_process` (`goods_intake` or `logistics_information_intake`). This section does not redefine that rule; it states the runtime invariant needed to apply it correctly.
+
+Derive `operational_process` only from whether the submission is evidence in a concrete goods progression — from the first concrete notice that goods are coming, through later warehouse entry, handling, and warehouse exit. Use `goods_intake` whenever the submission is such evidence, including hedged or uncertain phrasing (for example "might not happen", "not confirmed yet") describing a concrete goods offer, expectation, pickup/delivery arrangement, or warehouse state. Do not read hedging as a signal to reclassify concrete goods evidence as `logistics_information_intake`.
+
+`baseline_capture`, `controlled_test`, `synthetic_test_data`, and `submission_kind` are independent axes and must never determine `operational_process`:
+
+- a `baseline_capture` reconstruction of a concrete goods state is still `goods_intake`;
+- `controlled_test` and `synthetic_test_data` describe processing/content provenance, not the operational meaning of the evidence;
+- `submission_kind` (`new_information`, `update`, or `correction`) does not change `operational_process`.
+
+A correction or update to concrete goods evidence remains `goods_intake`. Context-only Logistics information — people, organisations, routes, or other reconstruction context with no concrete goods progression — remains `logistics_information_intake`.
 
 ## Correction handling
 

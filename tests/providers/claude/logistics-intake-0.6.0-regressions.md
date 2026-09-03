@@ -264,6 +264,75 @@ The regression run must also preserve previously passing behaviour:
 - raw evidence and correction history remain preserved;
 - canonical Relationship Data remains read/reference-only during mixed Logistics intake.
 
+## Non-regression — `operational_process` derives only from concrete goods progression
+
+Retest the production classification defect found in `Logistics_Intake_Submissions` (six live records misclassified as `logistics_information_intake`). In every case the submission was concrete goods evidence, but hedged/uncertain phrasing on the goods state appears to have been read as a signal to reclassify it.
+
+### Case A — baseline concrete-goods states, including hedged phrasing
+
+Submit each of the following as separate synthetic messages:
+
+```text
+CONTROLLED TEST. Northstar Aid has offered 4 pallets of blankets.
+CONTROLLED TEST. We are expecting 3 boxes of hygiene kits from Riverside Depot, but it might not happen.
+CONTROLLED TEST. Pickup of 2 pallets of tents from Example Supplier is arranged for Thursday.
+CONTROLLED TEST. 6 walking frames are in the warehouse now.
+```
+
+Pass for every message:
+
+- `operational_process = goods_intake`;
+- the hedged Riverside Depot message (`might not happen`) is still `goods_intake` — uncertainty about whether the goods movement completes is preserved in the fact/lifecycle fields, not by reclassifying `operational_process`;
+- `baseline_capture`, `controlled_test`, and `synthetic_test_data` are set according to their own independent rules and do not influence `operational_process`.
+
+This case fails if any message is written as `logistics_information_intake`, or if hedged/uncertain wording is treated as evidence that the submission is not concrete goods evidence.
+
+### Case B — update/correction to concrete goods evidence stays `goods_intake`
+
+Using the Case A pickup-arranged fact as the parent:
+
+```text
+CONTROLLED TEST. Update: the Example Supplier pickup is now confirmed for Friday instead of Thursday.
+```
+
+Then, as a correction:
+
+```text
+CONTROLLED TEST. Correction: the Example Supplier pallets were tents, not tarpaulins.
+```
+
+Pass:
+
+- both the update and the correction preserve `operational_process = goods_intake`;
+- `submission_kind` (`update`, `correction`) is recorded independently and does not change `operational_process`;
+- the correction is linked via `corrects_submission` per the normal correction rules without altering `operational_process` on either submission.
+
+### Case C — `controlled_test` / `synthetic_test_data` never change the classification
+
+Submit the same concrete-goods content once with `controlled_test = true, synthetic_test_data = true` (fictional fixture) and once conceptually as genuine evidence processed during a controlled run (`controlled_test = true, synthetic_test_data = false`, using execution-notes-only real content if a live positive control is run).
+
+Pass:
+
+- `operational_process = goods_intake` in both cases;
+- flipping either `controlled_test` or `synthetic_test_data` produces no change in `operational_process` for otherwise identical goods content.
+
+### Case D — context-only Logistics information stays `logistics_information_intake`
+
+Submit:
+
+```text
+CONTROLLED TEST. Kees is the person to call when a truck arrives at the warehouse.
+Transport updates for the current cycle come in by WhatsApp rather than email.
+```
+
+Pass:
+
+- `operational_process = logistics_information_intake`;
+- no concrete goods offer, expectation, pickup/delivery arrangement, incoming notice, or warehouse state is present in the submission, so `goods_intake` is not used;
+- the operational references (Kees, the WhatsApp route) are still preserved as `Logistics_Intake_Operational_References` per the normal reference rules; only `operational_process` is at issue in this case.
+
+Pass condition for this section: all four cases classify `operational_process` correctly, and no combination of `baseline_capture`, `controlled_test`, `synthetic_test_data`, or `submission_kind` changes that classification for otherwise identical goods content.
+
 ## Deliberately parked
 
 Not part of this 0.6.0 regression gate unless separately requested:
