@@ -11,10 +11,12 @@ This plugin does not define Logistics architecture, Operational Reality, final c
 
 Current pilot storage:
 
-- Airtable base: `DCA Integrations & Reconciliation`
+- Airtable base: `DCA Integrations & Reconciliation` (production workspace `DCA`; see `../../context/airtable-workspace-map.md` for its recorded base ID and to confirm this identity — do not resolve it by name search)
 - `Logistics_Intake_Submissions`
 - `Logistics_Intake_Facts`
 - `Logistics_Intake_Operational_References`
+
+`DCA Integrations & Reconciliation` is bounded staging only. It is not, and must not be described or treated as, the canonical operational Logistics base — that is the separate `DCA Logistics` production base, which this plugin does not currently target. Never select a `DCA Dev/Test` workspace base (for example `3 | DCA Logistics`) merely because its name resembles a production base.
 
 During this pilot, new mixed Logistics-cycle evidence stays in the Integrations staging base. Canonical Relationship Data may be read for identity lookup/reconciliation context, but mixed Logistics intake does not directly mutate canonical relationship records before reconstruction establishes the correct structure.
 

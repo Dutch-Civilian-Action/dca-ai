@@ -19,3 +19,7 @@ Current workflow tests:
 - `workflows/reconcile-established-findings-into-maintained-reality.md` — shared comparison outcomes, routing, persistence/verification, no-change confirmations, corrected-wording confirmation, and caller consistency.
 - `workflows/relationship-data-reconciliation.md` — relationship identity, provenance, uncertainty, conflict handling, retrieval, write boundaries, privacy, and provider portability. Concrete live cases are developed separately from the workflow definition.
 - `workflows/logistics-intake-reconstruction.md` — reconstruction-first mixed Logistics intake, source preservation, operational people/organisation/location/route context, non-premature modelling, relationship write boundaries, and later reconciliation.
+
+Current provider tests:
+
+- `providers/claude/airtable-workspace-routing.md` — Airtable destination resolution by workspace + base identity, keeping production `DCA` bases distinct from the non-production `DCA Dev/Test` workspace, keeping staging-only `DCA Integrations & Reconciliation` distinct from canonical `DCA Logistics`, and keeping the one established `DCA Dev/Test` legacy-source base distinct from any production destination and from the other `DCA Dev/Test` bases (production-destination-excluded like it, but not established as sources).
