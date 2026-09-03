@@ -264,6 +264,111 @@ The regression run must also preserve previously passing behaviour:
 - raw evidence and correction history remain preserved;
 - canonical Relationship Data remains read/reference-only during mixed Logistics intake.
 
+## Non-regression — `operational_process` derives only from concrete goods progression
+
+Retest the production classification pattern observed in `Logistics_Intake_Submissions`: six live records were misclassified as `logistics_information_intake`. The only established common factor across all six is `baseline_capture = true`. Some of the six also contained hedged/uncertain phrasing on the goods state, but no cue has been established as the actual cause of the runtime failure — test both factors independently rather than assuming which one caused the defect.
+
+### Case A — initial baseline reconstruction of concrete goods states, including hedged phrasing
+
+There is no separate setup/context turn. Submit each of the following as its own separate top-level Slack message, where the message's own ordinary wording establishes that it is part of the initial reconstruction of the current Logistics picture, so that `baseline_capture = true` is grounded per-submission rather than by an external framing message:
+
+```text
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: Northstar Aid has offered 4 pallets of blankets.
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: we are expecting 3 boxes of hygiene kits from Riverside Depot, but it might not happen.
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: pickup of 2 pallets of tarpaulins from Example Supplier is arranged for Thursday.
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: 6 walking frames are in the warehouse now.
+```
+
+The third message (the Example Supplier tarpaulins pickup) becomes the **thread root used in Case B**: Case B's update and correction are posted as replies within that same thread, with the correction targeting this root submission.
+
+Pass for every message — read back and confirm as two separate assertions, neither substituting for the other:
+
+- `baseline_capture = true` is recorded, inferred from that message's own "as part of the initial reconstruction…" wording, not from any external setup turn and not asserted with no grounding;
+- `operational_process = goods_intake` is independently derived from the concrete goods content of the message itself, not inferred from the `baseline_capture` marker;
+- the hedged Riverside Depot message (`might not happen`) is still `operational_process = goods_intake` — uncertainty about whether the goods movement completes is preserved in the fact/lifecycle fields, not by reclassifying `operational_process`.
+
+This case fails if any message is written as `logistics_information_intake`, if `baseline_capture = true` is written with no supporting wording in that specific message, if `operational_process = goods_intake` is asserted only because `baseline_capture = true` rather than independently supported by the goods content, or if hedged/uncertain wording is treated as a reason to reclassify concrete goods evidence.
+
+**Control — hedging without baseline capture**
+
+Make this its own separate top-level message, outside the thread(s) above, whose own wording establishes that the initial reconstruction is already complete and this is a new incremental update rather than baseline reconstruction:
+
+```text
+CONTROLLED TEST. The initial reconstruction of the current Logistics picture is complete; this is a new incremental update. Test Org Delta says the pallets of tents might not be released this week after all, but the shipment is already on its way.
+```
+
+Mark this submission `controlled_test = true` and `synthetic_test_data = true` as the fixture's own declared provenance.
+
+Pass — read back and confirm:
+
+- `baseline_capture = false` appears only as the expected read-back outcome, inferred from the message's own "initial reconstruction is complete... new incremental update" wording — it is not written as an externally forced input value;
+- `operational_process = goods_intake` still applies — the message states a concrete goods progression (a shipment already under way) despite hedged/uncertain phrasing about whether the release completes as planned;
+- this control isolates hedging from `baseline_capture` as two independent variables: hedged phrasing alone, on a message that is not baseline reconstruction, still does not change `operational_process`.
+
+### Case B — correction to concrete goods evidence stays `goods_intake`
+
+The submission being corrected is the exact Case A top-level message reporting the Example Supplier tarpaulins pickup — the thread root identified in Case A — not a paraphrase of it. First submit an intervening update as a reply in that same thread:
+
+```text
+CONTROLLED TEST. Update: the Example Supplier pickup is now confirmed for Friday instead of Thursday.
+```
+
+Then, as a **threaded reply directly to the original Case A tarpaulins root message** (not to the intervening Friday-update reply), submit a correction that genuinely disagrees with it:
+
+```text
+CONTROLLED TEST. Correction: the Example Supplier pallets were tents, not tarpaulins.
+```
+
+Pass:
+
+- both the update and the correction preserve `operational_process = goods_intake`;
+- `submission_kind` (`update`, `correction`) is recorded independently and does not change `operational_process`;
+- `corrects_submission` on the correction links to the exact Case A tarpaulins thread-root submission — not the intervening Friday-update reply and not a paraphrased "fact" — using the thread relationship to that root message as the identifying evidence, per the workflow's thread-context correction rule; the intervening update in the same thread must not cause the target to shift to it;
+- the correction genuinely disagrees with the targeted submission (tarpaulins vs. tents, same 2-pallet Example Supplier pickup) without altering `operational_process` on either submission.
+
+### Case C — `controlled_test` / `synthetic_test_data` never change the classification
+
+This is a no-write static resolution matrix, not an instruction to create any Airtable record and not an instruction to submit fictional content as if it were genuine. Trace all four `controlled_test` / `synthetic_test_data` combinations against the same abstract concrete-goods semantics — for example, "Example Supplier is arranging pickup of 3 pallets of tarpaulins for delivery to DCA" — without submitting anything:
+
+| `controlled_test` | `synthetic_test_data` | Content genuineness | `operational_process` |
+|---|---|---|---|
+| `true` | `true` | fictional | `goods_intake` |
+| `false` | `true` | fictional | `goods_intake` |
+| `true` | `false` | genuine | `goods_intake` |
+| `false` | `false` | genuine | `goods_intake` |
+
+Pass:
+
+- all four rows resolve to `operational_process = goods_intake` for the same abstract concrete-goods content;
+- this matrix is a reasoning trace only — it creates no `Logistics_Intake_Submissions`, `Logistics_Intake_Facts`, or `Logistics_Intake_Operational_References` record, and does not relabel fictional evidence as genuine: the two `synthetic_test_data = false` rows describe evidence that is actually genuine, not fictional content with the marker flipped;
+- neither `controlled_test` nor `synthetic_test_data`, alone or in any combination, changes `operational_process` for otherwise identical concrete-goods content.
+
+The two `controlled_test = false` rows stay part of the static trace only — they are valid classifications for a combination that could arise naturally outside a controlled test, not something to actually execute live in this regression run. Any fixture that is actually run live here is, by definition, being actively tested/observed, so it must carry `controlled_test = true`.
+
+What may actually be run live in this regression run is restricted to exactly the two `controlled_test = true` rows, and nothing else:
+
+- **synthetic controlled fixture** — `controlled_test = true`, `synthetic_test_data = true`: created, marked, and cleaned up per the normal synthetic-fixture rules;
+- **genuinely supplied evidence under controlled observation** — `controlled_test = true`, `synthetic_test_data = false`: requires genuinely supplied real operational evidence (its content recorded in execution notes only, not in this permanent test design) and must be its own distinct submission with its own ID.
+
+A live control must never reuse a fictional fixture's content or ID with `synthetic_test_data` merely flipped to `false`.
+
+### Case D — context-only Logistics information stays `logistics_information_intake`
+
+Submit, using a name that is itself unmistakably synthetic (never a real DCA person):
+
+```text
+CONTROLLED TEST. Nora Test is the person to call when a truck arrives at the warehouse.
+Transport updates for the current cycle come in by WhatsApp rather than email.
+```
+
+Pass:
+
+- `operational_process = logistics_information_intake`;
+- no concrete goods offer, expectation, pickup/delivery arrangement, incoming notice, or warehouse state is present in the submission, so `goods_intake` is not used;
+- the operational references (Nora Test, the WhatsApp route) are still preserved as `Logistics_Intake_Operational_References` per the normal reference rules; only `operational_process` is at issue in this case.
+
+Pass condition for this section: all four cases classify `operational_process` correctly, and no combination of `baseline_capture`, `controlled_test`, `synthetic_test_data`, or `submission_kind` changes that classification for otherwise identical goods content.
+
 ## Deliberately parked
 
 Not part of this 0.6.0 regression gate unless separately requested:
@@ -275,7 +380,7 @@ Not part of this 0.6.0 regression gate unless separately requested:
 
 0.6.0 passes only when:
 
-- all seven demonstrated defects are absent across the targeted invariant tests;
+- the targeted invariant tests confirm no regression across: the seven originally demonstrated defects, plus the `operational_process` classification section added in this PR;
 - positive controls show that valid direction, pickup semantics, and supported quantity normalization still work;
 - write scope stays inside the three Logistics staging tables;
 - canonical Relationship Data is not mutated by mixed Logistics intake;
