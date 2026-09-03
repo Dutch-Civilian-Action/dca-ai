@@ -289,13 +289,13 @@ This case fails if any message is written as `logistics_information_intake`, if 
 
 ### Case B — correction to concrete goods evidence stays `goods_intake`
 
-The Example Supplier pickup fact from Case A states `tarpaulins`. Using it as the parent, submit an update and then a genuinely conflicting correction to the same shipment:
+The submission being corrected is the exact Case A message reporting the Example Supplier tarpaulins pickup (`CONTROLLED TEST. Pickup of 2 pallets of tarpaulins from Example Supplier is arranged for Thursday.`), not a paraphrase of it. First submit an intervening update in the same thread:
 
 ```text
 CONTROLLED TEST. Update: the Example Supplier pickup is now confirmed for Friday instead of Thursday.
 ```
 
-Then, as a correction:
+Then, as a **threaded reply directly to the original Case A tarpaulins message** (not to the intervening Friday-update message), submit a correction that genuinely disagrees with it:
 
 ```text
 CONTROLLED TEST. Correction: the Example Supplier pallets were tents, not tarpaulins.
@@ -305,23 +305,39 @@ Pass:
 
 - both the update and the correction preserve `operational_process = goods_intake`;
 - `submission_kind` (`update`, `correction`) is recorded independently and does not change `operational_process`;
-- the correction is linked via `corrects_submission` to the same Example Supplier pickup fact — identifiable by organisation, quantity, and pickup arrangement — per the normal correction rules, and genuinely disagrees with the prior evidence (tarpaulins vs. tents, for the same 2-pallet Example Supplier pickup) without altering `operational_process` on either submission.
+- `corrects_submission` on the correction links to the exact Case A tarpaulins pickup submission — not the intervening Friday-update submission and not a paraphrased "fact" — using the thread relationship to that original message as the identifying evidence, per the workflow's thread-context correction rule; the intervening update in the same thread must not cause the target to shift to it;
+- the correction genuinely disagrees with the targeted submission (tarpaulins vs. tents, same 2-pallet Example Supplier pickup) without altering `operational_process` on either submission.
 
 ### Case C — `controlled_test` / `synthetic_test_data` never change the classification
 
-Submit the same concrete-goods content once with `controlled_test = true, synthetic_test_data = true` (fictional fixture) and once conceptually as genuine evidence processed during a controlled run (`controlled_test = true, synthetic_test_data = false`, using execution-notes-only real content if a live positive control is run).
+This is a static paired resolution trace, not an instruction to submit fictional content as if it were genuine. Compare two separately created synthetic fixtures with identical concrete-goods semantics, where only the `controlled_test` marker differs between them:
+
+Fixture 1 — `controlled_test = true`, `synthetic_test_data = true`:
+
+```text
+CONTROLLED TEST. Example Supplier is arranging pickup of 3 pallets of tarpaulins for delivery to DCA.
+```
+
+Fixture 2 — `controlled_test = false`, `synthetic_test_data = true`, otherwise identical concrete-goods content:
+
+```text
+Example Supplier is arranging pickup of 3 pallets of tarpaulins for delivery to DCA.
+```
 
 Pass:
 
-- `operational_process = goods_intake` in both cases;
-- flipping either `controlled_test` or `synthetic_test_data` produces no change in `operational_process` for otherwise identical goods content.
+- `operational_process = goods_intake` for both fixtures;
+- toggling `controlled_test` between the two otherwise-identical fictional fixtures produces no change in `operational_process`;
+- both fixtures keep `synthetic_test_data = true` throughout — neither is relabelled as genuine by flipping a marker on the same fictional content.
+
+A separate, optional **live positive control** — confirming that genuine operator evidence processed during a controlled run (`controlled_test = true`, `synthetic_test_data = false`) still classifies as `goods_intake` — must use genuinely supplied real operational evidence (its content recorded in execution notes only, not in this permanent test design) and must be run and recorded as its own distinct case with its own submission ID. It must never reuse Fixture 1's or Fixture 2's fictional content or ID with `synthetic_test_data` merely flipped to `false`.
 
 ### Case D — context-only Logistics information stays `logistics_information_intake`
 
-Submit:
+Submit, using a clearly synthetic name (never a real DCA person):
 
 ```text
-CONTROLLED TEST. Kees is the person to call when a truck arrives at the warehouse.
+CONTROLLED TEST. Nora is the person to call when a truck arrives at the warehouse.
 Transport updates for the current cycle come in by WhatsApp rather than email.
 ```
 
@@ -329,7 +345,7 @@ Pass:
 
 - `operational_process = logistics_information_intake`;
 - no concrete goods offer, expectation, pickup/delivery arrangement, incoming notice, or warehouse state is present in the submission, so `goods_intake` is not used;
-- the operational references (Kees, the WhatsApp route) are still preserved as `Logistics_Intake_Operational_References` per the normal reference rules; only `operational_process` is at issue in this case.
+- the operational references (Nora, the WhatsApp route) are still preserved as `Logistics_Intake_Operational_References` per the normal reference rules; only `operational_process` is at issue in this case.
 
 Pass condition for this section: all four cases classify `operational_process` correctly, and no combination of `baseline_capture`, `controlled_test`, `synthetic_test_data`, or `submission_kind` changes that classification for otherwise identical goods content.
 
