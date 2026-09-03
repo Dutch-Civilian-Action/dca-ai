@@ -31,7 +31,8 @@ For every regression that writes data:
    - `Logistics_Intake_Facts`;
    - `Logistics_Intake_Operational_References`;
 4. when canonical Relationship Data is read for identity context, compare the relevant canonical records before/after and confirm no canonical mutation occurred;
-5. preserve uncertainty and do not invent unsupported schema values merely to make the test pass.
+5. preserve uncertainty and do not invent unsupported schema values merely to make the test pass;
+6. write `controlled_test = true` and `synthetic_test_data = true` for every fictional fixture, and verify that synthetic records are excluded from operational search-before-create, matching, current-goods answers, warehouse-inventory answers, and promotion.
 
 A write-boundary failure or canonical Relationship Data mutation fails the regression run even when the target staging records look correct.
 
@@ -239,10 +240,18 @@ Send an otherwise ordinary synthetic Logistics submission prefixed with `CONTROL
 
 Pass:
 
-- `controlled_test = true` is preserved as provenance/test metadata;
-- the operational interpretation is the same as it would be without the marker;
-- the ordinary completion message reports the operational result and does not volunteer placeholder/test-data commentary merely because the marker is present;
-- implementation/test mechanics appear only when the user explicitly asks for them.
+- `controlled_test = true` is preserved as processing-test metadata;
+- `synthetic_test_data = true` is preserved separately because this fixture is fictional;
+- the operational interpretation is the same as it would be without either marker;
+- the ordinary completion message reports the operational result and does not volunteer placeholder/test-data commentary merely because either marker is present;
+- implementation/test mechanics appear only when the user explicitly asks for them;
+- cleanup uses the fixture's exact record IDs rather than every record with `controlled_test = true`.
+
+Paired genuine-evidence control:
+
+- when genuine operator evidence is processed while the capability is deliberately being observed, write `controlled_test = true` and `synthetic_test_data = false`;
+- the genuine evidence remains eligible for operational reconstruction;
+- no synthetic fact may be selected as its match, predecessor, or current warehouse state.
 
 ## Non-regression — passing 0.5.0 semantics
 
@@ -270,6 +279,7 @@ Not part of this 0.6.0 regression gate unless separately requested:
 - positive controls show that valid direction, pickup semantics, and supported quantity normalization still work;
 - write scope stays inside the three Logistics staging tables;
 - canonical Relationship Data is not mutated by mixed Logistics intake;
-- `controlled_test` remains operator-language neutral;
+- `controlled_test` remains operator-language neutral and independent from `synthetic_test_data`;
+- synthetic fixtures remain excluded from operational matching and are removed by exact ID after audit;
 - previously passing correction, uncertainty, carry-over, Direct Transit, and warehouse-exit behaviour does not regress;
 - the separate realistic acceptance-case layer also passes before operational acceptance is declared.

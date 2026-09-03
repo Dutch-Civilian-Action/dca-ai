@@ -17,7 +17,7 @@ The invariant regression suite in `logistics-intake-0.6.0-regressions.md` isolat
 
 These cases are derived from real Logistics-channel patterns, but permanent fixtures use synthetic names, routes, locations, and quantities. Do not commit live canonical IDs, phone numbers, partner identities, addresses, or controlled-run Airtable record IDs here. Record execution-specific IDs only in temporary execution notes.
 
-Use explicit `@Claude` invocation in `#logistics`. Apply the same cross-cutting write-boundary, canonical non-mutation, provenance, and read-back checks as the regression suite.
+Use explicit `@Claude` invocation in `#logistics`. Apply the same cross-cutting write-boundary, canonical non-mutation, provenance, and read-back checks as the regression suite. Every permanent case in this file is fictional, so every written submission must carry `controlled_test = true` and `synthetic_test_data = true`.
 
 ## Why keep both layers
 
@@ -94,7 +94,8 @@ walking frames  7         in warehouse now
 - the step-specific WhatsApp route is not promoted to a general canonical contact route;
 - Petra's intermediary context can be preserved without manufacturing a goods fact;
 - no canonical Relationship Data record is mutated;
-- `controlled_test` does not change the ordinary operational confirmation language.
+- `controlled_test` does not change the ordinary operational confirmation language;
+- `synthetic_test_data = true`, and none of the case's records is eligible as a match or predecessor for genuine operational evidence.
 
 This case should remain difficult. It is specifically meant to expose behaviour that passes isolated rules but fails under batch load.
 
@@ -336,6 +337,7 @@ This is intentionally a historical-realism test: it checks whether Claude can pr
 - Preserve exact controlled-run Airtable record IDs until the run is fully audited and accepted.
 - Do not delete standing evidence from a previous acceptance run before the replacement regression/acceptance run is complete when that evidence is still being used to verify a previously passing behaviour.
 - Cleanup controlled synthetic records by exact ID after the complete run and audit, never by a broad `controlled_test = true` filter.
+- Verify that each synthetic submission has `synthetic_test_data = true`, and that no fact or operational reference supported only by a synthetic submission remains in live staging.
 
 ## Acceptance condition
 
