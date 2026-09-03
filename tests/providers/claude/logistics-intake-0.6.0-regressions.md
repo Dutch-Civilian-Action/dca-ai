@@ -266,30 +266,30 @@ The regression run must also preserve previously passing behaviour:
 
 ## Non-regression — `operational_process` derives only from concrete goods progression
 
-Retest the production classification defect found in `Logistics_Intake_Submissions` (six live records misclassified as `logistics_information_intake`). In every case the submission was concrete goods evidence, but hedged/uncertain phrasing on the goods state appears to have been read as a signal to reclassify it.
+Retest the production classification pattern observed in `Logistics_Intake_Submissions`: six live records were misclassified as `logistics_information_intake`. The only established common factor across all six is `baseline_capture = true`. Some of the six also contained hedged/uncertain phrasing on the goods state, but no cue has been established as the actual cause of the runtime failure — test both factors independently rather than assuming which one caused the defect.
 
-### Case A — baseline concrete-goods states, including hedged phrasing
+### Case A — initial baseline reconstruction of concrete goods states, including hedged phrasing
 
-Submit each of the following as separate synthetic messages:
+Submit each of the following as part of an initial reconstruction of the current Logistics picture — i.e. supplied with `baseline_capture = true` rather than as ordinary incremental new information:
 
 ```text
 CONTROLLED TEST. Northstar Aid has offered 4 pallets of blankets.
 CONTROLLED TEST. We are expecting 3 boxes of hygiene kits from Riverside Depot, but it might not happen.
-CONTROLLED TEST. Pickup of 2 pallets of tents from Example Supplier is arranged for Thursday.
+CONTROLLED TEST. Pickup of 2 pallets of tarpaulins from Example Supplier is arranged for Thursday.
 CONTROLLED TEST. 6 walking frames are in the warehouse now.
 ```
 
-Pass for every message:
+Pass for every message — read back and confirm as two separate assertions, neither substituting for the other:
 
-- `operational_process = goods_intake`;
-- the hedged Riverside Depot message (`might not happen`) is still `goods_intake` — uncertainty about whether the goods movement completes is preserved in the fact/lifecycle fields, not by reclassifying `operational_process`;
-- `baseline_capture`, `controlled_test`, and `synthetic_test_data` are set according to their own independent rules and do not influence `operational_process`.
+- `baseline_capture = true` is recorded, because each message is submitted as part of an initial reconstruction;
+- `operational_process = goods_intake` is independently derived from the concrete goods content of the message itself, not inferred from the `baseline_capture` marker;
+- the hedged Riverside Depot message (`might not happen`) is still `operational_process = goods_intake` — uncertainty about whether the goods movement completes is preserved in the fact/lifecycle fields, not by reclassifying `operational_process`.
 
-This case fails if any message is written as `logistics_information_intake`, or if hedged/uncertain wording is treated as evidence that the submission is not concrete goods evidence.
+This case fails if any message is written as `logistics_information_intake`, if `operational_process = goods_intake` is asserted only because `baseline_capture = true` rather than independently supported by the goods content, or if hedged/uncertain wording is treated as a reason to reclassify concrete goods evidence.
 
-### Case B — update/correction to concrete goods evidence stays `goods_intake`
+### Case B — correction to concrete goods evidence stays `goods_intake`
 
-Using the Case A pickup-arranged fact as the parent:
+The Example Supplier pickup fact from Case A states `tarpaulins`. Using it as the parent, submit an update and then a genuinely conflicting correction to the same shipment:
 
 ```text
 CONTROLLED TEST. Update: the Example Supplier pickup is now confirmed for Friday instead of Thursday.
@@ -305,7 +305,7 @@ Pass:
 
 - both the update and the correction preserve `operational_process = goods_intake`;
 - `submission_kind` (`update`, `correction`) is recorded independently and does not change `operational_process`;
-- the correction is linked via `corrects_submission` per the normal correction rules without altering `operational_process` on either submission.
+- the correction is linked via `corrects_submission` to the same Example Supplier pickup fact — identifiable by organisation, quantity, and pickup arrangement — per the normal correction rules, and genuinely disagrees with the prior evidence (tarpaulins vs. tents, for the same 2-pallet Example Supplier pickup) without altering `operational_process` on either submission.
 
 ### Case C — `controlled_test` / `synthetic_test_data` never change the classification
 
