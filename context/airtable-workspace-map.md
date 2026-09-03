@@ -5,7 +5,7 @@ scope: all_dca_ai
 provider_independent: true
 ---
 
-# DCA Airtable Workspace & Base Identity Map
+# Airtable Workspace & Base Identity Map
 
 ## Purpose
 
@@ -15,7 +15,7 @@ Resolve an Airtable destination by **workspace + base identity**, never by name 
 
 If this file is unavailable or a required base ID has not been recorded here, preserve that access/configuration gap rather than resolving the destination by name resemblance.
 
-## Production workspace: "DCA Airtable"
+## Production workspace: "DCA"
 
 Only the following five bases are current production bases. A capability doing production work must resolve to one of these, by base ID where recorded, otherwise by this unambiguous workspace-qualified name.
 
@@ -29,19 +29,34 @@ Only the following five bases are current production bases. A capability doing p
 
 A base ID recorded above as "not yet recorded here" is a gap, not a license to guess one from the base name. Fill it in only from a direct, verified read of the live production workspace.
 
-## Non-production workspace: "DCA Dev/Test" — never selectable for production routing
+## Non-production workspace: "DCA Dev/Test"
 
-These bases exist in a separate, non-production workspace. They must **never** be selected as the destination for a production routing request, even when a name closely resembles a production base:
+These bases exist in a separate, non-production workspace. None of them is ever a valid destination for new production writes, but one of them is a legitimate legacy source under specific conditions — see the two subsections below.
+
+### Never selectable — not a destination, not a source
+
+These bases must **never** be selected as the destination for a production routing request, and are not treated as a legacy source either — they are test/scaffolding data, not historical operational fact:
 
 - `[LEGACY] DCA Promotion Pipelines & Workflows`
 - `[TEST] 2 | DCA Relationships & Workflows`
 - `MIGRATING LOGISTICS | DCA System — Shared Structure testing`
 - `3 | DCA Logistics`
-- `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing`
 - `Bug tracker`
 - `SOP Template`
 
 `3 | DCA Logistics` in particular must never be confused with the production `DCA Logistics` base above. Same/overlapping words, different workspace, different base — resolve by workspace + base identity, not by substring or fuzzy match on "DCA Logistics".
+
+### Non-production, but a legitimate legacy source when explicitly requested
+
+- `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing`
+
+This base is different from the rest of `DCA Dev/Test`:
+
+- it is **never** a destination for new production writes, exactly like every other `DCA Dev/Test` base;
+- it **is** a legitimate legacy active-data source, but only when a human explicitly requests migration, reconstruction, or reconciliation work that references it — do not read it, cite it, or fold its contents into current operational answers on your own initiative, and do not treat it as interchangeable with the current `DCA Logistics` production base;
+- it must not be globally dismissed as irrelevant test data — its content is legacy operational history, not a scaffolding fixture, and remains available as evidence for the kind of bounded reconstruction/reconciliation work described in `workflows/capture-logistics-intake.md` and the Reconstruction & Reconciliation Method, when a human directs that work at it by name.
+
+Do not extend this legacy-source treatment to any other `DCA Dev/Test` base without an explicit correction from a human authority — it applies to this one named base only.
 
 ## Do not confuse: Integrations & Reconciliation vs. canonical Logistics
 
@@ -53,7 +68,7 @@ These bases exist in a separate, non-production workspace. They must **never** b
 
 When any capability, workflow, plugin, or skill needs to resolve an Airtable destination:
 
-1. Identify the workspace first: production `DCA Airtable` or non-production `DCA Dev/Test`. Never select a `DCA Dev/Test` base for production work.
+1. Identify the workspace first: production `DCA` or non-production `DCA Dev/Test`. Never select a `DCA Dev/Test` base for production work.
 2. Within the correct workspace, identify the base by its recorded base ID when one is recorded above; otherwise use the exact, unambiguous workspace-qualified name from the table above.
 3. Never resolve by fuzzy/substring name match, text search ranking, or resemblance to a previously used base name. A match on "DCA Logistics" text must not return `3 | DCA Logistics` or any other `DCA Dev/Test` base.
 4. If the correct base's ID is not yet recorded here, treat that as a configuration gap: ask for it or flag it, rather than guessing from the name.

@@ -11,7 +11,7 @@ This plugin does not define Logistics architecture, Operational Reality, final c
 
 Current pilot storage:
 
-- Airtable base: `DCA Integrations & Reconciliation` (production workspace `DCA Airtable`; see `../../context/airtable-workspace-map.md` for its recorded base ID and to confirm this identity — do not resolve it by name search)
+- Airtable base: `DCA Integrations & Reconciliation` (production workspace `DCA`; see `../../context/airtable-workspace-map.md` for its recorded base ID and to confirm this identity — do not resolve it by name search)
 - `Logistics_Intake_Submissions`
 - `Logistics_Intake_Facts`
 - `Logistics_Intake_Operational_References`

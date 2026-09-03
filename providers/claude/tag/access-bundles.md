@@ -85,7 +85,7 @@ The Airtable plugin provides generic Airtable operations. The DCA Relationship D
 
 **Credentials:**
 
-- Airtable Agent Identity restricted at the base level to `DCA Integrations & Reconciliation` only (production workspace `DCA Airtable`; see `dca-ai/context/airtable-workspace-map.md` for the current recorded base identity — resolve by workspace + base identity, never by name search). The current Airtable implementation does not support restricting a single identity to specific tables within a base, so this identity can read/write any table in that base, not only the three Logistics intake staging tables. Table-level restriction is not a credential control here and must not be described as one anywhere in this repository.
+- Airtable Agent Identity restricted at the base level to `DCA Integrations & Reconciliation` only (production workspace `DCA`; see `dca-ai/context/airtable-workspace-map.md` for the current recorded base identity — resolve by workspace + base identity, never by name search). The current Airtable implementation does not support restricting a single identity to specific tables within a base, so this identity can read/write any table in that base, not only the three Logistics intake staging tables. Table-level restriction is not a credential control here and must not be described as one anywhere in this repository.
 - The write boundary to only the three Logistics intake staging tables is therefore enforced procedurally at runtime by the skill/workflow rules, not by the credential:
   - `Logistics_Intake_Submissions`
   - `Logistics_Intake_Facts`
