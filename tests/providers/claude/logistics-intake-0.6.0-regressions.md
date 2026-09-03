@@ -310,27 +310,26 @@ Pass:
 
 ### Case C — `controlled_test` / `synthetic_test_data` never change the classification
 
-This is a static paired resolution trace, not an instruction to submit fictional content as if it were genuine. Compare two separately created synthetic fixtures with identical concrete-goods semantics, where only the `controlled_test` marker differs between them:
+This is a no-write static resolution matrix, not an instruction to create any Airtable record and not an instruction to submit fictional content as if it were genuine. Trace all four `controlled_test` / `synthetic_test_data` combinations against the same abstract concrete-goods semantics — for example, "Example Supplier is arranging pickup of 3 pallets of tarpaulins for delivery to DCA" — without submitting anything:
 
-Fixture 1 — `controlled_test = true`, `synthetic_test_data = true`:
-
-```text
-CONTROLLED TEST. Example Supplier is arranging pickup of 3 pallets of tarpaulins for delivery to DCA.
-```
-
-Fixture 2 — `controlled_test = false`, `synthetic_test_data = true`, otherwise identical concrete-goods content:
-
-```text
-Example Supplier is arranging pickup of 3 pallets of tarpaulins for delivery to DCA.
-```
+| `controlled_test` | `synthetic_test_data` | Content genuineness | `operational_process` |
+|---|---|---|---|
+| `true` | `true` | fictional | `goods_intake` |
+| `false` | `true` | fictional | `goods_intake` |
+| `true` | `false` | genuine | `goods_intake` |
+| `false` | `false` | genuine | `goods_intake` |
 
 Pass:
 
-- `operational_process = goods_intake` for both fixtures;
-- toggling `controlled_test` between the two otherwise-identical fictional fixtures produces no change in `operational_process`;
-- both fixtures keep `synthetic_test_data = true` throughout — neither is relabelled as genuine by flipping a marker on the same fictional content.
+- all four rows resolve to `operational_process = goods_intake` for the same abstract concrete-goods content;
+- this matrix is a reasoning trace only — it creates no `Logistics_Intake_Submissions`, `Logistics_Intake_Facts`, or `Logistics_Intake_Operational_References` record, and does not relabel fictional evidence as genuine: the two `synthetic_test_data = false` rows describe evidence that is actually genuine, not fictional content with the marker flipped;
+- neither `controlled_test` nor `synthetic_test_data`, alone or in any combination, changes `operational_process` for otherwise identical concrete-goods content.
 
-A separate, optional **live positive control** — confirming that genuine operator evidence processed during a controlled run (`controlled_test = true`, `synthetic_test_data = false`) still classifies as `goods_intake` — must use genuinely supplied real operational evidence (its content recorded in execution notes only, not in this permanent test design) and must be run and recorded as its own distinct case with its own submission ID. It must never reuse Fixture 1's or Fixture 2's fictional content or ID with `synthetic_test_data` merely flipped to `false`.
+If a live positive control is actually run to confirm this matrix against real system behaviour, keep the write boundary intact and do not let it blur into the matrix above:
+
+- a live `synthetic_test_data = true` fixture (either `controlled_test` value) is a genuine fictional fixture — created, marked, and cleaned up per the normal synthetic-fixture rules;
+- a live `synthetic_test_data = false` control requires genuinely supplied real operational evidence (its content recorded in execution notes only, not in this permanent test design) and must be its own distinct submission with its own ID;
+- a live control must never reuse a fictional fixture's content or ID with `synthetic_test_data` merely flipped to `false`.
 
 ### Case D — context-only Logistics information stays `logistics_information_intake`
 
