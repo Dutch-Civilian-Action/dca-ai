@@ -270,56 +270,50 @@ Retest the production classification pattern observed in `Logistics_Intake_Submi
 
 ### Case A — initial baseline reconstruction of concrete goods states, including hedged phrasing
 
-Before the four messages below, post a separate setup/context turn in the same conversation that explicitly establishes the initial-reconstruction framing:
+There is no separate setup/context turn. Submit each of the following as its own separate top-level Slack message, where the message's own ordinary wording establishes that it is part of the initial reconstruction of the current Logistics picture, so that `baseline_capture = true` is grounded per-submission rather than by an external framing message:
 
 ```text
-CONTROLLED TEST. The following messages are an initial reconstruction of the current Logistics picture.
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: Northstar Aid has offered 4 pallets of blankets.
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: we are expecting 3 boxes of hygiene kits from Riverside Depot, but it might not happen.
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: pickup of 2 pallets of tarpaulins from Example Supplier is arranged for Thursday.
+CONTROLLED TEST. As part of the initial reconstruction of the current Logistics picture: 6 walking frames are in the warehouse now.
 ```
 
-Then, in that same conversational context, submit each of the following:
-
-```text
-CONTROLLED TEST. Northstar Aid has offered 4 pallets of blankets.
-CONTROLLED TEST. We are expecting 3 boxes of hygiene kits from Riverside Depot, but it might not happen.
-CONTROLLED TEST. Pickup of 2 pallets of tarpaulins from Example Supplier is arranged for Thursday.
-CONTROLLED TEST. 6 walking frames are in the warehouse now.
-```
-
-`baseline_capture = true` must be inferred from the explicit initial-reconstruction context established by the setup turn, then confirmed by read-back on each submission — not simply asserted as a field value with no conversational grounding.
+The third message (the Example Supplier tarpaulins pickup) becomes the **thread root used in Case B**: Case B's update and correction are posted as replies within that same thread, with the correction targeting this root submission.
 
 Pass for every message — read back and confirm as two separate assertions, neither substituting for the other:
 
-- `baseline_capture = true` is recorded, inferred from the conversational initial-reconstruction context established by the setup turn rather than asserted with no grounding;
+- `baseline_capture = true` is recorded, inferred from that message's own "as part of the initial reconstruction…" wording, not from any external setup turn and not asserted with no grounding;
 - `operational_process = goods_intake` is independently derived from the concrete goods content of the message itself, not inferred from the `baseline_capture` marker;
 - the hedged Riverside Depot message (`might not happen`) is still `operational_process = goods_intake` — uncertainty about whether the goods movement completes is preserved in the fact/lifecycle fields, not by reclassifying `operational_process`.
 
-This case fails if any message is written as `logistics_information_intake`, if `baseline_capture = true` is written with no supporting conversational context, if `operational_process = goods_intake` is asserted only because `baseline_capture = true` rather than independently supported by the goods content, or if hedged/uncertain wording is treated as a reason to reclassify concrete goods evidence.
+This case fails if any message is written as `logistics_information_intake`, if `baseline_capture = true` is written with no supporting wording in that specific message, if `operational_process = goods_intake` is asserted only because `baseline_capture = true` rather than independently supported by the goods content, or if hedged/uncertain wording is treated as a reason to reclassify concrete goods evidence.
 
 **Control — hedging without baseline capture**
 
-Outside the initial-reconstruction context above, as a separate, ordinary incremental submission carrying no baseline-reconstruction framing, submit:
+Make this its own separate top-level message, outside the thread(s) above, whose own wording establishes that the initial reconstruction is already complete and this is a new incremental update rather than baseline reconstruction:
 
 ```text
-CONTROLLED TEST. Test Org Delta says the pallets of tents might not be released this week after all, but the shipment is already on its way.
+CONTROLLED TEST. The initial reconstruction of the current Logistics picture is complete; this is a new incremental update. Test Org Delta says the pallets of tents might not be released this week after all, but the shipment is already on its way.
 ```
 
-with `baseline_capture = false`, `controlled_test = true`, `synthetic_test_data = true`.
+Mark this submission `controlled_test = true` and `synthetic_test_data = true` as the fixture's own declared provenance.
 
-Pass:
+Pass — read back and confirm:
 
-- `baseline_capture = false` is recorded, because this message carries no initial-reconstruction framing;
+- `baseline_capture = false` appears only as the expected read-back outcome, inferred from the message's own "initial reconstruction is complete... new incremental update" wording — it is not written as an externally forced input value;
 - `operational_process = goods_intake` still applies — the message states a concrete goods progression (a shipment already under way) despite hedged/uncertain phrasing about whether the release completes as planned;
-- this control isolates hedging from `baseline_capture` as two independent variables: hedged phrasing alone, combined with `baseline_capture = false`, still does not change `operational_process`.
+- this control isolates hedging from `baseline_capture` as two independent variables: hedged phrasing alone, on a message that is not baseline reconstruction, still does not change `operational_process`.
 
 ### Case B — correction to concrete goods evidence stays `goods_intake`
 
-The submission being corrected is the exact Case A message reporting the Example Supplier tarpaulins pickup (`CONTROLLED TEST. Pickup of 2 pallets of tarpaulins from Example Supplier is arranged for Thursday.`), not a paraphrase of it. First submit an intervening update in the same thread:
+The submission being corrected is the exact Case A top-level message reporting the Example Supplier tarpaulins pickup — the thread root identified in Case A — not a paraphrase of it. First submit an intervening update as a reply in that same thread:
 
 ```text
 CONTROLLED TEST. Update: the Example Supplier pickup is now confirmed for Friday instead of Thursday.
 ```
 
-Then, as a **threaded reply directly to the original Case A tarpaulins message** (not to the intervening Friday-update message), submit a correction that genuinely disagrees with it:
+Then, as a **threaded reply directly to the original Case A tarpaulins root message** (not to the intervening Friday-update reply), submit a correction that genuinely disagrees with it:
 
 ```text
 CONTROLLED TEST. Correction: the Example Supplier pallets were tents, not tarpaulins.
@@ -329,7 +323,7 @@ Pass:
 
 - both the update and the correction preserve `operational_process = goods_intake`;
 - `submission_kind` (`update`, `correction`) is recorded independently and does not change `operational_process`;
-- `corrects_submission` on the correction links to the exact Case A tarpaulins pickup submission — not the intervening Friday-update submission and not a paraphrased "fact" — using the thread relationship to that original message as the identifying evidence, per the workflow's thread-context correction rule; the intervening update in the same thread must not cause the target to shift to it;
+- `corrects_submission` on the correction links to the exact Case A tarpaulins thread-root submission — not the intervening Friday-update reply and not a paraphrased "fact" — using the thread relationship to that root message as the identifying evidence, per the workflow's thread-context correction rule; the intervening update in the same thread must not cause the target to shift to it;
 - the correction genuinely disagrees with the targeted submission (tarpaulins vs. tents, same 2-pallet Example Supplier pickup) without altering `operational_process` on either submission.
 
 ### Case C — `controlled_test` / `synthetic_test_data` never change the classification
