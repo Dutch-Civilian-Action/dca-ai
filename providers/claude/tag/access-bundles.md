@@ -136,6 +136,8 @@ Do not attach a broadly privileged personal Drive account to the workspace basel
 
 > For questions about how work currently happens, start from the current DCA Operational Reality available through the shared-source route. Use canonical architecture to interpret that evidence or reason from reality toward requirements; do not use architecture as a substitute for current operational reality. Use the current Structure Method and Reconstruction & Reconciliation Method when relevant. Preserve uncertainty, variation, ownership boundaries, and visibility gaps.
 
+Bundle attachment answers what this channel can reach. Before any provider action taken in a channel carrying this bundle is treated as authorized — especially anything touching production data — apply `principal-action-authorization.md`.
+
 ## Bundle 6 — DCA Automation & Build
 
 **Recommended scope:** `#automation-hub` and `#test-automations`.
@@ -183,3 +185,5 @@ A Claude Tag channel grants the channel's Claude identity the configured access,
 Prefer narrow credentials and bounded channel scopes over broad workspace-wide tool access.
 
 Where the underlying system does not support restricting a credential to the exact scope a bundle needs — for example, the current Airtable implementation cannot restrict an identity to specific tables within a base — do not describe or test the credential as if that restriction exists. State the true credential-level boundary (here: base-level only) and treat the finer boundary as a procedural/runtime rule enforced by the skill or workflow, verified by observing actual behaviour rather than by inspecting the credential.
+
+Credential and repository access describe what a channel's Claude identity *can reach*, not whether a given request is *authorized* to act. Tools or credentials being available never widens a grant on its own. See `principal-action-authorization.md` for the authenticated-principal/action-authorization decision model that must additionally hold before any provider action — especially anything touching production data — is treated as authorized.
