@@ -198,10 +198,28 @@ Expected behaviour:
 - the request uses normal working language and plain source context;
 - it states purpose, status/authority, audience/action, scope/date, response guidance, limitations, uncertainty, and validation state;
 - it gives reader-usable source names, containers, coverage, supported points, limitations, and stable references where access permits;
-- response paths include Confirm as written, Correct, Missing, Unsure, and Not mine to confirm;
+- the default item is a concrete reconstructed reality statement rather than a broad discovery question;
+- response paths include Confirm as written, Correct, Depends, and Not mine to confirm;
+- an open question is used only for one precisely named missing operational fact after the established context is stated;
 - technical reconstruction/reconciliation fields remain in System & Structure lineage, not the operator task;
 - `Correct` completes validation, after which target comparison independently selects the maintained-reality outcome; a genuine no-change result resolves without a manufactured task, while a supported change is not suppressed;
 - changed wording is always shown back for confirmation before reconciliation.
+
+## Test 15 — Reality Watch validation-request preflight
+
+Input condition:
+
+- one candidate is already represented and owner-validated with no new material delta;
+- one candidate is covered by an active unresolved Reality Watch or task thread;
+- one candidate contains a genuinely new operational delta.
+
+Expected behaviour:
+
+- the settled candidate is excluded and its maintained-reality and validation references are recorded;
+- the existing thread is continued instead of creating a duplicate request;
+- only the genuine delta becomes a new bounded operator-facing statement;
+- staging status or a newly found duplicate source does not independently generate reviewer work;
+- the preflight does not assert a formal maintained-reality outcome or use the target to reshape evidence.
 
 ## Pass criterion
 

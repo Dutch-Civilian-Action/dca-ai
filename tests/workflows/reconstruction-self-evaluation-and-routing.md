@@ -22,8 +22,9 @@ Expected:
 
 - the packet states what it is and why review is needed, status/authority, audience/action, scope/time, how to respond, limitations, uncertainty, and validation state;
 - each material source is represented by a reader-usable name/title, platform and account/container, date/coverage, supported point, limitations, and stable reference where access permits; internal IDs are secondary;
-- questions concern what the person did, saw, decided, received, handed over, what varies, what happens now, examples, and record location;
-- response paths include **Confirm as written**, **Correct**, **Missing**, **Unsure**, and **Not mine to confirm**;
+- the default item is a concrete reconstructed reality statement concerning what the person did, saw, decided, received, handed over, what varies, or what happens now;
+- response paths include **Confirm as written**, **Correct**, **Depends**, and **Not mine to confirm**;
+- an open question appears only when one precisely named operational fact is missing, after the packet states what is already established;
 - the operator body does not expose Reconstruction Object, Evidence Link, epistemic/promotion, routing, target revision, persistence, architecture, or reconciliation mechanics.
 
 ## Test 2 — Establish task topology and assignments
@@ -92,6 +93,53 @@ Expected:
 - empty work is not assigned merely to satisfy the topology;
 - required reconstruction, validation, reconciliation, and use boundaries are not skipped.
 
+## Test 7 — already-settled claim is excluded
+
+Input:
+
+- a staging object is marked as needing owner validation;
+- current maintained Operational Reality already represents the same bounded meaning;
+- prior responsible-owner validation is traceable;
+- the reconstruction introduces no material delta.
+
+Expected:
+
+- the validation-request preflight records the maintained-reality and validation references;
+- the item is excluded from the operator packet and no reviewer task is created;
+- staging status alone does not override the settled lineage;
+- no formal maintained-reality comparison outcome is asserted by the preflight.
+
+## Test 8 — active validation thread is continued
+
+Input:
+
+- a reconstructed candidate touches an unresolved operational fact;
+- an active comment or task thread already asks the same bounded question;
+- the reconstruction contributes additional evidence or a narrower delta.
+
+Expected:
+
+- the existing thread is reused and receives the relevant evidence or precise delta;
+- no duplicate packet item, comment thread, or Asana task is created;
+- the prior established context is not re-asked;
+- the thread remains assigned only to a person who can know the operational fact.
+
+## Test 9 — genuine delta produces one bounded statement
+
+Input:
+
+- source-first reconstruction and self-evaluation are complete for a candidate;
+- current maintained reality and prior validation do not settle one material operational delta;
+- no active thread already covers it.
+
+Expected:
+
+- the operator receives one concrete reconstructed reality statement containing only the genuine delta;
+- response paths are **Confirm as written**, **Correct**, **Depends**, and **Not mine to confirm**;
+- an open question is used only if one precisely named fact cannot be stated from evidence;
+- architecture, schema, routing, promotion, and system-terminology decisions remain with System & Structure or live-use testing;
+- formal target comparison and persistence remain downstream of required validation.
+
 ## Pass criterion
 
-The workflow passes when operational people receive only understandable work-level validation, technical responsibilities remain with System & Structure, corrections make a confirmation round-trip, and no-change or non-ownership responses are handled without invented work.
+The workflow passes when settled claims are excluded, live validation threads are continued rather than duplicated, genuine deltas become bounded work-level statements, technical responsibilities remain with System & Structure, corrections make a confirmation round-trip, and no-change or non-ownership responses are handled without invented work.

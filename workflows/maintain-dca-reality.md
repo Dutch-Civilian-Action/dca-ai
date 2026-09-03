@@ -126,12 +126,15 @@ Preserve unresolved uncertainty when evidence does not support a conclusion.
 
 A finding may be prepared for human validation when its consequence or authority boundary requires it.
 
+Before creating a validation request, run the anti-duplication preflight defined in `workflows/reconstruction-self-evaluation-and-routing.md`: inspect current maintained Operational Reality, prior responsible-owner validation and correction lineage, existing validation tasks, and active unresolved comment/task threads for the same bounded meaning. Exclude an already represented and validated finding when there is no material delta, continue an existing live thread when it already covers the issue, and create a new item only for the genuine operational delta. This preflight prevents duplicate asks; it is not formal maintained-reality reconciliation and must not reshape the finding.
+
 Validation does not complete maintenance. After required validation, run `workflows/reconcile-established-findings-into-maintained-reality.md` to determine whether the finding is already represented, confirms, adds, corrects, qualifies, conflicts with, or belongs outside the maintained target. A change-bearing validation thread remains open until the supported target change is persisted and verified.
 
 When validation is requested from an operational person:
 
-- ask in normal working language about what they did, saw, decided, received, handed over, what varies, what currently happens, a concrete example, or where a record exists;
-- provide **Confirm as written**, **Correct**, **Missing**, **Unsure**, and **Not mine to confirm** as clear response paths;
+- present a concrete reconstructed reality statement in normal working language about what they did, saw, decided, received, handed over, what varies, or what currently happens;
+- provide **Confirm as written**, **Correct**, **Depends**, and **Not mine to confirm** as clear response paths;
+- use an open question only when one precisely named operational fact is missing, after stating what the evidence already establishes; do not turn validation into a new input round;
 - give the packet's purpose, status/authority boundary, intended audience/action, scope/date, response guidance, limitations, uncertainty, validation state, and the exact operational statement being checked;
 - identify each material source in reader-usable terms: name/title, platform and account/container, date/coverage, what it supports, limitations, and a stable reference where access permits; keep internal trace IDs secondary;
 - keep Reconstruction Object fields, evidence-link types, routing, promotion, target revisions, persistence, architecture, and other System & Structure mechanics out of the operator-facing request;
@@ -147,7 +150,7 @@ When bounded validation requires input from a particular person:
 
 - identify the person relevant to the specific fact, uncertainty, dependency, or work being validated;
 - resolve that person to the runtime's available communication identity when needed, for example a Slack user ID; do not require a hard-coded person-to-platform-ID mapping in this workflow;
-- place the validation question in the relevant Reality Watch thread when the validation belongs to a published Watch;
+- place the validation item in the relevant Reality Watch thread when the validation belongs to a published Watch;
 - contact the relevant person directly with a short reminder that points them to the validation request;
 - prefer a response in the Reality Watch thread so the confirmation, correction, or clarification remains visible and traceable;
 - allow a direct/private response when that is more appropriate or easier for the person;

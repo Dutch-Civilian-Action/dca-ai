@@ -33,6 +33,9 @@ RECONSTRUCTION SELF-EVALUATION
                 ↓
         what did we establish?
                 ↓
+        validation-request preflight
+        exclude settled / continue live thread / isolate delta
+                ↓
         human validation where required
                 ↓
         object classification + destination
@@ -250,7 +253,32 @@ For each candidate object, state:
 
 Do not turn an evidence-backed interpretation into organisational fact solely because the reconstruction is complete.
 
-## 5. Human validation gate
+## 5. Validation-request preflight
+
+After source-first reconstruction and self-evaluation have passed for a candidate, run a validation-request preflight before creating any reviewer packet, comment, or task.
+
+This is an anti-duplication check only. It is not the downstream maintained-reality reconciliation workflow, does not establish a comparison outcome, and must not be used as evidence or to make the reconstructed claim conform to the maintained target.
+
+For the same bounded operational meaning, inspect:
+
+- the current maintained Operational Reality;
+- prior responsible-owner validation and correction lineage;
+- prior review comments and replies;
+- existing validation tasks and their status;
+- active unresolved comment or task threads.
+
+Choose exactly one preflight outcome:
+
+1. **Exclude as settled** — when the meaning is already represented, responsible-owner validation exists, and the reconstruction introduces no material delta. Record the exclusion reason and the maintained-reality and validation references; do not ask the operator again.
+2. **Continue the existing thread** — when an active unresolved comment or task already covers the same bounded issue. Add the new evidence or precise delta to that thread; do not create a duplicate packet item or task.
+3. **Request only the genuine delta** — when the reconstruction adds, contradicts, narrows, or materially qualifies something not yet settled. Preserve the already-established context and ask the reviewer only about the new or changed operational meaning.
+4. **Keep with System & Structure or live-use testing** — when the unresolved matter is architecture, schema, field design, routing, promotion, system terminology, or another technical/design decision rather than an operational fact the reviewer directly knows.
+
+An unresolved validation status in reconstruction staging is not by itself a reason to ask a question. The preflight must trace the candidate to its maintained-reality, comment, reply, and task lineage before a reviewer action is generated.
+
+If current maintained reality conflicts with the reconstructed candidate, preserve the independent reconstructed claim and use the conflict only to bound the validation request. Formal comparison, target outcome classification, persistence, and verification remain downstream in `workflows/reconcile-established-findings-into-maintained-reality.md` after required validation.
+
+## 6. Human validation gate
 
 Request bounded human validation when authority, operational meaning, unresolved ambiguity, or consequence requires it.
 
@@ -270,7 +298,7 @@ Any correction becomes new evidence and must be reconciled back through the reco
 
 ### Operational validation interface
 
-When validation is assigned to an operational person, translate the candidate into normal working language. Ask only about matters the person can know through the work, such as:
+When validation is assigned to an operational person, translate the genuine delta into normal working language. The default validation item is a concrete reconstructed reality statement, not a broad discovery question. It should state the relevant scope or period and only the operational meaning this person can know through the work, such as:
 
 - what they did, saw, decided, received, handed over, or expected;
 - what currently happens;
@@ -278,7 +306,9 @@ When validation is assigned to an operational person, translate the candidate in
 - what is wrong, missing, or uncertain;
 - a concrete example and where a supporting record exists, if one exists.
 
-Offer clear response paths: **Confirm as written**, **Correct**, **Missing**, **Unsure**, and **Not mine to confirm**. Treat “Not mine to confirm” as routing evidence, not disagreement or rejection.
+Offer clear response paths: **Confirm as written**, **Correct**, **Depends**, and **Not mine to confirm**. Treat “Not mine to confirm” as routing evidence, not disagreement or rejection.
+
+Use an open question only when the evidence cannot support a declarative statement because one precisely named operational fact is missing. State what is already established, name the missing fact, and ask only for that fact. Do not turn a validation packet into a new input round.
 
 Do not expose `Reconstruction_Object`, `Evidence_Link`, epistemic or promotion fields, routing destinations, target revisions, persistence verification, architecture mechanics, or reconciliation terminology in the operational task. A platform name such as Asana, Airtable, Drive, or WhatsApp may appear only when it is part of the person's actual work or identifies a reader-usable source.
 
@@ -320,7 +350,7 @@ Assignment boundary:
 - do not assign an operational person a task whose description requires them to understand the reconstruction method, schemas, routing, promotion, or architecture;
 - link the Establish task into the relevant operational project when that makes the work visible in the person's normal project without moving technical subtasks into that person's operational responsibility.
 
-## 6. Object classification and destination
+## 7. Object classification and destination
 
 After sufficient reconstruction and any required validation, classify established organisational objects by their actual meaning and route them toward the appropriate maintained structure.
 
@@ -426,7 +456,7 @@ A procedure should become a governed Drive SOP only when evidence supports that 
 
 Do not turn observed operator judgement, one-off handling, a proposed procedure, or an obsolete document into a current SOP.
 
-## 7. Cross-domain objects
+## 8. Cross-domain objects
 
 One reconstructed object may have consequences in more than one maintained domain.
 
@@ -442,7 +472,7 @@ Examples:
 
 Preserve identity and relationships between objects while routing each maintained aspect to the appropriate authority/system.
 
-## 8. Promotion boundary
+## 9. Promotion boundary
 
 Routing recommendation is not promotion.
 
@@ -467,14 +497,14 @@ For every object ready for target assessment, the required next stage is:
 
 This workflow does not mark an object promoted. The maintained-reality workflow must record the comparison outcome, apply the target's own rules, persist any supported change, verify it, and write the downstream result back to the reconstruction lineage.
 
-## 9. Required handoff output
+## 10. Required handoff output
 
 At the end of a sufficiently complete reconstruction, produce a bounded handoff containing:
 
 1. self-evaluation result;
 2. material coverage gaps;
 3. established objects;
-4. objects needing human validation;
+4. validation-request preflight outcomes, including settled exclusions, continued live threads, and genuine deltas needing human validation;
 5. classification and proposed destination for established objects;
 6. cross-domain relationships;
 7. objects ready for promotion assessment;
@@ -497,6 +527,7 @@ reconstruct
 → reconcile
 → self-evaluate
 → establish
+→ preflight validation requests
 → validate where required
 → classify
 → route
