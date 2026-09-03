@@ -946,6 +946,10 @@ Evidence collection
 → Reconstruction self-evaluation
    ├─ insufficient → continue investigation and preserve the gaps
    └─ sufficient → establish what the evidence supports
+→ validation-request preflight
+   ├─ already settled with no material delta → exclude and record references
+   ├─ active unresolved thread covers it → continue that thread
+   └─ genuine operational delta → prepare only that bounded item
 → human validation where required
 → object classification
 → destination/routing assessment
@@ -977,6 +981,8 @@ Do not substitute AI self-evaluation for human validation. They are separate gat
 - **self-evaluation** assesses whether the reconstruction process and evidence base are sufficiently complete and reliable to proceed;
 - **human validation** establishes organisational meaning or responsible-owner confirmation where required.
 
+After self-evaluation and before generating any human-validation request, run the anti-duplication preflight defined in `workflows/reconstruction-self-evaluation-and-routing.md`. Check current maintained Operational Reality, prior owner-validation and correction lineage, and active unresolved comments/tasks. This preflight exists only to avoid duplicate asks and isolate a genuine delta; it must not be used as evidence or as a substitute for the downstream maintained-reality comparison.
+
 Classification and routing do not themselves authorise canonical writes. The downstream workflow determines the proposed organisational destination and promotion readiness while preserving the write boundaries defined here.
 
 For every object that is ready for target assessment, continue with:
@@ -985,7 +991,7 @@ For every object that is ready for target assessment, continue with:
 
 That workflow resolves the current authoritative target, compares the established candidate, records a controlled outcome, routes and persists any justified change, verifies persistence, and writes the downstream result back to the originating lineage.
 
-Do not compare with current maintained reality before the source-first reconstruction, self-evaluation, and required human validation are complete. The target is a downstream comparison surface, not evidence used to make the reconstruction conform.
+Do not perform formal comparison with current maintained reality before the source-first reconstruction, self-evaluation, and required human validation are complete. The target is a downstream comparison surface, not evidence used to make the reconstruction conform. The bounded post-self-evaluation preflight may inspect it only to suppress an already-settled duplicate, continue an existing live thread, or isolate the genuinely new validation delta.
 
 # 21. Final synthesis
 

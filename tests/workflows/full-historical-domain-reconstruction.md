@@ -118,6 +118,22 @@ Expected:
 - the source is not treated as new independent corroboration;
 - the reconstruction synthesis and validation material receive reader-usable source context.
 
+## Test 9 — reconstruction handoff does not recreate settled validation
+
+Input:
+
+- reconstruction staging contains candidates marked as needing owner validation;
+- some are already represented and owner-validated in current Operational Reality;
+- one is already covered by an active unresolved review thread;
+- one contains a genuinely new operational delta.
+
+Expected:
+
+- the post-self-evaluation validation-request preflight excludes the settled candidates and records their references;
+- the active thread is continued instead of duplicated;
+- only the genuine delta becomes a new bounded operator-facing validation statement;
+- current maintained reality is not used to reshape the reconstruction or to assert a formal reconciliation outcome before required validation.
+
 ## Pass criterion
 
-The workflow passes when evidence remains source-first and traceable, huddle coverage and post-write invariants are explicit, cross-run provenance is reconciled, the final synthesis is independently understandable and source-usable, validation work follows the Establish role boundary, and no publication or task substitutes for maintained-reality reconciliation.
+The workflow passes when evidence remains source-first and traceable, huddle coverage and post-write invariants are explicit, cross-run provenance is reconciled, the final synthesis is independently understandable and source-usable, validation requests pass the delta-only anti-duplication preflight and follow the Establish role boundary, and no publication or task substitutes for maintained-reality reconciliation.
