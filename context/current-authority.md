@@ -139,6 +139,10 @@ See:
 - `workflows/maintain-dca-reality.md`
 - `workflows/reconcile-relationship-data.md`
 
+## Airtable workspace and base identity
+
+When a routed destination is an Airtable base, resolve which workspace and base it actually is from `airtable-workspace-map.md`, not from a document title, a plugin's historical description, or search ranking. That file lists the current production workspace's bases (including the canonical `DCA Logistics` base and the staging-only `DCA Integrations & Reconciliation` base) and the non-production `DCA Dev/Test` workspace's bases, which must never be selected for production work.
+
 ## Working sources
 
 Working organisational plans, capability reconstructions, workflow reconstructions, concept models, and structural-alignment material may inform reasoning but do not independently become architecture.

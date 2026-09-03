@@ -29,7 +29,7 @@ DCA user in Slack / Claude
 
 Use only `DCA Integrations & Reconciliation` for new mixed Logistics-cycle intake during the current pilot.
 
-Do not select a similarly named copy, test, rebuild, staging, snapshot, or historical base merely because search returns it first. Resolve the intended base explicitly before writing. The same principle applies to Relationship Data lookups: use the current canonical base named by the workflow/source-routing policy, not a similarly named copy.
+Do not select a similarly named copy, test, rebuild, staging, snapshot, or historical base merely because search returns it first. Resolve the intended base explicitly before writing, using `context/airtable-workspace-map.md` for the current production vs. non-production (`DCA Dev/Test`) workspace distinction and the recorded base identity — never by fuzzy/substring name match. The same principle applies to Relationship Data lookups: use the current canonical base named by the workflow/source-routing policy, not a similarly named copy.
 
 The attached Airtable identity is restricted at base level, not table level. It can technically write other tables in that base. Therefore the three-table boundary is a runtime rule, not a credential guarantee.
 
@@ -43,7 +43,8 @@ Read and apply:
 
 1. `workflows/capture-logistics-intake.md` — provider-independent Logistics intake behaviour;
 2. `context/source-routing.md` when routing or mixed-domain facts matter;
-3. `organisation/shared-foundations/shared-object-boundaries.md` from `Dutch-Civilian-Action/dca-architecture` when the submission contains people, organisations, locations, routes, roles/functions, or other mixed object types.
+3. `context/airtable-workspace-map.md` to confirm the current production workspace/base identity for the destination before writing;
+4. `organisation/shared-foundations/shared-object-boundaries.md` from `Dutch-Civilian-Action/dca-architecture` when the submission contains people, organisations, locations, routes, roles/functions, or other mixed object types.
 
 If one of these required current sources is unavailable, preserve the configuration/access gap rather than reconstructing the rule from old implementation material.
 

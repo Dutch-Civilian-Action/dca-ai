@@ -15,6 +15,8 @@ This file defines provider-independent source-selection behaviour. Provider impl
 
 Use `current-authority.md` when current authority, source status, or current-vs-historical selection matters.
 
+Use `airtable-workspace-map.md` to resolve *which* Airtable workspace and base a routed Airtable destination actually is (production vs. non-production, and canonical role within production) once this file has identified that the destination is an Airtable base. Resolve by workspace + base identity there, never by name similarity or search ranking.
+
 ## Route by fact type
 
 - **Current operational work, dependencies, responsibilities in practice, variation, exceptions, bottlenecks, and current workflow consequences** → compare established candidates through `workflows/reconcile-established-findings-into-maintained-reality.md`, then update the current DCA Operational Reality identified in `current-authority.md` only when the recorded outcome and target rules justify it.
@@ -103,3 +105,7 @@ For Relationship Data, see:
 For the bounded Logistics intake pilot, see:
 
 - `../workflows/capture-logistics-intake.md`
+
+For resolving which Airtable workspace/base a Logistics or Relationship Data destination actually is — including keeping production bases distinct from the non-production `DCA Dev/Test` workspace, and keeping `DCA Integrations & Reconciliation` (staging) distinct from the canonical `DCA Logistics` base — see:
+
+- `airtable-workspace-map.md`
