@@ -78,6 +78,47 @@ When supplied evidence is a transcript from an AI-assisted notebook or chat, dis
 
 No cleanup or extra research is required from the human contributor. Unknown information may remain unknown.
 
+## Attachment handling
+
+Attachments are bounded source evidence tied to the submission that supplied them. Processing an attachment is never an alternative path to this workflow; it is a bounded step inside it.
+
+### Precedence for a controlled first run
+
+For a controlled first run of this capability, this Attachment handling procedure overrides the generic `preserve submission → extract Facts/References` sequence in the Capture procedure below. Once the `Logistics_Intake_Submissions` record is created and read back to confirm `attachments` is populated, no extraction path — Facts, Operational References, or any other later step of the Capture procedure — may continue in that same run.
+
+### One envelope per submission
+
+When an ordinary operator request supplies multiple related attachments together — for example a transcript and a photo from the same conversation — preserve them as one `Logistics_Intake_Submissions` record, not one record per file. Retain every original file's filename in `attachments`, and record the parent message together with every source file ID in `source_references`, so a multi-file envelope does not collapse distinct files into one undifferentiated blob.
+
+Determine `controlled_test` and `synthetic_test_data` for the submission as usual. Genuine attachments supplied while the capability is deliberately being tested or observed carry `controlled_test = true` and `synthetic_test_data = false`; only intentionally fictional attachment content carries `synthetic_test_data = true`.
+
+### `attachment_analysis` is gated, bounded, proposed extraction
+
+`attachment_analysis` is a bounded first-pass extraction sourced only from the submission's `attachments`. When it runs, it must:
+
+- preserve exact supporting wording and visible evidence rather than paraphrase;
+- preserve filename and, where the attachment is a transcript or exported chat, speaker attribution;
+- preserve stated uncertainty and contradictions rather than resolving them;
+- record unreadable or illegible content as such rather than guessing or silently omitting it.
+
+`attachment_analysis` output is proposed evidence only. It must never itself create or update Facts, Operational References, DCA Logistics records, or any other canonical object.
+
+For a controlled first run of this capability, automatic generation of `attachment_analysis` stays off. Once the `Logistics_Intake_Submissions` record is created and read back to confirm `attachments` is populated, capture stops there for manual execution and human review of the `attachment_analysis` field output.
+
+Do not substitute this step with a standalone AI-generated dry-run report, summary document, or other artifact produced outside the configured `attachments` → `attachment_analysis` path — however complete or careful such an artifact looks, it is not the attachment-analysis capability and does not satisfy this step. If the configured path is unavailable in the current context, say so and stop rather than reading the attachments directly and producing a substitute.
+
+### Operator-facing completion message stays plain
+
+The short operator-facing completion message for this stopping point must not require Airtable vocabulary. It should simply say that both originals were saved together and are ready for the next review step — for example: `Saved both files together — they're ready for the next review step.`
+
+The `Logistics_Intake_Submissions` record ID and the fact that `attachment_analysis` is pending manual execution and human review are maintainer/test-report-facing detail. Keep them out of the operator-facing reply; record them in maintainer notes or the test report instead.
+
+### After review: propose, then promote separately
+
+Only after a human has reviewed the `attachment_analysis` output may Claude compare it against existing non-synthetic staging evidence and propose an exact search-before-create create/update/conflict set. Writing that proposal into `Logistics_Intake_Facts` or `Logistics_Intake_Operational_References` requires separate explicit human approval beyond the comparison step; a completed comparison is a proposal, not authorization to write.
+
+Promotion from Logistics intake staging into canonical DCA Logistics records remains a separate, later step, gated the same way as any other promotion under "Do not promote prematurely" below: only specific, reviewed, human-approved evidence may be promoted. Never bulk-sync all staging facts, and never treat a passed comparison step as approval to promote.
+
 ## Pilot principle: capture before modelling
 
 The current pilot is deliberately reconstruction-first.

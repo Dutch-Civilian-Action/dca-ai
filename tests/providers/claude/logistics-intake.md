@@ -269,6 +269,8 @@ Expected:
 - when the capability is deliberately being observed, `controlled_test = true` while `synthetic_test_data = false`;
 - facts supported only by synthetic tests are excluded from search-before-create and cannot be selected as predecessors or matches for the genuine inventory.
 
+See `logistics-intake-0.6.3-attachment-pipeline-regression.md` for the concrete genuine-evidence instance of this test, including the one-Submission-per-request rule, the `attachment_analysis` manual-execution gate, and evidence-separation assertions raised by that scenario.
+
 ## Cleanup
 
 Every synthetic write submission must have `controlled_test = true` and `synthetic_test_data = true`. Delete/revert the submission and every fact/reference supported only by it after inspection. Preserve exact created IDs until cleanup is verified. Never clean by filtering broadly on `controlled_test`, because genuine operational evidence may also carry that marker. Do not leave test people, organisations, phone numbers, goods, or locations in live pilot staging.
