@@ -15,19 +15,72 @@ Shared maintained-reality handoff:
 
 `../../workflows/reconcile-established-findings-into-maintained-reality.md`
 
-This file records the current ChatGPT implementation of that provider-independent DCA workflow. It is not the workflow authority itself.
+Validation-state monitoring caller:
 
-The ChatGPT runtime must execute the current canonical workflow, including its Output contract. Provider-specific instructions may define runtime access, persistence mechanics and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, or output eligibility rules.
+`../../workflows/monitor-validation-queue.md`
 
-## Current implementation
+Current ChatGPT monitor implementation:
+
+`dca-validation-queue-monitor.md`
+
+This file records the current ChatGPT implementation of the provider-independent DCA workflow. It is not the workflow authority itself.
+
+The ChatGPT runtime must execute the current canonical workflows, including the Reality Watch Output contract. Provider-specific instructions may define runtime access, trigger mechanics, persistence mechanics, and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, validation sufficiency, or output eligibility.
+
+## Current runtime topology
+
+The ChatGPT implementation has two entry paths into maintained-reality processing:
+
+```text
+DCA Reality Watch — scheduled condition watch
+        ↓
+broad evidence coverage, backlog recovery, correction recovery,
+capability health, and cross-view maintenance
+
+Monitor validation queue — hourly condition watch
+        ↓
+newly detected sufficiently established candidate
+        ↓
+bounded Maintain DCA Reality execution
+        ↓
+shared maintained-reality reconciliation
+        ↓
+persist → read back → record lineage → close or continue
+```
+
+### Scheduled evidence sweep
 
 Task name: **DCA Reality Watch**
 
 Runtime: **ChatGPT scheduled condition watch**
 
-Cadence: **daily at 08:00 Europe/Amsterdam**
+Cadence: **daily morning sweep in Europe/Amsterdam, according to the active ChatGPT task configuration**
 
-Notification rule: **publish only when the canonical workflow identifies materially new or changed DCA reality**
+Purpose: **broad evidence coverage, backlog recovery, unresolved-correction recovery, capability-health inspection, and protection against missed or failed event handoffs**
+
+The scheduled sweep is not the only reconciliation clock.
+
+### Validation-triggered handoff
+
+Task name: **Monitor validation queue**
+
+Runtime: **ChatGPT scheduled condition watch**
+
+Cadence: **hourly, every day, Europe/Amsterdam**
+
+Purpose: **act on every newly detected material validation-state transition and execute the canonical maintained-reality handoff without waiting for the daily sweep**
+
+This is near-event-driven polling rather than a true webhook. Processing latency may therefore extend to the next hourly check.
+
+### Notification rule
+
+Notify or publish only when the applicable canonical workflow supports it:
+
+- no material maintained change → no organisational Reality Watch publication;
+- no material validation-state transition or blocker → no validation-monitor notification;
+- validation completion or processing activity alone is not a material maintained change.
+
+## Current maintained reality views
 
 Current maintained reality views include:
 
@@ -43,35 +96,47 @@ Current source classes include, where available:
 - GitHub;
 - public DCA Slack;
 - Airtable/system state;
+- Asana validation and Establish lineage;
 - integrations, automations, and runtime evidence;
 - downstream use.
 
 ## Maintained-reality persistence
 
-Maintaining reality means **persisting supported changes into the current maintained reality documents**, not merely detecting, summarising, or reporting them in the scheduled run.
+Maintaining reality means **persisting supported changes into the current maintained reality documents**, not merely detecting, validating, summarising, or reporting them.
 
-For every run:
+For every scheduled or validation-triggered execution:
 
-1. resolve and read the current maintained Operational Reality, Derived Organisational Reality, and System & Structure Capability Reality documents before evaluating change;
-2. determine evidence coverage from what is actually represented in the maintained reality and its provenance, not from the scheduled task's `last_run_time` and not from Google Drive modification time alone;
-3. inspect materially relevant evidence that has not yet been represented, including backlog created by a previous incomplete or failed run;
+1. resolve and read the relevant current maintained target before evaluating change;
+2. determine represented state from maintained meaning and provenance, not only from task `last_run_time`, source modification time, or validation status;
+3. inspect materially relevant unrepresented backlog or unresolved same-target lineage before assuming the candidate is new or complete;
 4. invoke the shared maintained-reality reconciliation workflow for each established candidate;
 5. record its controlled outcome, destination, comparison target/revision, and required action;
-6. when the canonical Output contract supports an update, write that update into the relevant maintained document;
+6. when the canonical Output contract supports an update, write the smallest supported change into the relevant maintained document;
 7. re-read or otherwise verify the persisted document after the write before treating that output as completed;
 8. record the persisted target/revision, actor/time, and verification state in the originating lineage or equivalent run-result record;
-9. only after persistence has succeeded may the run close a change-bearing source review, treat the maintained-reality output as complete, or publish a Slack summary of that maintained change.
+9. only after persistence has succeeded may the runtime close a change-bearing source review, treat the maintained-reality output as complete, or publish a Slack summary of that maintained change.
 
-A task execution, generated finding, Slack message, or successful source read is **not** evidence that maintained reality was updated.
+A task execution, reviewer reply, generated finding, Airtable status change, Slack message, or successful source read is **not** evidence that maintained reality was updated.
 
 If a required maintained-document write cannot be completed or verified:
 
 - preserve the finding as unpersisted work rather than silently treating it as maintained;
-- do not advance evidence coverage past the failed material;
+- do not advance evidence coverage or validation closure past the failed material;
 - do not claim that Operational Reality, Derived Organisational Reality, or Capability Reality was updated;
-- surface the persistence failure as System & Structure capability/runtime evidence at the next appropriate human-visible check rather than masking it as a no-change run.
+- preserve enough lineage for the next monitor or scheduled sweep to recover the item;
+- surface the persistence failure as System & Structure capability/runtime evidence rather than masking it as a no-change run.
 
-Recovery rule: after any maintenance gap, process the unrepresented evidence backlog before limiting attention to the newest day. A later successful scheduled run must therefore recover materially relevant evidence missed by earlier runs rather than assuming that prior task execution means prior evidence was processed.
+Recovery rule: after any maintenance gap, process the unrepresented evidence backlog before limiting attention to the newest evidence. A later successful scheduled or validation-triggered run must recover materially relevant work missed by earlier executions rather than assuming that task execution means processing completed.
+
+## Validation-trigger boundary
+
+A validation monitor event does not bypass canonical validation or reconciliation rules.
+
+When a reviewer confirms wording, preserve that confirmation as validation provenance and independently compare it with the current authoritative target. The maintained-reality outcome may be `already_represented`, `confirmation_only`, `addition`, `correction`, `qualification`, or another supported result.
+
+When a reviewer changes meaning, show the precise revised operational wording back to that reviewer before treating the candidate as established. The monitor must not silently promote a System & Structure paraphrase.
+
+Repeated detection must remain idempotent: re-read the current target, reuse existing lineage, and do not duplicate writes, validation asks, tasks, or Slack posts.
 
 ## Publication routing
 
@@ -87,21 +152,22 @@ Rules:
 
 - route by scope rather than posting everything everywhere;
 - do not duplicate the same finding across channels unless separate audiences are genuinely required;
-- do not post routine implementation activity, low-signal changes, or unvalidated inference merely to keep the automation active;
-- `#test-automations` is no longer the normal publication target.
+- do not post routine implementation activity, validation completion, low-signal changes, or unvalidated inference merely to keep an automation active;
+- `#test-automations` is not the normal publication target.
 
 ## Output implementation
 
 All output eligibility, authority, structure, and no-output behaviour are defined by the canonical workflow's **Output contract**.
 
-The ChatGPT runtime must therefore preserve the distinction between:
+The ChatGPT runtime must preserve the distinction between:
 
 1. Operational Reality updates;
 2. Derived Organisational Reality updates;
 3. System & Structure Capability Reality updates;
 4. top-level Reality Watch Slack publication;
 5. the optional **What this makes visible** thread;
-6. no-output conditions.
+6. private System & Structure notification from the validation monitor;
+7. no-output conditions.
 
 When the canonical workflow supports a **What this makes visible** case, publish it as a thread reply beneath the relevant Reality Watch Slack post rather than as a separate top-level broadcast.
 
@@ -109,7 +175,7 @@ The thread must remain grounded in the evidence and maintained reality that prod
 
 ## Implementation requirements
 
-The ChatGPT task must preserve the canonical workflow's:
+The ChatGPT tasks must preserve the canonical workflows' requirements for:
 
 - evidence classification;
 - source/provenance boundaries;
@@ -117,22 +183,25 @@ The ChatGPT task must preserve the canonical workflow's:
 - uncertainty/conflict handling;
 - reconstruction and reconciliation rules;
 - material-change criteria;
-- validation boundary;
+- validation sufficiency and anti-duplicate boundary;
 - operational-review language and role boundary, including `Not mine to confirm`, no-change closure, and changed-wording confirmation;
+- validation-event idempotency;
 - output contract;
 - standalone-reader context, reader-usable source visibility, and native document structure through the canonical document-authoring skill;
 - maintained-document comparison outcome, persistence, verification, and source-review closure;
 - an auditable originating-lineage/result record;
-- backlog recovery after incomplete runs;
+- backlog recovery after incomplete scheduled or event-triggered executions;
 - no-change → no-notification behaviour.
 
-Provider implementation must not duplicate or silently override these rules. When the canonical workflow changes, the runtime should follow the current workflow unless a provider-specific technical limitation prevents it; any such limitation should be recorded here as implementation reality.
+Provider implementation must not duplicate or silently override these rules. When a canonical workflow changes, the runtime should follow the current workflow unless a provider-specific technical limitation prevents it; any such limitation should be recorded here as implementation reality.
 
 ## Testing status
 
 This implementation remains part of System & Structure development and live organisational testing.
 
-Operational publication is active. Testing now concerns finding quality, routing, usefulness, thread-case quality, source coverage, maintained-document persistence, recovery after failed/incomplete runs, and whether outputs are actually used by DCA.
+Operational publication is active. Validation-triggered reconciliation is active through hourly condition watching. Automated reviewer chasing is not active in the current monitor implementation.
+
+Testing concerns include finding quality, routing, usefulness, source coverage, correct recognition of validation transitions, target freshness, idempotency, maintained-document persistence, recovery after failed or incomplete runs, closure behaviour, event-to-reconciliation latency, and whether outputs are actually used by DCA.
 
 Running Reality Watch in ChatGPT does not imply ChatGPT is the permanent runtime.
 
@@ -141,8 +210,9 @@ Running Reality Watch in ChatGPT does not imply ChatGPT is the permanent runtime
 The implementation may later:
 
 - remain on ChatGPT;
+- replace hourly polling with a webhook or event stream;
 - be implemented in Claude;
 - be implemented in another AI runtime;
 - be moved into a broader orchestration layer.
 
-Any replacement should be tested against the same provider-independent workflow and behavioural expectations rather than redefining the DCA capability around the new provider.
+Any replacement should be tested against the same provider-independent workflows and behavioural expectations rather than redefining the DCA capability around the new provider.
