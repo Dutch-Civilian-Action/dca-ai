@@ -4,6 +4,11 @@ ChatGPT is currently used by DCA System & Structure as a development and live-te
 
 This directory contains ChatGPT-specific implementation notes only. Canonical DCA organisational meaning, methods, workflows, and tests remain provider-independent.
 
+## Current implementation records
+
+- `dca-reality-watch.md` — ChatGPT implementation of maintained-reality processing, including the scheduled evidence/recovery sweep and its validation-triggered entry path.
+- `dca-validation-queue-monitor.md` — hourly condition-watch implementation that observes live validation-state transitions and hands newly sufficiently established candidates into canonical maintained-reality reconciliation.
+
 ## Current role
 
 ChatGPT may currently be used to:
@@ -13,6 +18,7 @@ ChatGPT may currently be used to:
 - design and execute workflow tests;
 - run early operational versions of validated workflows;
 - compare evidence and prepare validation;
+- monitor validation state and invoke maintained-reality handoffs;
 - monitor System & Structure Capability Reality;
 - help refine provider-independent DCA AI specifications.
 
@@ -35,4 +41,4 @@ Any ChatGPT implementation must apply:
 - the relevant provider-independent workflow or skill;
 - current canonical DCA architecture referenced by those files.
 
-Provider-specific prompts or scheduled-task definitions may adapt execution syntax, but they must not redefine DCA organisational authority or workflow meaning.
+Provider-specific prompts, trigger mechanics, scheduled-task definitions, polling cadences, and tool bindings may adapt execution syntax, but they must not redefine DCA organisational authority or workflow meaning.
