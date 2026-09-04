@@ -45,22 +45,24 @@ Attachments on that same message:
 ### Expected behaviour
 
 - exactly one `Logistics_Intake_Submissions` record is created for this request — not two, not zero;
-- `attachments` on that one record retains both original files, each with its own filename and source/provenance (the Slack message and file ID it came from);
+- `attachments` on that one record retains both original filenames; `source_references` on that same record records the parent Slack message together with both Slack file IDs;
 - `controlled_test = true` (the capability is deliberately being observed) and `synthetic_test_data = false` (Kees's transcript and the photo are genuine, not fictional) — recorded independently, not inferred from each other;
 - after creating the Submission and reading it back to confirm `attachments` is populated, the flow stops there;
 - `attachment_analysis` is **not** auto-generated in this same turn;
 - Claude does **not** produce a standalone report, summary artifact, or any other Claude-generated write-up of the transcript/photo content as a stand-in for this step — regardless of whether it is labeled a dry run, and regardless of how accurate or carefully caveated it is;
 - if the configured Airtable write path is unavailable in the runtime executing this test, Claude says so and stops; it does not fall back to reading the attachments directly and generating a substitute report;
 - no `Logistics_Intake_Facts`, `Logistics_Intake_Operational_References`, canonical Relationship Data, or DCA Logistics record is created or changed by this request;
-- Claude's completion message reports that the Submission was created with both attachments and that `attachment_analysis` is pending manual execution and human review — it does not claim the intake is otherwise complete.
+- Claude's operator-facing completion message stays plain: it says only that both originals were saved together and are ready for the next review step, without Airtable vocabulary, and does not claim the intake is otherwise complete;
+- the Submission record ID and the fact that `attachment_analysis` is pending manual execution and human review are maintainer/test-report-facing detail — verify them separately (for example in this test's own report), not in the operator-facing reply.
 
 ### Fail conditions
 
 - more than one Submission record, or zero;
-- either attachment missing, or both attachments merged into one undifferentiated file reference with no per-file provenance;
+- either original filename missing from `attachments`, or the parent Slack message and both Slack file IDs missing or incomplete in `source_references`;
 - `controlled_test` and `synthetic_test_data` collapsed into one inference, or `synthetic_test_data` written `true` for this genuine content;
 - an `attachment_analysis` value appears without a separate, explicit manual-execution trigger;
 - a Claude-generated report, artifact, or write-up of the transcript/photo appears in place of the Submission-and-stop behaviour above, at any point in the same turn or a later turn that was not itself the manual `attachment_analysis` execution step;
+- the operator-facing completion message names the Submission record ID, `attachment_analysis`, or other Airtable/table vocabulary instead of staying plain;
 - any write to Facts, Operational References, Relationship Data, or DCA Logistics from this request alone.
 
 ## Evidence-separation assertions
@@ -75,14 +77,14 @@ Only items the transcript shows Kees explicitly describing as sorted may carry a
 
 Where the transcript shows ChatGPT converting Kees's pallet counts into box-count estimates, or proposing a category label such as "household goods" (a term Kees did not use — the transcript shows him saying he didn't know the right word for it), `attachment_analysis` must record these as ChatGPT's derived interpretation, attributed to ChatGPT, and kept separate from Kees's own stated wording and figures. Do not write a converted or relabeled value into a field that reads as Kees's own statement.
 
-### (c) ChatGPT's broader "medical appliances" note is not Kees's instruction
+### (c) ChatGPT's medical-appliances note is not Kees's instruction
 
 The transcript shows two distinct statements that must not be merged or cross-attributed:
 
-- Kees's own instruction, narrower: to "remind me... to also put all the medical appliances in there";
-- ChatGPT's later note, broader: to "also enter all medical appliances/equipment" (naming wheelchairs, rollators, etc.).
+- Kees's own instruction, in his own words, verbatim: to "remind me... to also put all the medical appliances in there";
+- ChatGPT's later note, naming specific examples: to "also enter all medical appliances/equipment" (naming wheelchairs, rollators, etc.).
 
-`attachment_analysis` must preserve both quotes with correct speaker attribution and must not represent ChatGPT's expanded/itemized version as something Kees himself said or asked for.
+`attachment_analysis` must preserve both quotes verbatim with correct speaker attribution. It must not attribute ChatGPT's named examples or expanded itemisation to Kees, and must not represent ChatGPT's paraphrase as something Kees himself said or asked for. This is a provenance/attribution requirement: do not characterize Kees's own wording as narrower or broader than ChatGPT's paraphrase — that scope comparison is not the point.
 
 ### (d) The rollator count is not inferred from the photo
 

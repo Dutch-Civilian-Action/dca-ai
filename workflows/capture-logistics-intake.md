@@ -82,9 +82,13 @@ No cleanup or extra research is required from the human contributor. Unknown inf
 
 Attachments are bounded source evidence tied to the submission that supplied them. Processing an attachment is never an alternative path to this workflow; it is a bounded step inside it.
 
+### Precedence for a controlled first run
+
+For a controlled first run of this capability, this Attachment handling procedure overrides the generic `preserve submission → extract Facts/References` sequence in the Capture procedure below. Once the `Logistics_Intake_Submissions` record is created and read back to confirm `attachments` is populated, no extraction path — Facts, Operational References, or any other later step of the Capture procedure — may continue in that same run.
+
 ### One envelope per submission
 
-When an ordinary operator request supplies multiple related attachments together — for example a transcript and a photo from the same conversation — preserve them as one `Logistics_Intake_Submissions` record, not one record per file. Retain every original file in `attachments`, and record filename and source/provenance for each file individually so a multi-file envelope does not collapse distinct files into one undifferentiated blob.
+When an ordinary operator request supplies multiple related attachments together — for example a transcript and a photo from the same conversation — preserve them as one `Logistics_Intake_Submissions` record, not one record per file. Retain every original file's filename in `attachments`, and record the parent message together with every source file ID in `source_references`, so a multi-file envelope does not collapse distinct files into one undifferentiated blob.
 
 Determine `controlled_test` and `synthetic_test_data` for the submission as usual. Genuine attachments supplied while the capability is deliberately being tested or observed carry `controlled_test = true` and `synthetic_test_data = false`; only intentionally fictional attachment content carries `synthetic_test_data = true`.
 
@@ -102,6 +106,12 @@ Determine `controlled_test` and `synthetic_test_data` for the submission as usua
 For a controlled first run of this capability, automatic generation of `attachment_analysis` stays off. Once the `Logistics_Intake_Submissions` record is created and read back to confirm `attachments` is populated, capture stops there for manual execution and human review of the `attachment_analysis` field output.
 
 Do not substitute this step with a standalone AI-generated dry-run report, summary document, or other artifact produced outside the configured `attachments` → `attachment_analysis` path — however complete or careful such an artifact looks, it is not the attachment-analysis capability and does not satisfy this step. If the configured path is unavailable in the current context, say so and stop rather than reading the attachments directly and producing a substitute.
+
+### Operator-facing completion message stays plain
+
+The short operator-facing completion message for this stopping point must not require Airtable vocabulary. It should simply say that both originals were saved together and are ready for the next review step — for example: `Saved both files together — they're ready for the next review step.`
+
+The `Logistics_Intake_Submissions` record ID and the fact that `attachment_analysis` is pending manual execution and human review are maintainer/test-report-facing detail. Keep them out of the operator-facing reply; record them in maintainer notes or the test report instead.
 
 ### After review: propose, then promote separately
 

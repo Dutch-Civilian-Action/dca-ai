@@ -52,7 +52,7 @@ Inspect the current Airtable schema before writing. Do not write legacy/deprecat
 
 Confirm that `Logistics_Intake_Submissions` exposes both `controlled_test` and `synthetic_test_data`. They express different provenance dimensions and must never be collapsed into one inference.
 
-Confirm that `Logistics_Intake_Submissions` also exposes `attachments` and `attachment_analysis`. `attachments` retains every original file the operator supplied; `attachment_analysis` is a separate, bounded, proposed-extraction field gated for manual execution and human review. See "Attachments" below and the "Attachment handling" section of `workflows/capture-logistics-intake.md` for the full rule.
+Confirm that `Logistics_Intake_Submissions` also exposes `attachments`, `source_references`, and `attachment_analysis`. `attachments` retains the original filenames the operator supplied; `source_references` records the parent Slack message together with every source file ID; `attachment_analysis` is a separate, bounded, proposed-extraction field gated for manual execution and human review. See "Attachments" below and the "Attachment handling" section of `workflows/capture-logistics-intake.md` for the full rule.
 
 Current legacy fields that must not receive new writes include:
 
@@ -197,9 +197,9 @@ If a canonical match is sufficiently supported, preserve the stable canonical re
 
 ## Attachments
 
-Preserve every original attachment on the source `Logistics_Intake_Submissions` record's `attachments` field, with filename and source provenance recorded per file. See "Attachment handling" in `workflows/capture-logistics-intake.md` for the full rule; this section states only the Claude-runtime execution points.
+Preserve every original attachment's filename on the source `Logistics_Intake_Submissions` record's `attachments` field, and record the parent Slack message together with every source file ID in `source_references`. See "Attachment handling" in `workflows/capture-logistics-intake.md` for the full rule; this section states only the Claude-runtime execution points.
 
-Creating the Submission and reading it back is the deliverable of this step. Do not treat generating `attachment_analysis` — or any substitute for it — as part of the same turn unless the operator has separately triggered that manual execution; stop after read-back and say plainly that `attachment_analysis` is pending manual execution and human review.
+Creating the Submission and reading it back is the deliverable of this step. Do not treat generating `attachment_analysis` — or any substitute for it — as part of the same turn unless the operator has separately triggered that manual execution; stop after read-back and tell the operator only that both originals were saved together and are ready for the next review step. Keep the Submission record ID and the fact that `attachment_analysis` is pending manual execution and human review out of that reply — record them in maintainer/test-report notes instead.
 
 When `attachment_analysis` does run, it is proposed extraction only, sourced only from `attachments`:
 
