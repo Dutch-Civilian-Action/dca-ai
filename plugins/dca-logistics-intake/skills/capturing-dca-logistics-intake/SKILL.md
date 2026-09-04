@@ -2,7 +2,7 @@
 name: capturing-dca-logistics-intake
 description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.6.2
+  version: 0.6.3
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -51,6 +51,8 @@ If one of these required current sources is unavailable, preserve the configurat
 Inspect the current Airtable schema before writing. Do not write legacy/deprecated fields and do not invent fields, select options, tables, relationships, or canonical structures to make the submission fit.
 
 Confirm that `Logistics_Intake_Submissions` exposes both `controlled_test` and `synthetic_test_data`. They express different provenance dimensions and must never be collapsed into one inference.
+
+Confirm that `Logistics_Intake_Submissions` also exposes `attachments` and `attachment_analysis`. `attachments` retains every original file the operator supplied; `attachment_analysis` is a separate, bounded, proposed-extraction field gated for manual execution and human review. See "Attachments" below and the "Attachment handling" section of `workflows/capture-logistics-intake.md` for the full rule.
 
 Current legacy fields that must not receive new writes include:
 
@@ -160,6 +162,16 @@ Derive `operational_process` only from whether the submission is evidence in a c
 
 A correction or update to concrete goods evidence remains `goods_intake`. Context-only Logistics information — people, organisations, routes, or other reconstruction context with no concrete goods progression — remains `logistics_information_intake`.
 
+### 9. Route attachments through the configured Submission path, never around it
+
+An operator asking Claude to "process" attachments as part of Logistics intake — including phrasing such as "process them together as one intake" — is asking Claude to run the configured path: create the `Logistics_Intake_Submissions` record with `attachments` populated, read it back, and stop there for manual `attachment_analysis` execution and human review. It is not a request for Claude to read the files directly and produce its own structured report, dry-run summary, or artifact in their place.
+
+Labeling the output a "dry run" does not exempt it from this rule. A standalone Claude-generated artifact that summarizes attachments outside the configured `attachments` → `attachment_analysis` path is not a lighter-weight or safer version of this capability — it bypasses the capability entirely, and it must not happen, controlled test or not.
+
+When multiple related attachments arrive in one ordinary request, create exactly one `Logistics_Intake_Submissions` record for them, per `workflows/capture-logistics-intake.md`. Do not create one envelope per file, and do not split a single multi-file operator request across separate ad hoc handling.
+
+If the configured write path is unavailable in the current context (for example, no Airtable connector is attached), say so and stop. Do not fall back to reading the attachments directly and generating a substitute report, even as a clearly labeled dry run.
+
 ## Correction handling
 
 Apply the correction rules from `workflows/capture-logistics-intake.md` exactly.
@@ -185,14 +197,21 @@ If a canonical match is sufficiently supported, preserve the stable canonical re
 
 ## Attachments
 
-Preserve attachments on the source submission where supported.
+Preserve every original attachment on the source `Logistics_Intake_Submissions` record's `attachments` field, with filename and source provenance recorded per file. See "Attachment handling" in `workflows/capture-logistics-intake.md` for the full rule; this section states only the Claude-runtime execution points.
 
-Attachment analysis is proposed extraction only:
+Creating the Submission and reading it back is the deliverable of this step. Do not treat generating `attachment_analysis` — or any substitute for it — as part of the same turn unless the operator has separately triggered that manual execution; stop after read-back and say plainly that `attachment_analysis` is pending manual execution and human review.
 
+When `attachment_analysis` does run, it is proposed extraction only, sourced only from `attachments`:
+
+- preserve exact supporting wording, visible evidence, and filename;
+- preserve speaker attribution when the attachment is a transcript or exported AI-assisted chat — do not merge a human's and an assistant's statements into one attributed voice;
+- preserve stated uncertainty and contradictions rather than resolving them;
+- record unreadable or illegible content as such;
 - do not treat generated analysis as validated operational fact;
 - do not let it create canonical objects or broaden the write scope;
-- connect extracted proposals back to the attachment/submission;
-- leave materially uncertain extraction for human review.
+- connect extracted proposals back to the attachment/submission.
+
+Only after a human reviews `attachment_analysis` may Claude propose a search-before-create create/update/conflict set against existing non-synthetic staging evidence; writing that proposal into Facts or Operational References needs separate explicit human approval, and promotion into DCA Logistics is a further, separately gated step.
 
 When the source is an exported AI-assisted chat or notebook:
 
