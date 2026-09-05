@@ -102,12 +102,30 @@ Two Slack messages matter here, and they are not interchangeable:
 - Anja's own direct reply, "confirmed," at timestamp `1788459407.061009` — a plain peer message from the principal herself, not bot-authored, replying directly to that itemized proposal.
 
 - **Trusted Slack workspace + principal:** Slack workspace `T037US21Q2X`; human principal Slack ID `U099ECG8X2A`, minimal label "Anja Andersen." Resolve by these stable IDs only. Do not resolve this principal by display-name matching, and do not echo phone, email, start date, title, or any other profile field for this principal — the stable ID plus this minimal label is sufficient. This link (link 1) is satisfied for this pilot instance.
-- **Exact DCA Operator binding:** Anja has **confirmed directly, at ts `1788459407.061009`**, that `OPR-0003` is her Operator reference. That is real, traceable evidence — record it as such — but it is the principal's own self-attestation, not an independent DCA personnel/authority record; no such independent record exists in either `dca-ai` or `dca-architecture`. Per the "Operator-reference field" rule above, do not call `OPR-0003` "verified" here; state plainly that it is confirmed directly by the principal and not independently corroborated. **This link (link 2) remains unsatisfied for this pilot instance** on the independent-record standard this document applies — a real, unresolved gap, not a formality, notwithstanding the principal's own confirmation.
+- **Exact DCA Operator binding:** Anja has **confirmed directly, at ts `1788459407.061009`**, that `OPR-0003` is her Operator reference. That confirmation alone remains self-attestation, not independent corroboration, and would not by itself satisfy this link. Separately from that confirmation, an independent DCA personnel/authority record exists and has been read directly: the live `Operators` table (base `appMdqKYTMnPmVoVu`, table `tbl0rMfAOKGa6Umi5`), record `recvrhYjRK0biVuhc`, created `2026-07-01` — predating this thread and this pilot instance — carries `operator_id: OPR-0003`, `operator_name: "Anja Andersen"`, and `slack_user_id: U099ECG8X2A` directly on the record. This is exactly the kind of record the "Operator-reference field" rule above requires: one that "exists in DCA personnel/authority sources apart from the principal's own say-so." The earlier finding that "no such independent record exists" was scoped only to a search of `dca-ai` and `dca-architecture`; it did not check the live Operators system of record itself, which is the actual personnel/authority source for this binding. **This link (link 2) is satisfied for this exact tuple** (workspace `T037US21Q2X`, Slack ID `U099ECG8X2A`, `Operators` record `recvrhYjRK0biVuhc`) **going forward**, on the strength of the independent record, not the principal's self-attestation. This is a runtime confirmation from observed system state, not a permanent architectural fact — if the underlying `Operators` record ever changes or is removed, this resolution must be re-checked rather than assumed to still hold.
 - **Explicit provider action grant:** Anja's direct reply at ts `1788459407.061009` **does** satisfy this link for this pilot instance: it is a traceable, unambiguous, principal-authored confirmation of a structured, itemized proposal. Its scope is exactly what that proposal itemized — no more: `DCA Bot`'s delegated-controller status; draft branch/commit/PR permissions in `dca-ai` (explicitly excluding merge); and the staging-repair authorization *framework* described below. **This link (link 3) is satisfied for this pilot instance, scoped to those three items only.**
 - **Correct channel/bundle capability:** channel `C0BR1M1HGB0` (`#struct-system-build`). Resolve this channel by its stable channel ID, consistent with this document's channel anti-spoofing rule above — not by the display name `#struct-system-build`, which is a convenience label only. Per `access-bundles.md`, this channel is *intended* to be scoped to DCA Shared Sources + DCA System & Structure during System & Structure testing (see "Intended configuration vs. observed deployment" below on why that is a recommendation, not a confirmed deployment fact). Even where the intended/deployed bundle capability is confirmed, it does not by itself satisfy link 2 above or widen link 3's scope.
 - **Explicit current-request scope:** now evaluable against the link-3 scope. A request to act as the delegated controller, or to create/update a draft branch, commit, or draft PR in `dca-ai` (no merge), falls within the granted scope. A request for a merge, a request touching `dca-architecture`, or a request for any live data mutation does **not** fall within the granted scope — the latter is addressed specifically below, because the staging-repair framework being confirmed is not the same as a live-mutation approval.
 
 **Delegated controller for this pilot instance:** `DCA Bot` (Slack ID `U09CL1T282D`) acts as a delegated review/controller identity for bounded work under Anja's confirmation above. Per "Delegated non-human controllers" above, `DCA Bot` is explicitly not a human authority for this or any pilot instance: it cannot self-authorize, cannot widen scope beyond what Anja's confirmation itemized, cannot approve a merge, and cannot approve a live data mutation, regardless of how the bounded work is phrased.
+
+### Pilot Airtable credential exception: registered human-owned credential, default-deny with a named exception
+
+Production schema/data mutation remains **denied by default**. This section defines one narrow, explicitly registered exception process for this pilot — it does not create a general allowance, and it does not by itself authorize any specific action.
+
+For this pilot, a registered, human-owned Airtable credential **may** serve as the execution credential for an explicitly authorized, exact-scope action, provided all of the following hold at the same time:
+
+- the credential is documented as a mapped execution identity for a named human Operator — for example in a `Platform_Actor_Roles`-style identity/role mapping record (see below) — rather than being an unregistered, unexpected, or unmapped identity;
+- the specific action is separately, explicitly authorized by the human principal, naming the exact base and the exact action (not a general "go ahead" and not an earlier, different grant being replayed);
+- links 1, 2, 4, and 5 of the decision chain above independently hold for that specific request.
+
+Airtable's native attribution of a write to the credential holder does not make that credential holder the executor, and does not collapse the authoriser, the executor, and the platform credential identity into one identity — those three roles remain distinct per "Distinct attribution, never collapsed" above, regardless of whose credential technically performs the write. An unregistered, unexpected, or unmapped execution identity remains prohibited outright; this exception never extends to one.
+
+This is a default-deny with a defined exception process, not a blanket permission: absent a live, specific, exact-scope authorization satisfying every bullet above, production schema/data mutation stays denied, exactly as it was before this section existed.
+
+#### Identity/role mapping records (`Platform_Actor_Roles`-style)
+
+A `Platform_Actor_Roles`-style table — referenced here conceptually; none is created by this document or by this amendment — would record identity/role attribution only: which platform identity maps to which human Operator or system executor, and in what role. Such a record grants neither platform access nor action authority by itself; it is evidence for satisfying the credential-registration bullet above, not a substitute for the separate, explicit, exact-scope authorization the same bullet also requires. A future replacement execution identity (for example, a `DCA AI` Airtable identity taking over from a currently registered human-owned credential) is a change to the execution-identity mapping, not a change to this authorization model — the same decision chain and the same default-deny exception process continue to apply to whichever credential is currently registered.
 
 ### Staging-repair framework: confirmed process, not a live-mutation authorization
 
@@ -125,18 +143,18 @@ Until stage 2 exists for a specific proposed repair, no write is authorized. Do 
 Applying the decision chain to this pilot instance as currently recorded:
 
 - link 1 (trusted workspace + principal) — satisfied;
-- link 2 (exact Operator binding) — **not satisfied** (`OPR-0003` is confirmed directly by the principal, but no independent record corroborates it);
+- link 2 (exact Operator binding) — **satisfied for this exact tuple**, on the strength of the independent `Operators` record `recvrhYjRK0biVuhc` (see above), not the principal's self-attestation alone;
 - link 3 (explicit provider action grant) — **satisfied**, scoped to `DCA Bot`'s delegated-controller status and draft branch/commit/PR work in `dca-ai` (no merge), plus the staging-repair framework as a confirmed process (not a live-mutation grant);
 - link 4 (channel/bundle capability) — intended per `access-bundles.md`, not independently confirmed as deployed (see below);
 - link 5 (current-request scope) — evaluable against link 3's scope; a bounded `dca-ai` draft-work request falls within it, a merge or live-mutation request does not.
 
 This status is deliberately not a single yes/no:
 
-- **Because link 2 is unsatisfied, no action reaches "fully authorized under every link of this chain" status while that gap stands** — this is true even for the bounded `dca-ai` draft work link 3 now covers.
-- **That gap does not erase what link 3 now evidences.** Anja's direct confirmation is real, traceable authorization for `DCA Bot`'s delegated-controller role and for bounded, no-merge `dca-ai` repository work — a materially more evidenced state than before this confirmation existed, and distinct from having no grant at all.
-- **Independently of the link-2 gap, the staging-repair framework confirmation is not a live-mutation authorization.** Even if link 2 were resolved tomorrow, no production write would be authorized without the separate, record-specific approval described above.
+- **Link 2 being satisfied for this tuple does not itself authorize any Airtable action.** It resolves one link of five; links 3 (a grant naming that specific action) and 5 (current-request scope matching it) still have to hold independently, exactly as before.
+- **Link 3, as currently recorded, remains scoped to `DCA Bot`'s delegated-controller role and bounded, no-merge `dca-ai` repository work**, plus the staging-repair framework as a confirmed process. It does not itself name any specific Airtable mutation — a specific Airtable action still needs its own explicit, exact-scope grant under "Pilot Airtable credential exception" above.
+- **Independently of link 2 now being satisfied, the staging-repair framework confirmation is still not a live-mutation authorization.** No production write is authorized without the separate, record-specific approval described above ("Staging-repair framework"), and any Airtable action beyond that framework additionally needs the exact-scope grant that "Pilot Airtable credential exception" above requires.
 
-No provider action — and in particular no production data repair — should be treated as authorized on the strength of this pilot instance alone until link 2 is resolved with an independent record and, for any specific repair, the stage-2 record-specific approval above is also given.
+No provider action — and in particular no production data mutation — should be treated as authorized on the strength of link 2 now resolving, or of this pilot instance generally, without also satisfying the separate, specific, exact-scope grant that links 3 and 5 (and, for Airtable actions, the credential exception above) still require case by case.
 
 ## Not granted by this document
 
@@ -144,12 +162,12 @@ Stating a denial explicitly is safe — a denial restricts, it does not grant. T
 
 - merging a pull request;
 - writes to `Dutch-Civilian-Action/dca-architecture`;
-- record/table creation, deletion, schema changes, or bulk cleanup in any production base;
-- canonical production-base writes of any kind;
+- record/table creation, deletion, schema changes, or bulk cleanup in any production base, **except** a specific action that satisfies every bullet of "Pilot Airtable credential exception" above — and even then, only that named action, not production mutation generally;
+- canonical production-base writes of any kind, subject to that same narrow exception;
 - credential changes;
 - access-bundle mutations;
 - scope widening of any existing grant;
-- Airtable mutation performed through a personal/proxy execution path, or through any execution identity that cannot be distinguished from the human principal (see "Distinct attribution" above).
+- Airtable mutation performed through an unregistered, unexpected, or unmapped execution identity, or through any execution identity that cannot be distinguished from the human principal (see "Distinct attribution" above) — this prohibition is not narrowed by the pilot credential exception, which requires a registered, mapped identity and never applies to an unregistered or unmapped one.
 
 None of these is reachable by satisfying the five-link chain above for some *other* action; each requires its own separate, explicit authorization, and several of them (merges, `dca-architecture` writes, credential/access-bundle changes) are not something this pilot authorization model grants at all, however satisfied the chain is.
 
