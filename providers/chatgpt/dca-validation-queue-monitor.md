@@ -31,9 +31,11 @@ Trigger semantics: **act on every newly detected material validation-state trans
 
 This is near-event-driven polling rather than a true webhook. A validated response may therefore be processed on the next hourly check rather than at the exact moment it is submitted.
 
-Notification rule: **notify Anja only when reconciliation completes, reviewer evidence materially changes the case, or a required persistence/lineage step blocks closure**
+Publication surface: **`#dca-validation-queue` (`C0C02JP9ZB4`)**
 
-No material state change means no notification.
+Notification rule: **post in the validation queue only when reconciliation completes, reviewer evidence materially changes the case, or a required persistence/lineage step blocks closure**
+
+No material state change means no publication.
 
 ## Runtime relationship with Reality Watch
 
@@ -67,6 +69,19 @@ Use the current connected ChatGPT access where available to inspect:
 - GitHub canonical workflows and provider implementation records.
 
 A single status field is not sufficient evidence of queue membership or completion. The runtime must resolve the candidate, reviewer response, scope, source, target, and current lineage before acting.
+
+## Validation-queue publication routing
+
+The current ChatGPT publication surface for validation-monitor notifications is `#dca-validation-queue` (`C0C02JP9ZB4`).
+
+Routing rules:
+
+- use one top-level thread per atomic validation item and continue that thread for later state changes;
+- continue an existing authoritative validation or Reality Watch thread when it already covers the same bounded meaning; do not recreate the validation request in the new channel;
+- when an existing thread remains authoritative elsewhere, the validation-queue post may link to it and record the monitor state without duplicating the underlying review;
+- every material update must state the validation item, reviewer or equivalent evidence, reconciliation outcome, whether the maintained target changed, verification status, and any remaining blocker;
+- do not publish routine polling, silence, unchanged states, repeated detection, or implementation activity without a material validation transition or blocker;
+- DCA Reality Watch publication remains governed by `dca-reality-watch.md` and its scope-based routing. Do not reroute Reality Watch publications into the validation queue; cross-link only when a validation handoff materially affects a published Watch.
 
 ## Handoff and persistence requirements
 
