@@ -28,8 +28,8 @@ real DCA person, partner, or transaction.
 ## Preconditions
 
 Same as `logistics-intake.md`: DCA Logistics Intake plugin attached, explicit
-`@Claude` invocation, Airtable identity restricted at base level to
-`DCA Evidence & Reconciliation`, write-scope verified by observed behaviour
+`@Claude` invocation, Airtable identity restricted at base level to the current production staging base
+(base ID `appZ1Fv0YtZPbBbWa`), write-scope verified by observed behaviour
 rather than credential shape. Tests A, B1, and C1/C2 are synthetic write tests
 (`controlled_test = true`, `synthetic_test_data = true`); B2 is an explicitly
 no-write reasoning case and creates no record.
