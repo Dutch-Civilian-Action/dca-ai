@@ -21,13 +21,13 @@ The workflow defines Logistics intake meaning. This skill defines how Claude exe
 DCA user in Slack / Claude
 → this skill
 → Airtable connector
-→ DCA Integrations & Reconciliation
+→ DCA Evidence & Reconciliation
 → Logistics_Intake_Submissions
 → Logistics_Intake_Facts
 → Logistics_Intake_Operational_References
 ```
 
-Use only `DCA Integrations & Reconciliation` for new mixed Logistics-cycle intake during the current pilot.
+Use only `DCA Evidence & Reconciliation` for new mixed Logistics-cycle intake during the current pilot.
 
 Do not select a similarly named copy, test, rebuild, staging, snapshot, or historical base merely because search returns it first. Resolve the intended base explicitly before writing, using `context/airtable-workspace-map.md` for the current production vs. non-production (`DCA Dev/Test`) workspace distinction and the recorded base identity — never by fuzzy/substring name match. The same principle applies to Relationship Data lookups: use the current canonical base named by the workflow/source-routing policy, not a similarly named copy.
 

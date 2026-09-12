@@ -27,7 +27,7 @@ It does not define the full Logistics workflow, the final Logistics schema, or t
 
 During the bounded pilot, store new mixed Logistics-cycle intake evidence in:
 
-`DCA Integrations & Reconciliation`
+`DCA Evidence & Reconciliation`
 
 using:
 
@@ -274,7 +274,7 @@ A current-cycle Logistics submission may contain goods state, a person or organi
 
 During this reconstruction pilot:
 
-- preserve the entire submission in `DCA Integrations & Reconciliation`;
+- preserve the entire submission in `DCA Evidence & Reconciliation`;
 - extract goods/state facts into `Logistics_Intake_Facts` when supported;
 - extract operational people/organisation/location/route references into `Logistics_Intake_Operational_References` when supported;
 - do not write new mixed intake directly into canonical Contacts, Organizations, Partners, or other Relationship Data records;
