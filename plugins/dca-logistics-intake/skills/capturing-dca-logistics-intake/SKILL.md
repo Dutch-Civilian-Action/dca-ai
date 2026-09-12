@@ -186,7 +186,7 @@ Do not write any other review-status value at creation time, even when the suppo
 
 `workflows/capture-logistics-intake.md` ("Preserve the human submission") defines the provenance-granularity rule; this section states the runtime execution point.
 
-For a Slack-sourced submission, `source_references` must capture the exact channel, the parent thread timestamp, the human source-message timestamp, and the permalink for that specific message — not merely the channel, or a thread/date-level reference that could point to more than one message in the thread. This is in addition to, not instead of, the file-ID provenance already required for attachments under "Attachments" below.
+For a Slack-sourced submission, `source_references` — one field holding all of this provenance together, not four separate Airtable fields — must capture the exact channel, the parent thread timestamp, the human source-message timestamp, and the permalink for that specific message — not merely the channel, or a thread/date-level reference that could point to more than one message in the thread. This is in addition to, not instead of, the file-ID provenance already required for attachments under "Attachments" below.
 
 When one of these four elements is not available from the runtime context, preserve the ones that are and leave the rest unresolved rather than substituting a coarser reference.
 
@@ -194,7 +194,7 @@ When one of these four elements is not available from the runtime context, prese
 
 `workflows/capture-logistics-intake.md` ("Attachment handling") defines this evidence-separation rule; this section states the runtime execution points and extends the "Attachments" bullets below with the same detail.
 
-When `attachment_analysis` proposes extraction from a submitted transcript or notebook, represent the human's stated inventory as one neutral table with a per-item `sorted-status` value of `sorted`, `unsorted`, or `unstated`. Do not introduce `Sorted items` / `Unsorted items` (or similarly pre-sorted) headings unless the human themselves used that framing; a `sorted-status` value follows only from what the human explicitly stated for that item, never from proximity to another item that was.
+When `attachment_analysis` proposes extraction from a submitted transcript or notebook, represent the human's stated inventory as one neutral table with a per-item `sorted-status` value of `sorted`, `unsorted`, or `unstated`. Never restructure `attachment_analysis` itself under `Sorted items` / `Unsorted items` (or similarly pre-sorted) headings — even when the human themselves used that grouping language, preserve it in that item's own source wording/notes rather than reshaping the table around it. A `sorted-status` value follows only from what the human explicitly stated for that item, never from proximity to another item that was.
 
 Keep every assistant-derived label, unit conversion, category, or total in a column or section separate from the human's exact wording; never merge the two into one field that reads as the human's own statement.
 

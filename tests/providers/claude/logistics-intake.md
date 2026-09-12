@@ -271,7 +271,7 @@ Expected:
 
 See `logistics-intake-0.6.3-attachment-pipeline-regression.md` for the concrete genuine-evidence instance of this test, including the one-Submission-per-request rule, the `attachment_analysis` manual-execution gate, and evidence-separation assertions raised by that scenario.
 
-See `logistics-intake-0.6.4-review-defaults-provenance-sorting-regression.md` for the review-status-default, Slack provenance-granularity, and sorted-status/image-boundary regression covering runtime invariants 10–12.
+See `logistics-intake-0.6.4-review-defaults-provenance-sorting-regression.md` for the review-status-default, Slack provenance-granularity (one live-channel write case plus one no-write coarse-context case), and always-neutral sorted-status-table regression covering runtime invariants 10–12.
 
 ## Cleanup
 
