@@ -2,7 +2,7 @@
 name: capturing-dca-logistics-intake
 description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.6.3
+  version: 0.6.4
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -53,6 +53,8 @@ Inspect the current Airtable schema before writing. Do not write legacy/deprecat
 Confirm that `Logistics_Intake_Submissions` exposes both `controlled_test` and `synthetic_test_data`. They express different provenance dimensions and must never be collapsed into one inference.
 
 Confirm that `Logistics_Intake_Submissions` also exposes `attachments`, `source_references`, and `attachment_analysis`. `attachments` retains the original filenames the operator supplied; `source_references` records the parent Slack message together with every source file ID; `attachment_analysis` is a separate, bounded, proposed-extraction field gated for manual execution and human review. See "Attachments" below and the "Attachment handling" section of `workflows/capture-logistics-intake.md` for the full rule.
+
+Confirm that `Logistics_Intake_Facts` and `Logistics_Intake_Operational_References` each expose `validation_status`, and that `Logistics_Intake_Operational_References` also exposes `proposed_operational_roles` and `role_validation_status`. See invariant 10 below for the defaults each must carry at creation.
 
 Current legacy fields that must not receive new writes include:
 
@@ -172,6 +174,34 @@ When multiple related attachments arrive in one ordinary request, create exactly
 
 If the configured write path is unavailable in the current context (for example, no Airtable connector is attached), say so and stop. Do not fall back to reading the attachments directly and generating a substitute report, even as a clearly labeled dry run.
 
+### 10. New staged Facts and Operational References begin unreviewed
+
+`workflows/capture-logistics-intake.md` ("Validated operational distinctions") defines the review-default rule; this section states the runtime invariant needed to apply it.
+
+Every new `Logistics_Intake_Facts` record starts with `validation_status = unreviewed`. Every new `Logistics_Intake_Operational_References` record starts with `validation_status = unreviewed`. Whenever a reference's `proposed_operational_roles` is populated, that same reference's `role_validation_status` also starts `unreviewed`.
+
+Do not write any other review-status value at creation time, even when the supporting submission looks well-supported, genuine, or uncontested. Setting a validation/role-validation status to anything other than `unreviewed` is a separate, later human review step; it is never part of capture itself.
+
+### 11. Slack source provenance must resolve to one exact message, not a thread or a day
+
+`workflows/capture-logistics-intake.md` ("Preserve the human submission") defines the provenance-granularity rule; this section states the runtime execution point.
+
+For a Slack-sourced submission, `source_references` must capture the exact channel, the parent thread timestamp, the human source-message timestamp, and the permalink for that specific message — not merely the channel, or a thread/date-level reference that could point to more than one message in the thread. This is in addition to, not instead of, the file-ID provenance already required for attachments under "Attachments" below.
+
+When one of these four elements is not available from the runtime context, preserve the ones that are and leave the rest unresolved rather than substituting a coarser reference.
+
+### 12. Preserve the human's own inventory wording separately from any derived sorting, label, or quantity
+
+`workflows/capture-logistics-intake.md` ("Attachment handling") defines this evidence-separation rule; this section states the runtime execution points and extends the "Attachments" bullets below with the same detail.
+
+When `attachment_analysis` proposes extraction from a submitted transcript or notebook, represent the human's stated inventory as one neutral table with a per-item `sorted-status` value of `sorted`, `unsorted`, or `unstated`. Do not introduce `Sorted items` / `Unsorted items` (or similarly pre-sorted) headings unless the human themselves used that framing; a `sorted-status` value follows only from what the human explicitly stated for that item, never from proximity to another item that was.
+
+Keep every assistant-derived label, unit conversion, category, or total in a column or section separate from the human's exact wording; never merge the two into one field that reads as the human's own statement.
+
+An image attached to the same submission may identify or describe visible goods. It must not be used to derive, adjust, validate, or corroborate a quantity the human already stated in the transcript — for example, a photo showing tents may support "photo shows tents" but never "photo confirms 12 tents" when the transcript states 12.
+
+This extends the evidence-separation requirements already stated under "Attachments" below; `attachment_analysis` remains proposed extraction only and never itself creates or updates Facts, Operational References, or any other canonical record.
+
 ## Correction handling
 
 Apply the correction rules from `workflows/capture-logistics-intake.md` exactly.
@@ -207,6 +237,7 @@ When `attachment_analysis` does run, it is proposed extraction only, sourced onl
 - preserve speaker attribution when the attachment is a transcript or exported AI-assisted chat — do not merge a human's and an assistant's statements into one attributed voice;
 - preserve stated uncertainty and contradictions rather than resolving them;
 - record unreadable or illegible content as such;
+- preserve per-item sorted/unsorted/unstated status, keep assistant-derived labels/conversions/totals separate from the human's own wording, and never let an image adjust or corroborate a transcript-stated quantity, per invariant 12 above;
 - do not treat generated analysis as validated operational fact;
 - do not let it create canonical objects or broaden the write scope;
 - connect extracted proposals back to the attachment/submission.
