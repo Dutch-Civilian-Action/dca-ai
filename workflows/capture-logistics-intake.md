@@ -99,7 +99,10 @@ Determine `controlled_test` and `synthetic_test_data` for the submission as usua
 - preserve exact supporting wording and visible evidence rather than paraphrase;
 - preserve filename and, where the attachment is a transcript or exported chat, speaker attribution;
 - preserve stated uncertainty and contradictions rather than resolving them;
-- record unreadable or illegible content as such rather than guessing or silently omitting it.
+- record unreadable or illegible content as such rather than guessing or silently omitting it;
+- record a human-stated inventory as one neutral table with each item's own `sorted-status` (`sorted`, `unsorted`, or `unstated`); never restructure `attachment_analysis` itself under `Sorted items` / `Unsorted items` (or similarly pre-sorted) headings — even when the human themselves used that grouping language, preserve it in that item's own source wording/notes rather than reshaping the table around it; an item's status follows only from what the human stated for that item, never from its position near an item that was;
+- keep any assistant-derived label, unit conversion, category, or total in a column or section separate from the human's own wording and figures, never merged into one value that reads as the human's own statement;
+- treat an attached image as identification/description of visible goods only — for example, "photo shows tents" — and never use it to derive, adjust, validate, or corroborate a quantity the human already stated in the transcript, such as claiming a photo "confirms" a stated count.
 
 `attachment_analysis` output is proposed evidence only. It must never itself create or update Facts, Operational References, DCA Logistics records, or any other canonical object.
 
@@ -148,7 +151,8 @@ Preserve these distinctions during capture:
 - **Direct Transit ≠ no sorting** — Direct Transit is a goods-flow distinction; evidence must say whether sorting occurred. Preserve Direct Transit descriptively in Fact context/notes; do not translate it into `goods_state`, storage behaviour, or sorting behaviour, and do not add a new structured field for it until a structured flow representation has been validated;
 - **`offered` vs `expected` is an unresolved semantic distinction** — the current schema lists both as `goods_state` options without defining which applies when a source reports goods as available with an unconfirmed pickup/delivery. Do not resolve this arbitrarily at runtime and do not invent a new definition. Preserve the supported evidence and flag the distinction as requiring organisational/operational validation when a submission falls in the gap between the two;
 - **operational role context ≠ canonical relationship role** — a person or organisation may perform a contextual Logistics function without acquiring a canonical Relationship Data role;
-- **temporary holding location / handover point ≠ canonical location** — preserve the stated function and context without inventing a final location object.
+- **temporary holding location / handover point ≠ canonical location** — preserve the stated function and context without inventing a final location object;
+- **a newly staged fact or reference starts unreviewed** — every new `Logistics_Intake_Facts` record and every new `Logistics_Intake_Operational_References` record begins with `validation_status = unreviewed`; whenever a reference's `proposed_operational_roles` is populated, that same reference's `role_validation_status` also begins `unreviewed`. Only a later, separate human review changes either status; capture itself never sets a validated/confirmed value, however well-supported the evidence looks.
 
 ## Core boundary
 
@@ -189,6 +193,8 @@ Preserve:
 - source references supplied by the human;
 - optional cycle/task reference only when established;
 - `corrects_submission` when a correction target is supported.
+
+For a Slack-sourced submission, `source_references` — one field holding all of this provenance together, not four separate fields — must resolve to the exact human source message: the channel, the parent thread timestamp, the human message's own timestamp, and its permalink. A thread- or date-level reference that could match more than one message in the thread is not sufficient provenance. When one of these four elements is not available from the runtime context, preserve the ones that are rather than substituting a coarser reference.
 
 Do not rewrite the raw submission into normalized prose.
 
