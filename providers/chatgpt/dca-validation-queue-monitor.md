@@ -27,7 +27,7 @@ Runtime: **ChatGPT scheduled condition watch**
 
 Cadence: **hourly, every day, Europe/Amsterdam**
 
-Trigger semantics: **act on every newly detected material validation-state transition**
+Trigger semantics: **act on every newly detected material validation-state transition and reconstruct the full unresolved validation queue on every run**
 
 This is near-event-driven polling rather than a true webhook. A validated response may therefore be processed on the next hourly check rather than at the exact moment it is submitted.
 
@@ -36,6 +36,14 @@ Publication surface: **`#dca-validation-queue` (`C0C02JP9ZB4`)**
 Notification rule: **post in the validation queue only when reconciliation completes, reviewer evidence materially changes the case, or a required persistence/lineage step blocks closure**
 
 No material state change means no publication.
+
+Reminder surface: **direct Slack DM from DCA Bot to the verified operational owner**
+
+Reminder ceiling: **at most one DM per owner per Europe/Amsterdam calendar day**
+
+Reminder contents: **the owner's complete current actionable unresolved validation list, including older items**
+
+Reminder delivery is additional to validation-queue publication. It does not change the channel's event-based notification rules.
 
 ## Runtime relationship with Reality Watch
 
@@ -46,6 +54,9 @@ scheduled DCA Reality Watch sweep
         └── broad evidence coverage / backlog recovery / capability health
 
 validation queue condition watch
+        ├── full unresolved queue
+        │       └── owner reminder eligibility / daily ceiling
+        │
         └── newly established candidate
                 ↓
         Maintain DCA Reality — bounded event run
@@ -66,6 +77,7 @@ Use the current connected ChatGPT access where available to inspect:
 - Airtable validation, staging, and `Reconstruction_Objects` lineage;
 - Asana Establish task, subtask, and comment lineage;
 - public DCA Slack validation and Reality Watch threads;
+- existing owner DM history for reminder deduplication and delivery verification;
 - GitHub canonical workflows and provider implementation records.
 
 A single status field is not sufficient evidence of queue membership or completion. The runtime must resolve the candidate, reviewer response, scope, source, target, and current lineage before acting.
@@ -117,11 +129,24 @@ When the monitor cannot complete a required target read, write, verification, or
 - preserve enough state for the daily Reality Watch to recover it;
 - surface the failure as System & Structure runtime capability evidence.
 
-## Reviewer contact status
+## Reviewer reminder implementation
 
-Automated reviewer chasing is **not active in the current ChatGPT monitor implementation**.
+Automated bounded validation reminders are **active in the current ChatGPT monitor implementation**. They are reminders to use the existing authoritative review surface, not escalation or reviewer chasing.
 
-The monitor may observe replies and manage the reconciliation handoff. Any future reminder behaviour must be separately enabled, must point to the existing bounded validation request, and must follow the canonical no-invented-deadline, no-silence-as-disagreement, and operational-availability boundaries.
+On every hourly run, the monitor must reconstruct each verified owner's complete unresolved-validation queue from represented state and current authoritative lineage, regardless of when an item was first discovered. An older item remains in the queue until authoritative evidence establishes validation and required reconciliation, correction or withdrawal, rerouting, changed ownership, or another explicit closure state.
+
+For each owner:
+
+- send no more than one reminder DM in a Europe/Amsterdam calendar day;
+- when a reminder is sent, include the complete current actionable unresolved list, not only new or recently changed items;
+- use `Validation reminders — [count] open`, followed by one brief line per item containing the bounded topic, `Needed: [atomic confirmation, correction, or evidence]`, and a direct link to the exact Google Docs comment or anchored passage, Asana validation task/subtask, or authoritative Slack thread;
+- do not use a folder, shared-drive root, broad document, or general channel as the reminder link;
+- direct the owner to respond at the linked authoritative location; the DM is delivery, not a second source of truth;
+- inspect existing DM and validation lineage before sending, and record recipient, timestamp, bounded items, authoritative links, Slack message reference, and delivery verification;
+- retain blocked or non-actionable items in the derived queue, but exclude them from the actionable DM until their dependency or review surface is ready;
+- stop or reroute reminders immediately when the item is resolved, corrected, withdrawn, reassigned, or no longer belongs to that owner.
+
+Do not invent deadlines, mark silence as disagreement or lateness, add fallback reviewers, or disregard operational availability. Reminder activity alone must not produce a `#dca-validation-queue` post.
 
 ## Testing status
 
@@ -136,8 +161,12 @@ Testing concerns include:
 - target freshness and idempotency;
 - persistence and lineage verification;
 - closure behaviour;
-- recovery by the scheduled Reality Watch after incomplete or failed monitor runs.
+- recovery by the scheduled Reality Watch after incomplete or failed monitor runs;
+- continuity of older unresolved items across runs with no new activity;
+- complete owner-specific reminder contents and direct review links;
+- one-DM-per-owner-per-day enforcement and reminder delivery lineage;
+- strict separation between private reminder delivery and event-based `#dca-validation-queue` publication.
 
 ## Runtime portability
 
-A later runtime may replace hourly polling with a webhook or event stream. That change may reduce latency but must preserve the same provider-independent validation, reconciliation, persistence, verification, and no-output behaviour.
+A later runtime may replace hourly polling with a webhook or event stream. That change may reduce latency but must preserve the same provider-independent validation, unresolved-queue continuity, reminder boundaries, reconciliation, persistence, verification, and no-output behaviour.
