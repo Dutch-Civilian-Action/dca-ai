@@ -10,7 +10,7 @@ provider_independent: true
 
 ## Purpose
 
-Monitor live validation work and hand every newly sufficiently established finding or correction into maintained-reality reconciliation without waiting for the next scheduled Reality Watch evidence sweep.
+Monitor live validation work, maintain a current unresolved-validation queue across old and new items, and hand every newly sufficiently established finding or correction into maintained-reality reconciliation without waiting for the next scheduled Reality Watch evidence sweep.
 
 This workflow owns validation-state observation and handoff. It does **not** independently define organisational truth, reconstruct a parallel reality, or write directly around the maintained-reality workflows.
 
@@ -26,7 +26,7 @@ The validation monitor is a caller and state-transition observer. These governin
 
 ## Trigger model
 
-The logical trigger is a **material validation-state transition**, not a particular daily time.
+The logical trigger for reconciliation is a **material validation-state transition**, not a particular daily time.
 
 Invoke this workflow whenever available evidence indicates that a live validation candidate may have moved into one of these states:
 
@@ -37,6 +37,8 @@ Invoke this workflow whenever available evidence indicates that a live validatio
 - no longer requiring the reviewer because equivalent authoritative evidence resolved the same bounded question.
 
 A provider may implement this through a webhook, event stream, condition watch, or polling. Trigger mechanics and polling cadence belong in the provider implementation record.
+
+Reminder evaluation is state-based rather than event-based. On every invocation, reconstruct the full current unresolved-validation queue even when no material transition is detected. An unchanged outstanding item may remain eligible for a bounded reminder under the provider cadence; the reminder itself is not a validation-state transition or publication event.
 
 The scheduled Reality Watch remains necessary as the broad evidence-coverage, backlog-recovery, and failed-trigger safety sweep. It is not the only reconciliation clock.
 
@@ -55,6 +57,19 @@ For every candidate, inspect the bounded validation lineage that is relevant to 
 - the current routing and authority decision.
 
 Before creating or recommending new validation work, apply the anti-duplicate preflight. Continue the existing live thread when it already covers the same bounded meaning. Exclude documentary, technical, architectural, historical-only, proposed-future, already represented, or already confirmed material unless a genuine operational delta remains.
+
+Maintain a derived unresolved-validation queue from represented state and lineage, not from a single status field, source timestamp, or previous-run window. Carry every older unresolved item forward regardless of discovery date or later activity. Remove or reroute it only when authoritative evidence establishes validation and required reconciliation, correction or withdrawal, changed ownership/destination, or another explicit closure state.
+
+For each tracked item preserve or derive:
+
+- the bounded validation-item identity and current atomic validation need;
+- the verified responsible owner or reviewer;
+- the exact authoritative response location and stable link;
+- the last authoritative response or correction;
+- whether the item is currently actionable or blocked by another dependency;
+- the last reminder time, recipient, delivery reference, and closure evidence.
+
+This queue is an operational worklist over authoritative evidence and lineage. It is not a second source of organisational truth.
 
 ## Reviewer-response interpretation
 
@@ -116,11 +131,20 @@ On every invocation:
 
 ## Reminders and contact
 
-Monitoring and reviewer contact are separate capabilities.
+Reconciliation transitions and reminder evaluation are separate capabilities.
 
-A runtime may send reminders only when its current implementation and governance permit it. Reminders must point to the existing bounded validation request, respect operational availability, preserve the preferred response location, and stop when the item resolves.
+A runtime may send reminders only when its current implementation and governance permit it. When enabled:
 
-Do not invent due dates, fallback reviewers, escalation, disagreement, or lateness. Reminder cadence and delivery surfaces belong in the provider implementation record.
+- derive each person's reminder from their complete current actionable unresolved list, including older items, rather than only newly detected or recently changed candidates;
+- state each bounded item briefly, name the one atomic confirmation, correction, or evidence needed, and link directly to the exact authoritative review location;
+- do not link only to a folder, shared-drive root, broad document, or general channel;
+- use one compact owner-specific reminder with one line per active actionable item when several items are outstanding;
+- direct the response back to the authoritative review surface so reminder delivery does not create a parallel source of truth;
+- inspect prior contact and current validation lineage before sending, then record recipient, time, bounded items, authoritative links, and delivery verification in the existing lineage;
+- keep blocked or currently non-actionable items in the unresolved queue, but do not ask an owner to act until the dependency or review surface is actionable;
+- stop or reroute reminders when the item is resolved, corrected, withdrawn, reassigned, or no longer belongs to that person.
+
+Do not invent due dates, fallback reviewers, escalation, disagreement, or lateness. Reminder cadence and delivery surfaces belong in the provider implementation record. A reminder is not organisational evidence, a validation-state transition, or a publication event.
 
 ## Failure behaviour
 
@@ -150,4 +174,4 @@ No material validation-state change and no blocker means no notification.
 
 ## Short rule
 
-**Observe validation state. When a finding becomes sufficiently established, hand it immediately into the canonical maintained-reality comparison, persistence, verification, and closure path. Keep the scheduled Reality Watch as recovery and broad coverage, not as the only reconciliation clock.**
+**Maintain the full unresolved validation queue across runs. Remind responsible owners through the existing bounded review surfaces. When a finding becomes sufficiently established, hand it immediately into the canonical maintained-reality comparison, persistence, verification, and closure path. Keep the scheduled Reality Watch as recovery and broad coverage, not as the only reconciliation clock.**
