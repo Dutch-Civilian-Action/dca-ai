@@ -25,7 +25,7 @@ Current ChatGPT monitor implementation:
 
 This file records the current ChatGPT implementation of the provider-independent DCA workflow. It is not the workflow authority itself.
 
-The ChatGPT runtime must execute the current canonical workflows, including the Reality Watch Output contract. Provider-specific instructions may define runtime access, trigger mechanics, persistence mechanics, and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, validation sufficiency, or output eligibility.
+The ChatGPT runtime must execute the current canonical workflows, including the Reality Watch Output contract. Provider-specific instructions may define runtime access, trigger mechanics, persistence mechanics, authoritative file resolution, and publication routing, but must not redefine Operational Reality, Derived Organisational Reality, Capability Reality, validation sufficiency, or output eligibility.
 
 ## Current runtime topology
 
@@ -88,6 +88,19 @@ Current maintained reality views include:
 - DCA Derived Organisational Reality;
 - DCA System & Structure — Capability Reality.
 
+### Authoritative Capability Reality target
+
+The authoritative maintained **DCA System & Structure — Capability Reality** Google Doc is:
+
+- file ID: `1F9STwBk0S0nibS8AtFTSFgRxcXLAnL5eWEnjCieLkzw`;
+- title: **DCA System & Structure — Capability Reality**.
+
+Resolve Capability Reality maintenance to that stable file ID. Do not select a target merely because another Drive document has a similar title, contains Capability Reality reconstruction material, or was updated by a previous run.
+
+Google Doc `1LRgdRrxA1nQGyTGh6hKxq_7nvEVtfs8VDIGCemQ5xic` is **working reconstruction evidence / dossier material, not the maintained Capability Reality authority**. Reality Watch must not write Capability Reality maintenance updates into it. Its prompts, chat/session material, reconstruction analysis, evidence notes, and unrelated tabs may be useful evidence but do not become maintained reality by being present there.
+
+If authoritative-target identity and document content disagree, stop the affected write, preserve the mismatch as capability/runtime evidence, and resolve the authority boundary before maintenance continues.
+
 Current source classes include, where available:
 
 - current maintained reality documents;
@@ -102,7 +115,7 @@ Current source classes include, where available:
 
 ## Maintained-reality persistence
 
-Maintaining reality means **persisting supported changes into the current maintained reality documents**, not merely detecting, validating, summarising, or reporting them.
+Maintaining reality means **persisting supported changes into the current authoritative maintained reality documents**, not merely detecting, validating, summarising, or reporting them.
 
 For every scheduled or validation-triggered execution:
 
