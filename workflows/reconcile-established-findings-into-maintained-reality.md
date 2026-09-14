@@ -185,7 +185,7 @@ Every processed candidate must preserve an equivalent of:
 - `reconciliation_notes`;
 - remaining uncertainty / next action.
 
-When the originating lineage is `DCA Integrations & Reconciliation.Reconstruction_Objects`, use the corresponding fields on that object. This records downstream state without turning the reconstruction base into a second canonical truth source.
+When the originating lineage is `DCA Evidence & Reconciliation.Reconstruction_Objects`, use the corresponding fields on that object. This records downstream state without turning the reconstruction base into a second canonical truth source.
 
 ### Establishment status
 

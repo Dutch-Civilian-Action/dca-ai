@@ -141,6 +141,16 @@ If a required maintained-document write cannot be completed or verified:
 
 Recovery rule: after any maintenance gap, process the unrepresented evidence backlog before limiting attention to the newest evidence. A later successful scheduled or validation-triggered run must recover materially relevant work missed by earlier executions rather than assuming that task execution means processing completed.
 
+## Repository and implementation-summary maintenance
+
+The existing daily Reality Watch also executes the repository/runtime/document alignment check in `../../workflows/maintain-dca-reality.md`. Keep its current schedule and publication rules.
+
+Resolve the implementation summary through `../../context/current-authority.md` (Google Doc `11u_vHjYJ8GHfG3rrDcbi6iJ2PKcV_1rByUf1-9i4294`). Inspect repository revisions, live base metadata where routing changed, affected deployed task configuration, and the summary's actual sections. Repository changes are implementation evidence, not proof of deployment or use.
+
+For an affected ChatGPT task, read its live configuration and apply only the authorised alignment patch. Preserve schedule, enabled state, source scope, validation and publication boundaries; read back the result. Continue an existing PR or unresolved correction instead of duplicating work.
+
+Report alignment complete only after the required default-branch change is verified, runtime differences are reconciled or explicitly blocked, and affected summary sections are persisted and read back. Preserve partial outcomes for recovery by the next daily sweep.
+
 ## Validation-trigger boundary
 
 A validation monitor event does not bypass canonical validation or reconciliation rules.
@@ -212,7 +222,7 @@ Provider implementation must not duplicate or silently override these rules. Whe
 
 This implementation remains part of System & Structure development and live organisational testing.
 
-Operational publication is active. Validation-triggered reconciliation is active through hourly condition watching. Automated reviewer chasing is not active in the current monitor implementation.
+Operational publication is active. Validation-triggered reconciliation is active through hourly condition watching. Bounded validation-reminder DMs are active in the current validation-monitor configuration: one complete actionable unresolved list per verified owner, at most once per Europe/Amsterdam day. See `dca-validation-queue-monitor.md`; this does not widen escalation or channel-publication authority.
 
 Testing concerns include finding quality, routing, usefulness, source coverage, correct recognition of validation transitions, target freshness, idempotency, maintained-document persistence, recovery after failed or incomplete runs, closure behaviour, event-to-reconciliation latency, and whether outputs are actually used by DCA.
 

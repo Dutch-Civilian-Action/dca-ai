@@ -2,7 +2,7 @@
 name: capturing-dca-logistics-intake
 description: Capture new or changed DCA Logistics-cycle evidence such as goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, or cancellations. Use for conversational Logistics intake and updates; do not use for explaining how the Logistics workflow works generally.
 metadata:
-  version: 0.6.4
+  version: 0.6.5
   dca-workflow: capture-logistics-intake
   mcp-server: airtable
 ---
@@ -21,13 +21,13 @@ The workflow defines Logistics intake meaning. This skill defines how Claude exe
 DCA user in Slack / Claude
 → this skill
 → Airtable connector
-→ DCA Integrations & Reconciliation
+→ DCA Evidence & Reconciliation
 → Logistics_Intake_Submissions
 → Logistics_Intake_Facts
 → Logistics_Intake_Operational_References
 ```
 
-Use only `DCA Integrations & Reconciliation` for new mixed Logistics-cycle intake during the current pilot.
+Use only `DCA Evidence & Reconciliation` for new mixed Logistics-cycle intake during the current pilot.
 
 Do not select a similarly named copy, test, rebuild, staging, snapshot, or historical base merely because search returns it first. Resolve the intended base explicitly before writing, using `context/airtable-workspace-map.md` for the current production vs. non-production (`DCA Dev/Test`) workspace distinction and the recorded base identity — never by fuzzy/substring name match. The same principle applies to Relationship Data lookups: use the current canonical base named by the workflow/source-routing policy, not a similarly named copy.
 
@@ -242,7 +242,7 @@ When `attachment_analysis` does run, it is proposed extraction only, sourced onl
 - do not let it create canonical objects or broaden the write scope;
 - connect extracted proposals back to the attachment/submission.
 
-Only after a human reviews `attachment_analysis` may Claude propose a search-before-create create/update/conflict set against existing non-synthetic staging evidence; writing that proposal into Facts or Operational References needs separate explicit human approval, and promotion into DCA Logistics is a further, separately gated step.
+Only after a human reviews `attachment_analysis` may Claude propose a search-before-create create/update/conflict set against existing non-synthetic staging evidence; writing that proposal into Facts or Operational References needs separate explicit human approval, and promotion into DCA Warehouse & Logistics is a further, separately gated step.
 
 When the source is an exported AI-assisted chat or notebook:
 

@@ -85,12 +85,12 @@ The Airtable plugin provides generic Airtable operations. The DCA Relationship D
 
 **Credentials:**
 
-- Airtable Agent Identity restricted at the base level to `DCA Integrations & Reconciliation` only (production workspace `DCA`; see `dca-ai/context/airtable-workspace-map.md` for the current recorded base identity — resolve by workspace + base identity, never by name search). The current Airtable implementation does not support restricting a single identity to specific tables within a base, so this identity can read/write any table in that base, not only the three Logistics intake staging tables. Table-level restriction is not a credential control here and must not be described as one anywhere in this repository.
+- Airtable Agent Identity restricted at the base level to `DCA Evidence & Reconciliation` only (production workspace `DCA`; see `dca-ai/context/airtable-workspace-map.md` for the current recorded base identity — resolve by workspace + base identity, never by name search). The current Airtable implementation does not support restricting a single identity to specific tables within a base, so this identity can read/write any table in that base, not only the three Logistics intake staging tables. Table-level restriction is not a credential control here and must not be described as one anywhere in this repository.
 - The write boundary to only the three Logistics intake staging tables is therefore enforced procedurally at runtime by the skill/workflow rules, not by the credential:
   - `Logistics_Intake_Submissions`
   - `Logistics_Intake_Facts`
   - `Logistics_Intake_Operational_References`
-- Do not treat "the credential only reaches these tables" as true or as a pass condition in any test. The only valid check is observed write behavior: after any intake activity, confirm no records were created or changed in any other table in `DCA Integrations & Reconciliation`.
+- Do not treat "the credential only reaches these tables" as true or as a pass condition in any test. The only valid check is observed write behavior: after any intake activity, confirm no records were created or changed in any other table in `DCA Evidence & Reconciliation`.
 
 Do not reuse a broadly privileged Airtable identity merely for convenience. Base-level restriction (this base only, not the wider workspace or canonical Relationship Data base) remains a real and required control even though table-level restriction is not available.
 
@@ -101,7 +101,7 @@ Do not reuse a broadly privileged Airtable identity merely for convenience. Base
 
 **Instructions:**
 
-> Use the DCA Logistics Intake plugin when a Logistics user supplies new or changed current-cycle information, including goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, cancellations, or unresolved operational context. Preserve the full human submission and uncertainty; do not require cleanup or complete fields. During this reconstruction pilot, keep new mixed Logistics-cycle evidence in `DCA Integrations & Reconciliation` and minimally extract supported goods/state facts plus operational references there. Relationship Data may be read to check established identity/context, but do not directly mutate canonical relationship records from mixed Logistics intake. Do not invent final Logistics, contact-route, workflow-role, location, or relationship structures before reconstruction supports them. Confirm what was recorded in simple operational language and keep Airtable/reconciliation mechanics internal unless needed to resolve a material ambiguity.
+> Use the DCA Logistics Intake plugin when a Logistics user supplies new or changed current-cycle information, including goods state, people, organisations, locations, contact routes, pickup/delivery arrangements, carry-over, changes, cancellations, or unresolved operational context. Preserve the full human submission and uncertainty; do not require cleanup or complete fields. During this reconstruction pilot, keep new mixed Logistics-cycle evidence in `DCA Evidence & Reconciliation` and minimally extract supported goods/state facts plus operational references there. Relationship Data may be read to check established identity/context, but do not directly mutate canonical relationship records from mixed Logistics intake. Do not invent final Logistics, contact-route, workflow-role, location, or relationship structures before reconstruction supports them. Confirm what was recorded in simple operational language and keep Airtable/reconciliation mechanics internal unless needed to resolve a material ambiguity.
 
 **Initial auto-mode allow rules:** none. Require explicit `@Claude` invocation during the pilot.
 

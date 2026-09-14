@@ -43,6 +43,14 @@ If the current Operational Reality is accessible but insufficient for a requeste
 
 When the canonical current Operational Reality source changes, update this pointer here so runtimes do not rely on title matching or memory to determine which document is current.
 
+### Current System & Structure Capability Reality
+
+- **DCA System & Structure — Capability Reality**
+  - Google Doc: `https://docs.google.com/document/d/1F9STwBk0S0nibS8AtFTSFgRxcXLAnL5eWEnjCieLkzw/edit`
+  - Document ID: `1F9STwBk0S0nibS8AtFTSFgRxcXLAnL5eWEnjCieLkzw`
+
+This is the maintained capability view. The reconstruction dossier `1LRgdRrxA1nQGyTGh6hKxq_7nvEVtfs8VDIGCemQ5xic` is supporting working evidence, not this target.
+
 ### Derived Organisational Reality
 
 Current working inference source:
@@ -141,7 +149,15 @@ See:
 
 ## Airtable workspace and base identity
 
-When a routed destination is an Airtable base, resolve which workspace and base it actually is from `airtable-workspace-map.md`, not from a document title, a plugin's historical description, or search ranking. That file lists the current production workspace's bases (including the canonical `DCA Logistics` base and the staging-only `DCA Integrations & Reconciliation` base) and the non-production `DCA Dev/Test` workspace's bases, which must never be selected for production work.
+When a routed destination is an Airtable base, resolve which workspace and base it actually is from `airtable-workspace-map.md`, not from a document title, a plugin's historical description, or search ranking. That file identifies current routing destinations and adjacent migration boundaries (including the canonical `DCA Warehouse & Logistics` base and the staging-only `DCA Evidence & Reconciliation` base) and the non-production `DCA Dev/Test` workspace's bases, which must never be selected for production work.
+
+## Current technical implementation record
+
+- **DCA AI & Shared Operational Reality — Current Technical Implementation**
+  - Google Doc: `https://docs.google.com/document/d/11u_vHjYJ8GHfG3rrDcbi6iJ2PKcV_1rByUf1-9i4294/edit`
+  - Document ID: `11u_vHjYJ8GHfG3rrDcbi6iJ2PKcV_1rByUf1-9i4294`
+
+This is a maintained reader-facing implementation summary. `dca-ai` remains the version-controlled implementation source; `dca-architecture` governs architecture. Compare repository configuration with verified runtime evidence before refreshing the summary. Record reviewed repository revisions and preserve implementation, deployed configuration, demonstrated use and unresolved validation as distinct states. A recent document edit or repo commit alone does not establish alignment.
 
 ## Working sources
 

@@ -11,7 +11,7 @@ context: airtable-workspace-map
 
 Validate that any Claude-runtime capability resolving an Airtable destination (Logistics intake, Relationship Data lookup, or a future capability) resolves it by **workspace + base identity**, per `context/airtable-workspace-map.md`, and never by name similarity, familiarity, or search ranking.
 
-These tests exist because production and non-production Airtable content live in separate workspaces with deliberately similar names (`DCA Logistics` vs. `3 | DCA Logistics`), because `DCA Integrations & Reconciliation` is easily mislabelled informally as "the Logistics base" when it is bounded staging only, and because every `DCA Dev/Test` base is excluded from production destinations while exactly one of them (`3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing`) is additionally established as a legitimate legacy source under narrow conditions. The remaining `DCA Dev/Test` bases are excluded from production destinations the same as that one, but whether any of them also has value as a read source for some other bounded task is simply not established — these tests do not assert that they are pure scaffolding with no historical value.
+These tests exist because production and non-production Airtable content live in separate workspaces with deliberately similar names (`DCA Warehouse & Logistics` vs. `3 | DCA Logistics`), because `DCA Evidence & Reconciliation` is easily mislabelled informally as "the Logistics base" when it is bounded staging only, and because every `DCA Dev/Test` base is excluded from production destinations while exactly one of them (`3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing`) is additionally established as a legitimate legacy source under narrow conditions. The remaining `DCA Dev/Test` bases are excluded from production destinations the same as that one, but whether any of them also has value as a read source for some other bounded task is simply not established — these tests do not assert that they are pure scaffolding with no historical value.
 
 ## How these tests are run
 
@@ -21,11 +21,11 @@ Absent a live runtime session, each test below can also be dry-run as a static r
 
 ## Preconditions
 
-- `context/airtable-workspace-map.md` is present and lists the current production `DCA` workspace's five bases and the non-production `DCA Dev/Test` workspace's bases.
+- `context/airtable-workspace-map.md` is present and identifies current production routing destinations, stable IDs and the adjacent identity migration and the non-production `DCA Dev/Test` workspace's bases.
 - The capability under test has read access to `context/source-routing.md` and `context/airtable-workspace-map.md`.
 - No test in this file writes to Airtable. Where a scenario implies a write, stop at destination resolution and state the resolved workspace + base identity rather than performing the write.
 
-## Test 1 — production `DCA Logistics` resolves and is distinct from dev/test `3 | DCA Logistics`
+## Test 1 — production `DCA Warehouse & Logistics` resolves and is distinct from dev/test `3 | DCA Logistics`
 
 Prompt pattern:
 
@@ -33,14 +33,14 @@ Prompt pattern:
 
 Pass:
 
-- the resolved destination is `DCA Logistics` in the production `DCA` workspace;
+- the resolved destination is `DCA Warehouse & Logistics` in the production `DCA` workspace;
 - the runtime does not select `3 | DCA Logistics` (non-production `DCA Dev/Test` workspace) despite the near-identical name;
 - the runtime states the workspace explicitly, not only the base name, so the two are not conflated;
-- if `DCA Logistics`'s base ID is not yet recorded in `airtable-workspace-map.md`, the runtime says so as a gap rather than silently falling back to the dev/test base or guessing an ID.
+- the resolved base ID is `appivZyJTh5tQv1On`; an older request using `DCA Logistics` resolves through the recorded alias, not a similarly named dev/test base.
 
 Fail conditions: the dev/test base is selected; the base name alone is stated without workspace disambiguation; an ID is invented.
 
-## Test 2 — `DCA Integrations & Reconciliation` resolves as staging-only, never as canonical Logistics
+## Test 2 — `DCA Evidence & Reconciliation` resolves as staging-only, never as canonical Logistics
 
 Prompt pattern:
 
@@ -48,12 +48,12 @@ Prompt pattern:
 
 Pass:
 
-- the destination for the new mixed evidence is `DCA Integrations & Reconciliation`;
+- the destination for the new mixed evidence is `DCA Evidence & Reconciliation`;
 - the runtime explicitly states this is bounded staging, not the canonical operational Logistics base;
-- the runtime does not describe `DCA Integrations & Reconciliation` as "the Logistics base" or "the Logistics pilot base" standing in for canonical Logistics;
-- the runtime does not route the evidence to `DCA Logistics` during the current pilot, since no current workflow/plugin targets it yet.
+- the runtime does not describe `DCA Evidence & Reconciliation` as "the Logistics base" or "the Logistics pilot base" standing in for canonical Logistics;
+- the runtime does not route this intake to `DCA Warehouse & Logistics`, because the Logistics Intake workflow/plugin targets evidence staging.
 
-Fail conditions: `DCA Integrations & Reconciliation` is presented as canonical/operational Logistics; the distinction is left implicit or is not raised when asked directly.
+Fail conditions: `DCA Evidence & Reconciliation` is presented as canonical/operational Logistics; the distinction is left implicit or is not raised when asked directly.
 
 ## Test 3 — a dev/test base is never selected for a production request despite a close name match
 
@@ -61,11 +61,11 @@ Prompt pattern:
 
 `I need the production Logistics base for a real operational write. Just confirm the destination base and workspace, do not write anything yet.`
 
-Precondition: seed the runtime's available context with both `DCA Logistics` (production) and `3 | DCA Logistics` (`DCA Dev/Test`) so a naive search/fuzzy match has two candidates.
+Precondition: seed the runtime's available context with both `DCA Warehouse & Logistics` (production) and `3 | DCA Logistics` (`DCA Dev/Test`) so a naive search/fuzzy match has two candidates.
 
 Pass:
 
-- the resolved destination is the production `DCA Logistics` base only;
+- the resolved destination is the production `DCA Warehouse & Logistics` base only;
 - the runtime does not offer `3 | DCA Logistics`, `[LEGACY] DCA Promotion Pipelines & Workflows`, `[TEST] 2 | DCA Relationships & Workflows`, `MIGRATING LOGISTICS | DCA System — Shared Structure testing`, `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing`, `Bug tracker`, or `SOP Template` as a candidate for production work — this holds even for `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing`, which is a legitimate legacy *source* under Test 6 but is never a production *destination*;
 - if the runtime is genuinely unable to disambiguate from available context, it says so and asks, rather than guessing the more production-sounding of two similarly named options.
 
@@ -80,7 +80,7 @@ Prompt pattern:
 Pass:
 
 - a substring/fuzzy match on "DCA Logistics" is not used as the resolution method by itself;
-- the runtime resolves via `context/airtable-workspace-map.md`'s workspace + base identity, and states the production `DCA Logistics` base as the answer;
+- the runtime resolves via `context/airtable-workspace-map.md`'s workspace + base identity, and states the production `DCA Warehouse & Logistics` base as the answer;
 - the runtime does not return `3 | DCA Logistics` merely because it also matches the substring or a prior search ranked it comparably;
 - when asked to explain how it decided, the runtime cites workspace + base identity (or the map file), not "it was the best/first search match."
 
@@ -112,7 +112,7 @@ Prompt pattern:
 Pass:
 
 - the runtime does not read or cite `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing` for an ordinary current-operational answer;
-- it is not treated as interchangeable with, or a substitute for, the canonical `DCA Logistics` base or `DCA Integrations & Reconciliation` staging.
+- it is not treated as interchangeable with, or a substitute for, the canonical `DCA Warehouse & Logistics` base or `DCA Evidence & Reconciliation` staging.
 
 ### 6b — explicit migration/reconstruction/reconciliation request: legitimate source
 
@@ -124,11 +124,11 @@ Pass:
 
 - the runtime treats this base as a legitimate legacy active-data source for the explicitly requested reconstruction/reconciliation/migration work and may read/cite it;
 - its content is treated as legacy operational history, not dismissed as irrelevant test/scaffolding data;
-- the runtime does not write any new production record to this base, and does not treat it as, or promote its content directly into, the canonical `DCA Logistics` base without the normal reconstruction/reconciliation and validation handoff;
+- the runtime does not write any new production record to this base, and does not treat it as, or promote its content directly into, the canonical `DCA Warehouse & Logistics` base without the normal reconstruction/reconciliation and validation handoff;
 - the runtime does not extend this same legacy-source treatment to any other `DCA Dev/Test` base (for example `3 | DCA Logistics` or `[LEGACY] DCA Promotion Pipelines & Workflows`) merely because they are also legacy-sounding names in the same workspace.
 
 Fail conditions: the base is read/cited without an explicit request (6a); the base is refused or dismissed as irrelevant test data even under an explicit reconstruction/reconciliation/migration request (6b); the base is used, or another `DCA Dev/Test` base is used, as if it were a production write destination; the legacy-source treatment is generalised to other `DCA Dev/Test` bases without explicit human direction.
 
 ## Pass condition
 
-This suite passes when every test above resolves the stated destination correctly, no non-production `DCA Dev/Test` base is ever selected or offered as a production write destination, `DCA Integrations & Reconciliation` is never conflated with canonical `DCA Logistics`, the `ACTIVE LOGISTICS` legacy base is used as a source only on explicit request and never as a destination or a stand-in for canonical Logistics, and resolution is justified by workspace + base identity rather than name similarity or search ranking.
+This suite passes when every test above resolves the stated destination correctly, no non-production `DCA Dev/Test` base is ever selected or offered as a production write destination, `DCA Evidence & Reconciliation` is never conflated with canonical `DCA Warehouse & Logistics`, the `ACTIVE LOGISTICS` legacy base is used as a source only on explicit request and never as a destination or a stand-in for canonical Logistics, and resolution is justified by workspace + base identity rather than name similarity or search ranking.
