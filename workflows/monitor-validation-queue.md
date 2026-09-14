@@ -71,6 +71,10 @@ For each tracked item preserve or derive:
 
 This queue is an operational worklist over authoritative evidence and lineage. It is not a second source of organisational truth.
 
+## Measurement hook
+
+When the current provider configuration explicitly enables a private measurement destination, apply `measure-validation-queue.md` after reconstructing the full queue and completing supported reconciliation for the run. Derive the snapshot from that assessed state; do not initiate another validation or reality-maintenance process. Measurement does not change queue membership, reminder eligibility, closure, or publication rules. Keep capture failures separate from validation failures.
+
 ## Reviewer-response interpretation
 
 Interpret responses at their actual boundary:
