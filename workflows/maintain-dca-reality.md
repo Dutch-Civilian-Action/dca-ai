@@ -98,6 +98,21 @@ Surface only material changes such as:
 - output produced but not actually used;
 - downstream use/outcome evidence contradicting the intended benefit.
 
+## Repository, runtime and implementation-document alignment
+
+During each scheduled or explicitly requested broad capability sweep, compare the relevant current `dca-ai` and `dca-architecture` revisions, verified live configuration/use evidence, and the implementation summary resolved through `context/current-authority.md`. A bounded validation event checks only surfaces affected by that candidate.
+
+For material drift:
+
+1. Establish the change and its authority. A display-name change is not a migration; an installed capability is not demonstrated use; a proposed structure is not an active write destination.
+2. Reconcile the owning repository first: implementation, source identities, workflows, packaged skills and provider records belong in `dca-ai`; established architecture belongs in `dca-architecture`. Preserve historical evidence and quoted test inputs. Reuse existing correction PRs or work items.
+3. Follow the applicable repository review and action-authorisation rules. Prepare the smallest reviewable change when merge authority is absent; a branch or PR is not current default-branch implementation.
+4. Reconcile affected deployed prompts/configuration only within existing authority. A repository merge does not prove deployment.
+5. Refresh affected sections of the existing implementation summary, including status and reviewed repository revisions, and read them back. Do not merely append an update while contradictory current claims remain elsewhere.
+6. Record the commit/PR, runtime verification, document revision and remaining blocker in existing run-result or correction lineage. Close the alignment item only when all required affected surfaces are verified; otherwise preserve the exact unresolved surface for the next sweep.
+
+Use the existing maintenance workflow, not another recurring monitor or parallel truth register. Determine coverage from meaning and provenance, not modification dates. If no material discrepancy exists, do not make cosmetic edits. Technical documentation repair alone does not require an organisational Slack publication; existing materiality and routing rules still apply.
+
 ## Evidence boundaries
 
 Keep explicit:

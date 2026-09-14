@@ -27,7 +27,7 @@ It does not define the full Logistics workflow, the final Logistics schema, or t
 
 During the bounded pilot, store new mixed Logistics-cycle intake evidence in:
 
-`DCA Integrations & Reconciliation`
+`DCA Evidence & Reconciliation`
 
 using:
 
@@ -104,7 +104,7 @@ Determine `controlled_test` and `synthetic_test_data` for the submission as usua
 - keep any assistant-derived label, unit conversion, category, or total in a column or section separate from the human's own wording and figures, never merged into one value that reads as the human's own statement;
 - treat an attached image as identification/description of visible goods only — for example, "photo shows tents" — and never use it to derive, adjust, validate, or corroborate a quantity the human already stated in the transcript, such as claiming a photo "confirms" a stated count.
 
-`attachment_analysis` output is proposed evidence only. It must never itself create or update Facts, Operational References, DCA Logistics records, or any other canonical object.
+`attachment_analysis` output is proposed evidence only. It must never itself create or update Facts, Operational References, DCA Warehouse & Logistics records, or any other canonical object.
 
 For a controlled first run of this capability, automatic generation of `attachment_analysis` stays off. Once the `Logistics_Intake_Submissions` record is created and read back to confirm `attachments` is populated, capture stops there for manual execution and human review of the `attachment_analysis` field output.
 
@@ -120,7 +120,7 @@ The `Logistics_Intake_Submissions` record ID and the fact that `attachment_analy
 
 Only after a human has reviewed the `attachment_analysis` output may Claude compare it against existing non-synthetic staging evidence and propose an exact search-before-create create/update/conflict set. Writing that proposal into `Logistics_Intake_Facts` or `Logistics_Intake_Operational_References` requires separate explicit human approval beyond the comparison step; a completed comparison is a proposal, not authorization to write.
 
-Promotion from Logistics intake staging into canonical DCA Logistics records remains a separate, later step, gated the same way as any other promotion under "Do not promote prematurely" below: only specific, reviewed, human-approved evidence may be promoted. Never bulk-sync all staging facts, and never treat a passed comparison step as approval to promote.
+Promotion from Logistics intake staging into canonical DCA Warehouse & Logistics records remains a separate, later step, gated the same way as any other promotion under "Do not promote prematurely" below: only specific, reviewed, human-approved evidence may be promoted. Never bulk-sync all staging facts, and never treat a passed comparison step as approval to promote.
 
 ## Pilot principle: capture before modelling
 
@@ -274,7 +274,7 @@ A current-cycle Logistics submission may contain goods state, a person or organi
 
 During this reconstruction pilot:
 
-- preserve the entire submission in `DCA Integrations & Reconciliation`;
+- preserve the entire submission in `DCA Evidence & Reconciliation`;
 - extract goods/state facts into `Logistics_Intake_Facts` when supported;
 - extract operational people/organisation/location/route references into `Logistics_Intake_Operational_References` when supported;
 - do not write new mixed intake directly into canonical Contacts, Organizations, Partners, or other Relationship Data records;

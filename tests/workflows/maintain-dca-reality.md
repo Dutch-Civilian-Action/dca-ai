@@ -86,13 +86,21 @@ Expected behaviour:
 
 Input condition:
 
-- current system behaviour and current documentation disagree.
+- current system behaviour and current documentation disagree;
+- both repo and document have recent modification dates, but the document describes old access configuration;
+- a base has a new display name at the same stable ID, while a replacement identity base exists without an established migration.
 
 Expected behaviour:
 
 - identify documentation/system mismatch;
 - use authority status and current evidence to determine what can be concluded;
 - do not silently rewrite organisational reality to match either source;
+- correct current repository names/routing against verified evidence without migrating data or promoting the new identity base;
+- preserve historical inputs and existing write scopes;
+- reconcile the owning repo first, then affected runtime configuration and existing document sections;
+- a pending PR, stale deployed task or failed document write leaves the affected alignment item unresolved;
+- a repeated sweep resumes the same correction rather than duplicating work;
+- recent timestamps alone do not satisfy coverage or closure;
 - notify if the mismatch affects use, authority, continuity, or correctness.
 
 ## Test 7 — output produced but not used

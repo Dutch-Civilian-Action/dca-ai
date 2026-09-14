@@ -21,7 +21,7 @@ Unlike the fixtures in `logistics-intake-0.6.0-realistic-acceptance-cases.md`, t
 
 ## Preconditions
 
-Same as `logistics-intake.md`: DCA Logistics Intake plugin attached, explicit `@Claude` invocation, Airtable identity restricted at base level to `DCA Integrations & Reconciliation`, write-scope verified by observed behaviour rather than credential shape. Automatic `attachment_analysis` generation is off for this controlled first run per the "Attachment handling" workflow section.
+Same as `logistics-intake.md`: DCA Logistics Intake plugin attached, explicit `@Claude` invocation, Airtable identity restricted at base level to `DCA Evidence & Reconciliation`, write-scope verified by observed behaviour rather than credential shape. Automatic `attachment_analysis` generation is off for this controlled first run per the "Attachment handling" workflow section.
 
 ## Scenario
 

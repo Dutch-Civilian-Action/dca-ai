@@ -22,6 +22,17 @@ AI runtimes apply DCA organisational knowledge, rules, skills, workflows, and te
 
 See `providers/runtime-selection.md` for runtime-selection guidance.
 
+## Current implementation and maintenance
+
+Current repository capabilities include Relationship Data, bounded Logistics Intake with attachment handling, maintained-reality reconciliation, Reality Watch, and validation-queue monitoring with bounded owner reminders. Repository implementation and a configured task do not by themselves prove live correctness, organisation-wide adoption or outcomes.
+
+- `context/current-authority.md` resolves the maintained reality documents and implementation summary.
+- `context/airtable-workspace-map.md` records stable base identities, current names and migration boundaries.
+- `workflows/maintain-dca-reality.md` owns repository-to-runtime-to-document drift checks.
+- `providers/chatgpt/dca-reality-watch.md` records the running maintenance route.
+
+For a material implementation change, reconcile the relevant repository files first, then verify affected runtime configuration and refresh the existing implementation summary. Keep an unmerged change, deployment gap or failed document write visibly pending.
+
 ## Top-level structure
 
 - `governance/` — authority, evidence, uncertainty, human/AI boundaries, and AI operating rules
