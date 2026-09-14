@@ -148,6 +148,26 @@ For each owner:
 
 Do not invent deadlines, mark silence as disagreement or lateness, add fallback reviewers, or disregard operational availability. Reminder activity alone must not produce a `#dca-validation-queue` post.
 
+## Private measurement configuration
+
+The optional measurement contract is `../../workflows/measure-validation-queue.md`. It reuses this monitor; no second scheduled task or source-truth table is introduced.
+
+Activation is explicit and separate from repository implementation. Keep measurement disabled until the task prompt contains both `validation_metrics.enabled=true` and a verified `validation_metrics.library_file_id`. An unmerged branch or prepared artifact is not an active configuration.
+
+When activated:
+
+- the existing hourly invocation remains unchanged;
+- after its normal queue assessment and reconciliation, capture once per Europe/Amsterdam calendar day, beginning with the first successful run that day;
+- maintain the configured private Markdown measurement log in the requesting user's ChatGPT files, retaining dated JSON snapshots and a concise current readout;
+- resolve the artifact by its configured stable identity; use a version-checked replacement and verify the saved result. Do not search by a similar title and overwrite an arbitrary file;
+- reuse the existing baseline when its metric version and scope match. Keep coverage changes and reclassifications explicit; first capture alone cannot show improvement;
+- retry failed or partial capture on a later hourly run as needed. Preserve and explicitly supersede a partial snapshot when repairing it, instead of counting the repair as a new operational event;
+- store no operational snapshot payloads in the implementation repository;
+- do not send routine metric counts, daily summaries, or additional reminders to Slack. This opt-in stores history privately; the current material-event and reminder rules are unchanged;
+- on a new capture-persistence failure, retain the prior verified snapshot and make the failure visible in the task's private run result. Do not post it as an operational validation failure.
+
+Activation sequence: merge and read back the reviewed repository change; verify the saved baseline artifact identity; add the exact opt-in binding to the existing task without changing its schedule or other instructions; read back task configuration; refresh the affected technical implementation summary under `maintain-dca-reality.md`. Record configured status separately from the first successful scheduled capture.
+
 ## Testing status
 
 This implementation is active System & Structure testing.
