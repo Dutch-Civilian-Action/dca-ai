@@ -42,6 +42,22 @@ Historical names remain valid source wording. Resolve an old name through the re
 
 ## Non-production workspace: "DCA Dev/Test"
 
+Workspace ID: `wspCZsYbWYC7OXX1l`, confirmed through live `list_workspaces` during the 15 September 2026 review.
+
+Anja confirmed on 15 September 2026 that this workspace is provided at no charge through her Airtable MVP membership and that all AI and additional features are available there for normal development and testing. This records the workspace arrangement she established; it does not grant a runtime additional credentials or demonstrate equivalent feature availability in production.
+
+### Development and testing role
+
+`DCA Dev/Test` is DCA's designated Airtable workspace for developing and testing new schemas, mappings, interfaces, AI behaviour, integrations and automation before operational adoption. Follow the canonical [Development, Testing and Production Promotion standard](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/development-testing-and-promotion.md). Production exclusion is not a prohibition on development.
+
+For each authorised development task, identify the exact test base and its bounded purpose in the existing build record or PR, separately from the intended production base. Check the candidate base's purpose and contents before reuse; use an isolated test copy or a dedicated base where existing operational history could otherwise be changed. General workspace availability does not make every existing base a disposable sandbox.
+
+Use small representative, source-linked copies of real data to test unresolved mappings. Keep copied real data and synthetic fixtures distinct, and preserve sources, identifiers, uncertainty and validation scope. Test copies do not replace the operational source or the maintained production dataset. `DCA Evidence & Reconciliation` remains operational evidence staging, not the development environment.
+
+Review the structure and mapping with System & Structure and the relevant operational owners. Apply the accepted change to the established production destination only within the task's existing authority, reconcile the real data and verify the affected result there. Schema acceptance, validation of the complete dataset and runtime verification are separate. Feature availability in Dev/Test must not be assumed for the production target.
+
+The base-specific production and legacy-source boundaries below remain in force.
+
 These bases exist in a separate, non-production workspace. None of them is ever a valid destination for new production writes, but one of them is a legitimate legacy source under specific conditions — see the two subsections below.
 
 ### Never selectable as a production destination
@@ -51,13 +67,13 @@ These bases must **never** be selected as the destination for a production routi
 - `[LEGACY] DCA Promotion Pipelines & Workflows`
 - `[TEST] 2 | DCA Relationships & Workflows`
 - `MIGRATING LOGISTICS | DCA System — Shared Structure testing`
-- `3 | DCA Logistics`
+- `3 | DCA Logistics` (`appXTzdTNB8KjALbk`)
 - `Bug tracker`
 - `SOP Template`
 
 `3 | DCA Logistics` in particular must never be confused with the production `DCA Warehouse & Logistics` base above. Same/overlapping words, different workspace, different base — resolve by workspace + base identity, not by substring or fuzzy match on "DCA Logistics".
 
-Whether any of these bases also holds historical or operational facts worth reading for some bounded non-production task is **not established here** — this map only settles that none of them is a production write destination. Do not assert they are pure test/scaffolding data with no historical value, and do not treat any of them as a legitimate legacy source either, absent a separate, explicit determination. Reading one of them for a bounded task is out of scope unless a human authority explicitly names that specific base for that task (see "Out of scope" below); it does not get the same standing `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing` has below.
+Whether any of these bases also holds historical or operational facts worth reading for some bounded non-production task is **not established here** — this map only settles that none of them is a production write destination. Do not assert they are pure test/scaffolding data with no historical value, and do not treat any of them as a legitimate legacy source either, absent a separate, explicit determination. Reading their existing contents as operational or legacy evidence is out of scope unless a human authority explicitly names that specific base for that task (see "Out of scope" below); it does not get the same standing `3 | ACTIVE LOGISTICS | LEGACY DCA System — Shared Structure testing` has below.
 
 ### Non-production, but a legitimate legacy source when explicitly requested
 
@@ -81,14 +97,14 @@ Do not extend this legacy-source treatment to any other `DCA Dev/Test` base with
 
 When any capability, workflow, plugin, or skill needs to resolve an Airtable destination:
 
-1. Identify the workspace first: production `DCA` or non-production `DCA Dev/Test`. Never select a `DCA Dev/Test` base for production work.
-2. Within the correct workspace, identify the base by its recorded base ID when one is recorded above; otherwise use the exact, unambiguous workspace-qualified name from the table above.
-3. Never resolve by fuzzy/substring name match, text search ranking, or resemblance to a previously used base name. A match on "DCA Logistics" text must not return `3 | DCA Logistics` or any other `DCA Dev/Test` base.
-4. If the correct base's ID is not yet recorded here, treat that as a configuration gap: ask for it or flag it, rather than guessing from the name.
+1. Identify the requested environment first: production `DCA` or development/testing in `DCA Dev/Test`. Resolve an authorised development request to its specifically designated test base; never select a `DCA Dev/Test` base for production work.
+2. Within the correct workspace, identify the base by its recorded base ID when one is recorded above; otherwise use the exact, unambiguous workspace-qualified name from the table above. For development, use the exact workspace and base identity established for the bounded task.
+3. Never resolve by fuzzy/substring name match, text search ranking, or resemblance to a previously used base name. For a production request, a match on "DCA Logistics" text must not return `3 | DCA Logistics` or any other `DCA Dev/Test` base.
+4. If the required identity is missing from this map and the task's established development mapping, resolve it through authorised metadata or flag the remaining configuration gap. Never guess an ID or repeat a request for an identity already established in the task.
 
 ## Out of scope
 
-Treat every other Airtable workspace or base as out of scope for routing decisions unless a human authority with organisational standing (for example, the person driving System & Structure work) explicitly names it for a specific bounded task. This map does not itself grant write access; runtime access remains governed by `context/capability-access-boundaries.md` and the relevant provider access-bundle configuration.
+For production and operational-source routing, treat every other Airtable workspace or base as out of scope unless a human authority with organisational standing (for example, the person driving System & Structure work) explicitly names it for a specific bounded task. For authorised development/testing in `DCA Dev/Test`, follow the designation and exact-base identification rules above; this does not grant operational-source authority to that base’s existing contents. This map does not itself grant write access; runtime access remains governed by `context/capability-access-boundaries.md` and the relevant provider access-bundle configuration.
 
 ## Maintenance
 
