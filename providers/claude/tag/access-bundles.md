@@ -50,6 +50,8 @@ The DCA Core plugin packages Claude-facing source-routing and repository-navigat
 
 > Use the DCA Core plugin for DCA source routing and repository navigation. Use `dca-ai` for DCA AI implementation and `dca-architecture` for canonical organisational/system architecture. Follow current authority and source-routing pointers rather than choosing sources by search ranking or familiarity. Preserve access gaps and real uncertainty. Keep implementation details internal unless they materially affect the request.
 
+> Before reviewing an automation plan or proposing, building, configuring, or enabling downstream operational automation, apply `dca-ai/governance/authority-rules.md` → `Dataset prerequisite for operational automation`. Verify the required data is incorporated into the current shared system, with source/validation status and a responsible owner/update process. If this is missing or cannot be verified, stop downstream automation work and redirect to data incorporation. Intake, bounded migration, reconciliation and validation may continue under existing authority/access rules; incomplete history remains explicit. Do not substitute a legacy base or a promised later migration.
+
 This is the shared DCA routing layer. It does not grant Google Drive, Airtable, or other operational-source access by itself.
 
 ## Bundle 2 — DCA Relationship Data Pilot

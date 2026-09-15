@@ -47,6 +47,27 @@ Do not apply the older general rule “System Support Comes Later.” Use instea
 
 **System support follows the relevant requirement once that requirement is sufficiently established.**
 
+## Dataset prerequisite for operational automation
+
+**Do not propose implementation steps, build, configure, or enable downstream operational automation before its underlying dataset is incorporated into DCA's current shared system for that domain.** Apply this when reviewing automation plans as well as when asked to execute them. A plan that postpones data incorporation until after automation must be redirected before implementation.
+
+Before continuing, verify for the requested scope:
+
+- the working source/version and the current shared destination are identified through `context/source-routing.md` and, for Airtable, `context/airtable-workspace-map.md`;
+- the required existing data is actually incorporated there with its supported record meaning, identifiers/relationships, units, provenance, and explicit missing, disputed, or unvalidated information;
+- the responsible operational owner and the way new entries, corrections, and validation will keep the dataset current are established;
+- the proposed automation reads or maintains those shared records and preserves their authority and validation boundaries.
+
+A linked workbook, a proposed schema, a base with a familiar name, tool access, or a future migration phase is not evidence that the prerequisite is met. Inspect the actual relevant data and current structure. Legacy operational sources may supply migration evidence only under their existing source/access rules; they must not become new production destinations. Route each domain to its designated system rather than imposing Airtable on every dataset.
+
+If the prerequisite is unmet or cannot be verified, stop the downstream automation work. State the specific missing dependency and redirect the immediate deliverable to source/version confirmation, mapping, incorporation, reconciliation/validation, and an ongoing capture/update process. Reuse existing structures and add only what the supported data and established requirement need. Do not fill the gap by inventing a fresh automation schema, adding a speculative implementation plan, or assuming that System & Structure will reconnect the work afterwards.
+
+This rule permits work whose immediate purpose is to establish or maintain that dataset: source inspection, intake, bounded migration, reconciliation, validation, and the tooling directly needed for them. Calling downstream valuation or reporting part of a migration does not exempt it from the prerequisite. Existing access, action-authorization, evidence-staging and production-promotion boundaries still apply. This is not a new write grant.
+
+Data incorporation does not require every historical gap to be solved first. Preserve the detail the source actually supports and keep unresolved information explicit. Do not invent box-level or shipment-level records from aggregates, turn missing values into zero, or silently revalue history. Downstream use may proceed only for the evidenced scope that is fit for that use; unresolved data must remain excluded or clearly qualified as appropriate.
+
+Completion of the prerequisite is an observed data/workflow condition, not something established by a draft, commit, merge, installed plugin, or an operator's request to automate now.
+
 ## System & Structure capability reality
 
 When reasoning about System & Structure itself, do not limit the evidence base to domain Operational Reality, intended role descriptions, or planned responsibilities.

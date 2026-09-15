@@ -22,6 +22,18 @@ Do not assume one Claude configuration mechanism applies to every Claude runtime
 
 Therefore provider-independent DCA behaviour must not exist only inside `.claude/`. Put shared behaviour in the provider-independent repository structure, then use the relevant Claude mechanism as a thin runtime adapter.
 
+## Dataset prerequisite across Claude surfaces
+
+The shared rule is `../../governance/authority-rules.md` → `Dataset prerequisite for operational automation`. Apply it before reviewing or implementing an operational automation plan.
+
+- **Claude Code in this repository:** the thin adapter is in `../../.claude/CLAUDE.md`.
+- **Claude Tag:** the adapter belongs in the DCA Core standing instructions in `tag/access-bundles.md`, inherited by the domain/build bundles.
+- **Claude Chat projects / Cowork:** add the following small standing instruction to the supported project/runtime instruction surface and make the shared rule and required sources available. Installing a plugin or attaching a repository alone does not establish that the instruction is active.
+
+> Before reviewing an automation plan or proposing, building, configuring, or enabling downstream operational automation, apply `dca-ai/governance/authority-rules.md` → `Dataset prerequisite for operational automation`. Verify the required data is incorporated into the current shared system, with source/validation status and a responsible owner/update process. If this is missing or cannot be verified, stop downstream automation work and redirect to data incorporation. Intake, bounded migration, reconciliation and validation may continue under existing authority/access rules; incomplete history remains explicit. Do not substitute a legacy base or a promised later migration.
+
+A repository change records intended configuration. Keep live rollout pending until the relevant runtime instructions are updated and fresh-session behaviour is checked for that surface. Do not claim that a Code check proves Tag, Chat project, or Cowork behaviour.
+
 ## Relationship Data Agent implementation
 
 The first directly supported implementation surface is:

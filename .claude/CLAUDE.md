@@ -13,6 +13,7 @@ This `.claude/` layer configures Claude Code when working in this repository. It
 - For a question about **which source supports a DCA fact** — including current operational reality, relationship data, architecture, evidence, or current-vs-historical status — use `route-dca-sources` first.
 - For a question about **where an AI/configuration artifact lives inside this repository** — including agents, workflows, skills, provider configuration, plugins, tests, or governance files — use `navigate-dca-ai` first.
 - Do not use a provider-independent workflow definition in `workflows/` as evidence of how DCA currently operates in practice; route current operational-reality questions to the current operational source.
+- Before reviewing an automation plan or proposing, building, configuring, or enabling downstream operational automation, apply `governance/authority-rules.md` → `Dataset prerequisite for operational automation`. If the required dataset is not incorporated into the current shared system, or this cannot be verified, stop the automation work and redirect to establishing the dataset under the existing source/access rules.
 - Keep provider-independent DCA behaviour separate from provider/runtime implementation.
 - `providers/`, `plugins/`, `.claude-plugin/`, and runtime configuration implement DCA behaviour; they do not create organisational authority.
 - Treat the nested `dca-ai/` directory and `skills/legacy/` as historical unless a task explicitly asks for historical material.
