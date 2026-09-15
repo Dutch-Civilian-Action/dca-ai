@@ -23,7 +23,8 @@ The following destinations retain their existing routing roles. Base existence, 
 
 | Base name | Base ID | Current routing boundary |
 |---|---|---|
-| `1 \| DCA System — Shared Structure` | `app6W5pHT5hj7wbCR` | Existing shared-structure base. Its contents are not blanket evidence of current operational state. Resolve authority for the specific object before reuse; a replacement shared-structure base or new project/need write route has not been established by this map. |
+| `1 \| DCA System — Shared Structure` | `app6W5pHT5hj7wbCR` | Historical shared-structure base. Its contents are not blanket evidence of current operational state; resolve authority for the specific object before reuse. It is not the new supervised Projects/Needs build below. |
+| `DCA Shared Structure` | `appPBY1g1rYKRHbDC` | New supervised Projects/Needs build, created in DCA on 15 September 2026 at Anja's request. Contains Winter preparation records; schema acceptance and routine maintenance capability remain pending. See [build state and exact boundaries](shared-structure-build.md). This row records identity and bounded build scope; it does not grant autonomous operational writes or migrate other objects. |
 | `2 \| DCA Relationships & Workflows` | `appMdqKYTMnPmVoVu` | Current Relationship Data destination under `source-routing.md`. Keep this route until a separately established migration changes it. |
 | `DCA Evidence & Reconciliation` | `appZ1Fv0YtZPbBbWa` | Bounded intake, evidence, staging and reconciliation lineage. Former display name: `DCA Integrations & Reconciliation`. This is the same base, not a migration or a canonical operational Logistics destination. |
 | `DCA Ways of Working` | `appZ1ngF9Hc0xeOoI` | Existing ways-of-working base. Workflow-specific scope still applies; this identity mapping does not define a new capture workflow. |
@@ -31,7 +32,7 @@ The following destinations retain their existing routing roles. Base existence, 
 
 ### Verification and adjacent migration
 
-Names and IDs above were read from live Airtable `list_bases` on 14 September 2026; workspace names and IDs were read through `list_workspaces`. The warehouse and new identity schemas were also inspected. Those connector responses do not expose base-to-workspace membership, so the existing production role assignments are retained rather than claiming fresh verification of membership.
+The new `DCA Shared Structure` base was created through an authenticated request targeting workspace `wspYnyJ08xBNYOjXw` on 15 September 2026; its returned base/table IDs, source-backed records and reciprocal Project/Need links were read back. The build remains under construction, with formula-primary and native timestamp requirements still pending. Other base names and IDs above were read from live Airtable `list_bases` on 14 September 2026; workspace names and IDs were read through `list_workspaces`. The warehouse and new identity schemas were also inspected. Those connector responses do not expose base-to-workspace membership, so the existing production role assignments are retained rather than claiming fresh verification of membership.
 
 The live account also exposes `DCA Shared Identity & Relationships` (`appScO2P8fD8yprCW`). Its schema contains People, Organisations, Contact_Routes, Functions, Contexts and related temporal relationships. It is the newer identity/relationship structure awaiting migration decisions and validation; its existence or schema wording does not replace `appMdqKYTMnPmVoVu` as the current Relationship Data route. Do not select it for routine production relationship writes until the migration and capability route are explicitly established.
 
