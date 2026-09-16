@@ -1,0 +1,70 @@
+{
+  "archive_filename": "DCA-Identity-R01-Evidence.zip",
+  "archive_sha256": "a651b7649b0ea1788521af5c5cc6c78b31ca85b2eeed762170251faf6e9f1549",
+  "private_evidence": true,
+  "archive_library_id": "libfile_7eacdd7d109881919d9f226acccccbbd",
+  "retrieval": "Retained with Anja’s 16 September 2026 investigation. Request access to the private archive or inspect source-linked records in R01; repository access alone does not grant archive access.",
+  "test_base_url": "https://airtable.com/appTpzRmniNpMv35Q",
+  "files": [
+    {
+      "path": "manifest.json",
+      "sha256": "f3fb4763dad6baffc17408842eb976e12208845c345998b35ecf6f74b11d66e4"
+    },
+    {
+      "path": "persistent_ids.json",
+      "sha256": "b8a72d76e1b0146a236687868645a8d0a44ef4d8be49af37b75b20b617936634"
+    },
+    {
+      "path": "crosswalk.json",
+      "sha256": "9c2c7f812fca3a878f664f579e4da644c1403a3c25eab9c115752fdfa2238f44"
+    },
+    {
+      "path": "source_snapshots.json",
+      "sha256": "ac37064d91e5a7762893da02e8b5b384fbda21d084447404780658138b0cc1bc"
+    },
+    {
+      "path": "additional_snapshots.json",
+      "sha256": "0e43e9327eb1c1b07570552e46a3c6de472039cb6c1a8095d8c613a7ebf2c63c"
+    },
+    {
+      "path": "source_readback_after.json",
+      "sha256": "6fa06deec264a81f5f114ac789c32f42afaa06336df4e511c6dafbac25b191f4"
+    },
+    {
+      "path": "candidate_schema.json",
+      "sha256": "e9302621a14eb38127d4a17d430ea35c94174c257d0b74e6271e78e1e4279d8e"
+    },
+    {
+      "path": "target_schema_before_load.json",
+      "sha256": "cf3bcafc26e89881e64bb0a517e1549231f182834209d86d18e1e9640615688b"
+    },
+    {
+      "path": "target_schema_config.json",
+      "sha256": "72eb5803350d863f4f3347be242ee526bada21fe31dfa5a02e50048c2d277594"
+    },
+    {
+      "path": "readback_links.json",
+      "sha256": "53d1e46eddf94ff5a1fd48eeda2a2dbe93d723313c285d10cc27ac7f8e0de787"
+    },
+    {
+      "path": "live_records.json",
+      "sha256": "53d1e46eddf94ff5a1fd48eeda2a2dbe93d723313c285d10cc27ac7f8e0de787"
+    },
+    {
+      "path": "test_results.json",
+      "sha256": "7dc885c60077b1401ceb2305e29366aae0dc015803b12cf78f1803d2466153bb"
+    },
+    {
+      "path": "plan_all.json",
+      "sha256": "e6ed3e13161ac00b36bfb43b7ed4c03c1786e298e112ce41889aab25571d0e36"
+    },
+    {
+      "path": "source_schemas/appMdqKYTMnPmVoVu.json",
+      "sha256": "a471a11c109221202e6f846c686fa11788284ff79a14b34d7dacc7eb369a20f5"
+    },
+    {
+      "path": "source_schemas/appMzETiiWf5oev2f.json",
+      "sha256": "1b489404738515b333d53436e523bc05afcf238ccaa62e56862b7ddb48539b35"
+    }
+  ]
+}

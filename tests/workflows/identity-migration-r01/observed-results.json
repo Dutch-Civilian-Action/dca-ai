@@ -1,0 +1,129 @@
+{
+  "batch": "IDENTITY-R01",
+  "tested_at": "2026-09-16T01:54:23.299165+00:00",
+  "base_id": "appTpzRmniNpMv35Q",
+  "counts": {
+    "People": 5,
+    "Organisations": 3,
+    "Contact Routes": 7,
+    "Person Organisation Roles": 5,
+    "Source Systems": 5,
+    "Source Records": 37
+  },
+  "checks": [
+    {
+      "check": "Bounded scope and counts",
+      "result": "pass",
+      "evidence": "62 rows in six tables; no function, operational or workflow table was created."
+    },
+    {
+      "check": "One target row per migration key",
+      "result": "pass",
+      "evidence": "62 unique, source-qualified migration keys."
+    },
+    {
+      "check": "Stable IDs — People",
+      "result": "pass",
+      "evidence": "5 unique literal IDs; independent of new Airtable record IDs."
+    },
+    {
+      "check": "Stable IDs — Organisations",
+      "result": "pass",
+      "evidence": "3 unique literal IDs; independent of new Airtable record IDs."
+    },
+    {
+      "check": "Stable IDs — Contact Routes",
+      "result": "pass",
+      "evidence": "7 unique literal IDs; independent of new Airtable record IDs."
+    },
+    {
+      "check": "Stable IDs — Person Organisation Roles",
+      "result": "pass",
+      "evidence": "5 unique literal IDs; independent of new Airtable record IDs."
+    },
+    {
+      "check": "Stable IDs — Source Systems",
+      "result": "pass",
+      "evidence": "5 unique literal IDs; independent of new Airtable record IDs."
+    },
+    {
+      "check": "Stable IDs — Source Records",
+      "result": "pass",
+      "evidence": "37 unique literal IDs; independent of new Airtable record IDs."
+    },
+    {
+      "check": "Existing candidate IDs retained",
+      "result": "pass",
+      "evidence": "23 selected candidate control/source IDs copied verbatim."
+    },
+    {
+      "check": "Copied evidence and displays",
+      "result": "pass",
+      "evidence": "All 62 rows marked copied real data, with matching ID/name displays and populated test creation/modification formulas."
+    },
+    {
+      "check": "Native links and reciprocals",
+      "result": "pass",
+      "evidence": "102 relationships resolve to the correct table within R01, with reciprocal links. External sources use explicit URLs/IDs."
+    },
+    {
+      "check": "Source payload integrity",
+      "result": "pass",
+      "evidence": "All 31 full snapshot payloads read back with the expected SHA-256 and original source record; six pre-existing source-evidence rows are also retained."
+    },
+    {
+      "check": "WE Fashion and Anne",
+      "result": "pass",
+      "evidence": "One personal, unverified email; no invented generic route or office; original partner context referenced; excluded from Winter new-provider outreach."
+    },
+    {
+      "check": "Paul multiple offices and routes",
+      "result": "pass",
+      "evidence": "Three separate offices, two personal and two organisation routes; signature date proposed as observation, without asserting tenure start."
+    },
+    {
+      "check": "Personal and generic routes remain separate",
+      "result": "pass",
+      "evidence": "Every one of seven routes has exactly one person or organisation subject in this bounded sample."
+    },
+    {
+      "check": "Mark intake held",
+      "result": "pass",
+      "evidence": "Candidate-person link is only a review pointer; the unresolved RW intake match is not asserted as confirmed."
+    },
+    {
+      "check": "René affiliation unresolved",
+      "result": "pass",
+      "evidence": "No church merge, organisation link, office or contact route created for the uncertainty control."
+    },
+    {
+      "check": "Kees person and actor remain distinct",
+      "result": "pass",
+      "evidence": "Separate person and Operator identifiers retained as a proposed crosswalk, with no Project/Operator write or authority grant."
+    },
+    {
+      "check": "Repeat import plan",
+      "result": "pass",
+      "evidence": "Fresh readback through the same import planner requires zero creates and zero updates. No unnecessary second writes were performed."
+    },
+    {
+      "check": "Source readback unchanged",
+      "result": "pass",
+      "evidence": "54 source rows match: all 46 candidate rows, seven selected RW rows, and one earlier-build Kees row. This does not audit unrelated production records or automations."
+    }
+  ],
+  "acceptance": {
+    "technical_mapping_checks": "passed",
+    "structure": "pending_review_and_schema_repairs",
+    "data": "source_validation_preserved; mapping_delta_pending_review",
+    "behaviour": "import_and_readback_verified; intended_runtime_not_tested",
+    "production": "not_adopted"
+  },
+  "open_gaps": [
+    "Text primaries need supported conversion to computed ID/name displays.",
+    "created_at and last_modified are working formulas, not native timestamp fields.",
+    "Office observation-date interpretation and unresolved associations need scoped mapping review.",
+    "Actual intended-runtime retrieval and consumer permissions remain untested."
+  ],
+  "crosswalk_records": 62
+}

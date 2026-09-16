@@ -1,0 +1,8 @@
+*
+!.gitignore
+!README.md
+!prepare_manifest.py
+!plan_import.py
+!verify_mapping.py
+!observed-results.json
+!evidence-reference.json
