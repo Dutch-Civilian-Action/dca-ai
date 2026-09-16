@@ -7,13 +7,13 @@ scope: winter_project_bounded_maintenance
 
 # Winter Project — Claude shared-project handover
 
-Prepared for Anja and Kees. This is a thin Claude Chat setup, not a new capability grant or a second operational database. The maintained working plan is [DCA_Winter_Project_Support_Plan.md](https://drive.google.com/file/d/1KL7QtZMtQuKBthZHVKkT84cSVrlv9igl/view); update that same file in place. The provider-independent [build record and capture convention](../../../context/shared-structure-build.md) holds verified record identities, source precedence and the exact outstanding schema changes.
+Prepared for Anja and Kees. This is a thin Claude Chat setup, not a new capability grant or a second operational database. The maintained working plan is [DCA_Winter_Project_Support_Plan.md](https://drive.google.com/file/d/1KL7QtZMtQuKBthZHVKkT84cSVrlv9igl/view); update that same file in place. The provider-independent [build record and capture convention](../../../context/shared-structure-build.md) holds verified record identities, source precedence and the verified field repairs and remaining runtime checks.
 
 ## Current readiness
 
-The existing Winter Project and five Needs are linked. Two packing requirements are confirmed at scope; three civilian candidates remain pending. A researched RAJAPACK proposal, campaign, batch, cycle and Dutch draft are stored in the current outreach base. They are not approved or sent. The Community mailbox label exists. Native timestamp/primary-field repairs, schema acceptance, Claude access/behaviour and Kees's actual review remain outstanding. No Winter event baseline or automated procurement/delivery measurement has been implemented.
+The existing Winter Project and five Needs are linked. Two packing requirements are confirmed at scope; three civilian candidates remain pending. A researched RAJAPACK proposal, campaign, batch, cycle and Dutch draft are stored in the current outreach base. They are not approved or sent. The Community mailbox label exists. ID formulas, ID-plus-name primary formulas and native timestamps are now verified. Claude access/behaviour and Kees's actual review remain outstanding. No Winter event baseline or automated procurement/delivery measurement has been implemented.
 
-## Setup by Anja, after the Airtable repairs
+## Setup by Anja
 
 Proposed name: **DCA — Winter Project | Kees**. Description: **Supplier research, reviewed outreach and traceable goods handoffs for the Winter Project. Kees owns operations; Anja maintains the supporting system.**
 
@@ -57,7 +57,7 @@ Read the current dca-ai authority/source-routing/workspace-map/capability rules,
 
 Before reviewing an automation plan or proposing, building, configuring, or enabling downstream operational automation, apply dca-ai/governance/authority-rules.md -> Dataset prerequisite for operational automation. Verify the required data is incorporated into the current shared system, with source/validation status and a responsible owner/update process. If missing or unverifiable, stop downstream automation and redirect to data incorporation. Intake, bounded migration, reconciliation and validation may continue under existing authority/access rules. Incomplete history stays explicit; never substitute a legacy base or a promised later migration.
 
-Use existing Winter Project PRJ-0e04a92c-2e34-419e-bb67-bcef0c5135b6 and its five Needs in appPBY1g1rYKRHbDC. Kees confirmed two DCA packing requirements: stretch wrap NED-022c8044-bbbe-43d3-8f17-0a8cdbae3df2 and pallet-compatible boxes NED-cb635f42-853a-4906-a2a5-d347e849386b. 60 x 40 cm is an example, not an exact mandatory size. Strapping/labels are outside this pilot. Preserve blank required quantities and unagreed dates. Civilian bedding, clothing/footwear and conditional gas-heating records remain candidates awaiting current confirmation. The goods catalogue is not confirmed civilian demand.
+Use existing Winter Project PRJ-rec88ys5XHgHBMajH and its five Needs in appPBY1g1rYKRHbDC. Kees confirmed two DCA packing requirements: stretch wrap NED-recEe3riGaFe9rEPF and pallet-compatible boxes NED-recN5jK82mbcbGH1l. 60 x 40 cm is an example, not an exact mandatory size. Strapping/labels are outside this pilot. Preserve blank required quantities and unagreed dates. Civilian bedding, clothing/footwear and conditional gas-heating records remain candidates awaiting current confirmation. The goods catalogue is not confirmed civilian demand.
 
 Preserve new providers only, WE Fashion excluded, Track A volume goods and Track B individually researched power/heating approaches with their own cadence. Do not impose provider-count or quantity quotas or an overall deadline. Track A public wording is Emergency Winter Support for Ukraine / Winternoodhulp Oekraïne; never Winterhulp. Track B is seasonless. Do not apply unresolved transport assumptions as confirmed operating rules.
 
@@ -76,7 +76,7 @@ Derive the first Winter readout only from normal evidenced activity, with cutoff
 
 ## First-session acceptance, then handover
 
-Run this in a fresh Claude project chat after the Airtable repair readback:
+The Airtable field repairs have been read back. Run this in a fresh Claude project chat:
 
 > Read the current source set and existing Winter records. Show the two confirmed packing requirements, three pending civilian candidates, Kees's owner reference and the prepared RAJAPACK cycle/template. Check live schema acceptance and source access, then list exactly what you can read, draft and update through this Claude session. Explain what still needs Kees's decision. Do not send or create a new campaign, provider or test event. Report missing access rather than inventing a result.
 
@@ -95,3 +95,5 @@ After a real exchange, he can simply say:
 > Read the supplier's latest reply, update our records and draft what we should send back. Ask me only about anything the email doesn't settle.
 
 When something is offered, present a brief sourced offer summary and the missing collection/receiving decisions. Kees should not maintain a second spreadsheet or repeatedly re-enter correspondence. Anja maintains the system instructions and the same working-plan file; relevant operational outcomes remain in the existing records.
+
+ID correction: the previous preparation UUIDs are retained in the build record crosswalk. Use the current PRJ-rec/NED-rec IDs above. For new records Airtable generates the ID; do not write or invent an ID value. The draft reusable table template is not a production record home.
