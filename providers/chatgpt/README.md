@@ -4,6 +4,10 @@ ChatGPT is currently used by DCA System & Structure as a development and live-te
 
 This directory contains ChatGPT-specific implementation notes only. Canonical DCA organisational meaning, methods, workflows, and tests remain provider-independent.
 
+## Current model guidance
+
+- [ChatGPT Model Usage](model-selection.md) — proposed model and effort recommendations, escalation guidance and evaluation boundaries; does not change configured runtime defaults.
+
 ## Current implementation records
 
 - `dca-reality-watch.md` — ChatGPT implementation of maintained-reality processing, including the scheduled evidence/recovery sweep and its validation-triggered entry path.
