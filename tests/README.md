@@ -10,6 +10,7 @@ Environment roles, copied real data versus synthetic fixtures, acceptance claims
 
 Current skill tests:
 
+- `skills/dca-airtable-implementation.md` — current-standard retrieval, architecture and live-schema boundaries, environment resolution, consequential-change safety, bounded execution, Schema Guard limits, and read-back verification.
 - `skills/dca-document-authoring.md` — standalone-reader context, source-guide usability, authority/status visibility, private drafting-history separation, and native document structure.
 - `skills/dca-output-routing.md` — output-family selection, explicit-format preservation, maintained destination defaults, document-like HTML/web artifacts, interface/application separation, runtime capability limits, and multi-output derivatives.
 
