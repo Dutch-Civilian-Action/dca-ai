@@ -12,7 +12,7 @@ provider_independent: true
 
 Anja selected a new Shared Structure direction and then requested building it together in ChatGPT through the Airtable plugin, with a Claude project for further handling after completion. That instruction supersedes the earlier Winter handoff's proposed Claude Code build path for this bounded task.
 
-The base now exists and contains sourced preparation records. It is **under construction**, with schema acceptance and routine maintenance capability still pending. Creating the base and these records does not activate any autonomous workflow, migrate Campaigns or identities, or establish a completed procurement/delivery cycle.
+The base now exists and contains sourced preparation records. It is **under construction**, with the corrected ID/display/timestamp fields verified and Claude routine maintenance capability still pending. Creating the base and these records does not activate any autonomous workflow, migrate Campaigns or identities, or establish a completed procurement/delivery cycle.
 
 The [canonical structural rules](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/shared-system-structural-rules.md), [workspace map](airtable-workspace-map.md), [source routing](source-routing.md), [capability/access boundaries](capability-access-boundaries.md) and [Schema Guard conventions](../providers/airtable-schema-guard/rules/dca-airtable-rules.json) continue to apply.
 
@@ -31,16 +31,16 @@ The DCA workspace was returned by live `list_workspaces` with owner access. The 
 | Needs.projects | `fldqj2t3CXWZHyRVk`; native reciprocal link to Projects |
 | Kees, current owner reference | `OPR-0002`; [current Operator record](https://airtable.com/appMdqKYTMnPmVoVu/tbl0rMfAOKGa6Umi5/recdzTXRVLKNZnsME); Slack identity `U0ABU10D2KD` verified by readback |
 
-Stored `project_id` and `need_id` values are generated once, independent of Airtable record identity. Retain them across renames or migrations; never regenerate them merely because a display name or platform changes.
+Anja corrected the ID fields to the DCA Airtable Implementation Standard: `project_id = "PRJ-" & RECORD_ID()` and `need_id = "NED-" & RECORD_ID()`. The primary display is ID plus readable name. The original assistant-generated UUIDs were an unreviewed implementation choice; their mapping is preserved below and in the machine-readable field contract. A later migration must preserve external identity/reference continuity explicitly rather than silently regenerate IDs.
 
-| Object | Persistent DCA identifier |
+| Object | Current visible DCA identifier |
 |---|---|
-| Winter Project | `PRJ-0e04a92c-2e34-419e-bb67-bcef0c5135b6` |
-| Help Window civilian bedding — candidate | `NED-97feac83-6334-4ae1-a012-b92f28b4d172` |
-| DCA stretch wrap for packing | `NED-022c8044-bbbe-43d3-8f17-0a8cdbae3df2` |
-| DCA pallet-compatible cardboard boxes | `NED-cb635f42-853a-4906-a2a5-d347e849386b` |
-| Help Window winter clothing and footwear — candidate | `NED-6d4a90b8-fb21-4f0f-a110-4d66b53ffe78` |
-| Civilian gas-heating support — conditional candidate | `NED-8a2cb842-249e-4ceb-bba3-cfc1c5bd4277` |
+| Winter Project | `PRJ-rec88ys5XHgHBMajH` |
+| Help Window civilian bedding — candidate | `NED-rec3x5F90MnkjCN79` |
+| DCA stretch wrap for packing | `NED-recEe3riGaFe9rEPF` |
+| DCA pallet-compatible cardboard boxes | `NED-recN5jK82mbcbGH1l` |
+| Help Window winter clothing and footwear — candidate | `NED-recoJXZZUsg4lWqdL` |
+| Civilian gas-heating support — conditional candidate | `NED-recpebxRRJ1QYg0xY` |
 
 ## Initial sourced records
 
@@ -68,19 +68,35 @@ Civilian bedding and clothing/footwear remain candidate bundles pending current 
 - Mixed offers, pickup and receipt evidence continue through the established Logistics intake route in `appZ1Fv0YtZPbBbWa`. The operational Warehouse & Logistics base remains `appivZyJTh5tQv1On`; its sessions, locations and observations do not constitute an implemented pledge/receipt/delivery model.
 - Reusable work and findings continue in Ways of Working. No parallel workflow or metric register was added.
 
-## Schema acceptance: exact outstanding changes
+## Field repairs verified — 16 September
 
-The connector rejected `formula`, `createdTime` and `lastModifiedTime` during base creation. That rejected request created nothing. A subsequent supported request created the present supervised structure. This is a capability limitation, not an approved exception to the standard.
+The full attached **DCA Airtable Implementation Standard** was read, including sections 3–5 and 8A. The earlier review relied on incomplete Schema Guard rules and incorrectly introduced UUID text IDs. Anja corrected the live fields; readback confirms:
 
-| Table | Existing primary field | Required result |
+| Table | Field | Verified configuration |
 |---|---|---|
-| Projects | `project`, `fldCivuC2QgWJoZzM`, currently singleLineText | Formula `{project_name}`; preserve `project_name`, `project_id`, record identity and all links |
-| Needs | `need`, `fldL7isaPjMesHjo9`, currently singleLineText | Formula `{need_name}`; preserve `need_name`, `need_id`, record identity and all links |
-| Both tables | Native metadata fields not created | Add `created_at` as createdTime and `last_modified` as lastModifiedTime; use the standard's technical display settings |
+| Projects | project_id | Formula: `"PRJ-" & RECORD_ID()` |
+| Projects | project | Formula: `{project_id} & " — " & {project_name}` |
+| Needs | need_id | Formula: `"NED-" & RECORD_ID()` |
+| Needs | need | Formula: `{need_id} & " — " & {need_name}` |
+| Both | created_at | Native Created time; ISO date, 24-hour time, Europe/Amsterdam |
+| Both | last_modified | Native Last modified time; all editable fields; same display settings |
 
-These items remain **Guard support pending**: the exposed connector cannot convert the primary field types or create the native timestamp types. It can create a regular formula field, but that does not finish a formula-primary requirement. Table/primary descriptions explicitly record this state. Do not silently substitute text timestamps, call the current schema compliant, or drop the required changes. Complete the exact changes through a supported development executor, then re-audit and read back.
+Kees's externally referenced owner_id remains text. The six record IDs and native links are unchanged. Required quantities and unagreed next-action dates remain blank; the two confirmed-at-scope packing Needs and three pending civilian candidates retain their distinct meanings. The prepared outreach references have been updated to the new visible IDs.
 
-Verified now: 1 Project, 5 Needs, every prepared field value, 5 reciprocal links, 6 unique persistent DCA identifiers, Kees's current owner reference, table/field naming and useful descriptions, 2 confirmed-at-scope DCA requirements, 3 pending civilian candidates, and blank unknown quantities/unagreed dates. No complete Schema Guard acceptance is claimed.
+Outdated table/field descriptions were corrected. Every existing select option in these two tables now has an in-field meaning and usage rule; no new option was introduced. [The field contract](shared-structure-field-contract.json) preserves these definitions, observed types/formulas and the ID crosswalk in machine-readable form. This reference contract does not claim a new deployed Schema Guard loader or an automated whole-base audit.
+
+The original connector failure concerned creation/conversion capabilities. These specific Winter field repairs are now complete, not still Guard support pending. Claude/member access, the first real event capture and operational cycle remain unverified.
+
+### Preserved ID crosswalk
+
+| Previous preparation ID | Current visible ID |
+|---|---|
+| `PRJ-0e04a92c-2e34-419e-bb67-bcef0c5135b6` | `PRJ-rec88ys5XHgHBMajH` |
+| `NED-022c8044-bbbe-43d3-8f17-0a8cdbae3df2` | `NED-recEe3riGaFe9rEPF` |
+| `NED-cb635f42-853a-4906-a2a5-d347e849386b` | `NED-recN5jK82mbcbGH1l` |
+| `NED-97feac83-6334-4ae1-a012-b92f28b4d172` | `NED-rec3x5F90MnkjCN79` |
+| `NED-6d4a90b8-fb21-4f0f-a110-4d66b53ffe78` | `NED-recoJXZZUsg4lWqdL` |
+| `NED-8a2cb842-249e-4ceb-bba3-cfc1c5bd4277` | `NED-recpebxRRJ1QYg0xY` |
 
 ## Prepared first provider proposal — 16 September
 
@@ -128,14 +144,28 @@ No Activity was created for research, the draft or record preparation. Dates, qu
 
 The [Claude project handover](../providers/claude/projects/winter-project.md) supplies the setup, thin project instructions and first-session acceptance checks. Provider-independent operation remains in this build/capture record and the existing workflows. A project instruction, repo commit or ChatGPT connector readback does not prove Claude capability.
 
-Anja's next action is to repair the two existing primary fields and add the four native metadata fields above. Required technical settings are ISO date, 24-hour time and the Schema Guard's `Europe/Amsterdam` timezone convention. The Airtable UI's timezone selector support was not verified; do not invent a substitute or silently claim timezone acceptance. After editing, read back field types/formulas, settings, six stable IDs, all links and unchanged unknown/validation states. Update the old field/table descriptions that currently mention temporary/under-construction schema only after the repairs are verified.
+The Winter ID, primary-display and timestamp repairs are verified. Review this PR and its updated references, then create the private Claude Team project and perform the fresh-session access and bounded-write checks. The separate reusable table template still needs the three UI edits listed below; its completion is distinct from the repaired Winter tables.
 
 Then load the reviewed handover into a private Claude project, verify actual tool access and one bounded write/readback, and verify Kees's member access. Use an explicitly authorised source-backed review annotation or a dedicated Dev/Test sample; do not generate a fake send/offer/receipt event to test a connection. New models, unresolved mappings and automation require the [development/testing/promotion standard](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/development-testing-and-promotion.md); routine accepted record maintenance does not require another base. The separate identity migration development base must not become the Winter production home or a generic Winter test sandbox.
 
-Keep acceptance results separate: schema pending; prepared-record source/link readback verified here; Claude member/runtime behaviour pending; first real provider cycle pending. Kees reviews provider eligibility and correspondence, then owns actual supplier decisions and follow-up. A full identity migration or hypothetical pledge-system build is not a prerequisite for reviewing this packing proposal.
+Keep acceptance results separate: ID/display/timestamp field repairs verified; prepared-record source/link readback verified here; Claude member/runtime behaviour pending; first real provider cycle pending. Kees reviews provider eligibility and correspondence, then owns actual supplier decisions and follow-up. A full identity migration or hypothetical pledge-system build is not a prerequisite for reviewing this packing proposal.
 
 ## Metrics boundary
 
 PR #30's daily capture remains a measurement of validation questions in the existing monitor. Its 20-item baseline is not 20 Winter Needs, and these five Needs are not automatically five queue questions.
 
 Winter procurement/delivery metrics remain unimplemented. The proposed first readout uses evidenced provider-cycle sends/replies/offers, actual next actions and waiting, and usable received quantities with source traceability. Distinguish DCA packing receipt from civilian delivery and impact. Until real event capture and calculation are verified, the Winter measures are **not measured**, not zero. No new automation or monitor change was made.
+
+## Reusable Airtable table template
+
+[DCA Airtable Templates](https://airtable.com/app8vuO9XpoYaLOlo) was created explicitly in DCA Dev/Test (`wspCZsYbWYC7OXX1l`). `Object_Template` (`tbl7VYzFtQWIr5Nux`) has zero operational records and is **draft, not ready for duplication**. It is separate from Winter production and identity R01.
+
+Created: `x_name` as text, `x_id` as Formula `"XXX-" & RECORD_ID()`, and temporary text primary `x`. The connector rejected the complete native-field creation request; no base was created by that failed request. The subsequent supported request created this draft template. Three one-time UI edits remain:
+
+1. Convert `x` to Formula `{x_id} & " — " & {x_name}`.
+2. Add `created_at` as native Created time.
+3. Add `last_modified` as native Last modified time tracking all editable fields.
+
+Include time, ISO date, 24-hour format and Europe/Amsterdam for both metadata fields. Add the same meaningful metadata descriptions used by the Winter tables. Read back before marking the template ready.
+
+Once verified, duplicate the table **without records**. Rename `x`, `x_id`, `x_name`, replace `XXX` with the explicitly configured object prefix, check formula references and adapt descriptions. These are the reusable core fields. Status, source, validation, notes, links and other fields are added only for the actual requirement; the standard does not make all of them mandatory on every table. Each added select option must have a documented meaning. A table copy does not establish production adoption or automatically preserve IDs of migrated records.
