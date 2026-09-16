@@ -8,6 +8,7 @@ A skill should define a clear trigger or input, rules, procedure, expected outpu
 
 Current provider-independent skills:
 
+- `dca-airtable-implementation/` — applies the current DCA Airtable Implementation Standard to Airtable design, build, migration, repair, audit, and generated implementation instructions while keeping implementation subordinate to established DCA architecture and requirements.
 - `dca-document-authoring/` — constructs professional native DCA documents and collaborative text canvases while preserving semantic hierarchy, source authority, standalone-reader context, source-guide usability, visual treatment boundaries, and document QA.
 - `dca-output-routing/` — selects the correct output family, native destination—including established collaborative text canvases—construction capability, and useful derivatives before artifact creation begins.
 
