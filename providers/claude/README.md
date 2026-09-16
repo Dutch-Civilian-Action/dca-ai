@@ -66,6 +66,7 @@ See `../runtime-selection.md` for runtime/provider choice and `model-selection.m
 ## Provider-specific structure
 
 - `model-selection.md` — current Claude model and effort guidance by work type.
+- `projects/winter-project.md` — prepared Winter Project Chat handover and fresh-session acceptance checks; runtime activation remains pending.
 - `tag/access-bundles.md` — current Claude Tag access-bundle and channel-scope design.
 - `../../plugins/dca-core/` — packaged DCA source-routing and repository-navigation adapters for Claude runtimes.
 - `../../plugins/dca-relationship-data/` — packaged Claude implementation of the Relationship Data capability.
