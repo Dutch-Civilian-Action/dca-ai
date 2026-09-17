@@ -1,8 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "dca-relationship-data",
+  "version": "0.3.0",
   "displayName": "DCA Relationship Data",
-  "description": "DCA relationship-data capability for retrieving, adding, correcting, and reconciling contacts, organizations, and their relationships through the current DCA Relationship Data Agent.",
+  "description": "Retrieve, add, correct, and reconcile DCA relationship data, including newsletter contact intake into DCA records before authorized Mailchimp subscription.",
   "author": {
     "name": "Dutch Civilian Action"
   },

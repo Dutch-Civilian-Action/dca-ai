@@ -1,8 +1,8 @@
 ---
 name: managing-dca-relationship-data
-description: Retrieve and maintain DCA contact, organization, and relationship data in the canonical Airtable base. Use for contact lookup, additions, corrections, or reconciliation.
+description: Retrieve and maintain DCA contact, organization, and relationship data in the current Airtable route. Use for contact lookup, additions, corrections, reconciliation, or names/email lists for newsletter subscription through DCA records before Mailchimp.
 metadata:
-  version: 0.2.0
+  version: 0.3.0
   dca-agent: relationship-data-agent
   dca-workflow: reconcile-relationship-data
   mcp-server: airtable
@@ -28,9 +28,29 @@ DCA user
 
 Use only the canonical Airtable base:
 
-`2 | DCA Relationships & Workflows`
+`2 | DCA Relationships & Workflows` (`appMdqKYTMnPmVoVu`)
 
 Do not choose similarly named rebuild, copy, staging, or test bases unless System & Structure explicitly requests a test against one of them.
+
+The newer Shared Identity & Relationships base is a migration candidate, not the current intake destination. Resolve current base identity through `context/airtable-workspace-map.md`; do not dual-write or infer adoption from a successful R01 test.
+
+## Newsletter lists
+
+For names/email lists intended for newsletter subscription, including “subscribe these people in Mailchimp,” read [references/newsletter-intake.md](references/newsletter-intake.md) and apply `workflows/intake-newsletter-contacts.md` from the reviewed repository revision when available.
+
+Capture in DCA records first, reconcile existing identities, and read the saved result back before any Mailchimp action. Preserve source-row provenance, human attribution, consent evidence, audience and per-row execution outcomes separately. Missing consent or external access does not prevent authorized relationship intake. Never infer consent from a list or donation, override an unsubscribe/do-not-contact flag, or claim saved contacts are subscribed.
+
+This is a bounded human-invoked pilot using existing `Contact_Intake` and `Contacts` fields. No new canonical identity model, background sync or schema mutation is introduced. Runtime access, current action authorization and the dataset prerequisite still apply; a plugin update does not establish deployment.
+
+## Review-first intake and more than one purpose
+
+Keep intake general: a newsletter request is one possible consequence of relationship information, not the definition of the person or the only permitted future use of the submission.
+
+When the operator asks for review first, preserve the submission in `Contact_Intake`, search for existing identities, and put the proposed matches, explicitly stated purposes, possible follow-ups and unresolved questions in human-readable `review_notes`. Stop before creating/updating canonical records, assigning roles or taking external actions. Use `clarification_needed` and, only for a real human decision, the existing `Review_Queue`. An intake-only request does not authorize subscription.
+
+For each purpose distinguish source-supported intent from a suggestion, the current decision, and the next action/owner if actually known. Do not require users to choose tables or a final domain model. One reviewed Contact may later support several separately authorized domain relationships or workflows; do not create a second identity or infer donor, volunteer, supplier or partner status from newsletter interest. Preserve all open review items when one consequence is completed. Newsletter processing events must not replace the ordinary review notes.
+
+This review-first option does not add a confirmation loop to an ordinary, explicitly requested, deterministic correction under the existing confirmation boundary.
 
 ## User-facing principle
 
