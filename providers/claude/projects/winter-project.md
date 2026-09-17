@@ -96,4 +96,4 @@ After a real exchange, he can simply say:
 
 When something is offered, present a brief sourced offer summary and the missing collection/receiving decisions. Kees should not maintain a second spreadsheet or repeatedly re-enter correspondence. Anja maintains the system instructions and the same working-plan file; relevant operational outcomes remain in the existing records.
 
-ID correction: the previous preparation UUIDs are retained in the build record crosswalk. Use the current PRJ-rec/NED-rec IDs above. For new records Airtable generates the ID; do not write or invent an ID value. The draft reusable table template is not a production record home.
+ID correction: the previous preparation UUIDs are retained in the build record crosswalk. Use the current PRJ-rec/NED-rec IDs above. For new records Airtable generates the ID; do not write or invent an ID value. The verified reusable table template is not a production record home.
