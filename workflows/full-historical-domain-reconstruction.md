@@ -305,6 +305,8 @@ Never silently collapse:
 
 Preserve corrections, supersession, and contradictory evidence. Do not overwrite history merely because later evidence is stronger.
 
+For movement and handover claims, interpret the underlying statement in context: an instruction or itinerary supports intended handling, while a completion report supports reported execution within its own limits. For example, “The driver will unload” does not establish “The driver unloaded.” A second-hand label describes provenance, not whether the statement concerns a plan or an event; tense alone is not a classifier.
+
 # 3. Conflicting evidence
 
 When sources disagree, investigate whether the difference represents:
@@ -392,6 +394,8 @@ Populate where known:
 - `source_scope`
 - `model_or_runtime`
 - `notes`
+
+Record the governing files actually read, their access route and any exposed revision or archive identifier. Unknown revision and unavailable governing text are different gaps. If method access is restored after work has begun, reassess affected earlier claims/writes against the loaded instructions in the same run, preserving corrections and a precise resume point. Do not infer application from availability or reconstruct an unsupported root cause.
 
 Do not claim source coverage before it has actually been achieved.
 
@@ -598,6 +602,8 @@ Do not mark an object `owner_validated` merely because:
 - the claim appears obvious.
 
 Use `owner_validated` only when evidence supports actual responsible-owner/human validation of that claim.
+
+A record-level validation status must describe the bounded claim itself. Confirmation of inputs does not validate derived totals, category mappings or a proposed explanation. Keep those as separate existing claims or narrow/split the claim where needed; prose qualifications must not silently override an overbroad status. Correcting a status does not itself create a new validation request: preserve settled inputs and follow the preflight before any question.
 
 # 12. Evidence Links
 
@@ -850,6 +856,8 @@ After each write batch, verify at minimum:
 
 If any invariant fails, keep the affected material in `coverage_gaps`, repair it, and verify again before advancing coverage.
 
+When a correction changes current meaning, reconcile affected evidence summaries, object claims/statuses, link scope notes and the run's current coverage fields. Preserve original excerpts and superseded values as labelled history; an appended note alone does not repair contradictory current fields.
+
 The conversation is a working environment.
 
 Airtable is the durable reconstruction staging layer.
@@ -994,6 +1002,8 @@ That workflow resolves the current authoritative target, compares the establishe
 Do not perform formal comparison with current maintained reality before the source-first reconstruction, self-evaluation, and required human validation are complete. The target is a downstream comparison surface, not evidence used to make the reconstruction conform. The bounded post-self-evaluation preflight may inspect it only to suppress an already-settled duplicate, continue an existing live thread, or isolate the genuinely new validation delta.
 
 # 21. Final synthesis
+
+Generate related exports from one identified staging checkpoint. Check event meaning, validation scope, unanswered questions and source limitations across the saved files and current staging fields, as well as IDs, counts, numeric types and accidental formulas. Preserve superseded statements only as labelled history. Compare material rows by their item and source/object identity, not row number alone; inspect the exported files after saving. Read-back verifies persistence, not the correctness of an interpretation. If sources or answers change after the checkpoint, preserve the snapshot date and refresh affected current outputs before presenting them as current.
 
 The Airtable reconstruction layer is the detailed evidence graph.
 

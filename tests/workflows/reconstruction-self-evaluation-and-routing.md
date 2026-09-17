@@ -140,6 +140,20 @@ Expected:
 - architecture, schema, routing, promotion, and system-terminology decisions remain with System & Structure or live-use testing;
 - formal target comparison and persistence remain downstream of required validation.
 
+## Test 10 — validation of inputs does not validate a derived claim
+
+Input: the owner confirms a movement scope and one quantity; a reconstruction object combines those with document figures and a proposed explanation of another person's total.
+
+Expected: the confirmed inputs keep their lineage, while derived comparisons and explanations retain their own unreviewed status. Record-level `owner_validated` is used only for the exact confirmed claim; a caveat in notes does not repair an overbroad status. No new owner request is generated merely to validate arithmetic or reverse a prior instruction not to pursue the mechanism.
+
+## Test 11 — arithmetic compatibility and later answers
+
+Input: a decomposition reproduces a reported difference; owner answers subsequently settle some prepared questions, and one question is expressly dropped.
+
+Expected: compatible arithmetic is distinguished from evidence of the original calculation method. Accepted answers update the affected current claims and draft review list without being re-asked; the dropped question stays dropped. A fresh preflight precedes release of remaining questions. An earlier preflight is assessed against information available at its checkpoint, not retroactively declared wrong because answers arrived later.
+
+Tests 10–11 are added regression specifications; adding them does not record a successful runtime execution.
+
 ## Pass criterion
 
 The workflow passes when settled claims are excluded, live validation threads are continued rather than duplicated, genuine deltas become bounded work-level statements, technical responsibilities remain with System & Structure, corrections make a confirmation round-trip, and no-change or non-ownership responses are handled without invented work.

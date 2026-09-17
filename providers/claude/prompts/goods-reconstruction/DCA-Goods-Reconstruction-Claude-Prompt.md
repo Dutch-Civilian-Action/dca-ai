@@ -35,6 +35,10 @@ Use the available DCA source-routing and repository-navigation skills to reach t
 
 First give a short account of the method you actually loaded, the sources and staging access you can use, and how this differs from the process visible in my existing workbook and available Claude history. Then continue the work without waiting for another instruction. Do not invent what happened in a previous Claude conversation you cannot read. If required method files are inaccessible, identify that gap and continue useful source inventory and preservation without claiming a completed DCA-method reconstruction.
 
+At startup, record which required files were actually read, through which route, and any exposed revision or archive identifier. For a supplied ZIP, inspect its contents and record an available archive comment or checksum; do not assume it contains a commit SHA. Readable governing text with an unknown revision is a provenance/freshness gap, distinct from an inaccessible file. Preserve that limit rather than inventing a SHA or treating the text as unreadable.
+
+If governing files become readable after work has begun, compare the affected earlier claims and writes with the loaded method, correct discrepancies with lineage, and record the resume point. Availability or reading alone does not prove application. Attribute observed defects separately from possible causes; do not infer a single cause from missing access or from a later successful read.
+
 The source guide below is a starting set, not an exhaustive list. Repository instructions govern method and authority; operational sources establish what happened. Do not use the current system model or maintained reality to make historical evidence conform to it.
 
 ## 2. Use the originals and discover additional relevant evidence

@@ -36,4 +36,6 @@ The shared Drive locations preserve the originals as DCA-held source material. D
 
 Once collected, run the full **DCA-Goods-Reconstruction-Claude-Prompt.md** with **goods-valuation-plan-v3.md** and the workbooks linked in the prompt. The prompt already contains both source-folder links and the complete source guide. Have Claude check what it can actually read, record anything missing, then continue with the available evidence using the shared reconstruction method.
 
+If Claude cannot read the governing repositories, attach ZIPs of `dca-ai` and `dca-architecture` and have it identify the files it actually reads before continuing beyond source inventory. If the files are readable but their revision is unknown, record that limitation; attaching a ZIP is a useful provenance route, not a new mandatory approval step. After access is restored, Claude should reassess affected earlier work within the same run.
+
 We're reconstructing and comparing at this stage; valuation and production changes come later.
