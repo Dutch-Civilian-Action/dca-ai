@@ -55,6 +55,8 @@ Keep the current contact ID, intake record ID, source/version/row, audience/memb
 
 The broader research remains separately reviewable in [dca-ai #37](https://github.com/Dutch-Civilian-Action/dca-ai/pull/37) and [dca-architecture #9](https://github.com/Dutch-Civilian-Action/dca-architecture/pull/9). Neither PR's merge would by itself adopt the candidate base or validate its whole dataset.
 
+Neither is a technical prerequisite for this current-route pilot. See the [small build/promotion plan and builder prompt](../providers/airtable-omni/newsletter-intake-build.md) for the suggested review order and exact Airtable scope.
+
 ## Current implementation
 
 The Claude adapter is the existing [Relationship Data skill](../plugins/dca-relationship-data/skills/managing-dca-relationship-data/SKILL.md), with [pilot field mapping and continuation procedure](../plugins/dca-relationship-data/skills/managing-dca-relationship-data/references/newsletter-intake.md). It reuses existing fields; it does not repair unrelated schema drift or create a subscription data model.

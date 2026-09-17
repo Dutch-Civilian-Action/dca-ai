@@ -86,6 +86,8 @@ Use stable structured serialization or a digest for `request_key`, not ambiguous
 
 ## Mailchimp continuation from records
 
+Deployment gap reported in [#marketing on 16 September 2026](https://dcau.slack.com/archives/C037S4YL6MT/p1789552162597009): the connected Claude Mailchimp connector could not add subscribers. Do not assume that a connected/readable account supplies a subscription-write tool. Inspect actual current lookup/write capabilities; without them, complete authorized DCA intake only and record the continuation gap. This plugin does not implement or install a missing integration.
+
 1. Resolve the actual account and audience through permitted tools; never select the first audience by default or invent an audience ID. Record the account/audience with the batch and each outcome. If unavailable, finish authorized intake and record the exact continuation gap.
 2. Read the intake, linked Contact, applicable restrictions and consent evidence. Resolve the human actor and current grant under the runtime's existing rules; for Claude Tag apply `principal-action-authorization.md`. The request to create this PR is not a grant for future lists or external sends.
 3. Enforce the dataset prerequisite for these saved rows and the shared workflow's consent/suppression checks. The requested email must agree with the reconciled Contact route; a changed address or ambiguous/shared address goes to review. The requester's authorized follow-up maintains this batch; use the same intake IDs for corrections and retries.
@@ -98,6 +100,10 @@ The current Contact-level `mailchimp_subscription_status` field is an existing p
 Run one operator-controlled batch at a time, with no simultaneous writer for that batch or audience/address. If that cannot be established, capture only. Serial execution plus external lookup is a bounded pilot control, not concurrency-safe automation.
 
 Reference for platform-supported member lookup and mutations: [Mailchimp Members API](https://mailchimp.com/developer/marketing/api/list-members/). Actual connector access, audience selection and live behaviour remain deployment checks.
+
+## First source case: Rotary Altena
+
+The initial case is eleven newsletter sign-ups after the Rotary Altena presentation. Use [Kees's corrected 17 September list](https://dcau.slack.com/archives/C037S4YL6MT/p1789638970903079) as the current transcription, retaining the [original sign-up/photo thread](https://dcau.slack.com/archives/C037S4YL6MT/p1789507099076419) as earlier evidence. The reported sign-up context is source-linked attestation, not independent address verification. Do not restart resolved OCR/name questions, infer club membership/donor roles, or assume eleven new identities. Account/audience, restrictions and actual platform state remain separate checks. No real source rows or email values belong in GitHub.
 
 ## Runtime use and report
 

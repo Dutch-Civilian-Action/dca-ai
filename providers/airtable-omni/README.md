@@ -11,5 +11,6 @@ Files in this directory must implement provider-independent DCA workflows and au
 Retained implementation:
 
 - `relationship-data-agent.md` — retained Airtable Omni test/reference implementation of the Relationship Data Agent and `reconcile-relationship-data` workflow against `2 | DCA Relationships & Workflows`.
+- [Newsletter intake build](newsletter-intake-build.md) — small test/promotion plan and copyable builder prompt; reuses existing production fields and adds only a review view, not a subscription integration.
 
 The current operational implementation target for relationship-data intake and retrieval is Claude; see `../claude/` and `../runtime-selection.md`.
