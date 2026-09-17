@@ -6,6 +6,8 @@ A workflow defines DCA behaviour, evidence boundaries, validation logic, outputs
 
 Current workflows:
 
+- `meeting-actions-to-asana.md` — capture meeting-derived action candidates in the existing review thread, confirm scope/ownership, create or reuse Asana tasks with source and approval provenance, and verify the handoff; bounded pilot contract, live deployment unverified.
+
 - `full-historical-domain-reconstruction.md` — reconstruct a bounded domain source-first, preserve its evidence graph, and produce a standalone reader-ready synthesis with usable source context.
 - `reconstruction-self-evaluation-and-routing.md` — test reconstruction sufficiency, establish what the evidence supports, suppress settled or duplicate validation requests through a delta-only preflight, prepare operator-appropriate validation through the Establish task structure, and assess bounded routing/promotion readiness.
 - `monitor-validation-queue.md` — maintain the full unresolved validation queue across old and new items, deliver bounded provider-enabled owner reminders through existing authoritative review surfaces, and hand each newly sufficiently established finding or correction immediately into the canonical maintained-reality comparison, persistence, verification, and closure path; the scheduled Reality Watch remains recovery and broad evidence coverage rather than the only reconciliation clock.

@@ -26,6 +26,7 @@ See `providers/runtime-selection.md` for runtime-selection guidance.
 
 Current repository capabilities include Relationship Data, bounded Logistics Intake with attachment handling, maintained-reality reconciliation, Reality Watch, and validation-queue monitoring with bounded owner reminders. Repository implementation and a configured task do not by themselves prove live correctness, organisation-wide adoption or outcomes.
 
+- `workflows/meeting-actions-to-asana.md` defines the bounded meeting-action review and Asana capture pilot; runtime deployment and live task capture remain unverified.
 - `context/current-authority.md` resolves the maintained reality documents and implementation summary.
 - `context/airtable-workspace-map.md` records stable base identities, current names and migration boundaries.
 - `workflows/maintain-dca-reality.md` owns repository-to-runtime-to-document drift checks.
