@@ -76,7 +76,7 @@ Check whether the materially relevant evidence surfaces were actually processed,
 - shared DCA Gmail accounts;
 - Airtable;
 - GitHub;
-- DCA Master Calendar;
+- DCA Shared Calendar;
 - prior research, correction packets, and evidence bundles;
 - relevant third-party services;
 - linked files, attachments, transcripts, and underlying source artifacts.

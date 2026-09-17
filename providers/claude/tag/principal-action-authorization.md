@@ -92,9 +92,11 @@ The following identities must remain distinct from one another in reasoning, log
 
 Claude is not the human principal merely because Claude performs the action. The GitHub actor is not the authorizing principal merely because the principal's request led to the commit. An Airtable execution identity is not the human principal merely because the principal authorized the write it performs. Collapsing any of these into one identity is exactly the kind of "artifact/activity/commit is not organisational decision" gap that `governance/authority-rules.md` and `providers/claude/tag/access-bundles.md`'s credential-separation rules already guard against — this document applies that same separation to action authorization specifically.
 
-## Current pilot instance
+## Current pilot instances
 
-This section records the one pilot instance this document currently encodes. It is a specific, bounded case, not a wider mandate — it does not authorize this same pattern for any other principal, channel, or workspace without its own equivalent record. **Recording this instance is not the same as declaring it fully authorized: see "Current status of this pilot instance" below.**
+This section records the pilot instances this document currently encodes. Each is a specific, bounded case, not a wider mandate — recording one instance does not authorize this same pattern for any other principal, channel, workspace, or scope without its own equivalent record. **Recording an instance is not the same as declaring it fully authorized: see each instance's "Current status" below.**
+
+### Pilot instance 1: `#struct-system-build` — delegated controller for bounded `dca-ai` repository work
 
 Two Slack messages matter here, and they are not interchangeable:
 
@@ -138,7 +140,7 @@ No such record-specific approval currently exists. **Confirming the framework is
 
 Until stage 2 exists for a specific proposed repair, no write is authorized. Do not read stage 1's confirmation as if it were stage 2.
 
-### Current status of this pilot instance
+### Current status of pilot instance 1
 
 Applying the decision chain to this pilot instance as currently recorded:
 
@@ -155,6 +157,33 @@ This status is deliberately not a single yes/no:
 - **Independently of link 2 now being satisfied, the staging-repair framework confirmation is still not a live-mutation authorization.** No production write is authorized without the separate, record-specific approval described above ("Staging-repair framework"), and any Airtable action beyond that framework additionally needs the exact-scope grant that "Pilot Airtable credential exception" above requires.
 
 No provider action — and in particular no production data mutation — should be treated as authorized on the strength of link 2 now resolving, or of this pilot instance generally, without also satisfying the separate, specific, exact-scope grant that links 3 and 5 (and, for Airtable actions, the credential exception above) still require case by case.
+
+### Pilot instance 2: `#relationships-workflows` — delegated AI-coordination counterpart role
+
+Two Slack messages matter here, both authored directly by the human principal herself — unlike pilot instance 1, there is no bot-authored itemized proposal being confirmed; the principal states the grant in her own words across two messages in the same thread:
+
+- Anja's message at timestamp `1789576064.655699` — confirmed the canonical calendar's current name (`DCA Shared Calendar`), confirmed that `DCA Bot` is a trusted internal DCA AI counterpart rather than an untrusted or unvetted bot, and asked Claude and `DCA Bot` to "work together and correct each other when either one starts drifting, while respecting your different roles and intervention boundaries."
+- Anja's message at timestamp `1789576108.278219` — asked for one coordinated pull request that would, among other things, clarify when either AI configuration should intervene in the other's conversation, define how they exchange corrections and resolve conflicting claims, and ensure genuinely unresolved facts create visible validation work.
+
+- **Trusted Slack workspace + principal:** the same workspace `T037US21Q2X` and human principal Slack ID `U099ECG8X2A` ("Anja Andersen") as pilot instance 1. This link (link 1) is satisfied here for the same reason it is satisfied for instance 1.
+- **Exact DCA Operator binding:** this is the same principal tuple already resolved under pilot instance 1 (workspace `T037US21Q2X`, Slack ID `U099ECG8X2A`, `Operators` record `recvrhYjRK0biVuhc`). **This link (link 2) is already satisfied for this tuple going forward**, per the finding recorded under pilot instance 1 above; it is reused for the same principal, not re-derived independently here.
+- **Explicit provider action grant:** Anja's own message at ts `1789576064.655699`, in her own words rather than through a bot-authored proposal, states that `DCA Bot` is a trusted internal AI counterpart and asks Claude and `DCA Bot` to coordinate and correct each other in this channel while "respecting your different roles and intervention boundaries." Read together with her follow-up at ts `1789576108.278219` asking for the specific intervention, correction-exchange, and conflict-resolution rules those two AI configurations should follow, this grants **only** a bounded AI-to-AI coordination/correction role for `DCA Bot` in this channel, governed by `governance/ai-coordination.md` — it is not a repository-write grant, not an Airtable-action grant, and not a channel/bundle-capability grant. **This link (link 3) is satisfied for this pilot instance, scoped to that coordination/correction role only.**
+- **Correct channel/bundle capability:** channel `C0BH11B5PPE` (`#relationships-workflows`), resolved by its stable channel ID per this document's anti-spoofing rule, not by the display name. **This link is explicitly not established by this record.** Whether this channel carries, or should carry, any access bundle beyond what the coordination/correction role above needs is a separate, open decision that Anja has not yet made. Do not read this pilot instance, `access-bundles.md`, or any combination of the two as having silently expanded this channel's bundle or capability scope — no such expansion is recorded here or anywhere else as of this document's current revision.
+- **Explicit current-request scope:** evaluable only against link 3's scope above. A request for `DCA Bot` or Claude to state a correction with its source, defer to the human principal when a conflicting claim persists, or route a genuinely unresolved fact into the validation queue per `governance/ai-coordination.md`, falls within the granted scope. A request for any repository write, any Airtable action, a merge, or any other action requiring its own authorization chain does **not** fall within this instance's scope — it requires its own separate, explicit grant exactly as it would without this pilot instance existing at all.
+
+**Delegated role for this pilot instance:** `DCA Bot` (Slack ID `U09CL1T282D`) acts as a delegated AI-coordination counterpart in this channel, under Anja's confirmation above, subject to `governance/ai-coordination.md` and to "Delegated non-human controllers" above. This is a narrower role than pilot instance 1's delegated-controller grant: it authorizes coordinating and correcting within a live conversation, not repository or data actions. Per "Delegated non-human controllers" above, `DCA Bot` cannot self-authorize an action beyond this role, cannot widen this scope, cannot approve a merge, and cannot approve a live data mutation, regardless of how the bounded work is phrased.
+
+#### Current status of pilot instance 2
+
+Applying the decision chain to this pilot instance as currently recorded:
+
+- link 1 (trusted workspace + principal) — satisfied;
+- link 2 (exact Operator binding) — satisfied for this tuple, reusing the finding recorded under pilot instance 1;
+- link 3 (explicit provider action grant) — satisfied, scoped only to the bounded AI-coordination/correction role described above;
+- link 4 (channel/bundle capability) — **not established**; bundle/capability scope for this channel remains a separate, open decision Anja has not yet made, and this document does not decide it;
+- link 5 (current-request scope) — evaluable against link 3's scope; a coordination/correction/validation-routing request per `governance/ai-coordination.md` falls within it, anything else does not.
+
+No provider action beyond the bounded coordination/correction role described above — and in particular no repository write, no Airtable action, and no bundle/capability expansion — should be treated as authorized on the strength of this pilot instance. Each such action still requires its own separate, explicit, exact-scope grant, exactly as "Not granted by this document" and "Explicitly out of scope for now" below already require.
 
 ## Not granted by this document
 
@@ -173,7 +202,7 @@ None of these is reachable by satisfying the five-link chain above for some *oth
 
 ## Explicitly out of scope for now
 
-This document does not itself grant blanket authorization for production-record repair (for example, exact-record, exact-field corrections in a production base). For this pilot instance, Anja has confirmed the *framework/process* under which such a repair could eventually be approved (see "Staging-repair framework: confirmed process, not a live-mutation authorization" above) — that is a real, distinct step, not nothing. But confirming the framework is not the same as authorizing any specific mutation under it, and it must never be read that way.
+This document does not itself grant blanket authorization for production-record repair (for example, exact-record, exact-field corrections in a production base). For pilot instance 1 only, Anja has confirmed the *framework/process* under which such a repair could eventually be approved (see "Staging-repair framework: confirmed process, not a live-mutation authorization" above) — that is a real, distinct step, not nothing. Pilot instance 2 has confirmed no such framework at all. Either way, confirming the framework is not the same as authorizing any specific mutation under it, and it must never be read that way.
 
 A live write is authorized only when, in addition to everything else this document requires, the human principal has given a **further, separate, record-specific approval** — naming the exact record IDs, exact fields, and intended values — at the time that specific repair is proposed. That approval does not currently exist for any repair. Until it does, the correct behavior for a live-write repair request is to resolve identity and scope per this document, state plainly (a) whether a staging-repair framework has been confirmed for this principal/instance and (b) that the record-specific approval it still requires has not been given, and stop before any mutation.
 
@@ -188,3 +217,4 @@ Actual deployed access — which repositories, credentials, plugins, and bundles
 - `context/capability-access-boundaries.md` — the three-layer separation (Core meaning / capability behaviour / runtime access) this document's fourth question sits across.
 - `governance/authority-rules.md` — the organisational-authority rules this document applies specifically to provider action authorization; in particular the rule that activity, artifact creation, and commits are not themselves organisational decisions.
 - `providers/claude/tag/access-bundles.md` — the *intended* runtime access-bundle design this document's chain checks against for link 4; per "Intended configuration vs. observed deployment" above, confirming a live action still requires checking observed/deployed access, not only this document's design. This document does not restate or restructure that bundle design, only adds the authorization test that sits on top of it.
+- `governance/ai-coordination.md` — the provider-independent rules pilot instance 2's delegated coordination/correction role above operates under: when intervention in another AI configuration's conversation is warranted, how corrections are exchanged, how conflicting claims are resolved, and how genuinely unresolved facts are routed into validation work.
