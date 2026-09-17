@@ -42,6 +42,16 @@ Capture in DCA records first, reconcile existing identities, and read the saved 
 
 This is a bounded human-invoked pilot using existing `Contact_Intake` and `Contacts` fields. No new canonical identity model, background sync or schema mutation is introduced. Runtime access, current action authorization and the dataset prerequisite still apply; a plugin update does not establish deployment.
 
+## Review-first intake and more than one purpose
+
+Keep intake general: a newsletter request is one possible consequence of relationship information, not the definition of the person or the only permitted future use of the submission.
+
+When the operator asks for review first, preserve the submission in `Contact_Intake`, search for existing identities, and put the proposed matches, explicitly stated purposes, possible follow-ups and unresolved questions in human-readable `review_notes`. Stop before creating/updating canonical records, assigning roles or taking external actions. Use `clarification_needed` and, only for a real human decision, the existing `Review_Queue`. An intake-only request does not authorize subscription.
+
+For each purpose distinguish source-supported intent from a suggestion, the current decision, and the next action/owner if actually known. Do not require users to choose tables or a final domain model. One reviewed Contact may later support several separately authorized domain relationships or workflows; do not create a second identity or infer donor, volunteer, supplier or partner status from newsletter interest. Preserve all open review items when one consequence is completed. Newsletter processing events must not replace the ordinary review notes.
+
+This review-first option does not add a confirmation loop to an ordinary, explicitly requested, deterministic correction under the existing confirmation boundary.
+
 ## User-facing principle
 
 Users should interact with relationship information, not the implementation schema.

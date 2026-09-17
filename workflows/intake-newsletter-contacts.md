@@ -14,12 +14,20 @@ A DCA operator supplies names and email addresses for newsletter subscription. P
 
 This extends [relationship reconciliation](reconcile-relationship-data.md). It does not settle the wider identity/function model. Current operational routing remains Relationships & Workflows (`appMdqKYTMnPmVoVu`); Shared Identity & Relationships (`appScO2P8fD8yprCW`) remains a candidate. R01 (`appTpzRmniNpMv35Q`) is a separate identity-migration experiment. Neither is a second intake destination.
 
+## Review comes before choosing consequences
+
+Use the existing general relationship intake, not a Mailchimp-only destination. Preserve every explicitly stated purpose and any uncertain routing in ordinary `review_notes` and `relationship_context`. Distinguish evidence, proposed use, decision and next action; name an owner only when established. Newsletter signup does not settle whether a person also has a supported volunteering, supplier or fundraising relationship.
+
+For a **review-first** request, capture source rows and proposed identity matches, then stop before canonical mutations, role assignments or external actions. Let the operator review the notes and intended consequences. After review, apply only the authorized, supported consequences; reuse the same Contact wherever identity is resolved. A new domain-specific relationship/work item is not a new person. If a domain destination is unresolved, retain that bounded question rather than inventing a home or widening this intake's write scope.
+
+Completing identity reconciliation or newsletter subscription does not close unrelated review items. One uncertain purpose need not block another independently evidenced, authorized consequence, unless the uncertainty affects its identity, route, permission or meaning. This option does not require an extra approval for every ordinary deterministic correction.
+
 ## Capture and reconcile
 
 1. Resolve the authorized operator, execution surface and permitted destination. Accept the supplied list without asking the operator to classify people or understand the tables.
 2. Preserve the original submission, its source/version, row locator and authenticated human attribution. Keep source wording separate from normalized values. Preserve every row, including duplicates and incomplete or conflicting entries.
 3. Search the active shared contacts and contact routes before creating identities. A unique email is strong route evidence, not conclusive person identity: shared addresses, conflicting names and multiple matches need review. Do not strip plus suffixes or dots, infer an organisation from a domain, or merge on name alone.
-4. Reconcile each clear row into the existing reusable records, creating only the supported minimum. Link the preserved intake to its result and read both back. Do not change an existing confirmed name, route, role or validation state merely because a list supplies a different value.
+4. Unless the request is review-first/capture-only, reconcile each clear row into the existing reusable records, creating only the supported minimum. Link the preserved intake to its result and read both back. For review-first capture, keep candidate matches in notes until reviewed. Do not change an existing confirmed name, route, role or validation state merely because a list supplies a different value.
 5. Record subscription intent separately from identity resolution, consent and observed platform status. A saved Contact or an applied intake does not mean subscribed. Incomplete consent does not prevent authorized relationship intake.
 
 Do not manufacture donor, partner, volunteer, organisation-affiliation or function assignments from newsletter interest. An email address alone is not proof that a person consented, owns that address, or prefers email for every DCA purpose.

@@ -19,7 +19,7 @@ The packaged skill is the maintained implementation. `providers/claude/skills/ma
 
 Newsletter behaviour implements `workflows/intake-newsletter-contacts.md`. Version `0.3.0` prepares the pilot; installing/updating the plugin and checking a fresh Claude session remain separate from repository publication. See `tests/providers/claude/newsletter-intake.md` for the first bounded test.
 
-The [small Airtable build plan and copyable Omni/GPT prompt](../../providers/airtable-omni/newsletter-intake-build.md) define the review view, test/promotion sequence, current marketing-list context and relationship to PRs #37 and architecture #9. No new production tables or fields are needed. Actual Mailchimp lookup/write capability remains a separate deployment check.
+The [small Airtable plan and copyable Omni/GPT prompt](../../providers/airtable-omni/newsletter-intake-build.md) define review-first intake, Claude Tag activation checks, current marketing-list context and the merged status of PRs #37 and architecture #9. Preserve ordinary review notes and all source-supported purposes; Mailchimp is one downstream consequence. Existing fields and review pages support the first step: no new production tables or fields are needed. Actual Mailchimp lookup/write capability remains a separate deployment check.
 
 ## Distribution
 

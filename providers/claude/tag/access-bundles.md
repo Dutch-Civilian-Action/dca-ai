@@ -79,6 +79,8 @@ The Airtable plugin provides generic Airtable operations. The DCA Relationship D
 
 > For names/email lists intended for newsletter subscription, use the Relationship Data plugin's newsletter-intake reference: save and reconcile DCA records before any Mailchimp action; preserve consent evidence and the audience-specific outcome. The `#logistics` read/reference attachment does not permit this intake. Mailchimp access must be separately available and authorized on the permitted surface; if absent, complete authorized DCA intake and retain the continuation gap.
 
+> Keep intake general and preserve human-readable review notes for every explicitly stated purpose and unresolved routing. When review-first is requested, capture and propose matches, then stop before canonical changes, role assignments or external actions. Mailchimp is one possible consequence; completing it does not resolve other review items. Do not duplicate a person per purpose or infer extra roles from newsletter signup.
+
 Newsletter pilot rollout uses plugin/skill version `0.3.0`. Verify the reviewed revision in a fresh session, the actual Relationship Data write surface, operator binding, and (only for the external step) Mailchimp account/audience access. This repository change does not attach credentials, change channel scopes, or verify deployment. Current channel/bundle reconciliation remains tracked in [issue #36](https://github.com/Dutch-Civilian-Action/dca-ai/issues/36).
 
 **Initial auto-mode allow rules:** none.

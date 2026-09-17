@@ -26,13 +26,18 @@ Use one `Contact_Intake` row per source entry. For pasted text, preserve the ori
 | `contact_name`, `email` | Source-supported extracted values; keep raw spelling separately. Missing name stays missing; no invented person name. Malformed/uncertain email remains in raw evidence and clarification, not a repaired address. |
 | `contact_type` | `person` only when the row describes a person; `generic_contact_route` when supported; otherwise blank. |
 | `reason_for_adding` | DCA newsletter subscription requested, including purpose/audience wording as supplied. This is intent, not consent. |
+| `relationship_context` | Other explicitly supplied relationship context or intended uses, attributed to their source; not inferred roles or permission to act. |
 | `source_type`, `source_systems` | Actual originating evidence. A manually supplied list does not become `mailchimp` source just because Mailchimp is the destination. Use only existing options; do not create new ones during intake. |
 | `submitted_by_operator`, `submission_interface`, `submitted_at` | Verified human Operator, `claude_slack` or `claude_chat`, and the known submission time. Keep executor distinct. |
 | `raw_submission` | Immutable source wording; corrections remain additional evidence. |
-| `review_notes` | Preserve existing notes and append the bounded machine-readable events below. These are processing/provenance metadata, not new canonical person facts. |
-| `clarification_needed` | Specific unresolved identity, source, consent, audience, permission or execution question. |
+| `review_notes` | Human-readable review first: candidate identity match, each stated purpose or suggested follow-up, evidence/uncertainty, decision and next action/known owner. Preserve existing notes; append newsletter events separately below them. Neither the notes nor the events are new canonical person facts. |
+| `clarification_needed` | Specific unresolved identity, source, intended use/routing, consent, audience, permission or execution question. |
 | `intake_status` | Existing options only: `new`, `needs_clarification`, `duplicate_found`, `ready_to_apply`, `applied`, `rejected`. `applied` means relationship reconciliation completed, never Mailchimp success. |
 | `canonical_contact`, `canonical_organization` | Established result links only; omit organisation if unknown or irrelevant. |
+
+When review-first is requested, save the intake and review notes, read them back, and stop before canonical record changes, role assignments or any external action. Keep proposed matches in notes, not established-result links. Do not mark the intake `applied`. Use `new` for captured material; use `needs_clarification` only when there is a specific open question. Use the existing `Review_Queue` only if a real decision needs human input. Later review continues from these same intake records.
+
+Keep each purpose distinct. For example, a source may report newsletter signup and interest in volunteering. Preserve both, but interest is not a confirmed volunteer role and newsletter permission does not authorize another action. After identity review, one Contact can be referenced by several appropriately authorized workflows. Do not route people themselves into Mailchimp tables or duplicate identities per purpose. An `applied` intake or completed newsletter event must not hide an open non-newsletter review question. Do not expand this pilot into writes to other domain bases.
 
 For a clear new person, create a minimal `Contacts` record with the supported `contact_name`, `full_name`, `contact_type=person`, email, and source references back to the intake/original. Use `validation_status=draft` and `review_status=pending_review` for newly captured, not independently reviewed identities. Those labels do not prohibit a separately evidenced newsletter request; check the actual identity/route and consent evidence. Do not downgrade an existing validation state or mark email verified from syntax alone. Map a supported generic intake route to the existing `Contacts.contact_type=generic_contact`, not the intake-only option spelling.
 

@@ -1,113 +1,115 @@
-# Newsletter Intake — Small Build and First Use
+# Relationship Intake First — Small Build and First Use
 
-Status: proposed build/runbook, 17 September 2026. No Airtable build, Claude deployment or Mailchimp execution is established by this file.
+Status: proposed rollout/runbook, updated 17 September 2026. Live schema/page inspection is recorded below; no Airtable build, Claude deployment or Mailchimp execution is established by this file.
 
 ## Decision and PR order
 
-Keep this pilot in **Relationships & Workflows**. It needs **no new production tables or fields**: reuse `Contact_Intake`, `Contacts`, `Operators` and existing organisation restrictions. Add only one private working review view. This does not make Relationships & Workflows the permanent identity architecture.
+Keep the first step in **Relationships & Workflows** and use the existing **Relationship Data Pilot** bundle. Intake remains general and **review notes come first when requested**. A person may have several evidenced purposes or relationships; Mailchimp is one possible consequence, not the intake destination.
 
-| PR | What merging it records or enables | Dependency on this pilot |
+| PR | Verified state on 17 September | Meaning |
 | --- | --- | --- |
-| [dca-ai #37](https://github.com/Dutch-Civilian-Action/dca-ai/pull/37) | R01 identity-test evidence, replay checks and dated base inventory | Related evidence; not a runtime prerequisite |
-| [dca-architecture #9](https://github.com/Dutch-Civilian-Action/dca-architecture/pull/9) | Identity/relationship research and proposals | Related research; not adoption of the candidate or a runtime prerequisite |
-| [dca-ai #44](https://github.com/Dutch-Civilian-Action/dca-ai/pull/44) | This bounded Claude newsletter-intake behaviour and build plan | Review/install/test this version before use |
+| [dca-ai #37](https://github.com/Dutch-Civilian-Action/dca-ai/pull/37) | Merged | R01 evidence and dated base inventory; not candidate adoption |
+| [dca-architecture #9](https://github.com/Dutch-Civilian-Action/dca-architecture/pull/9) | Merged | Research/proposals; not blanket implementation approval |
+| [dca-ai #44](https://github.com/Dutch-Civilian-Action/dca-ai/pull/44) | This open PR | Review/merge the intake extension, then install and verify the reviewed revision |
 
-Suggested housekeeping order: review #37 and architecture #9 together, then merge #37, architecture #9, and #44. This is not a technical dependency chain: #44 can proceed independently after its own review. The two dca-ai PRs both update `tests/README.md`; retain both index entries when updating against main. Merging any of these PRs does not adopt Shared Identity, promote R01, install a plugin, grant credentials or subscribe anyone.
+There is no remaining #37 → #9 merge dependency to manage. Merging #44 does not install a plugin, activate a credential, adopt Shared Identity, promote R01 or subscribe anyone.
 
 ## What goes where now
 
-| Responsibility | Existing production destination |
+| Responsibility | Existing destination and boundary |
 | --- | --- |
-| Original submission, row provenance, consent evidence, intent and audience-specific processing history | `appMdqKYTMnPmVoVu` / `Contact_Intake` / `tblsMQmCUeRiUiY3F`; existing `raw_submission`, `review_notes` and other mapped fields |
-| Reusable person or contact route | Same base / `Contacts` / `tbl5NfixO7QO9IBLA`; preserve `contact_id` and source-qualified Airtable IDs |
-| Human attribution | Same base / `Operators` / `tbl0rMfAOKGa6Umi5` |
-| Applicable organisation restrictions | Same base / `Organizations` / `tbloQjP99AcWawpyZ`; do not create affiliations from newsletter interest |
-| Actual audience membership | Mailchimp, observed through an authorized working connector; scoped result recorded with the intake |
+| Raw submission, provenance, intended uses, human-readable review notes and unresolved questions | Relationships & Workflows `appMdqKYTMnPmVoVu` / `Contact_Intake` / `tblsMQmCUeRiUiY3F`; reuse `raw_submission`, `reason_for_adding`, `relationship_context`, `review_notes`, `clarification_needed` |
+| Reusable person or contact route, after supported reconciliation | Same base / `Contacts` / `tbl5NfixO7QO9IBLA`; preserve existing contact IDs |
+| Real decisions needing human input | Same base / existing `Review_Queue` / `tbl4PuspNKOVE9ooc`; only when needed, not a second intake register |
+| Human attribution and applicable organisation restrictions | Same base / `Operators` / `tbl0rMfAOKGa6Umi5` and `Organizations` / `tbloQjP99AcWawpyZ` |
+| Other supported domain relationships/work | Follow the established domain workflow after review and appropriate authorization; unresolved destination stays an explicit question. No new cross-domain writes in this pilot |
+| Actual newsletter audience membership | Mailchimp, only through a separately verified authorized continuation from saved records |
+| Existing integration evidence scaffolds | Evidence & Reconciliation `appZ1Fv0YtZPbBbWa`: `Mailchimp_Audiences` `tbla8XaaNazFFgugO`, `Mailchimp_Members` `tblWobdsDev3fjgrY`, `Platform_Sources`, `Sync_Runs`, `Integration_Review_Queue`. Retain for later integration work; not replacement intake or canonical people |
 
-Use the [packaged field mapping and event contract](../../plugins/dca-relationship-data/skills/managing-dca-relationship-data/references/newsletter-intake.md). The existing Contact-level Mailchimp status is not an audience-scoped subscription register and must not be overwritten by this pilot. Appended intake events are temporary, bounded processing history, not a concurrent/background integration.
+The integration tables inspected contained only their identifier field and a blank record each. Their existence is not proof of a working sync. Do not create competing integration tables or modify Donorbox tables. A future cross-base reference must preserve a stable contact ID and source-qualified base/table/record reference; native record links are not cross-base links.
 
-Do not write to Shared Identity candidate `appScO2P8fD8yprCW` or R01 `appTpzRmniNpMv35Q`. Do not change base locations/names, Winter outreach, relationship roles, existing forms, interfaces, automations or access. Later identity migration must preserve the source/contact/intake/member crosswalk and must not replay subscriptions.
+Use the [packaged mapping](../../plugins/dca-relationship-data/skills/managing-dca-relationship-data/references/newsletter-intake.md). Newsletter events append to, never replace, ordinary review notes. The existing Contact-level Mailchimp status has no audience scope; preserve it. Intake notes/events are a bounded human-operated history, not a background queue.
 
-## First real batch and present blocker
+Do not write to Shared Identity candidate `appScO2P8fD8yprCW` or R01 `appTpzRmniNpMv35Q`. No identity migration, base move/rename, Winter outreach change, inferred roles or domain reorganisation is part of this enablement.
 
-The first case is the **11 Rotary Altena newsletter sign-ups**, not a generic new prospect list. Use [Kees's corrected list of 17 September](https://dcau.slack.com/archives/C037S4YL6MT/p1789638970903079) as the current transcription, retaining the [original sign-up/photo thread](https://dcau.slack.com/archives/C037S4YL6MT/p1789507099076419) as earlier evidence. Preserve the reported sign-up context as source-linked attestation, not independent verification of every address or club affiliation. Earlier OCR/name doubts are superseded only where the corrected source resolves them. Eleven rows do not necessarily mean eleven new Contacts.
+## Airtable: reuse the review step that already exists
 
-[The marketing thread reports that the connected Claude Mailchimp connector cannot add subscribers](https://dcau.slack.com/archives/C037S4YL6MT/p1789552162597009). No working subscription-write capability, audience ID or current member states have been verified for this pilot. A plugin instruction cannot supply a missing tool. Intake may proceed under its own authority; subscription remains not attempted until the actual lookup/write capability, audience, restrictions and action authorization are established. Do not invent an API integration or request credentials as part of this build.
+Live inspection on 17 September found the fields above and the existing **Relationship Data Review** interface:
 
-Keep real names, addresses, raw source and populated event payloads out of GitHub.
+- **New Contact Intake**: page `pagKRGtiFkekWsGmT`, sourced from `Contact_Intake`.
+- **Review Needed**: page `pagVMYeJMohSVaqky`, sourced from `Review_Queue`.
+- The `Contact_Intake` view list returned `Grid view` `viwIHXXpLxyfU2IOa`.
 
-## Small build and promotion sequence
+Page existence is verified; reviewer access and exact field visibility must still be checked in the intended runtime/UI. Start with these, not another newsletter-only queue. **No new tables, fields, views, automation or test base is required just to capture a submission through the accepted intake workflow.**
 
-1. **Prepare/test behaviour:** use the [bounded cases](../../tests/providers/claude/newsletter-intake.md) with simulated tools first. For the live Airtable check, designate a small isolated base in DCA Dev/Test `wspCZsYbWYC7OXX1l`. No newsletter test base is designated yet. Create one dedicated base only when the builder prompt is explicitly invoked for that purpose; do not repurpose an older build, R01 or evidence staging.
-2. **Build only the test slice:** mirror the fields consumed by the newsletter mapping in `Contact_Intake`, `Contacts`, `Operators` and `Organizations`, with local links and any required formula dependencies. No 22-table clone, source automations or interfaces. Apply the current implementation standard to new structures; record necessary differences from the existing production schema without repairing production. Retain exact source IDs separately from newly returned local IDs. Read back the schema and view.
-3. **Run one small source-linked check:** under the explicit test-base override in a fresh Claude session, copy the first two entries of the corrected list, the relevant original source context and only the required matching/restriction/Operator records. Mark copied real data as such in existing processing metadata; keep the source and returned-ID mapping privately. Forbid Mailchimp mutations. Check saved source, identity match, links, uncertainty, current route, and a repeat run that creates no duplicate intake/Contact. Simulate duplicate, no-consent, suppression and missing-tool cases. Record actual results, not assumed passes.
-4. **Accept and promote separately:** review structure, sample mapping/data and Claude behaviour against the [current promotion standard](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/development-testing-and-promotion.md). Promote only the accepted view/configuration to existing production; do not move the test base or copy test records/events into production. Install the reviewed plugin revision in the intended authorized Claude surface and verify its real capabilities. A successful Airtable-only test does not pass the Mailchimp continuation.
-5. **Use the real list:** process those two source rows in production and read them back; after review, continue the other nine. Reconcile against the full relevant production contacts/routes, not just the sample. Resume existing production intake IDs if already captured. Continue from the saved records only when the separate Mailchimp gate is satisfied; otherwise report the precise blocker and zero subscription attempts.
+If a real UI gap prevents review, make only the separately reviewed display change needed to expose `review_notes`, `relationship_context`, `clarification_needed`, source and status to the authorized reviewer. Do not use hidden fields as a security boundary or turn the review page/view into a send trigger.
 
-### The one production view
+## Claude Tag activation and first use
 
-On 17 September, the live `Contact_Intake` view list returned only `Grid view` (`viwIHXXpLxyfU2IOa`). No newsletter-specific view was returned. Recheck before creating anything.
+1. Review/merge #44 to `dca-ai/main`. Install/update **DCA Relationship Data 0.3.0** from the reviewed revision; verify the actual commit in a fresh Claude session. A version label or merge alone is not deployment evidence.
+2. Keep **DCA Core**, the generic **Airtable tool/plugin**, and **DCA Relationship Data** together. Use the existing Relationship Data Pilot bundle; do not create a Mailchimp intake bundle.
+3. In Tag admin, verify the existing Airtable identity is active and restricted to `appMdqKYTMnPmVoVu`, with record read/write and schema read as required. No schema-write, Evidence & Reconciliation or Mailchimp credential is needed for this first capture. Inspect actual scopes, not the credential's name.
+4. Start in the existing bounded `#anja-ai` attachment after checking its membership/access suitability. [Issue #36](https://github.com/Dutch-Civilian-Action/dca-ai/issues/36) records the earlier attachment and an inactive `relationship-data-read` identity; those observations are not proof of current capability. Verify the authenticated requester → Operator binding under [principal/action authorization](../claude/tag/principal-action-authorization.md). Keep explicit `@Claude` invocation and auto-mode off. Do not extend access to `#marketing`, the whole workspace or mixed Logistics intake merely for this list.
+5. Exercise the changed review-first and multiple-purpose cases in a fresh isolated session with simulated tools before enabling the change. If live experimental writes are needed, designate an appropriate verified Dev/Test base separately, preserve source/test distinctions and record actual results under the [promotion standard](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/development-testing-and-promotion.md). Never use production, R01 or operational evidence staging as a disposable test sandbox. Do not create a four-table clone solely to save ordinary intake through the accepted workflow.
+6. First real use is **capture and review only**, two rows of the source-linked list below. Claude searches for possible existing matches, saves intake and readable notes, reads them back, and stops before canonical changes or Mailchimp. Review identity, stated purposes, uncertainty and next actions; then continue the remaining nine. Resume the same intake IDs, not new copies. The requesting operator maintains corrections for this batch unless an explicit handoff establishes another owner.
+7. After that review, reconcile only the supported, authorized relationship records. A Contact can support multiple later workflows. Resolve a domain destination only where actually needed; do not make users classify every future possibility before preserving the source.
 
-- Name: `Newsletter Intake — Review`, ordinary grid, no public sharing or automation trigger.
-- Filter: `reason_for_adding` contains the marker `DCA newsletter subscription requested` used by the mapping; group by `intake_status`; sort `submitted_at` newest first.
-- Show `contact_name`, `email`, `intake_status`, `canonical_contact`, `reason_for_adding`, `clarification_needed`, `submitted_by_operator`, `submitted_at`, `review_notes`. Keep `raw_submission` available in record detail. Hiding a field is not an access restriction.
-- Description: “Newsletter intake and processing review. Includes unresolved and completed rows. Saved/applied does not mean subscribed. Review current evidence, audience and platform state before action.”
+Tag admin access and a fresh Claude runtime were not verified by this repository change. It must not be reported as activated or behaviour-tested.
 
-This is **not a send queue**. Do not filter for `ready` or `subscribed` inside historical JSON/text, or trigger subscriptions when a record enters this view. Reuse a view only after verifying equivalent configuration; never overwrite a same-named but different view without review. If a tool cannot inspect/configure the view, return the exact manual step rather than claiming completion. The view is useful for review, not a prerequisite for saving intake through Claude.
+### First source and invocation
+
+Use the **11 Rotary Altena newsletter sign-ups**: [Kees's corrected 17 September list](https://dcau.slack.com/archives/C037S4YL6MT/p1789638970903079), retaining the [original sign-up/photo thread](https://dcau.slack.com/archives/C037S4YL6MT/p1789507099076419). The reported signup is source-linked attestation, not independent address verification or club membership. Earlier OCR questions are superseded only where corrected. Eleven rows do not imply eleven new Contacts. Keep all actual names/emails and populated evidence outside GitHub.
+
+Example instruction in the authorized private surface, after runtime checks:
+
+> @Claude, intake the first two rows of the corrected Rotary Altena list for review only. Preserve the original and corrected sources. Search for existing contacts and put proposed matches, newsletter intent, any other explicitly stated purposes, uncertainties and next actions in readable review notes. Do not create/update canonical contacts, assign roles or subscribe anyone yet. Show a concise review summary with restricted record links; do not repeat email addresses in the channel.
+
+Do not infer other purposes that the source does not state. A possible follow-up suggested by a reviewer remains a suggestion, not a relationship fact or action grant.
+
+## Separate Mailchimp gate
+
+[Marketing reported missing subscriber-write capability](https://dcau.slack.com/archives/C037S4YL6MT/p1789552162597009). A working write tool, audience ID and current member states have not been verified.
+
+The [dataset prerequisite](../../governance/authority-rules.md#dataset-prerequisite-for-operational-automation) applies before proposing/building/configuring downstream automation. First verify that the relevant batch is actually saved, reconciled at the needed scope, source/consent-qualified, and has a responsible owner/correction process. A schema, draft or promise to incorporate it later is insufficient.
+
+Until then, **do not build an Airtable automation, webhook or Mailchimp API executor**. Intake requires none of them. Preserve the continuation gap, then assess the smallest separate implementation from the saved records when the prerequisite is met. Reuse the integration scaffolds where they fit. Do not infer newsletter consent from another purpose or close unrelated review items after subscription.
 
 ## Copyable prompt for Omni or another Airtable-capable builder
 
-Use this prompt for the build only. It does not instruct the builder to process the list or subscribe anyone. Default `MODE=TEST`. For later promotion use `MODE=PROMOTE_VIEW` and supply the accepted test-base ID and result reference. That explicit invocation authorizes only the named mode's bounded build.
+Default to verification/reuse. This prompt is not a grant to migrate identities, create an integration or process a real list.
 
 ```text
-Build only DCA's bounded newsletter-intake test slice/review view.
-MODE=TEST
-ACCEPTED_TEST_BASE_ID=not_yet_designated
-ACCEPTANCE_REFERENCE=not_yet_available
+Verify DCA's existing general relationship intake and review support.
+The first requirement is review notes before choosing downstream actions,
+not a Mailchimp-only intake table.
 
-First read from the reviewed PR #44 revision:
+Read the reviewed PR #44 revision of:
 - providers/airtable-omni/newsletter-intake-build.md
-- plugins/dca-relationship-data/skills/managing-dca-relationship-data/references/newsletter-intake.md
+- plugins/dca-relationship-data/skills/managing-dca-relationship-data/SKILL.md
 - skills/dca-airtable-implementation/SKILL.md
 Also read the current architecture systems/development-testing-and-promotion.md
-and the live DCA Airtable Implementation Standard:
+and the live standard:
 https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit
-If you cannot retrieve any required instruction, ask for its contents and stop.
+If any required instruction is inaccessible, stop and report the gap.
 
-Source/production base: appMdqKYTMnPmVoVu in DCA (wspYnyJ08xBNYOjXw).
-Source tables: Contact_Intake tblsMQmCUeRiUiY3F;
-Contacts tbl5NfixO7QO9IBLA; Operators tbl0rMfAOKGa6Umi5;
-Organizations tbloQjP99AcWawpyZ.
-Inspect actual IDs, schema, options and views; do not select by name alone.
+Inspect appMdqKYTMnPmVoVu / Contact_Intake tblsMQmCUeRiUiY3F.
+Verify raw_submission, reason_for_adding, relationship_context, review_notes,
+clarification_needed, intake_status, canonical_contact and operator attribution.
+Inspect the existing Relationship Data Review pages:
+New Contact Intake pagKRGtiFkekWsGmT and Review Needed pagVMYeJMohSVaqky.
+Check actual reviewer access and visibility of source, notes and unresolved items.
+Use stable IDs; do not infer authority or workspace membership from names.
 
-If MODE=TEST:
-  Production is read-only. Use workspace wspCZsYbWYC7OXX1l (DCA Dev/Test).
-  Inspect whether a dedicated newsletter-intake test base already exists.
-  Reuse it only if its identity, isolation and purpose are verified; if unclear, stop.
-  Otherwise create one empty base: [DEV] DCA Newsletter Intake.
-  Record its returned base ID separately from production and R01.
-  Build only the four-table slice described in this runbook, matching consumed
-  fields/options and required dependencies from the live source schema.
-  Apply the implementation standard to new structures; document differences.
-  Remap native links to test-local tables. No production IDs in native links.
-  Build the Newsletter Intake — Review view specified in this runbook.
-  Do not import people, source lists, automations, integrations or interfaces.
+If existing structures support this, report "no Airtable build required for
+review-first intake". Do not create tables/fields/views/bases to satisfy the word build.
+If a specific display gap remains, report the exact smallest proposed change for review.
+For any new structure or behaviour, identify a suitable Dev/Test target separately
+before making experimental writes, then follow test/acceptance/promotion rules.
 
-If MODE=PROMOTE_VIEW:
-  Require the exact accepted test-base ID and a reviewed result reference.
-  If either is missing or the accepted view differs from this plan, stop.
-  Recheck production schema and existing views, then create/reuse only the
-  specified review view in appMdqKYTMnPmVoVu / tblsMQmCUeRiUiY3F.
-  Do not change a table, field, select option, record, existing view or primary.
-
-For both modes:
-  Never modify appScO2P8fD8yprCW, appTpzRmniNpMv35Q, legacy or other bases.
-  Never rename/move/archive bases, share publicly, grant access, install
-  credentials, enable automations, call Mailchimp, or send any messages.
-  Stop on unsupported capabilities, permission failures or schema conflicts.
-  Read back what you built. Report exact workspace/base/table/view IDs,
-  changed objects, unperformed steps and acceptance gaps. Do not claim that
-  Claude is deployed, records are migrated or anyone is subscribed.
+No records, canonical identities, roles, permissions, automations, credentials,
+base names/locations or Mailchimp membership may be changed by this inspection.
+Do not touch R01, Shared Identity candidate, Donorbox or other domain tables.
+Report verified IDs, actual gaps and unperformed steps, not assumed deployment.
 ```
 
-The next action is to review this PR's bounded routing and run the default test-build prompt. Testing and review of #44 need not wait for final decisions on the whole identity/relationship architecture.
+Next action: review/merge #44, verify the existing bundle in Tag admin, and run the fresh-session review-first check before the first two-row capture. Broader identity decisions and Mailchimp integration are separate work.

@@ -9,7 +9,7 @@ workflow: intake-newsletter-contacts
 
 Test the [shared workflow](../../../workflows/intake-newsletter-contacts.md) through the [packaged skill](../../../plugins/dca-relationship-data/skills/managing-dca-relationship-data/SKILL.md). These cases are a test design, not recorded live passes.
 
-Use the [small Airtable build/promotion plan and builder prompt](../../../providers/airtable-omni/newsletter-intake-build.md) to prepare an isolated live test slice. Its review view is not a send queue or an eligibility signal.
+Use the [small Airtable plan and builder prompt](../../../providers/airtable-omni/newsletter-intake-build.md) to verify and reuse existing intake/review support first. No new view or test base is required merely to capture records through the accepted intake workflow. Test changed behaviour in an isolated session/environment; its review notes/view are not a send queue or an eligibility signal.
 
 ## First session
 
@@ -21,6 +21,9 @@ After the bounded behaviour is reviewed, use a small real operator-authorized ba
 
 | Case | Required observation |
 | --- | --- |
+| Operator requests review notes first | Preserve source and candidate matches in intake, with human-readable notes; read back and stop. No canonical record changes, role assignments or external actions; no `applied` claim. |
+| Newsletter signup and separately stated volunteering interest | Preserve both purposes and their distinct evidence/decisions. One reusable Contact after identity review; no inferred volunteer role or unrelated action. Unknown routing remains an actionable review item. |
+| Newsletter action completed while another purpose is unresolved | Preserve the unresolved notes/question and any existing review item. Do not report the whole submission fully resolved or duplicate the person in another base. |
 | Two new people, names/emails, source-linked newsletter consent, confirmed audience | Intake evidence is saved before minimal Contacts; both are read back and linked before any external action. No invented organisation or roles. |
 | Corrected Rotary Altena list with earlier photo/OCR evidence | Use the corrected transcription; retain both sources and reported sign-up scope. Do not reopen resolved OCR questions or infer independent verification, affiliation or eleven new Contacts. |
 | Names/emails only; “please subscribe” but consent not established | Authorized relationship intake completes. Consent remains unknown; no Mailchimp mutation or confirmation invitation. Ask only for the missing basis. |
