@@ -144,7 +144,7 @@ No Activity was created for research, the draft or record preparation. Dates, qu
 
 The [Claude project handover](../providers/claude/projects/winter-project.md) supplies the setup, thin project instructions and first-session acceptance checks. Provider-independent operation remains in this build/capture record and the existing workflows. A project instruction, repo commit or ChatGPT connector readback does not prove Claude capability.
 
-The Winter ID, primary-display and timestamp repairs are verified. Review this PR and its updated references, then create the private Claude Team project and perform the fresh-session access and bounded-write checks. The separate reusable table template still needs the three UI edits listed below; its completion is distinct from the repaired Winter tables.
+The Winter ID, primary-display and timestamp repairs are verified. Review this PR and its updated references, then create the private Claude Team project and perform the fresh-session access and bounded-write checks. The separate reusable table template's five core fields were verified on 17 September 2026 and are ready for reuse.
 
 Then load the reviewed handover into a private Claude project, verify actual tool access and one bounded write/readback, and verify Kees's member access. Use an explicitly authorised source-backed review annotation or a dedicated Dev/Test sample; do not generate a fake send/offer/receipt event to test a connection. New models, unresolved mappings and automation require the [development/testing/promotion standard](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/development-testing-and-promotion.md); routine accepted record maintenance does not require another base. The separate identity migration development base must not become the Winter production home or a generic Winter test sandbox.
 
@@ -158,14 +158,18 @@ Winter procurement/delivery metrics remain unimplemented. The proposed first rea
 
 ## Reusable Airtable table template
 
-[DCA Airtable Templates](https://airtable.com/app8vuO9XpoYaLOlo) was created explicitly in DCA Dev/Test (`wspCZsYbWYC7OXX1l`). `Object_Template` (`tbl7VYzFtQWIr5Nux`) has zero operational records and is **draft, not ready for duplication**. It is separate from Winter production and identity R01.
+[DCA Airtable Templates](https://airtable.com/app8vuO9XpoYaLOlo) was created explicitly in DCA Dev/Test (`wspCZsYbWYC7OXX1l`). `Object_Template` (`tbl7VYzFtQWIr5Nux`) is **verified and ready for reuse** as of 17 September 2026. It is separate from Winter production and identity R01.
 
-Created: `x_name` as text, `x_id` as Formula `"XXX-" & RECORD_ID()`, and temporary text primary `x`. The connector rejected the complete native-field creation request; no base was created by that failed request. The subsequent supported request created this draft template. Three one-time UI edits remain:
+Anja completed the remaining UI edits. Live schema readback verified all five core fields:
 
-1. Convert `x` to Formula `{x_id} & " — " & {x_name}`.
-2. Add `created_at` as native Created time.
-3. Add `last_modified` as native Last modified time tracking all editable fields.
+| Field | Verified configuration |
+| --- | --- |
+| `x` | Primary Formula: `{x_id} & " — " & {x_name}` |
+| `x_id` | Formula: `"XXX-" & RECORD_ID()` |
+| `x_name` | Single-line text |
+| `created_at` | Native Created time |
+| `last_modified` | Native Last modified time, tracking all editable fields |
 
-Include time, ISO date, 24-hour format and Europe/Amsterdam for both metadata fields. Add the same meaningful metadata descriptions used by the Winter tables. Read back before marking the template ready.
+Both timestamps use ISO dates, 24-hour time and Europe/Amsterdam. Field and table descriptions were updated to explain reuse and distinguish technical timestamps from operational events.
 
-Once verified, duplicate the table **without records**. Rename `x`, `x_id`, `x_name`, replace `XXX` with the explicitly configured object prefix, check formula references and adapt descriptions. These are the reusable core fields. Status, source, validation, notes, links and other fields are added only for the actual requirement; the standard does not make all of them mandatory on every table. Each added select option must have a documented meaning. A table copy does not establish production adoption or automatically preserve IDs of migrated records.
+Duplicate the table **without records**. Rename `x`, `x_id`, `x_name`, replace `XXX` with the explicitly configured object prefix, check formula references and adapt descriptions. These are the reusable core fields. Status, source, validation, notes, links and other fields are added only for the actual requirement; the standard does not make all of them mandatory on every table. Each added select option must have a documented meaning. A table copy does not establish production adoption or automatically preserve IDs of migrated records.
