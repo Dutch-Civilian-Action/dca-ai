@@ -2,7 +2,7 @@
 name: managing-dca-relationship-data
 description: Retrieve and maintain DCA contact, organization, and relationship data in the current Airtable route. Use for contact lookup, additions, corrections, reconciliation, or names/email lists for newsletter subscription through DCA records before Mailchimp.
 metadata:
-  version: 0.3.0
+  version: 0.3.1
   dca-agent: relationship-data-agent
   dca-workflow: reconcile-relationship-data
   mcp-server: airtable
@@ -26,13 +26,21 @@ DCA user
 → 2 | DCA Relationships & Workflows
 ```
 
-Use only the canonical Airtable base:
+Use this base for canonical relationship records and relationship-intake writes:
 
 `2 | DCA Relationships & Workflows` (`appMdqKYTMnPmVoVu`)
 
 Do not choose similarly named rebuild, copy, staging, or test bases unless System & Structure explicitly requests a test against one of them.
 
 The newer Shared Identity & Relationships base is a migration candidate, not the current intake destination. Resolve current base identity through `context/airtable-workspace-map.md`; do not dual-write or infer adoption from a successful R01 test.
+
+### Evidence access
+
+The capability may also read relevant records in **DCA Evidence & Reconciliation** (`appZ1Fv0YtZPbBbWa`) when canonical records are insufficient/conflicting or the user asks for evidence, history or verification. Keep the normal canonical-first lookup; do not search unrelated evidence for a question already answered.
+
+Preserve each source record's base/table/record reference, observation time and validation/uncertainty. Reconstruction claims, intake evidence and platform snapshots do not become confirmed identities, roles, consent or current Mailchimp status merely because they are stored. Empty integration scaffolds do not establish absence of a person or subscription. Keep conflicts in the current relationship review flow; use stable references across bases, not native cross-base record links.
+
+For this Relationship Data workflow, write intake, review notes and authorized canonical changes only in Relationships & Workflows. Evidence & Reconciliation is a read source; do not update its evidence, Logistics, Donorbox, Mailchimp or sync tables through this capability. This is a workflow restriction. A single PAT with record-write scope and both bases as resources can technically write in both, subject to its owner's permissions. A separate evidence credential may enforce read-only access if configured that way; do not infer it from a bundle name. Verify the actual runtime access, respect channel visibility, and report an evidence access gap without claiming that no evidence exists.
 
 ## Newsletter lists
 

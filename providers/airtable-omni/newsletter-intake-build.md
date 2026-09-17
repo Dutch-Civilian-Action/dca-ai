@@ -10,7 +10,7 @@ Keep the first step in **Relationships & Workflows** and use the existing **Rela
 | --- | --- | --- |
 | [dca-ai #37](https://github.com/Dutch-Civilian-Action/dca-ai/pull/37) | Merged | R01 evidence and dated base inventory; not candidate adoption |
 | [dca-architecture #9](https://github.com/Dutch-Civilian-Action/dca-architecture/pull/9) | Merged | Research/proposals; not blanket implementation approval |
-| [dca-ai #44](https://github.com/Dutch-Civilian-Action/dca-ai/pull/44) | This open PR | Review/merge the intake extension, then install and verify the reviewed revision |
+| [dca-ai #44](https://github.com/Dutch-Civilian-Action/dca-ai/pull/44) | Merged | Intake extension published; installation and runtime verification remain separate |
 
 There is no remaining #37 → #9 merge dependency to manage. Merging #44 does not install a plugin, activate a credential, adopt Shared Identity, promote R01 or subscribe anyone.
 
@@ -46,13 +46,15 @@ If a real UI gap prevents review, make only the separately reviewed display chan
 
 ## Claude Tag activation and first use
 
-1. Review/merge #44 to `dca-ai/main`. Install/update **DCA Relationship Data 0.3.0** from the reviewed revision; verify the actual commit in a fresh Claude session. A version label or merge alone is not deployment evidence.
+1. #44 is merged to `dca-ai/main`. Install/update **DCA Relationship Data 0.3.1** from the reviewed revision; verify the actual commit in a fresh Claude session. A version label or merge alone is not deployment evidence.
 2. Keep **DCA Core**, the generic **Airtable tool/plugin**, and **DCA Relationship Data** together. Use the existing Relationship Data Pilot bundle; do not create a Mailchimp intake bundle.
-3. In Tag admin, verify the existing Airtable identity is active and restricted to `appMdqKYTMnPmVoVu`, with record read/write and schema read as required. No schema-write, Evidence & Reconciliation or Mailchimp credential is needed for this first capture. Inspect actual scopes, not the credential's name.
+3. In Tag admin, configure access to Relationships & Workflows `appMdqKYTMnPmVoVu` and Evidence & Reconciliation `appZ1Fv0YtZPbBbWa`. Use either the existing bundle with one PAT restricted to those two bases (`data.records:read`, `data.records:write`, `schema.bases:read`), or the [supplemental evidence bundle with its own PAT](../claude/tag/access-bundles.md#supplemental-bundle--dca-evidence--reconciliation). One PAT's scopes apply to both bases, subject to its owner's permissions; the workflow's evidence-read-only rule is not technical enforcement. With separate credentials, verify that Tag can route to both. No schema-write or Mailchimp credential is needed. Check actual access on every surface receiving the credential.
 4. Start in the existing bounded `#anja-ai` attachment after checking its membership/access suitability. [Issue #36](https://github.com/Dutch-Civilian-Action/dca-ai/issues/36) records the earlier attachment and an inactive `relationship-data-read` identity; those observations are not proof of current capability. Verify the authenticated requester → Operator binding under [principal/action authorization](../claude/tag/principal-action-authorization.md). Keep explicit `@Claude` invocation and auto-mode off. Do not extend access to `#marketing`, the whole workspace or mixed Logistics intake merely for this list.
 5. Exercise the changed review-first and multiple-purpose cases in a fresh isolated session with simulated tools before enabling the change. If live experimental writes are needed, designate an appropriate verified Dev/Test base separately, preserve source/test distinctions and record actual results under the [promotion standard](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/development-testing-and-promotion.md). Never use production, R01 or operational evidence staging as a disposable test sandbox. Do not create a four-table clone solely to save ordinary intake through the accepted workflow.
 6. First real use is **capture and review only**, two rows of the source-linked list below. Claude searches for possible existing matches, saves intake and readable notes, reads them back, and stops before canonical changes or Mailchimp. Review identity, stated purposes, uncertainty and next actions; then continue the remaining nine. Resume the same intake IDs, not new copies. The requesting operator maintains corrections for this batch unless an explicit handoff establishes another owner.
 7. After that review, reconcile only the supported, authorized relationship records. A Contact can support multiple later workflows. Resolve a domain destination only where actually needed; do not make users classify every future possibility before preserving the source.
+
+Relevant Evidence & Reconciliation records may be read for source/history/conflict checks under the skill's evidence-access boundary. Keep relationship intake and review notes in Relationships & Workflows; do not update integration/evidence records through this capability. Stored Mailchimp evidence is not a substitute for a current platform-state check.
 
 Tag admin access and a fresh Claude runtime were not verified by this repository change. It must not be reported as activated or behaviour-tested.
 
@@ -112,4 +114,4 @@ Do not touch R01, Shared Identity candidate, Donorbox or other domain tables.
 Report verified IDs, actual gaps and unperformed steps, not assumed deployment.
 ```
 
-Next action: review/merge #44, verify the existing bundle in Tag admin, and run the fresh-session review-first check before the first two-row capture. Broader identity decisions and Mailchimp integration are separate work.
+Next action: sync/install the reviewed plugin revision, configure the chosen access setup in Tag admin, and run the fresh-session review-first check before the first two-row capture. Broader identity decisions and Mailchimp integration are separate work.

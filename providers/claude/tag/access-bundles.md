@@ -62,9 +62,11 @@ This is the shared DCA routing layer. It does not grant Google Drive, Airtable, 
 
 **Credentials:**
 
-- Airtable Agent Identity restricted to `2 | DCA Relationships & Workflows` and only the permissions required by the current test stage.
+- Access to Relationships & Workflows `appMdqKYTMnPmVoVu` for the existing record read/write workflow, and DCA Evidence & Reconciliation `appZ1Fv0YtZPbBbWa` for relevant supporting evidence.
+- The simplest current configuration is one Airtable PAT with only those two bases as resources and `data.records:read`, `data.records:write`, `schema.bases:read`. The token's scopes apply across its selected resources, subject to the owner's underlying permissions. It does **not** enforce write access in one base and read-only access in the other. See [Airtable PAT scopes and resources](https://support.airtable.com/articles/9934989703-creating-personal-access-tokens).
+- Relationship Data writes remain limited by the workflow to Relationships & Workflows; Evidence & Reconciliation reads do not authorize evidence/integration writes. This is procedural, not a credential-level restriction. No schema-write scope is needed.
 
-Prefer separate read and write identities later if the Airtable permission model makes that practical.
+Alternatively, retain the existing relationship-base credential and provide evidence access through the supplemental bundle below. Verify actual credential routing when both are attached; two credential names or two bundles do not prove that the runtime can use both. A separate PAT permits separately configured scopes. Do not claim such a deployment is verified by this document.
 
 **Plugins / skills:**
 
@@ -77,13 +79,27 @@ The Airtable plugin provides generic Airtable operations. The DCA Relationship D
 
 > Use the DCA Relationship Data plugin for contact, organisation, partner, and relationship questions. Use the canonical relationship records as the first and normally sufficient source for those facts; do not broaden when they already answer the question. For mixed-domain questions, route non-relationship facts through DCA Core rather than letting another domain redefine relationship identity or status. Answer the operational question directly and keep schema, matching, reconciliation, and tool mechanics hidden unless needed to resolve uncertainty. Search before create and preserve the authenticated human actor separately from the Claude/Slack runtime for intake.
 
+> When relationship records are insufficient/conflicting or the user requests provenance/history, use relevant Evidence & Reconciliation records as qualified evidence. Preserve source references, observation time, uncertainty and validation status; do not automatically promote a reconstruction claim or platform snapshot to canonical fact, consent or current membership. Keep this capability's writes in Relationships & Workflows, even if the credential can write in both bases.
+
 > For names/email lists intended for newsletter subscription, use the Relationship Data plugin's newsletter-intake reference: save and reconcile DCA records before any Mailchimp action; preserve consent evidence and the audience-specific outcome. The `#logistics` read/reference attachment does not permit this intake. Mailchimp access must be separately available and authorized on the permitted surface; if absent, complete authorized DCA intake and retain the continuation gap.
 
 > Keep intake general and preserve human-readable review notes for every explicitly stated purpose and unresolved routing. When review-first is requested, capture and propose matches, then stop before canonical changes, role assignments or external actions. Mailchimp is one possible consequence; completing it does not resolve other review items. Do not duplicate a person per purpose or infer extra roles from newsletter signup.
 
-Newsletter pilot rollout uses plugin/skill version `0.3.0`. Verify the reviewed revision in a fresh session, the actual Relationship Data write surface, operator binding, and (only for the external step) Mailchimp account/audience access. This repository change does not attach credentials, change channel scopes, or verify deployment. Current channel/bundle reconciliation remains tracked in [issue #36](https://github.com/Dutch-Civilian-Action/dca-ai/issues/36).
+Relationship Data rollout uses plugin/skill version `0.3.1`. Verify the reviewed revision in a fresh session, the actual Relationship Data write surface, operator binding, and (only for the external step) Mailchimp account/audience access. This repository change does not attach credentials, change channel scopes, or verify deployment. Current channel/bundle reconciliation remains tracked in [issue #36](https://github.com/Dutch-Civilian-Action/dca-ai/issues/36).
 
 **Initial auto-mode allow rules:** none.
+
+## Supplemental bundle — DCA Evidence & Reconciliation
+
+Configuration option requested by Anja; actual creation/attachment is unverified. Reuse an equivalent existing bundle after checking issue #36/current admin configuration rather than creating a duplicate.
+
+- **Purpose:** reusable access to supporting evidence and reconciliation records, including for Relationship Data. It does not create a new intake workflow or integration executor.
+- **Inherited:** DCA Core. Use the existing Airtable tool/plugin; no additional DCA plugin is required.
+- **Credential:** a separate Airtable PAT limited to Evidence & Reconciliation `appZ1Fv0YtZPbBbWa`. For evidence lookup alone use `data.records:read` and `schema.bases:read`. If a separately authorized workflow needs record writes, configure them explicitly and describe the resulting whole-base reach accurately.
+- **Attachment:** alongside Relationship Data on the intended bounded surface, initially `#anja-ai` after checking actual membership/access. Do not attach workspace-wide by default. Confirm that the runtime can route requests to both base-specific credentials; otherwise the two-base PAT configuration above remains available.
+- **Instructions:** read only the evidence relevant to the authorized task, preserving its source, status and uncertainty. Follow the invoking workflow's write boundary. Access to this base does not itself authorize canonical promotion, validation changes, external actions or integration writes.
+
+The bundle is an access component. General relationship intake and review notes stay in Relationships & Workflows; existing Logistics intake keeps its own workflow and credential configuration below.
 
 ## Bundle 3 — DCA Logistics Intake Pilot
 
