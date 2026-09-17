@@ -8,7 +8,7 @@ scope: meeting_derived_action_capture
 
 ## Purpose and boundary
 
-Correct supported attendance in the original huddle notes, prepare one review batch in the existing meeting thread, obtain explicit confirmation, create or link confirmed Asana tasks, and return verified task links to that same batch.
+Review and maintain the original meeting notes against available sources, prepare one review batch in the existing meeting thread, obtain explicit confirmation, create or link confirmed Asana tasks, and return verified task links to that same batch.
 
 This is a provider-independent capture and validation workflow. It records work people have confirmed; it does not infer decisions, ownership, operational commitments, or permission to perform the underlying work. It does not configure a scheduler, Slack listener, Asana integration, or new reminder stream. Repository publication is not evidence of deployment or a successful live run.
 
@@ -30,17 +30,25 @@ Flag any action, first-person commitment or claimed approval that depends on tha
 
 Assign a stable reference to each candidate within the meeting and retain it across edits/retries. Do not regenerate references from changing checkbox order or titles. Preserve source wording alongside proposed wording when meaning differs.
 
-## 0. Correct attendance in the huddle notes
+## 0. Review and maintain the meeting notes
 
-Before preparing the action review, reconcile the attendee list with supported participation corrections already supplied. Reuse those corrections without asking again. Ask only about missing or disputed participation; lack of a separate connected account is not evidence of absence.
+Treat Slack AI notes as a first draft, not the authoritative account of the meeting. Before deriving actions, check the existing notes against the available transcript/recording, meeting thread and participant corrections. Review attendance, attribution, summary, material omissions, decisions, action items, dependencies, timing and unresolved questions. This applies to meeting notes generally, including huddle canvases.
 
-Where the correction and edit are authorised, patch the **Attendees** section of the original huddle notes so readers can see who was actually present, including people sharing another person's connection. Keep the edit bounded to supported attendance and a short attribution note; preserve unrelated notes, action items and transcript labels. Record who supplied the correction, when, and its source reference in a concise correction note. Preserve the original account-list context in that note or available version history rather than silently replacing the source evidence.
+Patch the original notes where evidence supports a correction or clarification; do not create a competing summary by default. Preserve the existing useful structure and human edits. Within an authorised notes-maintenance run, clear source-backed corrections and wording cleanup that preserves meaning do not need a separate approval each time. Material ambiguity or conflicting evidence does: keep it visibly unresolved and ask the relevant person a bounded question. Do not substitute another AI's more confident account for evidence.
+
+Keep discussion, proposals, decisions, reported facts and confirmed commitments distinct. Restoring an omitted proposal does not make it a decision; restoring an action candidate does not approve its owner or Asana creation. Meeting statements about operational reality remain attributed reports unless independently validated. If a later correction or new commitment changes the record, identify it as a dated follow-up rather than rewriting what happened in the meeting. Broader organisational context may identify a discrepancy, but cannot prove what was said.
+
+If the underlying transcript/recording is unavailable, use the sources that are available and state the review's coverage limits. Do not label the whole meeting verified because some passages were corrected. Preserve accessible source links/locators and a concise change note stating what changed, why, who supplied a correction where relevant, and when; retain prior wording through available version history or a bounded correction record. Do not alter raw transcript evidence to make it match the maintained notes.
+
+Reconcile the attendee list with supported participation corrections already supplied. Reuse those corrections without asking again. Ask only about missing or disputed participation; lack of a separate connected account is not evidence of absence.
+
+Where the correction and edit are authorised, patch the **Attendees** section of the original huddle notes so readers can see who was actually present, including people sharing another person's connection. Keep the attendance edit bounded to supported participation and a short attribution note; apply other note corrections only under the source-backed review rules above. Record who supplied the correction, when, and its source reference in a concise correction note. Preserve the original account-list context in that note or available version history rather than silently replacing the source evidence.
 
 For the 17 September case, retain the existing attendees and add **Kees — joined alongside Bas through Bas's connection; attendance correction supplied by Anja**. Beside the attendee list add: **Bas and Kees shared Bas's connection. Speaker labels under Bas may refer to either person; individual attribution remains unresolved unless specifically corrected.** This records the supplied attendance correction, not a new claim that every labelled utterance has been checked.
 
-Read back the huddle notes to verify the corrected attendee list and attribution note. Link the corrected notes from the existing review batch. If edit access is unavailable or the write cannot be verified, retain the exact proposed attendance patch in the same thread, explicitly mark the huddle-note update pending/unverified, and do not claim the notes were corrected. Independently confirmed actions may proceed if this persistence gap does not affect their scope, owner or authority.
+Read back the maintained notes to verify each intended correction, preserved human content, source references and uncertainty labels, including the attendee list and attribution note. Link the corrected notes from the existing review batch. If edit access is unavailable or the write cannot be verified, retain the exact proposed notes patch in the same thread, explicitly mark the notes update pending/unverified, and do not claim the notes were corrected. Independently confirmed actions may proceed if this persistence gap does not affect their scope, owner or authority.
 
-On rerun, inspect the current notes and correction history first; reuse an already applied correction without adding duplicate attendees or notes. If a human edit conflicts with the proposed patch, preserve it and resolve the discrepancy. Correcting attendance neither identifies each speaker nor approves any action.
+On rerun, inspect the current notes and correction history first; apply only new supported corrections, without duplicating entries, reintroducing superseded wording or performing a cosmetic rewrite. If a human edit conflicts with the proposed patch, preserve it and resolve the discrepancy. Improving the notes neither resolves unsupported speaker attribution nor approves any action. Build the review batch from the maintained notes and unresolved source questions; later participant replies feed corrections back into the same notes. Preserve stable action references and reconcile affected task proposals rather than generating a second list.
 
 ## 1. Prepare one review batch
 

@@ -24,7 +24,14 @@ Use the 17 September 2026 huddle source and H17-01–H17-05 references in the co
 
 | Scenario | Required result |
 |---|---|
-| Attendance patch is authorised and huddle edit access is available | Update only supported attendance/attribution notes, preserve unrelated content and source history, then verify by readback. Thread-only acknowledgement is not completion of the huddle patch. |
+| Transcript clearly supports a material omission or corrects the AI summary | Patch the original notes within authorised maintenance scope, preserving source locators, prior meaning/history and a concise change note; verify readback. |
+| AI notes present a proposal as an agreed decision or assign an unsupported owner | Correct the status to proposal/uncertain ownership; do not invent agreement or create an Asana task. |
+| Participant correction conflicts with transcript or an existing human edit | Preserve the conflict and request a bounded clarification; do not silently choose a confident version. |
+| Transcript/recording is unavailable but specific participant corrections are supplied | Apply supported corrections, disclose review coverage, and do not claim full transcript verification. |
+| A later reply changes a decision or accepts a task | Add a dated follow-up linked to the reply; preserve the distinction from what occurred in the meeting. Task creation still follows the confirmation gate. |
+| Repeated run finds no new evidence or correction | No cosmetic rewrite, duplicate summary, reintroduced error or duplicate action list. |
+| A meeting statement conflicts with current organisational context | Flag the discrepancy; do not rewrite the historical meeting as if participants stated the current position. |
+| Attendance patch is authorised and huddle edit access is available | Apply the supported attendance/attribution patch, preserve unrelated content and source history, then verify by readback. Thread-only acknowledgement is not completion of the huddle patch. |
 | Attendance patch is already present on rerun | Reuse it; no duplicate attendee or correction note. |
 | Huddle edit access is unavailable or write/readback fails | Keep the exact patch in the existing review thread, mark the huddle update pending/unverified, and do not claim success. Unaffected independently approved actions need not be blocked. |
 | Current human-edited attendee list conflicts with a proposed patch | Preserve the human edit and resolve the conflict rather than overwrite it. |
