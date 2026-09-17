@@ -1,0 +1,477 @@
+{
+  "standard": "https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit",
+  "tables": [
+    {
+      "description": "Derived daily summaries of reviewed dca-validation-metrics/1 snapshots. One record per capture, preserving partial coverage and historical counts. Reporting only; never classifies or closes validation work.",
+      "fields": [
+        {
+          "name": "snapshot_display_name",
+          "type": "singleLineText",
+          "description": "Documented connector limitation: formula primary creation/type conversion unavailable. Display only; separate external *_id is authoritative."
+        },
+        {
+          "description": "External snapshot identity derived from metric version and captured_at; preserved across retries.",
+          "name": "snapshot_id",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Source observation cutoff. Does not change when imported or mirrored.",
+          "name": "captured_at",
+          "options": {
+            "dateFormat": {
+              "name": "iso"
+            },
+            "timeFormat": {
+              "name": "24hour"
+            },
+            "timeZone": "Europe/Amsterdam"
+          },
+          "type": "dateTime"
+        },
+        {
+          "description": "True only for the latest fully verified reporting capture in this series. Earlier snapshots remain preserved.",
+          "name": "is_latest",
+          "options": {
+            "color": "greenBright",
+            "icon": "check"
+          },
+          "type": "checkbox"
+        },
+        {
+          "description": "Measurement contract version; compare compatible versions only.",
+          "name": "metric_version",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Source coverage classification from the reviewed snapshot; partial is not organisation-wide.",
+          "name": "coverage",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Exact bounded population inspected by the monitor.",
+          "name": "scope",
+          "type": "multilineText"
+        },
+        {
+          "description": "Distinct bounded IDs whose reviewed state is validation_needed; held and preparation items remain included.",
+          "name": "validation_needed",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Subset of validation_needed with actionability actionable.",
+          "name": "actionable",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Subset of validation_needed held for a documented dependency.",
+          "name": "held_dependency",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Subset of validation_needed requiring clarification preparation.",
+          "name": "needs_preparation",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Subset of validation_needed whose actionability remains unknown.",
+          "name": "actionability_unknown",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Distinct positively established needs with a verified reconciliation gap, scoped to inspected evidence. Zero is not a DCA-wide completeness claim.",
+          "name": "reconciliation_pending",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Items with state unknown; excluded from both backlog headline counts.",
+          "name": "unclassified",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Open needs with a verified request clock.",
+          "name": "age_verified",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Open needs with only a conservative lower-bound clock.",
+          "name": "age_lower_bound",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Open needs without a supported request clock.",
+          "name": "age_unknown",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Maximum measured open-request age in calendar days. Read with age_basis coverage; may be only a lower bound.",
+          "name": "oldest_known_age_days",
+          "options": {
+            "precision": 2
+          },
+          "type": "number"
+        },
+        {
+          "description": "Verified closures since previous snapshot, only when supplied by its reviewed comparison. Blank at baseline.",
+          "name": "verified_closures",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Genuinely new arrivals since previous snapshot from reviewed comparison; coverage additions are not arrivals. Blank at baseline.",
+          "name": "verified_new_items",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Source comparison explaining coverage, classification and closure changes. Count changes alone do not prove performance changes.",
+          "name": "comparison_notes",
+          "type": "multilineText"
+        },
+        {
+          "description": "Source limitations, coverage and pagination notes; must remain visible with interpretation.",
+          "name": "coverage_notes",
+          "type": "multilineText"
+        },
+        {
+          "description": "Private source artifact identity and captured_at locator, not a public download link.",
+          "name": "source_reference",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Technical record creation time; not the evidence observation time.",
+          "name": "created_at",
+          "type": "createdTime"
+        },
+        {
+          "description": "Technical last modification time; not a validation or reconciliation event.",
+          "name": "last_modified",
+          "type": "lastModifiedTime"
+        },
+        {
+          "name": "capture_day",
+          "type": "formula",
+          "description": "Europe/Amsterdam calendar day derived from the source captured_at timestamp. Used as the chart category so distinct days cannot be sorted by clock time alone.",
+          "options": {
+            "formula": "DATETIME_FORMAT(SET_TIMEZONE({captured_at}, 'Europe/Amsterdam'), 'YYYY-MM-DD')"
+          }
+        }
+      ],
+      "name": "Validation_Metric_Snapshots"
+    },
+    {
+      "description": "One bounded validation need observed in one reviewed snapshot. Append history; same need_id across captures. Not an independent queue, reminder system or source of operational truth.",
+      "fields": [
+        {
+          "name": "observation_display_name",
+          "type": "singleLineText",
+          "description": "Documented connector limitation: formula primary creation/type conversion unavailable. Display only; separate external *_id is authoritative."
+        },
+        {
+          "description": "Deterministic snapshot_id + need_id import identity; deduplicate retries.",
+          "name": "observation_id",
+          "type": "singleLineText"
+        },
+        {
+          "description": "External snapshot identity derived from metric version and captured_at; preserved across retries.",
+          "name": "snapshot_id",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Source observation cutoff. Does not change when imported or mirrored.",
+          "name": "captured_at",
+          "options": {
+            "dateFormat": {
+              "name": "iso"
+            },
+            "timeFormat": {
+              "name": "24hour"
+            },
+            "timeZone": "Europe/Amsterdam"
+          },
+          "type": "dateTime"
+        },
+        {
+          "description": "True only for the latest fully verified reporting capture in this series. Earlier snapshots remain preserved.",
+          "name": "is_latest",
+          "options": {
+            "color": "greenBright",
+            "icon": "check"
+          },
+          "type": "checkbox"
+        },
+        {
+          "description": "Original bounded need ID from the approved snapshot; do not invent identity changes.",
+          "name": "need_id",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Exact bounded question or finding as assessed at this capture.",
+          "name": "need",
+          "type": "multilineText"
+        },
+        {
+          "description": "Source-attributed owner wording; blank means unresolved. This does not resolve an account or authorize messaging.",
+          "name": "owner",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Assessed state in the existing metric contract. Blank is invalid for accepted observations.\nOptions:\n- validation_needed — A genuine bounded validation or clarification need remains.\n- reconciliation_pending — Establishment is evidenced and a required reconciliation step demonstrably remains.\n- closed — Authoritative evidence supports verified closure.\n- unknown — Evidence does not support classification; exclude from headline backlog counts.",
+          "name": "measurement_state",
+          "options": {
+            "choices": [
+              {
+                "name": "validation_needed"
+              },
+              {
+                "name": "reconciliation_pending"
+              },
+              {
+                "name": "closed"
+              },
+              {
+                "name": "unknown"
+              }
+            ]
+          },
+          "type": "singleSelect"
+        },
+        {
+          "description": "Separate from measurement state; blank is not an inferred state.\nOptions:\n- actionable — A supported next review action is available.\n- held_dependency — A documented prerequisite or availability hold prevents the next action.\n- needs_preparation — The precise clarification or review request needs preparation.\n- unknown — Actionability is not established.",
+          "name": "actionability",
+          "options": {
+            "choices": [
+              {
+                "name": "actionable"
+              },
+              {
+                "name": "held_dependency"
+              },
+              {
+                "name": "needs_preparation"
+              },
+              {
+                "name": "unknown"
+              }
+            ]
+          },
+          "type": "singleSelect"
+        },
+        {
+          "description": "Basis of the request clock. Not effort or lateness.\nOptions:\n- verified — Earliest same-need request timestamp is verified.\n- lower_bound — A later same-need request or bounded review task is verified; age is at least this amount.\n- unknown — No supported request timestamp; age remains blank.",
+          "name": "age_basis",
+          "options": {
+            "choices": [
+              {
+                "name": "verified"
+              },
+              {
+                "name": "lower_bound"
+              },
+              {
+                "name": "unknown"
+              }
+            ]
+          },
+          "type": "singleSelect"
+        },
+        {
+          "description": "Source-supported request clock; blank when unknown. Never use reminder, import or record modification timestamps.",
+          "name": "requested_at",
+          "options": {
+            "dateFormat": {
+              "name": "iso"
+            },
+            "timeFormat": {
+              "name": "24hour"
+            },
+            "timeZone": "Europe/Amsterdam"
+          },
+          "type": "dateTime"
+        },
+        {
+          "description": "Elapsed calendar days from requested_at to captured_at for validation_needed only. Blank for unsupported clocks and other states; read age_basis.",
+          "name": "age_days",
+          "options": {
+            "precision": 2
+          },
+          "type": "number"
+        },
+        {
+          "description": "Derived display bin, explicitly prefixed At least for lower bounds; Unknown for missing clocks. Only for open needs.",
+          "name": "age_band",
+          "type": "singleLineText"
+        },
+        {
+          "description": "First exact authoritative source/review link from the snapshot.",
+          "name": "review_url",
+          "type": "url"
+        },
+        {
+          "description": "All authoritative source links from the reviewed item, newline separated.",
+          "name": "source_references",
+          "type": "multilineText"
+        },
+        {
+          "description": "Exact source note and any remaining closure gap; does not change operational meaning.",
+          "name": "notes",
+          "type": "multilineText"
+        },
+        {
+          "description": "Language of the normalized measurement wording: en. Does not infer the language of original linked communication.",
+          "name": "source_language",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Technical record creation time; not the evidence observation time.",
+          "name": "created_at",
+          "type": "createdTime"
+        },
+        {
+          "description": "Technical last modification time; not a validation or reconciliation event.",
+          "name": "last_modified",
+          "type": "lastModifiedTime"
+        }
+      ],
+      "name": "Validation_Item_Observations"
+    },
+    {
+      "description": "Dated, reproducible record-completeness measurements from existing operational records. One metric per source population and capture. Not stock, throughput, impact, labor time or volunteer performance.",
+      "fields": [
+        {
+          "name": "metric_display_name",
+          "type": "singleLineText",
+          "description": "Documented connector limitation: formula primary creation/type conversion unavailable. Display only; separate external *_id is authoritative."
+        },
+        {
+          "description": "Deterministic metric_version + captured_at + metric_key identity.",
+          "name": "metric_observation_id",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Time the complete bounded source population was read.",
+          "name": "captured_at",
+          "options": {
+            "dateFormat": {
+              "name": "iso"
+            },
+            "timeFormat": {
+              "name": "24hour"
+            },
+            "timeZone": "Europe/Amsterdam"
+          },
+          "type": "dateTime"
+        },
+        {
+          "description": "Latest accepted capture for this metric series; retain all historical rows.",
+          "name": "is_latest",
+          "options": {
+            "color": "greenBright",
+            "icon": "check"
+          },
+          "type": "checkbox"
+        },
+        {
+          "description": "Version of population and calculation definitions.",
+          "name": "metric_version",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Stable metric identifier in the repository reporting specification.",
+          "name": "metric_key",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Human-readable quantity measured.",
+          "name": "metric_label",
+          "type": "singleLineText"
+        },
+        {
+          "description": "Count of source records matching the metric definition. Not a quantity of physical goods.",
+          "name": "value",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Number of source records inspected for this metric; explicit denominator.",
+          "name": "population_count",
+          "options": {
+            "precision": 0
+          },
+          "type": "number"
+        },
+        {
+          "description": "Exact population, numerator and exclusions; schema presence alone is not populated evidence.",
+          "name": "definition",
+          "type": "multilineText"
+        },
+        {
+          "description": "Source table URL; underlying record identities are preserved in source_record_ids.",
+          "name": "source_url",
+          "type": "url"
+        },
+        {
+          "description": "IDs of all records in the inspected population, for reproducibility.",
+          "name": "source_record_ids",
+          "type": "multilineText"
+        },
+        {
+          "description": "IDs counted by this metric.",
+          "name": "matched_record_ids",
+          "type": "multilineText"
+        },
+        {
+          "description": "Read completeness, exclusions and interpretation limits.",
+          "name": "coverage_notes",
+          "type": "multilineText"
+        },
+        {
+          "description": "Technical record creation time; not the evidence observation time.",
+          "name": "created_at",
+          "type": "createdTime"
+        },
+        {
+          "description": "Technical last modification time; not a validation or reconciliation event.",
+          "name": "last_modified",
+          "type": "lastModifiedTime"
+        }
+      ],
+      "name": "Operational_Metric_Observations"
+    }
+  ]
+}
