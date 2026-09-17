@@ -2,7 +2,7 @@
 
 Contract: [Capture meeting-derived actions into Asana](../../workflows/meeting-actions-to-asana.md).
 
-Status: behavioural acceptance specification; runtime execution has not been performed. The five huddle items are real source-derived candidates, not synthetic operational records or approved task fixtures. The additional scenarios below are synthetic variations for read-only evaluation; never post them into live Slack or Asana.
+Status: behavioural acceptance specification with a supervised partial ChatGPT pilot recorded below. Unexecuted cases, Asana writes and unattended runtime behaviour remain unverified. The five huddle items are real source-derived candidates, not synthetic operational records or approved task fixtures. The additional scenarios below are synthetic variations for read-only evaluation; never post them into live Slack or Asana.
 
 ## Real-source walkthrough
 
@@ -58,6 +58,23 @@ Use the 17 September 2026 huddle source and H17-01–H17-05 references in the co
 | Existing validation item already covers a question | Link/reuse it; do not reopen settled validation or create a second reminder stream. |
 | Task capture succeeds | Do not execute the underlying subscription, configuration change or calendar invitation without its own authority. |
 | Workflow is committed or merged | Do not claim runtime deployment, five approved actions, successful live writes or operational adoption. |
+
+## Observed supervised pilot — 18 September 2026
+
+Run against PR #46 commit `fc953bf42bc5d9703966cf6bfadc146fe6806040`, explicitly requested by Anja. ChatGPT was the supervised executor; the Slack review message's readback identifies DCA Bot as publisher, with the ChatGPT footer. This is not evidence that a recurring trigger or another runtime has been configured.
+
+| Step | Observed result |
+|---|---|
+| Source preflight | Read the current huddle canvas and full existing thread. Bas's approval of the workflow was not treated as item-level task approval. |
+| Transcript access | The transcript attachment was identified, but authenticated connector file transport could not be downloaded (HTTP 403). Its contents were not inspected. The notes explicitly retain partial-review and speaker-attribution limits. |
+| Notes write and readback | Original canvas updated in place: Kees added with Anja's correction provenance, shared connection explained, introduction made attribution-neutral, an unrelated video link removed as evidence for contact intake, historical runtime wording qualified, and five stable action references marked as candidates. Readback matched all intended changed sections; media/transcript links remained. |
+| Existing work / timing | Bounded Asana searches found related work but established no exact task matches. The scheduled 18 September setup event named Bas, Kees and Anja; it was not assumed to be the James follow-up. Exact-match checks remain required before any later task write. |
+| Review publication and readback | One [action-review batch](https://dcau.slack.com/archives/C0AEEFTS495/p1789683237845209?thread_ts=1789639652.309889&cid=C0AEEFTS495) posted and read back in the original huddle thread. It includes the five references, proposed Asana destinations, unresolved owner/call questions and the confirmation boundary. |
+| Asana writes | None performed. All five source candidates await item-level confirmation, correction or disposition; no owner/deadline was invented. |
+
+Evidence: [maintained huddle notes](https://dcau.slack.com/docs/T037US21Q2X/F0C2H8RQVN2) and the linked review batch. These links contain the live records; this test record does not duplicate personal contact data or the full meeting transcript.
+
+Still unverified: full transcript-based review, owner responses, confirmed task creation/reuse/readback, uncertain-create and partial-failure recovery, concurrent-writer handling, and recurring/provider deployment. The pilot demonstrated notes persistence and review publication, not the complete confirmation-to-Asana path.
 
 ## Recording a live result
 
