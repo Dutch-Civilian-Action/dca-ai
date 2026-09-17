@@ -21,6 +21,7 @@ Current workflow tests:
 - `workflows/monitor-validation-queue.md` — state-based unresolved-queue continuity, retention of older items, complete owner-specific actionable reminders, direct review links, reminder idempotency, and separation from reconciliation and publication.
 - `workflows/reconstruction-self-evaluation-and-routing.md` — operational-validation language and role boundaries, validation-request preflight, Establish-task topology, corrected-wording confirmation, no-change closure, and validator routing.
 - `workflows/reconcile-established-findings-into-maintained-reality.md` — shared comparison outcomes, routing, persistence/verification, no-change confirmations, corrected-wording confirmation, and caller consistency.
+- `workflows/identity-migration-r01/README.md` — the bounded 16 September R01 mapping test: exact Dev/Test identity, source-qualified IDs, personal/organisation route separation, uncertainty controls, private evidence replay, observed results and unverified runtime/promotion gates.
 - `workflows/relationship-data-reconciliation.md` — relationship identity, provenance, uncertainty, conflict handling, retrieval, write boundaries, privacy, and provider portability. Concrete live cases are developed separately from the workflow definition.
 - `workflows/logistics-intake-reconstruction.md` — reconstruction-first mixed Logistics intake, source preservation, operational people/organisation/location/route context, non-premature modelling, relationship write boundaries, and later reconciliation.
 
