@@ -1,76 +1,31 @@
 {
-  "version": "dca-validation-dashboard/1",
-  "status": "active-system-structure-testing",
+  "development": {
+    "base_id": "appXI5DFgnCbWzbvz",
+    "interface_id": "pbdB95UqSsQSmaZLw",
+    "page_id": "pagfyDO1xffWjwlax",
+    "workspace_id": "wspCZsYbWYC7OXX1l"
+  },
+  "known_limitations": [
+    "Text primary fields: create_table excludes formula fields and update_field cannot convert field types. External stable IDs are separate. Native Created time and Last modified time fields are implemented.",
+    "Two historical closed observations contained actionability=closed, outside the metric contract; reporting maps it to unknown with original value retained in notes. Source log and measurement_state remain unchanged.",
+    "Validation coverage is partial. Lower-bound ages and unknown ages are preserved.",
+    "Source-log snapshots are private; Airtable is an explicitly user-authorized derived team reporting mirror.",
+    "Intake backlog not activated: test/baseline/supersession scope requires definition; a parsed submission is not proof of reconciled goods."
+  ],
   "production": {
-    "workspace_id": "wspYnyJ08xBNYOjXw",
     "base_id": "appZ1Fv0YtZPbBbWa",
     "interface_id": "pbdRFe8EeQQAKdD5Q",
-    "page_id": "pagm6na7CLjJHpKTg",
-    "page_edit_url": "https://airtable.com/appZ1Fv0YtZPbBbWa/pagm6na7CLjJHpKTg/edit",
+    "page_edit_url": "https://airtable.com/appZ1Fv0YtZPbBbWa/pagOz6PbRt8mLWNc4/edit",
+    "page_id": "pagOz6PbRt8mLWNc4",
     "tables": [
       {
-        "name": "Validation_Metric_Snapshots",
-        "id": "tblR9Lkvj0EWpsvUZ",
-        "primaryFieldId": "fldxJFooJSdkgL0Mp",
         "fields": {
-          "snapshot_display_name": {
-            "id": "fldxJFooJSdkgL0Mp",
-            "type": "singleLineText"
-          },
-          "snapshot_id": {
-            "id": "fldvwTDFb7K21tqu1",
-            "type": "singleLineText"
-          },
-          "captured_at": {
-            "id": "fldO8gKpvgUDAXEYM",
-            "type": "dateTime"
-          },
-          "is_latest": {
-            "id": "fldQL6sBbgDRt6kNz",
-            "type": "checkbox"
-          },
-          "metric_version": {
-            "id": "fldLMrVuUDNGXmvhc",
-            "type": "singleLineText"
-          },
-          "coverage": {
-            "id": "fldtDgFKBJmQKNtxD",
-            "type": "singleLineText"
-          },
-          "scope": {
-            "id": "fldiMhtrG5KWmNdBq",
-            "type": "multilineText"
-          },
-          "validation_needed": {
-            "id": "fldtkxntV4VjZE658",
-            "type": "number"
-          },
-          "actionable": {
-            "id": "fldfV9q5Mc5vrf4cZ",
-            "type": "number"
-          },
-          "held_dependency": {
-            "id": "fldKzlfxpGwmXCEfY",
-            "type": "number"
-          },
-          "needs_preparation": {
-            "id": "fldnCSfD1mS9PtTwZ",
-            "type": "number"
-          },
           "actionability_unknown": {
             "id": "fldwVHm5jfEJd8g2J",
             "type": "number"
           },
-          "reconciliation_pending": {
-            "id": "fldQiX6FqmCrV5kJH",
-            "type": "number"
-          },
-          "unclassified": {
-            "id": "fldDCK5t6as7NNlTP",
-            "type": "number"
-          },
-          "age_verified": {
-            "id": "fldXwrNoIXQjyaI4d",
+          "actionable": {
+            "id": "fldfV9q5Mc5vrf4cZ",
             "type": "number"
           },
           "age_lower_bound": {
@@ -81,8 +36,80 @@
             "id": "fldA1OHaOGrqw5ukA",
             "type": "number"
           },
+          "age_verified": {
+            "id": "fldXwrNoIXQjyaI4d",
+            "type": "number"
+          },
+          "captured_at": {
+            "id": "fldO8gKpvgUDAXEYM",
+            "type": "dateTime"
+          },
+          "comparison_notes": {
+            "id": "fldpWTm71fI567OIo",
+            "type": "multilineText"
+          },
+          "coverage": {
+            "id": "fldtDgFKBJmQKNtxD",
+            "type": "singleLineText"
+          },
+          "coverage_notes": {
+            "id": "fldw9kJAiPtDUrBzb",
+            "type": "multilineText"
+          },
+          "created_at": {
+            "id": "fldRCDEEaKT0FXdQT",
+            "type": "createdTime"
+          },
+          "held_dependency": {
+            "id": "fldKzlfxpGwmXCEfY",
+            "type": "number"
+          },
+          "is_latest": {
+            "id": "fldQL6sBbgDRt6kNz",
+            "type": "checkbox"
+          },
+          "last_modified": {
+            "id": "fldG7J3r6uqvOnHxC",
+            "type": "lastModifiedTime"
+          },
+          "metric_version": {
+            "id": "fldLMrVuUDNGXmvhc",
+            "type": "singleLineText"
+          },
+          "needs_preparation": {
+            "id": "fldnCSfD1mS9PtTwZ",
+            "type": "number"
+          },
           "oldest_known_age_days": {
             "id": "fldLb5elqXmQUiOaT",
+            "type": "number"
+          },
+          "reconciliation_pending": {
+            "id": "fldQiX6FqmCrV5kJH",
+            "type": "number"
+          },
+          "scope": {
+            "id": "fldiMhtrG5KWmNdBq",
+            "type": "multilineText"
+          },
+          "snapshot_display_name": {
+            "id": "fldxJFooJSdkgL0Mp",
+            "type": "singleLineText"
+          },
+          "snapshot_id": {
+            "id": "fldvwTDFb7K21tqu1",
+            "type": "singleLineText"
+          },
+          "source_reference": {
+            "id": "fldqB85h3qF0tKHDH",
+            "type": "singleLineText"
+          },
+          "unclassified": {
+            "id": "fldDCK5t6as7NNlTP",
+            "type": "number"
+          },
+          "validation_needed": {
+            "id": "fldtkxntV4VjZE658",
             "type": "number"
           },
           "verified_closures": {
@@ -92,34 +119,62 @@
           "verified_new_items": {
             "id": "fldMTpl2JgpxNXzf6",
             "type": "number"
-          },
-          "comparison_notes": {
-            "id": "fldpWTm71fI567OIo",
-            "type": "multilineText"
-          },
-          "coverage_notes": {
-            "id": "fldw9kJAiPtDUrBzb",
-            "type": "multilineText"
-          },
-          "source_reference": {
-            "id": "fldqB85h3qF0tKHDH",
-            "type": "singleLineText"
-          },
-          "created_at": {
-            "id": "fldRCDEEaKT0FXdQT",
-            "type": "createdTime"
-          },
-          "last_modified": {
-            "id": "fldG7J3r6uqvOnHxC",
-            "type": "lastModifiedTime"
           }
-        }
+        },
+        "id": "tblR9Lkvj0EWpsvUZ",
+        "name": "Validation_Metric_Snapshots",
+        "primaryFieldId": "fldxJFooJSdkgL0Mp"
       },
       {
-        "name": "Validation_Item_Observations",
-        "id": "tblXfUapqwtRyPNXW",
-        "primaryFieldId": "fldIRpwh3wMyRD5Op",
         "fields": {
+          "actionability": {
+            "id": "fldXtXgQoyjbzDZ02",
+            "type": "singleSelect"
+          },
+          "age_band": {
+            "id": "fldEV2Di6Og40tlxU",
+            "type": "singleLineText"
+          },
+          "age_basis": {
+            "id": "fldgBKQGn0EzxxYwX",
+            "type": "singleSelect"
+          },
+          "age_days": {
+            "id": "fldT4IA6WPbuW73JK",
+            "type": "number"
+          },
+          "captured_at": {
+            "id": "fldigTblfm7ULDBvY",
+            "type": "dateTime"
+          },
+          "created_at": {
+            "id": "fldn1sXlfowDXehk3",
+            "type": "createdTime"
+          },
+          "is_latest": {
+            "id": "fldaLhAzZIIXFbJPf",
+            "type": "checkbox"
+          },
+          "last_modified": {
+            "id": "fldosEr48Wj2lhJwi",
+            "type": "lastModifiedTime"
+          },
+          "measurement_state": {
+            "id": "fldDTN4vtzIJTp7MS",
+            "type": "singleSelect"
+          },
+          "need": {
+            "id": "fldSZ2yhOrC8vOX3c",
+            "type": "multilineText"
+          },
+          "need_id": {
+            "id": "fldzfuZLvYbc6zPc6",
+            "type": "singleLineText"
+          },
+          "notes": {
+            "id": "fldNGy103hqLmjwpR",
+            "type": "multilineText"
+          },
           "observation_display_name": {
             "id": "fldIRpwh3wMyRD5Op",
             "type": "singleLineText"
@@ -128,103 +183,67 @@
             "id": "fldWvylNHiOq2AR4b",
             "type": "singleLineText"
           },
-          "snapshot_id": {
-            "id": "fldRLBUIKsBlhC688",
-            "type": "singleLineText"
-          },
-          "captured_at": {
-            "id": "fldigTblfm7ULDBvY",
-            "type": "dateTime"
-          },
-          "is_latest": {
-            "id": "fldaLhAzZIIXFbJPf",
-            "type": "checkbox"
-          },
-          "need_id": {
-            "id": "fldzfuZLvYbc6zPc6",
-            "type": "singleLineText"
-          },
-          "need": {
-            "id": "fldSZ2yhOrC8vOX3c",
-            "type": "multilineText"
-          },
           "owner": {
             "id": "fldf3XK6cWKOLpqiS",
             "type": "singleLineText"
-          },
-          "measurement_state": {
-            "id": "fldDTN4vtzIJTp7MS",
-            "type": "singleSelect"
-          },
-          "actionability": {
-            "id": "fldXtXgQoyjbzDZ02",
-            "type": "singleSelect"
-          },
-          "age_basis": {
-            "id": "fldgBKQGn0EzxxYwX",
-            "type": "singleSelect"
           },
           "requested_at": {
             "id": "fldTJvtlCNuCHTVC4",
             "type": "dateTime"
           },
-          "age_days": {
-            "id": "fldT4IA6WPbuW73JK",
-            "type": "number"
-          },
-          "age_band": {
-            "id": "fldEV2Di6Og40tlxU",
-            "type": "singleLineText"
-          },
           "review_url": {
             "id": "fldh7FA6zxSiVA5zL",
             "type": "url"
           },
-          "source_references": {
-            "id": "flde68etEiMWOedRg",
-            "type": "multilineText"
-          },
-          "notes": {
-            "id": "fldNGy103hqLmjwpR",
-            "type": "multilineText"
+          "snapshot_id": {
+            "id": "fldRLBUIKsBlhC688",
+            "type": "singleLineText"
           },
           "source_language": {
             "id": "fldHTdD2BjfRipF7p",
             "type": "singleLineText"
           },
-          "created_at": {
-            "id": "fldn1sXlfowDXehk3",
-            "type": "createdTime"
-          },
-          "last_modified": {
-            "id": "fldosEr48Wj2lhJwi",
-            "type": "lastModifiedTime"
+          "source_references": {
+            "id": "flde68etEiMWOedRg",
+            "type": "multilineText"
           }
-        }
+        },
+        "id": "tblXfUapqwtRyPNXW",
+        "name": "Validation_Item_Observations",
+        "primaryFieldId": "fldIRpwh3wMyRD5Op"
       },
       {
-        "name": "Operational_Metric_Observations",
-        "id": "tblHDDWmUvvVsZqDq",
-        "primaryFieldId": "fldPFUdlnbNOXrGb5",
         "fields": {
-          "metric_display_name": {
-            "id": "fldPFUdlnbNOXrGb5",
-            "type": "singleLineText"
-          },
-          "metric_observation_id": {
-            "id": "fldYWOOi51LuItSi7",
-            "type": "singleLineText"
-          },
           "captured_at": {
             "id": "fldsnw7vF2sGQlRaI",
             "type": "dateTime"
+          },
+          "coverage_notes": {
+            "id": "fldWxj8PCpdAFP473",
+            "type": "multilineText"
+          },
+          "created_at": {
+            "id": "fld3n8nSKuDUJcI1y",
+            "type": "createdTime"
+          },
+          "definition": {
+            "id": "fldW0DofL6KwbtrlD",
+            "type": "multilineText"
           },
           "is_latest": {
             "id": "fldvsjd58R1Xr2jB0",
             "type": "checkbox"
           },
-          "metric_version": {
-            "id": "fldsSBvoVfy6pAbYu",
+          "last_modified": {
+            "id": "fldtTe95756fWjuVA",
+            "type": "lastModifiedTime"
+          },
+          "matched_record_ids": {
+            "id": "fldkiJ9KlIYgQUG4D",
+            "type": "multilineText"
+          },
+          "metric_display_name": {
+            "id": "fldPFUdlnbNOXrGb5",
             "type": "singleLineText"
           },
           "metric_key": {
@@ -235,69 +254,50 @@
             "id": "fldw0sYem3tlQeJf7",
             "type": "singleLineText"
           },
-          "value": {
-            "id": "fldXIRtl4FTuhV7Ip",
-            "type": "number"
+          "metric_observation_id": {
+            "id": "fldYWOOi51LuItSi7",
+            "type": "singleLineText"
+          },
+          "metric_version": {
+            "id": "fldsSBvoVfy6pAbYu",
+            "type": "singleLineText"
           },
           "population_count": {
             "id": "fldRnXOCTl9Q5gKKi",
             "type": "number"
           },
-          "definition": {
-            "id": "fldW0DofL6KwbtrlD",
+          "source_record_ids": {
+            "id": "fldjTnMoushwuA6cR",
             "type": "multilineText"
           },
           "source_url": {
             "id": "fld5GC0BKYVtPYANW",
             "type": "url"
           },
-          "source_record_ids": {
-            "id": "fldjTnMoushwuA6cR",
-            "type": "multilineText"
-          },
-          "matched_record_ids": {
-            "id": "fldkiJ9KlIYgQUG4D",
-            "type": "multilineText"
-          },
-          "coverage_notes": {
-            "id": "fldWxj8PCpdAFP473",
-            "type": "multilineText"
-          },
-          "created_at": {
-            "id": "fld3n8nSKuDUJcI1y",
-            "type": "createdTime"
-          },
-          "last_modified": {
-            "id": "fldtTe95756fWjuVA",
-            "type": "lastModifiedTime"
+          "value": {
+            "id": "fldXIRtl4FTuhV7Ip",
+            "type": "number"
           }
-        }
+        },
+        "id": "tblHDDWmUvvVsZqDq",
+        "name": "Operational_Metric_Observations",
+        "primaryFieldId": "fldPFUdlnbNOXrGb5"
       }
-    ]
-  },
-  "development": {
-    "workspace_id": "wspCZsYbWYC7OXX1l",
-    "base_id": "appXI5DFgnCbWzbvz",
-    "interface_id": "pbdB95UqSsQSmaZLw",
-    "page_id": "pagfyDO1xffWjwlax"
-  },
-  "source": {
-    "validation_log_library_file_id": "libfile_a8745c0b04948191a675d4bf9972215b",
-    "metric_version": "dca-validation-metrics/1",
-    "warehouse_base_id": "appivZyJTh5tQv1On",
-    "warehouse_table_id": "tbl6rQmwjUZsrkllO",
-    "warehouse_metric_version": "dca-record-completeness/1"
+    ],
+    "workspace_id": "wspYnyJ08xBNYOjXw"
   },
   "runtime": {
     "automation_id": "6a98285a53248191a1a1743ec41e3e1c",
     "cadence": "Once per Europe/Amsterdam day, reusing the existing hourly validation monitor. No separate job.",
     "first_scheduled_mirror_verified": false
   },
-  "known_limitations": [
-    "Text primary fields: create_table excludes formula fields and update_field cannot convert field types. External stable IDs are separate. Native Created time and Last modified time fields are implemented.",
-    "Two historical closed observations contained actionability=closed, outside the metric contract; reporting maps it to unknown with original value retained in notes. Source log and measurement_state remain unchanged.",
-    "Validation coverage is partial. Lower-bound ages and unknown ages are preserved.",
-    "Source-log snapshots are private; Airtable is an explicitly user-authorized derived team reporting mirror.",
-    "Intake backlog not activated: test/baseline/supersession scope requires definition; a parsed submission is not proof of reconciled goods."
-  ]
+  "source": {
+    "metric_version": "dca-validation-metrics/1",
+    "validation_log_library_file_id": "libfile_a8745c0b04948191a675d4bf9972215b",
+    "warehouse_base_id": "appivZyJTh5tQv1On",
+    "warehouse_metric_version": "dca-record-completeness/1",
+    "warehouse_table_id": "tbl6rQmwjUZsrkllO"
+  },
+  "status": "active-system-structure-testing",
+  "version": "dca-validation-dashboard/1"
 }
