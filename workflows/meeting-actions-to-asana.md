@@ -22,6 +22,12 @@ Start from an explicit request to process a specific meeting, or an already auth
 
 Read the current notes, relevant source passages, existing review replies and known linked tasks. Preserve the meeting identity, date/time zone, source URL and exact action locator (timestamp or passage). Treat AI notes as an extraction, not independently confirmed commitments. If a transcript is unavailable, state that limitation rather than attributing verbatim speech.
 
+Keep the connected account, actual participants, attributed speaker, action owner and authoriser distinct. A platform attendee list identifies connected accounts, not everyone physically present; a transcript speaker label may identify a shared microphone rather than a person. Do not infer absence from a missing account or ownership from a speaker label alone.
+
+Where a shared connection is known or suspected, ask one bounded attendance/attribution correction in the existing batch, such as "Was anyone joining through another person's account?" Preserve the answer and who supplied it. A declaration such as "Bas and Kees are together on Bas's connection" supports reported participation; it does not identify which person spoke each passage. Keep affected passages attributed to the shared connection with speaker unresolved unless supported by a specific correction. Do not guess from subject expertise, writing style or organisational role, and do not replace every account label with the other participant's name.
+
+Flag any action, first-person commitment or claimed approval that depends on that attribution. Ask who owns the concrete action; unaffected items may proceed. An authorised person may accept a task now without reconstructing every historical utterance: record that as a new explicit commitment, not proof of who originally spoke. Preserve original notes and source-qualified corrections together.
+
 Assign a stable reference to each candidate within the meeting and retain it across edits/retries. Do not regenerate references from changing checkbox order or titles. Preserve source wording alongside proposed wording when meaning differs.
 
 ## 1. Prepare one review batch
@@ -41,6 +47,8 @@ Do not assign work to System & Structure by default. Do not turn an example into
 ## 2. Confirm scope and ownership
 
 Accept an authenticated, directly traceable reply from the proposed owner, or a person with established authority to make that assignment. Meeting attendance, organiser status, mention, shared credentials or name similarity alone do not establish that authority.
+
+An attribution correction is not task approval. A message sent through Bas's account saying "Kees here" or "Kees agreed" does not by itself authenticate Kees or establish his task-capture grant. Preserve the reported human separately from the connected principal. Use Kees's own authenticated reply, or an established authorised assignment/delegation route; do not invent a new identity exception. Confirming attendance also grants no assignment authority.
 
 A short reply such as "Confirm item 3; no deadline yet" is sufficient when it unambiguously refers to the displayed proposal. Record the exact reply and actor separately from the AI executor and credential identity. Apply the runtime's existing action-authorisation and access rules; for Claude Tag see [principal-action authorization](../providers/claude/tag/principal-action-authorization.md). A task-capture confirmation does not grant missing capability or override a channel boundary.
 
@@ -97,11 +105,13 @@ Use the existing validation/reminder arrangements if applicable. Do not duplicat
 
 Source: [AI huddle notes, 12:07–13:55 Europe/Amsterdam](https://dcau.slack.com/docs/T037US21Q2X/F0C2H8RQVN2), linked from the [original huddle thread](https://dcau.slack.com/archives/C0AEEFTS495/p1789639652309889). The following are source-derived candidates, not approved tasks or a current completion report. The timestamps are locators recorded in the AI notes; no independent transcript validation is claimed.
 
+Source correction from Anja in the originating workflow-design conversation: Kees was physically beside Bas using Bas's connected account; Kees was omitted from the notes' attendee list and his speech was labelled as Bas. Preserve Kees as a participant reported by Anja and Bas's account as the shared connection. No passage-by-passage speaker mapping was supplied. The table below preserves what the AI notes extracted; any ownership or commitment relying on that shared speaker label remains unresolved, including H17-03. Do not automatically reassign those actions to Kees. Recheck other affected passages if the source is reviewed; the five-item extraction is not proof that all participants' actions were captured.
+
 | Item | Recorded action / owner | Source locator | Review boundary |
 |---|---|---|---|
 | H17-01 | Anja enables relationship intake and notifies Bas | 1:44:56 | Check current status. "Next 20 minutes" is historical source wording, not a new overdue deadline or proof of completion. |
 | H17-02 | James explores Ukrainian-partner contact retrieval/storage and arranges a follow-up with Anja | 1:32:14 | Confirm the trial and whether the call overlaps H17-05. "Next week" is not an agreed date. |
-| H17-03 | Bas submits corrected Rotary emails through Claude once intake is enabled | 1:44:21 | Confirm the authorised intake channel and readiness dependency on H17-01. Contact intake is not newsletter-subscription approval. |
+| H17-03 | Bas submits corrected Rotary emails through Claude once intake is enabled | 1:44:21 | Confirm the actual owner independently of the shared Bas/Kees connection, the authorised intake channel and readiness dependency on H17-01. Contact intake is not newsletter-subscription approval. |
 | H17-04 | James identifies one real operational task for the three-week AI test | 1:10:28 | Mission documentation is an example until selected. Do not create a full implementation commitment or an exact deadline. |
 | H17-05 | Anja arranges a clarification call with James | 55:55 | Resolve possible overlap with H17-02; if one call, confirm one scheduling owner and retain both source references. |
 
