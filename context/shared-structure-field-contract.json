@@ -1,0 +1,425 @@
+{
+  "document_type": "shared_structure_field_contract",
+  "status": "observed_fields_and_documented_meanings",
+  "source": "DCA Airtable Implementation Standard, attached document, sections 3–5 and 8A",
+  "source_drive_file_id": "17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c",
+  "verified_date": "2026-09-16",
+  "base_id": "appPBY1g1rYKRHbDC",
+  "guard_runtime_binding": "not_implemented_by_this_change",
+  "previous_to_current_ids": {
+    "PRJ-0e04a92c-2e34-419e-bb67-bcef0c5135b6": "PRJ-rec88ys5XHgHBMajH",
+    "NED-022c8044-bbbe-43d3-8f17-0a8cdbae3df2": "NED-recEe3riGaFe9rEPF",
+    "NED-cb635f42-853a-4906-a2a5-d347e849386b": "NED-recN5jK82mbcbGH1l",
+    "NED-97feac83-6334-4ae1-a012-b92f28b4d172": "NED-rec3x5F90MnkjCN79",
+    "NED-6d4a90b8-fb21-4f0f-a110-4d66b53ffe78": "NED-recoJXZZUsg4lWqdL",
+    "NED-8a2cb842-249e-4ceb-bba3-cfc1c5bd4277": "NED-recpebxRRJ1QYg0xY"
+  },
+  "tables": [
+    {
+      "table_id": "tbljIlUyCtbSweB0X",
+      "name": "Projects",
+      "fields": [
+        {
+          "field_id": "fldCivuC2QgWJoZzM",
+          "name": "project",
+          "type": "formula",
+          "description": "Formula display of the separate generated ID and readable name, following DCA Airtable Implementation Standard section 4. Used for recognition; edit the name field, not this derived display.",
+          "observed_config": {
+            "formula": "{fldsHNsRDMx87qmK8} & \" — \" & {fldBY10lyrbTznjyo}",
+            "isValid": true,
+            "referencedFieldIds": [
+              "fldsHNsRDMx87qmK8",
+              "fldBY10lyrbTznjyo"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          }
+        },
+        {
+          "field_id": "fldsHNsRDMx87qmK8",
+          "name": "project_id",
+          "type": "formula",
+          "description": "Generated Airtable identifier: PRJ- plus RECORD_ID(). Prefix is explicit table configuration. Kept separate from the primary display. Preserve external references and old-to-new ID mappings when migrating; do not regenerate IDs without reconciliation.",
+          "observed_config": {
+            "formula": "\"PRJ-\" & RECORD_ID()",
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          }
+        },
+        {
+          "field_id": "fldlkRLhNPuzaTmI1",
+          "name": "lifecycle_status",
+          "type": "singleSelect",
+          "description": "Current project lifecycle; independent of validation, procurement outcomes and technical build readiness. Blank means not recorded, not confirmation or a negative result.\nOptions:\npreparation — Scope and support are being prepared; does not imply launched outreach or procurement.\nactive — Project work is actually underway under established ownership; not proof of fulfillment.\npaused — Work is intentionally on hold; preserve reason and next decision.\ncompleted — Project work is explicitly concluded at its stated scope; not automatic proof that every Need was met.\ncancelled — Project has been stopped without completion; preserve the decision and sources.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "selINDXoYScuL3GzU",
+                "name": "preparation"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selAW3QAOAmVKBzPn",
+                "name": "active"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selSGUknyao3ZJxPQ",
+                "name": "paused"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selee3uHQmZXKQDPz",
+                "name": "completed"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selrRZEwLLF1z4NaG",
+                "name": "cancelled"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fldw3Jgll5gwI4nPU",
+          "name": "validation_status",
+          "type": "singleSelect",
+          "description": "Evidence validation at the scope stated in validation_scope; independent of lifecycle and processing. Blank means not recorded, not confirmation or a negative result.\nOptions:\nconfirmed_at_stated_scope — Evidence supports exactly validation_scope; not blanket approval, procurement authority or fulfillment.\npending_validation — A source claim exists but the relevant current facts still need confirmation; do not treat as confirmed.\ndisputed — Relevant sources or validators conflict; preserve the conflict and do not silently choose one.\nunknown — Validation position has not been established; not a negative finding.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "selaY8SUbiLHhbGrE",
+                "name": "confirmed_at_stated_scope"
+              },
+              {
+                "color": "grayLight2",
+                "id": "seleGTwplNS4w4d4N",
+                "name": "pending_validation"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selwKRNZg9LyLP6DM",
+                "name": "disputed"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selXvKMarMPze2Wzs",
+                "name": "unknown"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fld7joMe0fWnJCdt8",
+          "name": "processing_status",
+          "type": "singleSelect",
+          "description": "State of preparing and reconciling this record; this is not an outreach, goods or delivery state. Blank means not recorded, not confirmation or a negative result.\nOptions:\nprepared — Record and sources are prepared for the next review/action; not evidence that operations have started.\nawaiting_input — Progress depends on identified missing information or a decision; keep that dependency in open_questions/next_action.\nmaintained — Record is being kept current through an established maintenance process; does not confirm every claim.\nneeds_reconciliation — Sources, mappings or records require reconciliation before reliable further use; not the same as a disputed underlying claim.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "selX4MHM372sgO8Hu",
+                "name": "prepared"
+              },
+              {
+                "color": "grayLight2",
+                "id": "seljW0jvGA7q4FEHc",
+                "name": "awaiting_input"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selKU9316E9yeESSF",
+                "name": "maintained"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selw544ptIPTfJ0uw",
+                "name": "needs_reconciliation"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fldBwbArUx6nedEpN",
+          "name": "created_at",
+          "type": "createdTime",
+          "description": "Native record creation timestamp. Technical metadata, not project start, source date or goods receipt. ISO date, 24-hour time, Europe/Amsterdam display.",
+          "observed_config": {
+            "result": {
+              "options": {
+                "dateFormat": {
+                  "format": "YYYY-MM-DD",
+                  "name": "iso"
+                },
+                "timeFormat": {
+                  "format": "HH:mm",
+                  "name": "24hour"
+                },
+                "timeZone": "Europe/Amsterdam"
+              },
+              "type": "dateTime"
+            }
+          }
+        },
+        {
+          "field_id": "fldKAvmsXHlfMPZiD",
+          "name": "last_modified",
+          "type": "lastModifiedTime",
+          "description": "Native timestamp of the latest edit to editable fields. Technical metadata, not evidence of outreach or goods movement. Tracks all editable fields; ISO date, 24-hour time, Europe/Amsterdam display.",
+          "observed_config": {
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "options": {
+                "dateFormat": {
+                  "format": "YYYY-MM-DD",
+                  "name": "iso"
+                },
+                "timeFormat": {
+                  "format": "HH:mm",
+                  "name": "24hour"
+                },
+                "timeZone": "Europe/Amsterdam"
+              },
+              "type": "dateTime"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table_id": "tblPCCn7sm2F6KplK",
+      "name": "Needs",
+      "fields": [
+        {
+          "field_id": "fldL7isaPjMesHjo9",
+          "name": "need",
+          "type": "formula",
+          "description": "Formula display of the separate generated ID and readable name, following DCA Airtable Implementation Standard section 4. Used for recognition; edit the name field, not this derived display.",
+          "observed_config": {
+            "formula": "{fldoIcHBKOA43sj0p} & \" — \" & {fldFTgAUbgTsWMahT}",
+            "isValid": true,
+            "referencedFieldIds": [
+              "fldoIcHBKOA43sj0p",
+              "fldFTgAUbgTsWMahT"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          }
+        },
+        {
+          "field_id": "fldoIcHBKOA43sj0p",
+          "name": "need_id",
+          "type": "formula",
+          "description": "Generated Airtable identifier: NED- plus RECORD_ID(). Prefix is explicit table configuration. Kept separate from the primary display. Preserve external references and old-to-new ID mappings when migrating; do not regenerate IDs without reconciliation.",
+          "observed_config": {
+            "formula": "\"NED-\" & RECORD_ID()",
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          }
+        },
+        {
+          "field_id": "fldCb0YLpqAL0XeoQ",
+          "name": "need_type",
+          "type": "singleSelect",
+          "description": "Whose requirement this represents; civilian demand and DCA operational capacity must remain separate. Blank means not recorded, not confirmation or a negative result.\nOptions:\ncivilian_assistance — Requirement for civilian assistance; retain recipient/context and validation scope. Do not use for DCA's own packing supplies.\ndca_operational_capacity — Requirement supporting DCA's own operation, such as packing supplies; receipt is not civilian delivery.\nunknown — Beneficiary/use is unresolved; do not infer either civilian demand or DCA operational need.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "sel4sLkM1L2I8rON0",
+                "name": "civilian_assistance"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selGX6t1Msn6J96Dn",
+                "name": "dca_operational_capacity"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selw4d9KWxmoYQUHX",
+                "name": "unknown"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fld89hLVKZQraeQJr",
+          "name": "quantity_precision",
+          "type": "singleSelect",
+          "description": "Certainty of the required quantity; unknown quantities remain blank and cannot yield a fulfillment percentage. Blank means not recorded, not confirmation or a negative result.\nOptions:\nunknown — Required amount is not sufficiently established; leave quantity blank. Blank does not mean zero.\nexact — Source supports the stated single numeric amount and unit at the stated scope; not an arbitrary target.\napproximate — Source explicitly qualifies an amount as approximate; preserve the original wording in requirement/specification/source evidence. Do not force a range into one exact quantity.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "selS37ju4zlrFihEk",
+                "name": "unknown"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selchl2wEKHHECuGV",
+                "name": "exact"
+              },
+              {
+                "color": "grayLight2",
+                "id": "seldgkG3rwgNjQY1s",
+                "name": "approximate"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fldCWafnZJ5YMqiyH",
+          "name": "lifecycle_status",
+          "type": "singleSelect",
+          "description": "State of the requirement itself; candidate is unresolved demand and open does not imply procurement has started. Blank means not recorded, not confirmation or a negative result.\nOptions:\ncandidate — Sourced requirement under consideration; current demand is not yet confirmed.\nopen — Requirement remains unmet at its stated scope; no procurement or quantity implied.\npartially_met — Evidence establishes some of the requirement met and some remaining; not inferred from an offer alone.\nmet — Evidence establishes fulfillment of the defined requirement; distinguish DCA receipt from civilian delivery.\nwithdrawn — Requirement has been explicitly withdrawn or superseded; preserve source/reason, not mark as fulfilled.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "selyBYdYvWcm0h4n8",
+                "name": "candidate"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selhnC6bwDJIZyoWV",
+                "name": "open"
+              },
+              {
+                "color": "grayLight2",
+                "id": "sel0nGNhwHjg6r6GP",
+                "name": "partially_met"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selsZp4hMpCPWwuc0",
+                "name": "met"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selnsimP4t8Puh051",
+                "name": "withdrawn"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fld81Pdt093ZxJrwm",
+          "name": "validation_status",
+          "type": "singleSelect",
+          "description": "Evidence validation at the scope stated in validation_scope; independent of lifecycle and processing. Blank means not recorded, not confirmation or a negative result.\nOptions:\nconfirmed_at_stated_scope — Evidence supports exactly validation_scope; not blanket approval, procurement authority or fulfillment.\npending_validation — A source claim exists but the relevant current facts still need confirmation; do not treat as confirmed.\ndisputed — Relevant sources or validators conflict; preserve the conflict and do not silently choose one.\nunknown — Validation position has not been established; not a negative finding.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "selu1EGDvtyAsFeBf",
+                "name": "confirmed_at_stated_scope"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selX3WPByLS7eYkIF",
+                "name": "pending_validation"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selxCHlqIBd9Ldqd8",
+                "name": "disputed"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selLhLWaHFa1R23Vu",
+                "name": "unknown"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fldUfx5BuJlvZdTUc",
+          "name": "processing_status",
+          "type": "singleSelect",
+          "description": "State of preparing and reconciling this record; this is not an outreach, goods or delivery state. Blank means not recorded, not confirmation or a negative result.\nOptions:\nprepared — Record and sources are prepared for the next review/action; not evidence that operations have started.\nawaiting_input — Progress depends on identified missing information or a decision; keep that dependency in open_questions/next_action.\nmaintained — Record is being kept current through an established maintenance process; does not confirm every claim.\nneeds_reconciliation — Sources, mappings or records require reconciliation before reliable further use; not the same as a disputed underlying claim.",
+          "observed_config": {
+            "choices": [
+              {
+                "color": "grayLight2",
+                "id": "selxlUOu14OaOPwL7",
+                "name": "prepared"
+              },
+              {
+                "color": "grayLight2",
+                "id": "selDRSfIVkRsELnmx",
+                "name": "awaiting_input"
+              },
+              {
+                "color": "grayLight2",
+                "id": "seloNspNb5jK9LefL",
+                "name": "maintained"
+              },
+              {
+                "color": "grayLight2",
+                "id": "sely3cOcSL2aclYQs",
+                "name": "needs_reconciliation"
+              }
+            ]
+          }
+        },
+        {
+          "field_id": "fldRuNnkE4pMStovD",
+          "name": "created_at",
+          "type": "createdTime",
+          "description": "Native record creation timestamp. Technical metadata, not project start, source date or goods receipt. ISO date, 24-hour time, Europe/Amsterdam display.",
+          "observed_config": {
+            "result": {
+              "options": {
+                "dateFormat": {
+                  "format": "YYYY-MM-DD",
+                  "name": "iso"
+                },
+                "timeFormat": {
+                  "format": "HH:mm",
+                  "name": "24hour"
+                },
+                "timeZone": "Europe/Amsterdam"
+              },
+              "type": "dateTime"
+            }
+          }
+        },
+        {
+          "field_id": "fldq5G3i9FG1fgjhw",
+          "name": "last_modified",
+          "type": "lastModifiedTime",
+          "description": "Native timestamp of the latest edit to editable fields. Technical metadata, not evidence of outreach or goods movement. Tracks all editable fields; ISO date, 24-hour time, Europe/Amsterdam display.",
+          "observed_config": {
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "options": {
+                "dateFormat": {
+                  "format": "YYYY-MM-DD",
+                  "name": "iso"
+                },
+                "timeFormat": {
+                  "format": "HH:mm",
+                  "name": "24hour"
+                },
+                "timeZone": "Europe/Amsterdam"
+              },
+              "type": "dateTime"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
