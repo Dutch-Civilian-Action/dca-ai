@@ -180,6 +180,14 @@
           "description": "Technical last modification time; not a validation or reconciliation event.",
           "name": "last_modified",
           "type": "lastModifiedTime"
+        },
+        {
+          "name": "capture_day",
+          "type": "formula",
+          "description": "Europe/Amsterdam calendar day derived from the source captured_at timestamp. Used as the chart category so distinct days cannot be sorted by clock time alone.",
+          "options": {
+            "formula": "DATETIME_FORMAT(SET_TIMEZONE({captured_at}, 'Europe/Amsterdam'), 'YYYY-MM-DD')"
+          }
         }
       ],
       "name": "Validation_Metric_Snapshots"
