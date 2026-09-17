@@ -1,0 +1,97 @@
+# DCA goods and shipment history 2026 — reconstruction synthesis (interim)
+
+**Version.** v6 (17 Sep 2026, Codex consistency repair), generated from the verified staging checkpoint **2026-09-17T19:42:35.495Z**. The 16 additional evidence records and subsequent owner answers are incorporated. This set supersedes the inconsistent v5 exports. [PR #42](https://github.com/Dutch-Civilian-Action/dca-ai/pull/42) preserves the earlier handoff history, including [v1](https://github.com/Dutch-Civilian-Action/dca-ai/tree/df16b9c64362508aad001b7c6627290d5d095200) and the v3 repair.
+
+**What this is.** A source-first reconstruction of what DCA's documents and messages show about goods received, packed, allocated, dispatched and handed over in 2026, compared with James's reporting workbook and Kees's reconstruction workbook. Claude produced the investigation in Kees's account following the Anja–Kees huddle of 16 September; Codex performed this bounded consistency repair at Anja's request. The reported instruction/access history and its limits are in [the handoff](HANDOFF.md).
+
+**Status and authority.** Interim. Domain self-evaluation remains **insufficient** because material sources are unread or unavailable (Part 6). Bounded owner confirmations are retained; they do not validate the whole reconstruction. Physical pallet matches and explanations of James's calculations remain interpretations. Mission 36's accepted total is 527 kg, with the original stated 507 kg preserved as correction history. No operational document or source workbook is changed by this handoff; no valuation, rate, financial total or ANBI position is produced. Staging trace: [RUN-receXkVSVZTfjD1j6](https://airtable.com/appZ1Fv0YtZPbBbWa/tblTS9OEq5PTSFK4S/receXkVSVZTfjD1j6), with 56 Evidence records, 30 Reconstruction_Objects, 120 Evidence_Links, 8 Object_Relationships and 2 identified Meetings. The evidence index records source membership, not complete source coverage.
+
+**Audience and action.** Kees, James and Anja. Part 7 contains unsent draft topics. Review relevant remaining sources, assess candidate sufficiency and check current answers/validation threads before releasing a request. Only the remaining operational delta should be put to the person who knows it. Anja: see [the handoff](HANDOFF.md) for scope and run mechanics.
+
+**Labels used.** *Supported* = stated in a primary document or contemporaneous message. *Validation-pending* = supported but not yet confirmed by the person who did the work. *Disputed* = sources conflict. *Unknown* = no processed source states it.
+
+**Period actually covered.** Processed goods evidence runs from September 2025 (James's earliest tab) to 3 September 2026 (mission 39), supplemented by September owner corrections. Truck source dates include 20 Jan, 10 Mar, 6 May, 24 Jun and 4 Jul 2026; whether each date describes declaration, loading or departure is stated below. The August departure is reported by Kees on 21 Aug. Warehouse stock was observed on 2 Sep (G-29). Van mission evidence covers 33 (partial), 34, 35, 36, 38 and 39. Lieke's 23 Jan retrospective places Bohdan's armoured-van receipt in December 2025; its relationship to the January Mission 33 label remains unresolved.
+
+---
+
+## 1. Chronology and goods account (declared, unless stated otherwise)
+
+| Departure | Transport | Consignees / destination | Declared load | Status |
+|---|---|---|---|---|
+| 9 Jan, 28 Jan, 11 Feb | 3 trucks (James "Truck 1/3/4") | unknown | 32,000 + 16,000 kg booked as "Medical" by James; no sheet, CMR or list supplied | **Unknown / disputed** — Kees: "two Lithuania trucks, mattresses, not confirmed"; the February appeal says "5 trucks in 2026". Lieke's three-truck retrospective concerns December 2025 and does not establish these January movements. |
+| 20 Jan | Truck AA8047TI/AA9147XK | Help Window Kharkiv 14 pallets 7,403 kg; Nezlomna Rodina 6 pallets 2,633 kg | 20 pallets, 613 boxes, **10,036 kg** (food 6,333; clothing 1,186; hygiene 835; hospital supplies 632; kitchen 450; bedding 325; baby 275) | Supported (CMR sheets); delivery unknown |
+| Jan/Feb (date open) | Mission 33; armoured-van label unresolved | Bohdan is named in the December van report; Mission 33 goods recipients unknown | Working sheet: pallet 18 = 24 boxes medical supplies 315 kg "in the van for mission 33". Kees recalls mostly second-hand clothing (~700 kg per James) | **Disputed** load and date |
+| 8–21 Feb | Mission 34, van | not stated per line | 13 Nutridrink boxes 260 kg confirmed; generators, inverter, medical supplies, food, clothing named without quantities | Supported (Kees) |
+| 10 Mar | Truck KA6484AP/AA2117XC | Nezlomna Rodina 7 pallets 4,226 kg (incl. 134 loose items 244 kg); Help Window 24 pallets 15,093 kg | 31 pallets (nos. 22, 31 absent), **19,319 kg** | Supported (def. sheet) |
+| 6–17 Apr | Mission 35, van | Lighthouse Makariv; Traveling Colonels; scooter recipient unknown | 6 lines, **686 kg** | Supported (Kees); ambulances not quantified |
+| 6 May | Truck АА8045ТІ/АА9145ХК | Help Window 16 pallets 8,700 kg (pallets 1–4 marked H4U Ludmila Zhytomyr; 6, 17 marked DCA James Kamyanka/Kramatorsk); Nezlomna Rodina 4 pallets 1,510 kg | 20 pallets, 806 boxes, **10,210 kg** | Supported; Kees reported loaded/sent (prior run) |
+| 24 May–7 Jun | Mission 36, van | Lighthouse Makariv; Bogdan evac team; Kamyanka | 64 units, **527 kg** (owner-confirmed; the note's stated 507 kg total is an error — lineage preserved) | Owner-validated |
+| 24 Jun | Truck AC7440HP/AC0450XG, SHI-0002 | Zhytomyr/Makariv: Help Window 3,745.5; Salim 3,632; Lifeline 193 | 12 pallets (2 split), 437 boxes, **7,570.5 kg** | Supported; loaded 24 Jun (invoice email); on 3 Jul not all recipients had collected |
+| 4 Jul | Truck OL-78-FB (W.B. van der Donk), SHI-0001, "mission 37" | Help Window 19 pallets 8,890 kg + 51 bags bedding 510 kg; Nezlomna Rodina 13 pallets 6,370 kg; Kharkiv | 32 pallets, 1,008 boxes, **15,260 kg + 510 loose** | Supported; departure 4 Jul 08:00 evidenced; delivery unknown |
+| 11–21 Jul | Mission 38, van | Lighthouse Makariv | 57 boxes, **525 kg** | Supported (Kees) |
+| 21 Aug | Truck AI8800HM + trailer AA7888XS (carrier Stichting Dopomoha, shared truck via Wilfred), SHI-0003 | Help Window 15 pallets 8,779 kg; Nezlomna Rodina 5 pallets 1,511 kg hospital supplies; Kharkiv; onward drop-offs deliberately off paper | 20 pallets, 813 boxes, **10,290 kg** | Supported; loaded and departed 21 Aug (Kees, #logistics); border 23 Aug; unloading at both places REPORTED 30 Aug (second-hand, source unstated); no receipt document processed |
+| 21 Aug–3 Sep | Mission 39, van | Monty; Shelter and Evac Team Kramatorsk; Kam'yanka; Lighthouse Makariv; one line TBD | 167 units, **1,286 kg** | Supported (list) |
+
+Event states remain distinct. Processed sources contain second-hand completion reports for March bedding (24 Mar), May unloading at HW warehouses (19 May; pallet 6 broken but dry), and August unloading at both places (Bas, 30 Aug; original source unstated). The cited June and July unloading excerpts establish **plans**, not their completion: James's 23 Jun instruction describes intended handling in Zhytomyr/Makariv, and the 6 Jul messages describe preparations and onward travel. The 3 Jul remark that not everyone had collected the previous transport's goods is indirect arrival/collection context; it does not establish that the planned unloadings occurred at the specified places. No consignee receipt document has been processed for any shipment. This is a coverage limit, not a claim that receipts do not exist. “Delivered” in a workbook title is not independent delivery evidence.
+
+## 2. Carry-over candidates (interpretation, validation-pending)
+
+Pallets prepared for the January truck but absent from its CMR sheets have content/weight similarities in later documents. Candidate matches are P12→March NR P1 (505 kg), P16→March NR P2 (564 kg), P18→March HW P26 (315 kg), P22→March P27 (275 kg) or P28 (276 kg), and P10→May HW P11 (342 kg). P27→August HW P6 matches weight only (695 kg; box counts differ). P4, P6, P8 and P26 remain unmatched in the recorded search. Kees is '99% sure' the January pallets were not repacked; this supports investigation but does not confirm any individual physical identity. P18's candidate match also conflicts with the annotation placing it in Mission 33's van. The search and qualifications are retained in G-03/G-04.
+
+## 3. Kees's February WhatsApp notes (#32–#46) → March pallets
+
+Candidate note-to-pallet matches by content remain unconfirmed: #40→P32; #39→P15; #45→P21, with a 15-versus-14 baby-box conflict; #44→NR P30. Note #43 is unplaced, with possible 36-box food candidates among pallets 7, 8, 11 and 19; the unnumbered 32-box H4U note has no established match. #35 supersedes #34. Separately, Kees confirmed the March H4U set as pallets **7, 8, 11, 15, 19 and 32, and no others**. That recipient-set confirmation does not establish the identity of individual WhatsApp notes. The missing H4U tab remains a source gap, not a reason to re-ask the settled set.
+
+## 4. Where the reporting workbook and the evidence differ
+
+* **January food −751 kg (Kees vs James) is internal to Kees's workbook**: the CMR sheets give 4,534 + 1,699 = 6,233 kg, exactly James's figure; Kees's lines exclude pallet 17 (759 kg) because its weight was "split pending".
+* **June +147.5 kg (James vs manifest) — proposed duplication, arithmetically consistent but unconfirmed**: Salim food 2,735 + the whole split pallet SU-0011 (288) reproduces James's Donetsk food 3,023 exactly, and the 148 kg monitors appear again in house goods 193; this reconstructs his method rather than observing it. James to confirm.
+* **May — derived comparison and proposed explanation**: the truck's 10,210 kg plus the accepted Mission 36 total of 527 kg yields 10,737 kg, 380 kg below James's 11,117 kg. Kees confirmed the movement scope and 527 kg input; the comparison and category mapping were calculated by the run. The possible 572 kg duplication, placement of 503 kg incontinence and approximately 192 kg omission remain an unconfirmed explanation. Q-D is dropped at Kees's instruction; the uncertainty is retained without re-asking it.
+* **Region split is a reporting convention**, not consignee: NR clothing goes to Donetsk in January but Kharkiv in March; January NR food 1,699 appears as 699 with 1,000 moved to Kharkiv.
+* **48,000 kg "Medical" (Jan 32,000 + Feb 16,000) has no supporting document** in Kees's collection.
+* **July and August are outside the half-yearly report by design**, as Kees confirmed; their absence from the Jan–Jun total is not a missing-shipment error. Separately, Kees's reconstruction understates July as "~9,300+ kg" against the declared 15,260 + 510 kg.
+* **Total tab ≠ monthly tabs** for clothing (€37,593 vs 41,533) and baby (€44,940 vs 45,360) in the uploaded copy's extracted values (native cells not opened); kilograms reconcile.
+* **"Mission 37"** is the 4 July truck journey (James's group DM and #logistics, 3–6 Jul), reused for camp fundraising — not a van mission.
+* **Sender address**: Kees confirmed these are registered NGO addresses, not warehouse locations. Documents change from Meidoornweg to Lutmanstraat; the reason/date of that registration change is a separate unresolved matter.
+
+Full row-level reconciliation: [structured workbook](DCA_goods_reconstruction_RUN-receXkVSVZTfjD1j6_structured_output_2026-09-17.xlsx), tab *Reconciliation*. Each row keeps its item, interpretation, source and object reference together.
+
+## 5. Source guide
+
+The [workbook’s Evidence tab](DCA_goods_reconstruction_RUN-receXkVSVZTfjD1j6_structured_output_2026-09-17.xlsx) indexes all 56 records at this checkpoint, with Airtable links, available original-source URLs, references and access limits. The scope labels distinguish the original 37-source set, the 16 incorporated additions and three later evidence records. Indexed or incorporated evidence does not mean every linked attachment was read.
+
+| Source | Where / reference | Supports | Limits |
+|---|---|---|---|
+| Truck January 2026.xlsx (4 sheets) | Kees upload, Drive [source](https://drive.google.com/file/d/1ETJQCmiyKfLEQ2G_pO4xee4s1csYN-uJ/view) | 20 Jan load; working-sheet pallets incl. "mission 33" note | Working sheet not final (Kees); HW vs Total sheet disagree on pallet 30 split |
+| Truck March (def.) (1).xlsx | Drive [source](https://drive.google.com/file/d/1DoitCvlni5TBXjRbZi5cJqxjEDv0X3oW/view) | 10 Mar load | No H4U tab; internal box-count inconsistencies |
+| Kees's WhatsApp screenshots (3) | Drive 1rdJo4Iv5NFOcMjS-aOpEBZIkmAPV1N-T, 1n7lyb989GVI_VhiGw1QcKMuzvZnt776z, 1QbNhcb7fmrPRO7cr_qVp9CM2VmUFXdaB | Feb pallet contents #32–#46 | Own messages only; chat partner and dates not visible |
+| Def. Truck May 6 2026.xlsx | Drive 1TVO8UH7ynwxAIP-qKU9I9Ll00DumkmC1 | 6 May load and onward annotations | Working versions not compared; same workbook as prior-run evidence |
+| Manifest_SHI-0002_Total kopie.pdf | Drive 1d0t1DS4q3HbHXmb0r2FvYsNNLvMHQuuq | 24 Jun load, split pallets | Per-consignee PDFs and detail xlsx not read |
+| Manifest_SHI-0001..pdf; _detail.pdf; box-level extract | Drive 1w1A4r0GgTIeLfYNt5EaBPPOSMshgQ-wH; 1t3ygcUmwXe9sXtFtnovOx5ATrp6Tt-EX; 1juwHaTRhfhil3JdiHGiwpi3JEipz_cYq | 4 Jul load, carrier, CMR numbers; gross 15,770 kg; pickup 30 May = goods stored by carrier until dispatch (legacy Airtable record) | 291/782 HW and 87/226 NR boxes "unspecified"; unit weights partly derived pro-rata; 8 pallets typed by retroactive photo reconstruction |
+| Loading_list_SHI-0003.pdf; package README; detailed contents | Drive 1W8-8AgC55oirp0T4B97S5gGrWbeT5k4q; 1nmAPtYzhWIpLeHdftSsSNY_cHose4Xpq; 1UzaKIqLfaDTrUMUYM1nKnnh94Z3NBzky | 20 Aug load; carrier/vehicle/driver; per-pallet contents with confidence levels | Departure from Slack, not the documents; 3 pallets rest on a prior handoff only; photos/zip themselves unprocessed |
+| Kees's mission notes 33–36, 38; Mission_39_Loading_List.pdf | Missions (van) folder | Van loads as stated | Notes written 16 Sep 2026 (recollection where stated) |
+| DCA goods delivered for 2026.xlsx | Drive [source](https://drive.google.com/file/d/1OC5vrenD58ewHgy7cKCbKrFRDvygpcNR/view) (copy mod. 15 Sep) | James's monthly kg/€, labels, regions | Native Sheet/XLSX revisions not compared |
+| DCA_goods_reconstruction_2026_Jan-Jun | Sheet 172U-YYZQQqc2qIebYuQeSNIHRSSdeR7H78y0F3koy-w | Kees's prior research, corrections, open items | Chat-attached copy |
+| Slack (live, Kees's account) | #marketing 23 Jan (Lieke), 16 Feb (Bas); #fundraising 3 Feb (James); DM Kees–James 4 Feb, 14 May; group DM 3 & 6 Jul (James); #logistics 3 Jul; #ukraine bot 13 Sep | Truck counts, mission 33/37 timing, Lithuania cost, June collection status | Search-bounded; message ts not captured |
+| Gmail kees@ | threads 19f0888eec7ab63d, 19f3733ade8be4d1, 19ef5524fa59492e | July paperwork 27 Jun–3 Jul; 24 Jun loading; Aug CMR stamping | Snippets only; attachments not opened |
+| Emergency Appeal for Ukraine (Feb 2026) | Google Doc 1OdP715UQCwQEvIMAKGL4sazamrxzdfDVti1XEHhkdHk | "5 trucks in 2026"; winter-truck contents; mission 35 date | Fundraising text; current revision |
+
+## 6. Limitations and gaps
+
+Last recorded coverage (new availability was not checked by this consistency repair). Not supplied/located: WhatsApp exports; sheets/CMRs for James's Trucks 1, 3, 4 — the 16 Sep huddle AI note confirms Kees holds none, so James is the holder to ask; Mission 33's loading list; the March H4U tab; Anja's Slack export. Still unread though uploaded: CMR PDFs (Jan/Mar/May/Jul/Aug), May working files, June per-consignee PDFs and 'other_documents', August loading-list xlsx, the 17 pallet photos and 80 MB zip, WE estimate, Medical equipment sent. Huddles: the 16 Sep AI note (F0C2F1HL7L1) is processed as evidence; the transcript (F0C2B53A99U) was re-attempted on 17 Sep and is unreadable through the connector (unsupported type) — the AI note is not a transcript and its wording is summarised; no artefact for the 15 Sep James–Kees huddle was located in the DM segment inspected by Claude; other locations were not established absent. No consignee receipt document has been processed for any shipment.
+
+The 16 additional evidence records are incorporated, including June detail, July box-level material, August contents/README, legacy shipment records, warehouse observations and shipment messages. June/July interpretation is bounded to intended unloading; August departure and second-hand unloading reports are retained. The 16 September huddle AI note is processed separately from its unread transcript. This repair aligned the current run fields, evidence summaries and exports; it did not expand source coverage.
+
+[G-12](https://airtable.com/appZ1Fv0YtZPbBbWa/tblv7wDJZjJRs34nU/recB37f26Q14iwW6a) retains Kees's confirmed H4U set. G-11 retains the separate unconfirmed note identities. G-16 and G-30 carry `unreviewed` validation and `pilot_system_interpretation` for their derived comparisons; the confirmed inputs remain traceable. Original excerpts and superseded claims remain preserved in staging history.
+
+## 7. Candidate review list (gated — nothing sent)
+
+## Owner answers of 17 September (folded in, not re-asked)
+
+Kees's recorded answers settle the **March H4U set**, **Mission 36's accepted 527 kg**, **July/August reporting cadence**, and the **registered-address role**. His separate chat statement confirms **May's movement scope**. The March set's 3,871 kg subtotal and the May total/difference are run arithmetic, not additional human confirmations. The prior 507 kg statement remains source history. Kees's 99% no-repacking assessment does not settle individual carry-over identities. G-16/G-30's proposed mappings and calculation explanation remain unreviewed. Lieke's re-read places Bohdan's armoured-van receipt in December 2025, while the Mission 33 label/date is unresolved. A March ambulance discussion supplies planning context for April's report, without establishing delivery.
+
+Claude recorded a [validation-request preflight](../../workflows/reconstruction-self-evaluation-and-routing.md#5-validation-request-preflight). Five draft topics remain in *Review_List*: Q-A January–February trucks, Q-B Mission 33, Q-C June calculations, Q-F carry-over identities/fate and Q-H ambulance deliveries/historical reporting scope. **Nothing has been sent.** Relevant unread sources and current replies/active threads must be checked before release; this consistency repair did not repeat a cross-platform preflight. Q-E/G/I/J are answered, Q-F's no-repacking assessment is preserved, and Q-D remains dropped at Kees's instruction. Historical reporting-scope questions do not authorise new valuation or accounting policy.
+
+## 8. Next bounded action
+
+Review the remaining source gaps most relevant to the five draft topics, using Kees's context for private material where needed. Reassess sufficiency per candidate and refresh the validation-request preflight before releasing any question. The accepted answers and incorporated evidence stay settled unless new evidence introduces a material change. Valuation, production implementation, maintained-reality promotion and automation remain deferred.

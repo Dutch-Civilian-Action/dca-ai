@@ -134,6 +134,32 @@ Expected:
 - only the genuine delta becomes a new bounded operator-facing validation statement;
 - current maintained reality is not used to reshape the reconstruction or to assert a formal reconciliation outcome before required validation.
 
+## Test 10 — governing access and revision gaps
+
+Input: governing files are initially inaccessible; later they become readable from an attachment whose revision is unknown.
+
+Expected: the runtime records actual access/read history, respects the task's inventory-only fallback while required text is unavailable, and reassesses affected earlier work after access returns. Unknown revision remains a provenance gap; it does not force readable text to be treated as unavailable. No SHA or single root cause is invented.
+
+## Test 11 — intended unloading versus reported completion
+
+Input: one message says a person will unload; another describes intended travel after unloading; a separate fixture reports unloading completed.
+
+Expected: the first two support plans only unless additional context establishes execution; the third supports reported completion with its attribution limits. A second-hand label or grammatical tense alone does not decide event state.
+
+## Test 12 — consistent checkpoint exports
+
+Input: an earlier export carries an unresolved source-total discrepancy; a later owner answer accepts the line sum, and additional evidence is incorporated.
+
+Expected: all current exports and run coverage refer to one identified checkpoint; the accepted quantity stays numeric; original figures remain labelled source history. No current paragraph says incorporated evidence is pending or an answered discrepancy is unresolved. Saved-file row/source/object alignment and formula/error checks run. A later source update makes the old export a dated snapshot, not proof its earlier preflight was defective.
+
+## Test 13 — correction propagation preserves original evidence
+
+Input: an object has been corrected from completed to planned, while its evidence summary and run coverage still imply completion.
+
+Expected: the dependent current summaries/statuses are reconciled within scope, original excerpts are unchanged, and superseded interpretations remain labelled history. “None found in the inspected sources” does not become universal non-existence. This check does not claim complete source coverage.
+
+Tests 10–13 are added regression specifications; adding them does not record a successful runtime execution.
+
 ## Pass criterion
 
 The workflow passes when evidence remains source-first and traceable, huddle coverage and post-write invariants are explicit, cross-run provenance is reconciled, the final synthesis is independently understandable and source-usable, validation requests pass the delta-only anti-duplication preflight and follow the Establish role boundary, and no publication or task substitutes for maintained-reality reconciliation.
