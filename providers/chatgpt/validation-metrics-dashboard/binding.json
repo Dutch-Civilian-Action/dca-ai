@@ -10,13 +10,14 @@
     "Two historical closed observations contained actionability=closed, outside the metric contract; reporting maps it to unknown with original value retained in notes. Source log and measurement_state remain unchanged.",
     "Validation coverage is partial. Lower-bound ages and unknown ages are preserved.",
     "Source-log snapshots are private; Airtable is an explicitly user-authorized derived team reporting mirror.",
-    "Intake backlog not activated: test/baseline/supersession scope requires definition; a parsed submission is not proof of reconciled goods."
+    "Intake backlog not activated: test/baseline/supersession scope requires definition; a parsed submission is not proof of reconciled goods.",
+    "Earlier same-task page pagOz6PbRt8mLWNc4 retained after automatic review rejected deletion. Use corrected page pagkoCY8BAabcX1zK; its history axis uses capture_day. Do not use the earlier page's time-of-day history chart."
   ],
   "production": {
     "base_id": "appZ1Fv0YtZPbBbWa",
     "interface_id": "pbdRFe8EeQQAKdD5Q",
-    "page_edit_url": "https://airtable.com/appZ1Fv0YtZPbBbWa/pagOz6PbRt8mLWNc4/edit",
-    "page_id": "pagOz6PbRt8mLWNc4",
+    "page_edit_url": "https://airtable.com/appZ1Fv0YtZPbBbWa/pagkoCY8BAabcX1zK/edit",
+    "page_id": "pagkoCY8BAabcX1zK",
     "tables": [
       {
         "fields": {
@@ -119,6 +120,10 @@
           "verified_new_items": {
             "id": "fldMTpl2JgpxNXzf6",
             "type": "number"
+          },
+          "capture_day": {
+            "id": "fld0op8vepXjEo0jS",
+            "type": "formula"
           }
         },
         "id": "tblR9Lkvj0EWpsvUZ",
