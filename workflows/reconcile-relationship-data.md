@@ -35,6 +35,8 @@ The current use case is simple:
 
 The workflow does not require DCA to define a universal CRM architecture before this bounded need can be supported.
 
+For names/email lists intended for newsletter subscription, use [Intake Newsletter Contacts](intake-newsletter-contacts.md) as the bounded extension: preserve and reconcile DCA records first, then derive any authorized external subscription from those saved records and record its outcome separately.
+
 ## Evidence surfaces
 
 Relevant evidence may include, where available:

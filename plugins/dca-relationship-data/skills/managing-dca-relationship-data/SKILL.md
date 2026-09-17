@@ -1,8 +1,8 @@
 ---
 name: managing-dca-relationship-data
-description: Retrieve and maintain DCA contact, organization, and relationship data in the canonical Airtable base. Use for contact lookup, additions, corrections, or reconciliation.
+description: Retrieve and maintain DCA contact, organization, and relationship data in the current Airtable route. Use for contact lookup, additions, corrections, reconciliation, or names/email lists for newsletter subscription through DCA records before Mailchimp.
 metadata:
-  version: 0.2.0
+  version: 0.3.0
   dca-agent: relationship-data-agent
   dca-workflow: reconcile-relationship-data
   mcp-server: airtable
@@ -28,9 +28,19 @@ DCA user
 
 Use only the canonical Airtable base:
 
-`2 | DCA Relationships & Workflows`
+`2 | DCA Relationships & Workflows` (`appMdqKYTMnPmVoVu`)
 
 Do not choose similarly named rebuild, copy, staging, or test bases unless System & Structure explicitly requests a test against one of them.
+
+The newer Shared Identity & Relationships base is a migration candidate, not the current intake destination. Resolve current base identity through `context/airtable-workspace-map.md`; do not dual-write or infer adoption from a successful R01 test.
+
+## Newsletter lists
+
+For names/email lists intended for newsletter subscription, including “subscribe these people in Mailchimp,” read [references/newsletter-intake.md](references/newsletter-intake.md) and apply `workflows/intake-newsletter-contacts.md` from the reviewed repository revision when available.
+
+Capture in DCA records first, reconcile existing identities, and read the saved result back before any Mailchimp action. Preserve source-row provenance, human attribution, consent evidence, audience and per-row execution outcomes separately. Missing consent or external access does not prevent authorized relationship intake. Never infer consent from a list or donation, override an unsubscribe/do-not-contact flag, or claim saved contacts are subscribed.
+
+This is a bounded human-invoked pilot using existing `Contact_Intake` and `Contacts` fields. No new canonical identity model, background sync or schema mutation is introduced. Runtime access, current action authorization and the dataset prerequisite still apply; a plugin update does not establish deployment.
 
 ## User-facing principle
 

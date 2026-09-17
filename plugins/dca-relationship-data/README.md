@@ -5,6 +5,7 @@ Claude plugin packaging for the current DCA Relationship Data capability.
 ## Contains
 
 - `skills/managing-dca-relationship-data/SKILL.md` — Claude runtime implementation of the provider-independent `relationship-data-agent` and `reconcile-relationship-data` workflow.
+- `skills/managing-dca-relationship-data/references/newsletter-intake.md` — bounded names/email-list intake using existing DCA records, with consent, audience-specific outcome and retry handling before/after an authorized Mailchimp action.
 
 ## Runtime boundary
 
@@ -14,11 +15,9 @@ For the current DCA Claude Tag implementation, attach the plugin together with t
 
 ## Source alignment
 
-The packaged skill currently mirrors:
+The packaged skill is the maintained implementation. `providers/claude/skills/managing-dca-relationship-data/README.md` redirects here; no provider-side mirrored `SKILL.md` is maintained.
 
-`providers/claude/skills/managing-dca-relationship-data/SKILL.md`
-
-When the Claude implementation changes, update both copies together until packaging is consolidated to a single source path.
+Newsletter behaviour implements `workflows/intake-newsletter-contacts.md`. Version `0.3.0` prepares the pilot; installing/updating the plugin and checking a fresh Claude session remain separate from repository publication. See `tests/providers/claude/newsletter-intake.md` for the first bounded test.
 
 ## Distribution
 
