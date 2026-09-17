@@ -10,6 +10,7 @@ Use the 17 September 2026 huddle source and H17-01–H17-05 references in the co
 
 | Input / observation | Required result |
 |---|---|
+| Anja's supplied correction establishes Kees attended alongside Bas through Bas's connection | Reuse the correction; patch the original huddle Attendees section to show Kees and the shared connection, with correction provenance and a separate speaker-uncertainty note. No repeated attendance confirmation is required. |
 | Five AI-extracted action items, no task approvals | One proposed review batch; zero Asana mutations. Notes remain unverified extraction. |
 | Anja reports Kees attended through Bas's account and was omitted/misattributed in the notes | Record reported participation and the shared connection; retain original labels as source evidence, not verified speakers. Do not infer Kees's absence or remap all Bas statements to Kees. |
 | H17-03 names Bas, but its speaker basis is the shared connection | Leave ownership unresolved until explicitly confirmed. Do not claim Bas or Kees made the original commitment; recheck affected passages without assuming the five extracted items are exhaustive. |
@@ -23,6 +24,10 @@ Use the 17 September 2026 huddle source and H17-01–H17-05 references in the co
 
 | Scenario | Required result |
 |---|---|
+| Attendance patch is authorised and huddle edit access is available | Update only supported attendance/attribution notes, preserve unrelated content and source history, then verify by readback. Thread-only acknowledgement is not completion of the huddle patch. |
+| Attendance patch is already present on rerun | Reuse it; no duplicate attendee or correction note. |
+| Huddle edit access is unavailable or write/readback fails | Keep the exact patch in the existing review thread, mark the huddle update pending/unverified, and do not claim success. Unaffected independently approved actions need not be blocked. |
+| Current human-edited attendee list conflicts with a proposed patch | Preserve the human edit and resolve the conflict rather than overwrite it. |
 | Bas explicitly accepts H17-03 as his task now | Only that scoped action proceeds, subject to existing authorisation; the new acceptance does not prove he was the original speaker. |
 | A shared-account reply says "Kees here" or "Kees agreed" | Preserve the claim and actual principal; no authenticated Kees grant or delegation is inferred. |
 | A participant corrects who spoke, or confirms Kees's attendance | Preserve sourced correction separately; no task-capture approval follows from it. |
