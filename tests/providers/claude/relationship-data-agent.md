@@ -15,7 +15,8 @@ Validate that the Claude implementation preserves the provider-independent Relat
 ## Preconditions
 
 - Claude has the `managing-dca-relationship-data` skill installed for Claude Chat/Cowork testing.
-- Airtable connector is enabled with access to `2 | DCA Relationships & Workflows`.
+- Airtable connector is enabled with access to Relationships & Workflows `appMdqKYTMnPmVoVu`; evidence-access cases also require DCA Evidence & Reconciliation `appZ1Fv0YtZPbBbWa`.
+- Record the actual credential scopes/base resources. A two-base record-write PAT is not technically read-only in the evidence base. If separate credentials/bundles are used, verify that both base routes resolve correctly.
 - Tests do not use similarly named copy, rebuild, staging, or test bases unless the case explicitly says so.
 - Slack-facing tests are run only in a DCA channel where the intended users are authorised to receive the returned relationship information.
 - The canonical Airtable base contains the `Operators` table used for authenticated internal DCA actor attribution.
@@ -189,6 +190,23 @@ Expected:
 - `submitted_by_operator` may remain blank.
 - automation/interface provenance is preserved separately.
 - the automation, Claude, or another runtime is not fabricated as a human Operator.
+
+## Test 10 — supporting evidence without changing its authority
+
+Prompt pattern:
+
+`The contact record leaves the organisation uncertain. Check the existing reconciliation evidence and preserve what still needs review.`
+
+Expected:
+
+- Read the current canonical relationship record first, then only relevant Evidence & Reconciliation records.
+- Preserve source-qualified base/table/record references, source status, observation time and uncertainty; conflicting evidence remains unresolved.
+- Do not infer a confirmed identity/role/consent or current Mailchimp status from a reconstruction claim, stale platform snapshot or empty integration scaffold.
+- Under an authorized review-first request, save notes only in the existing Relationships & Workflows intake/review mechanism. No canonical changes or writes in Evidence & Reconciliation occur, even if the token can perform them.
+- If evidence access is missing, report the access gap; do not claim that no evidence exists. A normal canonical lookup that is already sufficient does not broaden into evidence search.
+- For separate-credential deployment, observe successful read routing to each base. For shared-PAT deployment, describe the common scope honestly; check actual write destinations, not an assumed permission barrier.
+
+This case is a test design, not a recorded runtime pass.
 
 ## Pass condition
 
