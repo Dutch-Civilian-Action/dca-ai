@@ -47,6 +47,19 @@
       ]
     },
     {
+      "name": "dca-needs-review",
+      "displayName": "DCA Needs Review",
+      "source": "./plugins/dca-needs-review",
+      "description": "Packaged Claude capability for reviewing DCA Needs: guided, source-grounded review conversations producing proposals for joint review. Implements the provider-independent review-dca-needs workflow. Grants no data access or write authority by itself.",
+      "category": "operations",
+      "tags": [
+        "dca",
+        "needs",
+        "review",
+        "proposals"
+      ]
+    },
+    {
       "name": "dca-fundraising-outreach",
       "displayName": "DCA Fundraising & Outreach",
       "source": "./plugins/dca-fundraising-outreach",

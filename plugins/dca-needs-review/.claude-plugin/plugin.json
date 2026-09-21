@@ -1,0 +1,7 @@
+{
+  "name": "dca-needs-review",
+  "description": "Packaged Claude capability for reviewing DCA Needs: guided, source-grounded review conversations producing proposals for joint review. Implements the provider-independent review-dca-needs workflow. Grants no data access or write authority by itself.",
+  "author": {
+    "name": "Dutch Civilian Action"
+  }
+}
