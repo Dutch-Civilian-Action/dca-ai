@@ -13,6 +13,8 @@ This directory contains ChatGPT-specific implementation notes only. Canonical DC
 - `dca-reality-watch.md` — ChatGPT implementation of maintained-reality processing, including the scheduled evidence/recovery sweep and its validation-triggered entry path.
 - `dca-validation-queue-monitor.md` — hourly condition-watch implementation that observes live validation-state transitions and hands newly sufficiently established candidates into canonical maintained-reality reconciliation.
 
+- `meeting-actions-to-asana.md` — dedicated meeting-workflow runner for authorised notes review, item confirmation and Asana capture; the validation monitor separately checks test validation.
+
 ## Current role
 
 ChatGPT may currently be used to:

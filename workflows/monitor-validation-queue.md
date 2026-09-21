@@ -71,13 +71,13 @@ For each tracked item preserve or derive:
 
 This queue is an operational worklist over authoritative evidence and lineage. It is not a second source of organisational truth.
 
-## Meeting-action confirmation handoff
+## Validation of the meeting-workflow test
 
-For an explicitly authorised meeting-action batch, apply [Capture meeting-derived actions into Asana](meeting-actions-to-asana.md). Retain the original huddle thread and stable item references in the existing unresolved worklist; read current replies without requiring a bot mention and keep older pending items visible.
+For the [meeting-action pilot](meeting-actions-to-asana.md), this monitor checks validation of the workflow test. It may read source-backed notes, owner replies, action dispositions and verified task mappings as evidence of demonstrated behaviour. Preserve demonstrated, failed and untested aspects in the existing test-validation lineage.
 
-This is a separate destination from the maintained-reality sequence below. Route scoped task confirmations to the batch's designated capture writer with the exact reply, owner, source, destination and current disposition. That writer checks current work and duplicates, writes only authorised tasks, verifies readback and returns mappings to the original batch. Supported already-done outcomes require no new outstanding task. Mark detected-but-undispatched or unwritten confirmations as blocked handoffs rather than captured.
+It does not operate or gate the already authorised meeting workflow: do not correct its canvas, maintain its operational review batch, collect item ownership/approval, dispatch task capture, mutate its operational Asana tasks or include pending actions in reminder DMs. The dedicated meeting-workflow runner owns those steps. A still-open operational action is not automatically an unresolved test-validation question.
 
-Task consent does not establish organisational facts; independently supported capability or reality findings still follow the normal maintained-reality path. Apply existing reminder eligibility and provider contact limits, reusing the original review surface and current owner list. A registered pilot is not authority to ingest every meeting; new meetings require an explicit bounded request/registration.
+Ask only an established test reviewer for a precise unresolved test judgement; keep the request short and source-linked. Supported capability findings follow the normal maintained-reality path below. Existing operational tasks and commitments remain valid. This boundary corrects the earlier operational-handoff coupling; it does not alter unrelated validation scope or reminder rules.
 
 ## Measurement hook
 

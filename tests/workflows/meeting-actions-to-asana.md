@@ -60,11 +60,14 @@ Use the 17 September 2026 huddle source and H17-01–H17-06 references in the co
 | Existing validation item already covers a question | Link/reuse it; do not reopen settled validation or create a second reminder stream. |
 | Task capture succeeds | Do not execute the underlying subscription, configuration change or calendar invitation without its own authority. |
 | Published canvas is readable but DCA Bot has no edit permission | Mark notes maintenance blocked, retain the proposed patch in the existing thread, request Share Canvas → DCA Bot → edit access from an authorised editor, and recheck. Anja's access or attendance cannot stand in for writer access. |
-| A registered batch receives an item-scoped owner reply without a bot mention | The existing monitor reads the thread and dispatches the authorised capture to the designated writer; no mention or redundant confirmation is required. Record detection separately from task persistence. |
+| A registered batch receives an item-scoped owner reply without a bot mention | The dedicated meeting-workflow runner reads the thread and performs the authorised capture; no mention or redundant confirmation is required. Record detection separately from task persistence. |
 | Canvas is shared or bot is mentioned in an unregistered meeting | Do not infer general recurring ingestion or a task-capture grant; establish the bounded processing request and registration. |
 | A valid reply arrives several days later, after the underlying action was completed | Recheck current work and preserve a supported already-done outcome without creating obsolete outstanding work. Age alone does not invalidate the reply. |
 | Detection succeeds but the designated capture writer is unavailable | Preserve a confirmed-but-blocked handoff and its exact capability gap; do not falsely mark captured or silently wait for a broad Reality Watch sweep. |
 | A new meeting test starts while older candidates are pending | Retain old item references and dispositions in their original thread; do not reset or drop them. |
+| Validation monitor sees an unconfirmed H17 action or a new owner confirmation | Observe it only as test evidence where relevant. Do not seek operational confirmation, remind the action owner, dispatch capture, edit the canvas/batch or mutate the action task. |
+| Dedicated meeting runner and validation monitor inspect the same pilot | Only the meeting runner executes the meeting workflow. Test validation does not gate already authorised execution. The validation monitor tracks demonstrated/failed/untested behaviour and genuine test-review questions; operational pendency alone does not become a test-validation ask. |
+| Validation-monitor scope is narrowed after tasks already exist | Preserve existing commitments and verified mappings; do not delete, recreate or reopen them. Unrelated validation and contact rules remain in force. |
 | Workflow is committed or merged | Do not claim runtime deployment, five approved actions, successful live writes or operational adoption. |
 
 ## Observed supervised pilot — 18 September 2026
@@ -99,7 +102,7 @@ The current [review batch](https://dcau.slack.com/archives/C0AEEFTS495/p17896832
 | H17-06 | Anja confirmed one remaining guidance rollout excluding completed Logistics guidance. [Task 1218699908671102](https://app.asana.com/1/1204854523404532/project/1213240028232976/task/1218699908671102) exists, assigned to Anja without a due date, and is linked from the review. Completion remains unverified. |
 | H17-02 / H17-04 | Preserve the remaining James trial/follow-up and first-task selection questions; do not close them because scheduling was captured or another test is planned. |
 
-Read-only inspection on 21 September found the existing **Monitor validation queue** automation enabled on its hourly schedule, with explicit 19 September coverage for this thread and instructions to read replies without requiring a mention. Configuration is evidenced; the task records do not establish which scheduled invocation created them or prove automatic latency/reliability. No new automation or schedule was created by this PR update.
+Read-only inspection earlier on 21 September found the existing **Monitor validation queue** automation enabled with operational coverage for this pilot. Anja then explicitly corrected that boundary: the queue was intended to validate the workflow test, not operate the workflow. Its operational H17 coverage is superseded by the separate meeting-workflow runner. Preserve the already verified captures; they do not prove the new runner has executed successfully.
 
 The delay exposed a useful late-reconciliation case and did not invalidate the successful bounded captures. Still unverified: independent audio/speaker validation, new-meeting registration and automatic end-to-end processing, repeat-run duplicate avoidance after capture, uncertain-create/partial-failure recovery and concurrent-writer handling.
 
@@ -107,7 +110,7 @@ The delay exposed a useful late-reconciliation case and did not invalidate the s
 
 1. On an explicit request for the next meeting, identify its published canvas and source thread. Verify the selected writer's edit permission; if missing, request the Share Canvas access step and verify recovery.
 2. Review the transcript and patch the original notes; read back changes and publish one source-linked review batch with stable references, proposed owners/destinations and uncertainties. State the actual processing mode.
-3. Register that authorised batch in the existing monitor's current scope/lineage and verify registration. Do not create a new reminder automation or infer general ingestion.
+3. Register that authorised batch in the dedicated meeting runner's current scope/lineage and verify registration. Do not create a new reminder automation or infer general ingestion.
 4. Ask owners to review shortly after publication. Process one genuine scoped confirmation without requiring a bot mention; preserve already-done, correction, defer and silence outcomes independently.
 5. Verify the resulting Asana task and original-thread mapping. Record publication, owner reply, detection and verified capture times where available; leave missing clocks unknown.
 6. Re-run the same batch and verify that the existing task mapping is reused, with no duplicate task, review post or reminder. Keep unexecuted recovery scenarios unverified.
@@ -119,3 +122,9 @@ Success for this next test means the confirmed item completes that handoff and s
 For an authorised bounded pilot, record source/item, actual confirmation reference, writer/runtime, task ID, readback evidence and observed disposition in the existing review thread or relevant private test record. Do not commit contact lists or new operational records as test output.
 
 Acceptance evidence must distinguish static contract review, read-only scenario evaluation and actual runtime execution. Leave unexecuted scenarios unverified.
+
+## Scheduled separation — 21 September 2026
+
+The validation monitor's operational H17 block was replaced with test-validation-only instructions and read back; its schedule was unchanged. A separate **Process meeting actions** hourly condition watch was created and read back enabled, with the scoped prompt verified. GitHub, DCA Bot Slack and Asana read preflights succeeded. The [provider binding](../../providers/chatgpt/meeting-actions-to-asana.md) records the task identity.
+
+This verifies configuration separation, not a successful scheduled execution, latency or recovery. No operational action was created or completed by this configuration change. The next bounded test above remains necessary.
