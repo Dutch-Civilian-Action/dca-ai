@@ -57,10 +57,43 @@ Start with the useful result or the next decision. Be concise and practical, and
 
 **If check 2 below shows that the packaged skill is not active inside a project chat**, this
 block is insufficient on its own: the outreach behaviour would then not be loaded from
-anywhere. In that case use the interim instruction block from the reviewed brief
-(`proposed-fundraising-outreach-project.md` §5) as a stopgap, record that the project is
-running on pasted rather than packaged behaviour, and treat closing that gap as the next
-piece of work. Do not silently expand this block instead.
+anywhere. Use one of the two routes in
+[If the packaged skill does not load](#if-the-packaged-skill-does-not-load). Do not silently
+expand this block instead.
+
+## If the packaged skill does not load
+
+Whether a user-installed plugin is active inside a project chat is unresolved (see
+[Interface facts](#interface-facts)). If check 2 shows it is not, take one of these two
+routes. Both keep the behaviour in the maintained workflow and skill; neither creates a second
+copy of it.
+
+**Route A — use a surface where plugin loading is documented.** Support documentation covers
+plugin installation for Cowork (**Customize** within the Cowork tab) and the packaged skill is
+also available to Claude Code with the repository attached. Run the outreach work there and
+keep the project for the material that does not depend on the skill. This is the preferred
+route: the capability stays packaged and reviewed.
+
+**Route B — keep the project chat and add one pointer line.** Append this single line to the
+instruction block above:
+
+```text
+If the DCA Fundraising & Outreach skill is not available in this chat, read `dca-ai/workflows/prepare-fundraising-outreach.md` and `dca-ai/plugins/dca-fundraising-outreach/skills/preparing-dca-fundraising-outreach/SKILL.md` together with its `references/` files from the attached repository, and apply them as written. State in the first reply of a task which of the two you are working from.
+```
+
+The line is a **pointer, not a copy**. The behaviour stays in one maintained, reviewed place
+and is versioned with the repository revision the project has synced. Do not paste the
+workflow's or the skill's content into the instruction surface: that creates an ungoverned
+second copy outside the review process, which is exactly what packaging this capability
+avoids.
+
+Route B depends on the repository actually syncing into the project (check 1) **and** on the
+runtime actually reading it. A pasted path is not evidence that its contents were read;
+confirm by asking which revision and which file the answer came from.
+
+If neither route works, record it as a configuration gap, keep the affected checks
+explicitly unperformed, and raise it as a bounded structural question rather than
+reconstructing the behaviour locally.
 
 ## Required repositories
 
@@ -155,7 +188,9 @@ That *Can view* behaves this way on DCA's current plan is part of check 1.
 9. Run the checks below. Record what is actually reachable.
 
 If a plugin, repository or connector turns out to be unavailable, record it as a configuration
-gap and continue; the affected checks stay explicitly unperformed.
+gap and continue; the affected checks stay explicitly unperformed. For the specific case of the
+skill not loading in a project chat, see
+[If the packaged skill does not load](#if-the-packaged-skill-does-not-load).
 
 ## Checks
 
@@ -172,7 +207,7 @@ answered from Anja's session or from this repository**.
 | # | Check | Whose session |
 | --- | --- | --- |
 | 1 | Access: does the project reach both repositories, the brand material, Mailchimp and the other connectors; does *Can view* give chat access without edit rights | **[Bas]** |
-| 2 | Is the packaged skill actually active inside a project chat, and does a plain outreach request trigger it without being named | **[Bas]**, then Anja |
+| 2 | Is the packaged skill actually active inside a project chat, and does a plain outreach request trigger it without being named. If not, take Route A or Route B in [If the packaged skill does not load](#if-the-packaged-skill-does-not-load) | **[Bas]**, then Anja |
 | 3 | Credential permissions, inspected not inferred: Airtable scopes, Mailchimp account role, connector grants | Anja, at the credential |
 | 4 | Campaign retrieval: the latest sent campaign identified by name, status and date, with content, images and links, and any newer draft named | **[Bas]** |
 | 5 | Campaign ambiguity: a deliberately vague reference draws a confirmation question, not a guess | **[Bas]** |
@@ -220,7 +255,9 @@ facts, not observations of DCA's account:
 
 - Whether a user-installed plugin is active inside a project chat. The project documentation
   does not mention plugin, skill or connector settings inside a project. Check 2 is the only
-  thing that settles it.
+  thing that settles it, and
+  [If the packaged skill does not load](#if-the-packaged-skill-does-not-load) covers both
+  outcomes.
 - Connector availability inside projects, and which Mailchimp account and audience a project's
   connector is attached to. Checks 1 and 3 settle it for a given account.
 

@@ -86,13 +86,22 @@ does not. Do not cite the chain as if it were established for another surface.
 Content, recipients and the sending action are distinct authorization questions and are
 never inferred from one another. One explicit authorization can cover all three when its
 scope plainly includes them — do not manufacture three confirmation exchanges for one clearly
-scoped authorization. Before recommending a send, check recipient and thread history for
-prior outreach, replies, promises, duplicate receipt, bounces, opt-outs and an existing
-thread that should be continued. Never claim an action succeeded without a confirming result.
+scoped authorization.
 
-Whether a change is technically possible depends on the identity and account role in use;
-whether it is permitted depends on the authority rules. When a change does not proceed, say
-which of the two is the limit.
+An instruction to act is also potentially the authorization for it. Evaluate it against the
+context already established: name the specific unresolved element — the text, the recipients,
+or the requester's authority — where one is unresolved, and recognise a sufficient
+authorization where the context settles all three, without asking again.
+
+Recognising an authorization is not performing the action. This skill prepares; it does not
+send. When the action is authorised but outside that scope, say the stop is **scope**, hand
+over the finished draft and name the authorised route. Keep the three reasons for not acting
+distinct — scope, authorization, and access or technical capability — and never substitute one
+for another. A send-capable tool neither grants authorization nor removes the scope boundary.
+
+Before recommending or handing over a send, check recipient and thread history for prior
+outreach, replies, promises, duplicate receipt, bounces, opt-outs and an existing thread that
+should be continued. Never claim an action succeeded without a confirming result.
 
 Before reviewing an automation plan or proposing, building, configuring or enabling
 downstream operational automation, apply `governance/authority-rules.md` → `Dataset

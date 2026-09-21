@@ -153,10 +153,36 @@ One explicit authorization can cover all three when its scope plainly includes a
 Do not manufacture three separate confirmation exchanges for one clearly scoped
 authorization, and do not read a content approval as a send approval.
 
-Before recommending a send, check recipient and thread history: prior outreach, replies,
-promises, duplicate receipt, bounced addresses, opt-outs, and an existing thread that should
-be continued. Drafting is not evidence of sending. Never claim an action succeeded without a
-confirming result.
+An instruction to act — "send it to the church list", "just send it" — is a request **and**
+potentially the authorization for it. Evaluate it against the context already established in
+the task rather than classifying it as unauthorised by default:
+
+- Where the text, the recipients or the requester's authority over this outreach is not
+  established, name **that specific gap** — which of the three is unresolved and what would
+  settle it. Do not report a generic missing authorization, and do not let one unresolved
+  element stand in for the others.
+- Where the established context and the instruction together settle content, recipients and
+  the sending action, **recognise that** and say so. Do not ask again for what has already
+  been given.
+
+Recognising an authorization is not the same as performing the action. This workflow prepares;
+it does not send. Where an outreach action is properly authorised but lies outside the
+executing capability's scope, say so plainly — the stop is scope, not a missing authorization
+and not necessarily a missing tool or access — and hand over the finished draft with the
+authorised route named. Keep the three possible reasons for not acting distinct and never
+substitute one for another:
+
+- **scope** — the action is outside what this capability does;
+- **authorization** — a required permission is not established;
+- **access or capability** — the runtime cannot technically reach or perform it.
+
+Tool availability settles none of them: a send-capable connector neither grants authorization
+nor removes the scope boundary, and an absent tool is not a finding about authority.
+
+Before recommending or handing over a send, check recipient and thread history: prior
+outreach, replies, promises, duplicate receipt, bounced addresses, opt-outs, and an existing
+thread that should be continued. Drafting is not evidence of sending. Never claim an action
+succeeded without a confirming result.
 
 Responsibilities and decision rights come from current governed sources. Where an artifact is
 stored does not settle who decides about it. Where a specific communication decision has no
