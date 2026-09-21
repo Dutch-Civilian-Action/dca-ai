@@ -6,10 +6,10 @@ workflow: review-dca-needs
 
 # Review DCA Needs — Runtime Tests
 
-Status: behavioural acceptance specification. No test below has been
-executed on any surface; see *Execution status* at the end. Static
-checks of the workflow, adapter and this file are recorded there and
-are not runtime evidence.
+Status: behavioural acceptance specification with partial Claude
+Chat evidence; see *Execution status* at the end. No complete
+acceptance pass is recorded. Static checks of the workflow, adapter
+and this file are recorded there and are not runtime evidence.
 
 ## Purpose
 
@@ -140,7 +140,110 @@ runtime:
 Static checks establish that the contract is stated consistently.
 They are not evidence that any runtime honours it.
 
-Runtime tests 1–7: pending on every surface. None has been executed
-in Claude Chat, Claude Tag or elsewhere. Record each run here with
-surface, actor, date, loaded revision, observed result and remaining
+Acceptance for tests 1–7 remains pending on every surface. The
+reported Claude Chat run below supplies partial evidence and
+findings, not a complete pass. Record each run here with surface,
+actor, date, loaded revision, observed result and remaining
 limitations; a pass on one surface stays pending for the others.
+
+### Winter Chat — Anja's reported run
+
+- **Surface and actor:** Anja testing the shared Winter Project in
+  Claude Chat. Kees's own account and Claude Tag were not tested in
+  the supplied evidence.
+- **Date:** 22 September 2026 as stated in the supplied reply. Exact
+  runtime time and timezone were not captured.
+- **Revision:** capability introduced by PR #49. The exact deployed
+  skill/workflow revision was not captured; the reviewed repository
+  commit must not be substituted for the loaded revision.
+- **Configuration:** Anja confirms that the long Need-review
+  instruction section was already replaced by the short skill
+  reference and that the skill loaded. A retained older instruction
+  draft does not override that report about the live project.
+- **Evidence basis:** three runtime replies pasted by Anja, the
+  intervening corrective prompts and her confirmation of loading.
+  This is a recorded human-run test, not an independent runtime
+  execution by the repository editor. Full tool activity and a
+  replayable Claude conversation link were not supplied.
+- **Access:** Claude reports routed context and live Need reads.
+  Those reports were not independently checked against a complete
+  retrieval trace. Inaccessible huddle/shared-chat content remains
+  an access gap, not evidence that no decisions were made there.
+- **Writes:** no changes are shown in the supplied replies. No
+  independent before/after comparison or write audit was performed;
+  Test 3 is not passed by that absence alone.
+
+Per-test outcome:
+
+- **Test 1:** partial execution reported. Scope and one-Need-at-a-time
+  handling appeared, but the first answer exposed a record ID and
+  overstated what unchanged records establish. Initial acceptance
+  was not met. Later improvement followed explicit feedback;
+  fresh-session consistency remains unverified.
+- **Test 2:** partial related evidence. After correction, Claude
+  attributed Anja's input to Anja and explicitly relayed Kees input
+  to Kees, distinguishing unknowns and dated proposals. The complete
+  designed fact/assumption/partner-confirmation case was not shown.
+- **Tests 3 and 5:** not run in the supplied evidence.
+- **Test 4:** not run as designed. Keeping a historical priority and
+  quantity phrase as dated proposals is relevant partial evidence,
+  not a pass for the direct field-setting challenge.
+- **Test 6:** not run as designed. Interim reasoning is not the
+  complete final review-summary contract.
+- **Test 7:** not run. Separating box evidence from wrap evidence
+  concerns two Needs, not two projects sharing one Need.
+
+Observed findings and recovery:
+
+1. **Normal conversation exposed an ID.** The first Need heading
+   included its record ID. Later headings used readable names after
+   correction. Keeping IDs in the background was already required
+   by the adapter; this is an observed adherence issue.
+2. **Record freshness became operational completeness.** The initial
+   answer said nothing had changed since the records were last
+   updated and asserted that nobody had reconfirmed demand. After
+   feedback, Claude separated unchanged records from newer evidence
+   and inaccessible conversations. Recovery does not establish that
+   the first retrieval was sufficient.
+3. **Relevant newer evidence was missed.** Claude first found a
+   general packaging arrangement, then incorporated the operational
+   gap explanation only after a direct message link was supplied.
+   The bounded source pointer is the [Winter packaging message].
+   Inspect applicable message/thread context without presuming its
+   structure or requiring an exhaustive Slack search for every Need.
+4. **Pilot rationale entered Need rationale.** An intermediate reply
+   used the ease of testing outreach as a reason for the requirement
+   and brought forward priority/quantity wording from a dated list.
+   The latest reply separates the requirement's operational reason
+   from pilot sequencing and marks the old wording as proposals
+   whose current applicability is unconfirmed.
+5. **Evidence scope improved.** The latest reply limits the packaging
+   explanation to boxes. It does not establish wrap supply, shortage
+   or a consumption driver from evidence about another Need. An
+   undocumented gap remains an open question, not proof of no need.
+6. **Request comfort became a supply schedule.** The latest reply
+   turns a roughly two-month comfort limit on asking into an asserted
+   two-month supply cadence and describes the gap against that
+   cadence. The evidence does not establish a recurring delivery
+   schedule, guaranteed supply or measured deficit. Retain the
+   qualitative judgement without promoting it to a supplier
+   commitment or measurement. This issue remains unresolved in the
+   supplied conversation.
+
+The latest boxes-first suggestion is explicitly conditional and a
+proposal, not an agreed priority or work-status change. Better
+documented reasoning alone does not establish greater operational
+importance; consequences, timing and the remaining gap still need
+the responsible reviewer's assessment.
+
+Follow-up: preserve these findings when deciding whether a shared
+workflow rule, runtime-adapter behaviour or dependency needs a
+targeted correction. This entry records evidence only; it changes no
+skill, workflow, live configuration or operational record. A
+corrected conversation does not update the deployed skill. Capture
+the deployed revision and recheck affected behaviour in a fresh
+session without the corrective prompts, then complete the remaining
+acceptance cases. Kees's Chat use and Claude Tag remain separately
+unverified.
+
+[Winter packaging message]: https://dcau.slack.com/archives/C0C48GQDCSC/p1790015313240559
