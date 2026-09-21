@@ -15,5 +15,6 @@ Current workflows:
 - `maintain-dca-reality.md` — maintain Operational Reality, Derived Organisational Reality, and System & Structure Capability Reality from materially changed evidence through the shared reconciliation handoff and reader-ready Reality Watch outputs.
 - `reconcile-relationship-data.md` — preserve, reconcile, persist, and retrieve bounded DCA relationship information with provenance, uncertainty, and validation boundaries.
 - `intake-newsletter-contacts.md` — intake names/email lists into current DCA relationship records before any authorized Mailchimp subscription, preserving consent evidence, audience-specific results and migration continuity.
+- `prepare-fundraising-outreach.md` — prepare fundraising and outreach communication for churches, Rotary clubs, donors, funders and partners from established audience, relationship stage, purpose, need and ask, with campaign selection, evidence discipline, distinct content/recipient/send authorization and funding-ask distinctions; preparation only, sending nothing and mutating nothing.
 
 Provider-specific scheduled tasks, prompts, tool bindings, trigger mechanics, polling cadence, or runtime configuration belong under `providers/` and must not redefine the workflow itself.
