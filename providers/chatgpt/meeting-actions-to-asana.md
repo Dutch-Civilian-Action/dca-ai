@@ -1,6 +1,6 @@
 ---
 document_type: dca_ai_provider_implementation
-status: current-testing
+status: paused
 provider: chatgpt
 workflow: meeting-actions-to-asana
 ---
@@ -40,3 +40,9 @@ Verify task creation and its saved prompt/schedule separately from a successful 
 - GitHub, DCA Bot Slack and Asana read preflights succeeded before creation. Canvas write access remains a per-meeting check.
 - Existing validation-monitor prompt was narrowed to test validation and read back before activation; its schedule and unrelated instructions were preserved.
 - No scheduled execution of this new task has yet been verified. Existing task captures are historical pilot evidence.
+
+## Current runtime status — 21 September 2026
+
+Anja broadened the intended meeting coverage beyond #structural-alignment and proposed Claude as the operational executor. The ChatGPT task above was paused and read back disabled. Attempts to convert it to Slack events returned service errors; readback confirmed no trigger was saved. Adding ChatGPT to the channel did not activate an event-driven workflow.
+
+Keep the provider-independent meeting contract and validation-test separation. Claude is DCA's primary operational interface, but this workflow's Claude notes-editing, Asana access and reply-trigger behaviour still require a bounded live check before claiming deployment. Do not infer permission for every channel or create overlapping writers. The earlier hourly configuration record remains historical evidence, not current activation status.
