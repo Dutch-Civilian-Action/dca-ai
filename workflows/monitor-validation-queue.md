@@ -71,6 +71,14 @@ For each tracked item preserve or derive:
 
 This queue is an operational worklist over authoritative evidence and lineage. It is not a second source of organisational truth.
 
+## Meeting-action confirmation handoff
+
+For an explicitly authorised meeting-action batch, apply [Capture meeting-derived actions into Asana](meeting-actions-to-asana.md). Retain the original huddle thread and stable item references in the existing unresolved worklist; read current replies without requiring a bot mention and keep older pending items visible.
+
+This is a separate destination from the maintained-reality sequence below. Route scoped task confirmations to the batch's designated capture writer with the exact reply, owner, source, destination and current disposition. That writer checks current work and duplicates, writes only authorised tasks, verifies readback and returns mappings to the original batch. Supported already-done outcomes require no new outstanding task. Mark detected-but-undispatched or unwritten confirmations as blocked handoffs rather than captured.
+
+Task consent does not establish organisational facts; independently supported capability or reality findings still follow the normal maintained-reality path. Apply existing reminder eligibility and provider contact limits, reusing the original review surface and current owner list. A registered pilot is not authority to ingest every meeting; new meetings require an explicit bounded request/registration.
+
 ## Measurement hook
 
 When the current provider configuration explicitly enables a private measurement destination, apply `measure-validation-queue.md` after reconstructing the full queue and completing supported reconciliation for the run. Derive the snapshot from that assessed state; do not initiate another validation or reality-maintenance process. Measurement does not change queue membership, reminder eligibility, closure, or publication rules. Keep capture failures separate from validation failures.

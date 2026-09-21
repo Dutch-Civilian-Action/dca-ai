@@ -2,7 +2,7 @@
 
 Contract: [Capture meeting-derived actions into Asana](../../workflows/meeting-actions-to-asana.md).
 
-Status: behavioural acceptance specification with a supervised partial ChatGPT pilot recorded below. Unexecuted cases, Asana writes and unattended runtime behaviour remain unverified. The five original huddle items and one follow-up restored from transcript review are real source-derived candidates, not synthetic operational records or approved task fixtures. The additional scenarios below are synthetic variations for read-only evaluation; never post them into live Slack or Asana.
+Status: behavioural acceptance specification with a supervised partial ChatGPT pilot recorded below. Unexecuted cases and unattended runtime behaviour remain unverified. The dated follow-up below records two verified Asana captures; the original 18 September result is preserved as history. The five original huddle items and one follow-up restored from transcript review are real source-derived candidates, not synthetic operational records or approved task fixtures. The additional scenarios below are synthetic variations for read-only evaluation; never post them into live Slack or Asana.
 
 ## Real-source walkthrough
 
@@ -59,6 +59,12 @@ Use the 17 September 2026 huddle source and H17-01–H17-06 references in the co
 | Notes are reordered or edited on rerun | Keep original item references and confirmation lineage; no duplicate review batch or tasks. |
 | Existing validation item already covers a question | Link/reuse it; do not reopen settled validation or create a second reminder stream. |
 | Task capture succeeds | Do not execute the underlying subscription, configuration change or calendar invitation without its own authority. |
+| Published canvas is readable but DCA Bot has no edit permission | Mark notes maintenance blocked, retain the proposed patch in the existing thread, request Share Canvas → DCA Bot → edit access from an authorised editor, and recheck. Anja's access or attendance cannot stand in for writer access. |
+| A registered batch receives an item-scoped owner reply without a bot mention | The existing monitor reads the thread and dispatches the authorised capture to the designated writer; no mention or redundant confirmation is required. Record detection separately from task persistence. |
+| Canvas is shared or bot is mentioned in an unregistered meeting | Do not infer general recurring ingestion or a task-capture grant; establish the bounded processing request and registration. |
+| A valid reply arrives several days later, after the underlying action was completed | Recheck current work and preserve a supported already-done outcome without creating obsolete outstanding work. Age alone does not invalidate the reply. |
+| Detection succeeds but the designated capture writer is unavailable | Preserve a confirmed-but-blocked handoff and its exact capability gap; do not falsely mark captured or silently wait for a broad Reality Watch sweep. |
+| A new meeting test starts while older candidates are pending | Retain old item references and dispositions in their original thread; do not reset or drop them. |
 | Workflow is committed or merged | Do not claim runtime deployment, five approved actions, successful live writes or operational adoption. |
 
 ## Observed supervised pilot — 18 September 2026
@@ -79,7 +85,34 @@ Initial run against PR #46 commit `fc953bf42bc5d9703966cf6bfadc146fe6806040`, ex
 
 Evidence: [maintained huddle notes](https://dcau.slack.com/docs/T037US21Q2X/F0C2H8RQVN2) and the linked review batch. These links contain the live records; this test record does not duplicate personal contact data or the full meeting transcript.
 
-Still unverified: independent audio/speaker validation, owner responses, confirmed task creation/reuse/readback, uncertain-create and partial-failure recovery, concurrent-writer handling, and recurring/provider deployment. The pilot demonstrated transcript retrieval and text review, notes persistence and maintenance of one review batch; the complete confirmation-to-Asana path has not yet run.
+At the end of the 18 September source-review pass, owner responses and task capture had not yet been observed. Later results below supersede that status without changing the initial run history.
+
+## Observed follow-up — 19–21 September 2026
+
+The current [review batch](https://dcau.slack.com/archives/C0AEEFTS495/p1789683237845209) records dated dispositions and mappings. The 21 September task reads confirmed the assignee, empty due date, source/item references, owner-confirmation link and bounded scope in both tasks.
+
+| Item | Observed disposition |
+|---|---|
+| H17-03 | Kees's 18 September reply accepted ownership while newsletter-related. The 19 September reconciliation recorded the bounded submission as already performed, based on source-linked intake/contact readback. No new Asana task; contact validation and Mailchimp approval/completion remain separate. This review reused that existing reconciliation evidence. |
+| H17-01 | Anja's [21 September reply](https://dcau.slack.com/archives/C0AEEFTS495/p1789978905108639) confirmed enablement/testing and notification to Kees already done. No new Asana task. |
+| H17-05 / H17-02 scheduling | The same reply confirmed one call and Anja as scheduler, after James tests Claude. [Task 1218705686220498](https://app.asana.com/1/1204854523404532/project/1213240028232976/task/1218705686220498) exists, assigned to Anja without a due date, and is linked from the original review. The task remains incomplete; H17-02's trial/follow-up is not thereby completed. |
+| H17-06 | Anja confirmed one remaining guidance rollout excluding completed Logistics guidance. [Task 1218699908671102](https://app.asana.com/1/1204854523404532/project/1213240028232976/task/1218699908671102) exists, assigned to Anja without a due date, and is linked from the review. Completion remains unverified. |
+| H17-02 / H17-04 | Preserve the remaining James trial/follow-up and first-task selection questions; do not close them because scheduling was captured or another test is planned. |
+
+Read-only inspection on 21 September found the existing **Monitor validation queue** automation enabled on its hourly schedule, with explicit 19 September coverage for this thread and instructions to read replies without requiring a mention. Configuration is evidenced; the task records do not establish which scheduled invocation created them or prove automatic latency/reliability. No new automation or schedule was created by this PR update.
+
+The delay exposed a useful late-reconciliation case and did not invalidate the successful bounded captures. Still unverified: independent audio/speaker validation, new-meeting registration and automatic end-to-end processing, repeat-run duplicate avoidance after capture, uncertain-create/partial-failure recovery and concurrent-writer handling.
+
+## Next bounded meeting test
+
+1. On an explicit request for the next meeting, identify its published canvas and source thread. Verify the selected writer's edit permission; if missing, request the Share Canvas access step and verify recovery.
+2. Review the transcript and patch the original notes; read back changes and publish one source-linked review batch with stable references, proposed owners/destinations and uncertainties. State the actual processing mode.
+3. Register that authorised batch in the existing monitor's current scope/lineage and verify registration. Do not create a new reminder automation or infer general ingestion.
+4. Ask owners to review shortly after publication. Process one genuine scoped confirmation without requiring a bot mention; preserve already-done, correction, defer and silence outcomes independently.
+5. Verify the resulting Asana task and original-thread mapping. Record publication, owner reply, detection and verified capture times where available; leave missing clocks unknown.
+6. Re-run the same batch and verify that the existing task mapping is reused, with no duplicate task, review post or reminder. Keep unexecuted recovery scenarios unverified.
+
+Success for this next test means the confirmed item completes that handoff and survives the repeat run. It does not require all meeting items or their underlying operational work to be completed.
 
 ## Recording a live result
 

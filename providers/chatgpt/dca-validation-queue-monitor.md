@@ -95,6 +95,16 @@ Routing rules:
 - do not publish routine polling, silence, unchanged states, repeated detection, or implementation activity without a material validation transition or blocker;
 - DCA Reality Watch publication remains governed by `dca-reality-watch.md` and its scope-based routing. Do not reroute Reality Watch publications into the validation queue; cross-link only when a validation handoff materially affects a published Watch.
 
+## Registered meeting-action batches
+
+The existing hourly monitor may observe and route explicitly authorised meeting-action batches through [the meeting capture contract](../../workflows/meeting-actions-to-asana.md). Read registered source threads and current notes/mappings each assessment, including replies without a bot mention; retain pending items across runs. Dispatch only within the recorded batch authority to one designated writer. Record a blocked handoff if writer access or dispatch is unavailable.
+
+On 21 September 2026, read-only task inspection verified that **Monitor validation queue** was enabled and its prompt already included the 17 September Structural Alignment pilot (channel `C0AEEFTS495`, parent `1789639652.309889`) under explicit 19 September coverage. This is existing bounded coverage, not general recurring meeting ingestion. The current task configuration and source thread govern its scope and dispositions; do not replay old starting-state questions.
+
+No bot mention is required for a reply to a registered batch, but processing is subject to the current hourly invocation rather than instant delivery. Canvas edit access must be checked for the actual writer; sharing access does not trigger ingestion. A new bounded test requires its source thread, review link, item references and writer to be registered under an explicit request. Verify registration before promising monitoring. Preserve the current schedule, measurement bindings, provider contact window and daily reminder ceiling.
+
+Repository merge does not create a trigger or broaden the task's monitored scope. Verify scheduled detection, authorised dispatch, task readback and source-thread mapping separately before claiming automatic capture for a new batch.
+
 ## Handoff and persistence requirements
 
 When a candidate becomes sufficiently established, the runtime must:
