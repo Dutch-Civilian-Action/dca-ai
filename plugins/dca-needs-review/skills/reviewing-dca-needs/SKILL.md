@@ -20,6 +20,11 @@ redefine the workflow here.
    workspace and base ID, never by name similarity.
 3. Read the routed Need records and their recorded sources before
    asking the reviewer anything they already answered.
+4. Establish which project or operational scope is being reviewed
+   before asking about priority or work selection: from the routed
+   Project record and its linked Needs, from the project context the
+   surface already carries, or by asking the reviewer. Do not assume
+   a scope, and state the one in use.
 
 ## Conversation shape
 
@@ -28,6 +33,12 @@ redefine the workflow here.
 - A few relevant questions per turn, drawn from the workflow's
   question set. Update the working understanding as answers arrive;
   do not repeat answered questions.
+- Ask priority and work-selection questions for the established
+  scope, and record the answers as that scope's decisions. When a
+  Need is linked to more than one project, say so, treat a pause or
+  deferral as this scope's work only — the Need and the other
+  projects' work stay as they are — and note that the other
+  projects' work decisions were not assessed.
 - Distinguish the reviewer's operational knowledge from assumptions
   and from facts requiring confirmation by a named other person or
   partner. Never invent quantities, urgency, rationale or approval.
@@ -36,11 +47,16 @@ redefine the workflow here.
 
 ## Output
 
-On request, produce the workflow's review summary: existing Need IDs,
-proposed clarifications, proposed priorities and work statuses (as
-proposals), unresolved questions with the appropriate reviewer, and
-possible new Needs listed separately as proposals with rationale and
-source.
+On request, produce the review summary as the workflow's output
+contract defines it: state the scope, then one entry per existing
+Need and, separately, per possible new Need. Lead each entry with the
+readable need name and a short operational rationale; then the
+proposed priority and work decision with its reason and scope, marked
+as a proposal; then the supporting sources, attributing the
+reviewer's own input to them by name and review date; then what is
+still uncertain and who can resolve it. Put the record ID after the
+name, as a reference, not as the heading. Kees or Anja should be
+able to read and act on the summary without knowing the database.
 
 ## Boundaries
 

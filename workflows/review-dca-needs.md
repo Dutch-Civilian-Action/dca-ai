@@ -26,6 +26,11 @@ authority the executing surface already has, unchanged.
   asking the reviewer anything already answered there.
 - `context/source-routing.md` for source selection;
   `context/airtable-workspace-map.md` for destination identity.
+- The project or operational scope under review, established from
+  existing context — the routed Project record and its linked Needs,
+  the executing surface's standing project context, or the reviewer's
+  statement of what is being reviewed — before any priority or
+  work-selection question is asked. Do not assume a scope.
 - The responsible reviewer's operational knowledge, captured during
   the review.
 
@@ -42,9 +47,10 @@ For each Need, establish or refine:
 6. Is there a real timing constraint? If so, what creates it and by
    when?
 7. What remains unknown, and who can establish it?
-8. What priority does the reviewer propose, and why?
-9. Should this be actively worked on now, deferred, or paused?
-   What would allow paused work to resume?
+8. Within the scope under review, what priority does the reviewer
+   propose, and why?
+9. Within that scope, should work on this Need be active now,
+   deferred, or paused? What would allow paused work to resume?
 
 ## Required distinctions
 
@@ -56,6 +62,18 @@ Keep these decisions separate throughout:
 - **Work selection** — whether it is actively being addressed.
 - **Priority** — why it should receive attention relative to other
   work.
+- **Scope of the decision** — which project or operational scope a
+  priority or work-selection decision belongs to.
+
+Priority, active work, deferral and pausing are decisions of a
+project or operational scope about a Need, not properties of the Need
+itself. A Need may support more than one project, and each holds its
+own work decision. Pausing or deferring one project's work on a
+shared Need does not pause the Need, does not change its lifecycle,
+and says nothing about another project's work on it. Carry the
+established scope into every such proposal, and state it; where a
+Need supports other projects, note that their work decisions were not
+assessed in this review.
 
 Distinguish the reviewer's operational knowledge from assumptions
 and from facts requiring confirmation by a named other person or
@@ -68,14 +86,30 @@ validation or fulfilment state.
 
 ## Output contract
 
-On request, a review summary containing:
+On request, a review summary that a responsible person can act on
+without database knowledge. It names the scope under review, then
+lists existing Needs, and separately possible new Needs listed as
+proposals after checking for an existing matching requirement.
 
-- existing Need IDs with proposed clarifications;
-- proposed priorities and work statuses, marked as proposals;
-- unresolved questions, each with the appropriate reviewer or
-  confirming party;
-- possible new Needs, listed separately as proposals with rationale
-  and source, after checking for an existing matching requirement.
+For every entry, existing or proposed new, the summary gives:
+
+- a readable need name and a concise operational rationale — what is
+  required, for whom, and why a gap remains;
+- proposed clarifications to what is recorded, where any;
+- the proposed priority and work decision (active, deferred, paused),
+  each with its reason and the scope it applies to, marked as a
+  proposal;
+- the supporting sources: recorded sources by reference, and the
+  reviewer's own input attributed to the named reviewer and the
+  review date, kept distinct from facts a named other person or
+  partner still has to confirm;
+- the remaining uncertainty, and who can resolve each item.
+
+Record IDs are carried for traceability but stay secondary: they
+follow the readable name rather than replace it, and never serve as
+the only way to tell entries apart. Unresolved questions may be
+gathered in one closing list as well, each with its resolver, but
+every entry keeps its own uncertainty visible.
 
 A review request does not authorise record changes. Proposed new
 Needs remain proposals; the workflow does not create them or direct
