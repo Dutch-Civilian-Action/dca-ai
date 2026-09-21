@@ -68,9 +68,11 @@ See `../runtime-selection.md` for runtime/provider choice and `model-selection.m
 - [`prompts/goods-reconstruction/DCA-Goods-Reconstruction-Notes-for-Kees.md`](prompts/goods-reconstruction/DCA-Goods-Reconstruction-Notes-for-Kees.md) and the [complete Claude prompt](prompts/goods-reconstruction/DCA-Goods-Reconstruction-Claude-Prompt.md) — source preparation and bounded goods-history reconstruction following the 16 September 2026 huddle. These apply the shared reconstruction workflow; execution and canonical promotion are separate from publishing the instructions. Original evidence stays in the linked shared Drive locations.
 - `model-selection.md` — current Claude model and effort guidance by work type.
 - `projects/winter-project.md` — prepared Winter Project Chat handover and fresh-session acceptance checks; runtime activation remains pending.
+- `projects/fundraising-outreach.md` — manual setup guide for the `DCA — Fundraising & Outreach` Chat project: name, description, the minimal project-instruction block, required repositories, plugins, connectors and knowledge, sharing with Bas as *Can view*, and the checks that require his own session. Intended configuration only; no part of it is deployed.
 - `tag/access-bundles.md` — current Claude Tag access-bundle and channel-scope design.
 - `../../plugins/dca-core/` — packaged DCA source-routing and repository-navigation adapters for Claude runtimes.
 - `../../plugins/dca-relationship-data/` — packaged Claude implementation of the Relationship Data capability.
+- `../../plugins/dca-fundraising-outreach/` — packaged Claude implementation of the fundraising and outreach preparation capability, with progressive references for audiences, campaign selection and funding asks.
 
 The packaged plugin skill is the maintained Claude implementation of Relationship Data. Do not maintain a second mirrored `SKILL.md` under `providers/claude/skills/`.
 
