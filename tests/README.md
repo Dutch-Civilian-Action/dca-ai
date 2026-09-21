@@ -16,6 +16,8 @@ Current skill tests:
 
 Current workflow tests:
 
+- `workflows/meeting-actions-to-asana.md` — real huddle case and acceptance scenarios for item-scoped approval, ownership, uncertainty, duplicate task handling, single-writer recovery and deployment-status honesty; includes observed supervised captures and already-done reconciliation; unexecuted recovery and automatic-processing cases remain unverified.
+
 - `workflows/full-historical-domain-reconstruction.md` — standalone final synthesis, reader-usable source guide, unpublished-process-language separation, Establish-task reuse, and delta-only validation handoff.
 - `workflows/maintain-dca-reality.md` — Reality Watch behaviour, material-change detection, authority boundaries, uncertainty preservation, capability-health findings, validation-request deduplication, and provider portability.
 - `workflows/monitor-validation-queue.md` — state-based unresolved-queue continuity, retention of older items, complete owner-specific actionable reminders, direct review links, reminder idempotency, and separation from reconciliation and publication.
