@@ -137,7 +137,9 @@ On every invocation:
 
 Reconciliation transitions and reminder evaluation are separate capabilities.
 
-A runtime may send reminders only when its current implementation and governance permit it. When enabled:
+A runtime may send validation inquiries or reminders only when its current implementation and governance permit contact. Enforce the provider's contact window and explicitly authorised recipient exceptions at delivery time. A deferred contact stays in the unresolved queue with its existing owner and lineage; deferral is not closure, failed delivery, or a publication event. Reassess current evidence and contact history when delivery becomes eligible, without accumulating catch-up messages. Observation and supported reconciliation continue independently of contact eligibility.
+
+When reminders are enabled:
 
 - derive each person's reminder from their complete current actionable unresolved list, including older items, rather than only newly detected or recently changed candidates;
 - state each bounded item briefly, name the one atomic confirmation, correction, or evidence needed, and link directly to the exact authoritative review location;
@@ -148,7 +150,7 @@ A runtime may send reminders only when its current implementation and governance
 - keep blocked or currently non-actionable items in the unresolved queue, but do not ask an owner to act until the dependency or review surface is actionable;
 - stop or reroute reminders when the item is resolved, corrected, withdrawn, reassigned, or no longer belongs to that person.
 
-Do not invent due dates, fallback reviewers, escalation, disagreement, or lateness. Reminder cadence and delivery surfaces belong in the provider implementation record. A reminder is not organisational evidence, a validation-state transition, or a publication event.
+Do not invent due dates, fallback reviewers, escalation, disagreement, or lateness. Contact windows, named recipient exceptions, reminder cadence, and delivery surfaces belong in the provider implementation record. A reminder is not organisational evidence, a validation-state transition, or a publication event.
 
 ## Failure behaviour
 

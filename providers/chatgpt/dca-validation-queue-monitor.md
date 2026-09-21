@@ -39,7 +39,9 @@ No material state change means no publication.
 
 Reminder surface: **direct Slack DM from DCA Bot to the verified operational owner**
 
-Reminder ceiling: **at most one DM per owner per Europe/Amsterdam calendar day**
+Validation DM delivery days: **Monday–Friday, Europe/Amsterdam; only verified Anja may receive validation DMs on Saturday or Sunday**
+
+Reminder ceiling: **at most one DM per owner per Europe/Amsterdam calendar day**, including Anja
 
 Reminder contents: **the owner's complete current actionable unresolved validation list, including older items**
 
@@ -135,6 +137,18 @@ Automated bounded validation reminders are **active in the current ChatGPT monit
 
 On every hourly run, the monitor must reconstruct each verified owner's complete unresolved-validation queue from represented state and current authoritative lineage, regardless of when an item was first discovered. An older item remains in the queue until authoritative evidence establishes validation and required reconciliation, correction or withdrawal, rerouting, changed ownership, or another explicit closure state.
 
+### Validation DM contact window
+
+Before sending any validation DM, evaluate the current day in **Europe/Amsterdam**. This applies to initial validation inquiries, requests to confirm revised wording, and reminders, including delivery through another runtime on the monitor's behalf.
+
+- **Monday–Friday:** normal owner, review-surface, preflight, availability and reminder-cadence rules apply.
+- **Saturday–Sunday:** do not send validation inquiries or reminders to any owner except **verified Anja**. Resolve her existing verified account; a display-name match alone is insufficient. This exception permits contact only about her own explicitly authorised validation scope. It does not make her a substitute recipient or chaser for other owners.
+- Retain each deferred item and its owner in the unresolved queue and existing lineage. Contact-window deferral is not closure, reassignment, failed delivery, or a material validation-state change.
+- Reassess deferred items on the next eligible weekday against current evidence, replies, ownership, review links and DM history. Send only if still actionable and due, within one consolidated owner reminder and the existing daily ceiling; never accumulate or replay one DM per missed day.
+- Evaluate the window again at actual send time. A Friday preparation does not authorise Saturday delivery, and a UTC day boundary does not override the Europe/Amsterdam day.
+
+Hourly observation, processing of incoming responses, supported reconciliation, daily measurement and already-authorised material-event channel publication continue every day. The contact window does not waive confirmation of revised wording or authorise extra messages or channel requests to bypass a deferred DM. All existing publication boundaries and the one-reminder-per-owner-per-day ceiling remain in force, including for Anja.
+
 For each owner:
 
 - send no more than one reminder DM in a Europe/Amsterdam calendar day;
@@ -185,6 +199,7 @@ Testing concerns include:
 - continuity of older unresolved items across runs with no new activity;
 - complete owner-specific reminder contents and direct review links;
 - one-DM-per-owner-per-day enforcement and reminder delivery lineage;
+- weekday-only validation DM delivery, the verified Anja-only weekend exception, Europe/Amsterdam day boundaries, and fresh reassessment after deferral;
 - strict separation between private reminder delivery and event-based `#dca-validation-queue` publication.
 
 ## Runtime portability

@@ -222,7 +222,7 @@ Provider implementation must not duplicate or silently override these rules. Whe
 
 This implementation remains part of System & Structure development and live organisational testing.
 
-Operational publication is active. Validation-triggered reconciliation is active through hourly condition watching. Bounded validation-reminder DMs are active in the current validation-monitor configuration: one complete actionable unresolved list per verified owner, at most once per Europe/Amsterdam day. See `dca-validation-queue-monitor.md`; this does not widen escalation or channel-publication authority.
+Operational publication is active. Validation-triggered reconciliation is active through hourly condition watching. Bounded validation-reminder DMs are active in the current validation-monitor configuration: one complete actionable unresolved list per verified owner, at most once per Europe/Amsterdam day. Validation DM inquiries and reminders are sent only Monday–Friday in Europe/Amsterdam, except that verified Anja may also receive them on weekends for her own authorised scope. Deferred items remain open and are reassessed on the next eligible weekday; observation and reconciliation continue daily. See `dca-validation-queue-monitor.md`; this does not widen escalation or channel-publication authority.
 
 Testing concerns include finding quality, routing, usefulness, source coverage, correct recognition of validation transitions, target freshness, idempotency, maintained-document persistence, recovery after failed or incomplete runs, closure behaviour, event-to-reconciliation latency, and whether outputs are actually used by DCA.
 

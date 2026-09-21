@@ -85,6 +85,40 @@ Expected:
 - the established item leaves the unresolved queue only after the canonical closure criteria are met;
 - the remaining unresolved items continue across later runs.
 
+## Test 6 — provider contact window and named exception
+
+Input condition:
+
+- the provider permits validation DMs Monday–Friday in Europe/Amsterdam, with verified Anja as the sole weekend exception;
+- on Saturday or Sunday, another verified owner has an actionable initial inquiry, a revised-wording confirmation request, and an older reminder due;
+- Anja has an actionable validation item within her own authorised scope.
+
+Expected:
+
+- no validation DM is sent to the other owner, including through another runtime on the monitor's behalf;
+- the deferred items and original owner remain in the unresolved queue and existing lineage, without closure, reassignment, or a failed-delivery event;
+- Anja may receive only her own actionable request subject to normal preflight, availability and daily reminder ceiling; a display-name match alone does not establish the exception;
+- another owner's request is not redirected to Anja or a channel as a workaround;
+- hourly observation, incoming-response processing, reconciliation, enabled daily measurement and eligible material-event publications continue.
+
+## Test 7 — eligible-day reassessment and local-day boundary
+
+Input condition:
+
+- a reminder is prepared on Friday but would be sent on Saturday in Europe/Amsterdam;
+- an older item is settled during the weekend and another remains actionable;
+- the next eligible weekday run reconstructs the owner's complete queue.
+
+Expected:
+
+- the actual Europe/Amsterdam send day controls eligibility, not preparation time or UTC weekday;
+- for the ChatGPT profile, Friday 25 September 2026 at 22:30 UTC is Saturday locally and suppresses a non-exempt owner's DM; Sunday 27 September 2026 at 22:30 UTC is Monday locally and passes only the day gate;
+- the settled item is not re-asked;
+- the still-actionable item is included with the owner's other current actionable unresolved items only when a reminder remains due after checking DM history;
+- no per-missed-day catch-up messages are sent, and an existing same-day reminder still suppresses another DM.
+
+Tests 6–7 are behavioural specifications; adding them is not evidence of a completed scheduled weekend execution.
+
 ## Pass criterion
 
 The runtime reconstructs a complete state-based unresolved queue on every invocation, retains older items until authoritative closure or rerouting, reminds only through verified bounded review paths under provider cadence, and never treats reminder delivery as organisational truth or a publication event.
