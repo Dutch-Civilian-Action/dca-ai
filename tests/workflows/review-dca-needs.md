@@ -129,9 +129,10 @@ runtime:
 
 - The workflow, the Claude adapter and this file were read together
   for consistency: the adapter defers to the workflow for review
-  meaning and does not restate the question set, distinctions or
-  output contract; every pass condition above traces to a statement
-  in the workflow, or, for triggering and conversation shape, in the
+  meaning, does not restate the question set or distinctions, and
+  summarises the output contract's elements without redefining
+  them; every pass condition above traces to a statement in the
+  workflow, or, for triggering and conversation shape, in the
   adapter.
 - The plugin manifest and marketplace entry pass `claude plugin
   validate`.
