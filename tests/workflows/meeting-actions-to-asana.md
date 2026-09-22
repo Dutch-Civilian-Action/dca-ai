@@ -59,9 +59,12 @@ Use the 17 September 2026 huddle source and H17-01–H17-06 references in the co
 | Notes are reordered or edited on rerun | Keep original item references and confirmation lineage; no duplicate review batch or tasks. |
 | Existing validation item already covers a question | Link/reuse it; do not reopen settled validation or create a second reminder stream. |
 | Task capture succeeds | Do not execute the underlying subscription, configuration change or calendar invitation without its own authority. |
-| Published canvas is readable but DCA Bot has no edit permission | Mark notes maintenance blocked, retain the proposed patch in the existing thread, request Share Canvas → DCA Bot → edit access from an authorised editor, and recheck. Anja's access or attendance cannot stand in for writer access. |
-| A registered batch receives an item-scoped owner reply without a bot mention | The dedicated meeting-workflow runner reads the thread and performs the authorised capture; no mention or redundant confirmation is required. Record detection separately from task persistence. |
-| Canvas is shared or bot is mentioned in an unregistered meeting | Do not infer general recurring ingestion or a task-capture grant; establish the bounded processing request and registration. |
+| Published notes are readable but the selected writer identity has no edit permission | Mark notes maintenance blocked, retain the proposed patch in the existing thread, ask an authorised editor to share the notes with that identity with edit rights, and recheck. Anja's access, a human participant's access or attendance cannot stand in for writer access. The historical pilot's DCA Bot check is one instance of this rule, not the rule itself. |
+| A registered batch receives an item-scoped owner reply | Whether the executor receives it follows the selected runtime's verified invocation model. Where the runtime polls or watches a registered thread, it reads the reply and performs the authorised capture without redundant confirmation. Where the runtime acts only on explicit invocation, the reply is not detected until the executor is invoked, and the batch must already have told owners so. Record detection separately from task persistence. |
+| Notes are shared or the executor is invoked in an unregistered meeting | Do not infer general recurring ingestion or a task-capture grant; establish the bounded processing request and registration. |
+| The invocation model of the selected runtime has not been observed | Assume the initial request and every subsequent owner reply require explicit invocation; state that in the batch. Do not claim automatic detection, and do not tell owners a plain reply suffices. Vendor documentation is a design assumption, not an observed workspace fact. |
+| A general requirement names one provider's identity, schedule or channel | Restate it against the actual executor and its verified permissions, and keep the provider's own identity, cadence, connectors and status in its record under `providers/`. Historical pilot references may stay where they accurately describe what happened, clearly separated from the general requirement. |
+| No executor is active, or the selected executor lacks a required connector | Keep the workflow's deployment status unverified and preserve the exact capability gap. Repository description of an intended setup is not configuration, and configuration is not a verified run. |
 | A valid reply arrives several days later, after the underlying action was completed | Recheck current work and preserve a supported already-done outcome without creating obsolete outstanding work. Age alone does not invalidate the reply. |
 | Detection succeeds but the designated capture writer is unavailable | Preserve a confirmed-but-blocked handoff and its exact capability gap; do not falsely mark captured or silently wait for a broad Reality Watch sweep. |
 | A new meeting test starts while older candidates are pending | Retain old item references and dispositions in their original thread; do not reset or drop them. |
@@ -108,10 +111,10 @@ The delay exposed a useful late-reconciliation case and did not invalidate the s
 
 ## Next bounded meeting test
 
-1. On an explicit request for the next meeting, identify its published canvas and source thread. Verify the selected writer's edit permission; if missing, request the Share Canvas access step and verify recovery.
+1. On an explicit request for the next meeting, identify its published canvas and source thread. Verify the selected writer identity's edit permission; if missing, request the notes-share step for that identity and verify recovery.
 2. Review the transcript and patch the original notes; read back changes and publish one source-linked review batch with stable references, proposed owners/destinations and uncertainties. State the actual processing mode.
-3. Register that authorised batch in the dedicated meeting runner's current scope/lineage and verify registration. Do not create a new reminder automation or infer general ingestion.
-4. Ask owners to review shortly after publication. Process one genuine scoped confirmation without requiring a bot mention; preserve already-done, correction, defer and silence outcomes independently.
+3. Register that authorised batch in the designated executor's current scope/lineage and verify registration. Do not create a new reminder automation or infer general ingestion.
+4. Ask owners to review shortly after publication, using the invocation step the selected runtime actually requires. Process one genuine scoped confirmation and record what invocation it needed; preserve already-done, correction, defer and silence outcomes independently.
 5. Verify the resulting Asana task and original-thread mapping. Record publication, owner reply, detection and verified capture times where available; leave missing clocks unknown.
 6. Re-run the same batch and verify that the existing task mapping is reused, with no duplicate task, review post or reminder. Keep unexecuted recovery scenarios unverified.
 
@@ -128,3 +131,13 @@ Acceptance evidence must distinguish static contract review, read-only scenario 
 The validation monitor's operational H17 block was replaced with test-validation-only instructions and read back; its schedule was unchanged. A separate **Process meeting actions** hourly condition watch was created and read back enabled, with the scoped prompt verified. GitHub, DCA Bot Slack and Asana read preflights succeeded. The [provider binding](../../providers/chatgpt/meeting-actions-to-asana.md) records the task identity.
 
 This verifies configuration separation, not a successful scheduled execution, latency or recovery. No operational action was created or completed by this configuration change. The next bounded test above remains necessary.
+
+## Provider separation — 22 September 2026
+
+The contract's general requirements were restated against the selected executor and its verified permissions: notes-edit access is required for whichever identity performs the write, the executor's identity, invocation model, cadence and connectors live in its provider record, and no schedule or Slack channel is required by the contract itself. DCA Bot and ChatGPT references were kept only where they describe the historical pilot. The validation-queue boundary is unchanged: it validates the workflow test and neither operates nor blocks the workflow.
+
+No executor is currently active. The ChatGPT runner remains paused. A [Claude implementation record](../../providers/claude/meeting-actions-to-asana.md) now states what a Claude executor would need — Claude Tag channel identity, per-meeting notes-edit share to that identity, an Asana connector that no current access bundle carries, and no scheduled trigger — as proposed configuration only.
+
+Invocation was treated as a verification item rather than an assumption. Claude Tag is tagged into a thread with `@Claude`, and the reachable first-party documentation describes mention-driven invocation only; Anthropic's Claude Tag setup pages were not reachable from the session recording this (egress-blocked), so both the initial request and each subsequent owner reply are assumed to require explicit invocation until observed otherwise in DCA's own workspace. That observation is an open item in the next bounded test, not a result.
+
+This is a documentation change. It configures nothing, verifies nothing and does not change any existing confirmation, task or mapping.
