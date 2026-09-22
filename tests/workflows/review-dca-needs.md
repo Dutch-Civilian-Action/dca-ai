@@ -141,7 +141,7 @@ Static checks establish that the contract is stated consistently.
 They are not evidence that any runtime honours it.
 
 Acceptance for tests 1–7 remains pending on every surface. The
-reported Claude Chat run below supplies partial evidence and
+reported Claude Chat runs below supply partial evidence and
 findings, not a complete pass. Record each run here with surface,
 actor, date, loaded revision, observed result and remaining
 limitations; a pass on one surface stays pending for the others.
