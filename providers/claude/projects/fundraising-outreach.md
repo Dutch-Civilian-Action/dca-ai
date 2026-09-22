@@ -120,6 +120,24 @@ in scope, and when follow-through needs a record added or corrected, that capabi
 route carrying the identity, provenance and confirmation rules. There is no separate handoff
 step and no parallel contact store.
 
+**Plugins are installed on the account, not on the project.** There is no project-level plugin
+control in the documented project interface: the project screen carries instructions,
+knowledge, sharing and whatever connector configuration the surface provides, and nothing that
+adds or removes a plugin. Install from Claude itself — **Customize → Plugins → Browse plugins
+→ Install** in web chat, **Customize** within the Cowork tab — then return to the project.
+Step 2 of the build order happens outside the project, before or after creating it.
+
+**Marketplace prerequisite, currently unrecorded.** These plugins are not public. They are
+published through this repository's marketplace, `.claude-plugin/marketplace.json` in
+`Dutch-Civilian-Action/dca-ai`, so a DCA plugin appears under *Browse plugins* only once that
+marketplace is connected to the account or organisation. The DCA Core and DCA Relationship Data
+plugins are already reachable from at least one DCA Cowork session, so a working route exists —
+but **how that marketplace was connected is not recorded anywhere in this repository**, and this
+guide does not establish it. If a DCA plugin is visible under *Browse plugins*, this capability
+comes from the same source and may need the marketplace refreshed before the newly added entry
+appears. If no DCA plugin is visible, resolve that first: it blocks installation on every
+surface, and nothing in the project configuration substitutes for it.
+
 Three separate things, which attachment does not merge:
 
 - **Behaviour** — the plugin supplies how the work is done. Attaching it grants no access and
@@ -177,7 +195,10 @@ That *Can view* behaves this way on DCA's current plan is part of check 1.
 ## Build order
 
 1. Create the project; set the name and description above.
-2. Install the three plugins (web chat: **Customize → Plugins → Browse plugins → Install**).
+2. Install the three plugins **on the account, outside the project** — web chat:
+   **Customize → Plugins → Browse plugins → Install**; Cowork: **Customize** within the
+   Cowork tab. There is no plugin control inside a project. This step depends on the DCA
+   marketplace already being connected to the account; see *Required plugins* above.
 3. Sync both repositories, read-only.
 4. Connect Mailchimp, Gmail, Drive and Airtable; Calendar only if scheduling is in scope.
 5. Inspect credentials before use: the Airtable identity's scopes and the Mailchimp account
@@ -254,10 +275,15 @@ facts, not observations of DCA's account:
 **Unresolved, and not resolved by this guide:**
 
 - Whether a user-installed plugin is active inside a project chat. The project documentation
-  does not mention plugin, skill or connector settings inside a project. Check 2 is the only
-  thing that settles it, and
+  does not mention plugin, skill or connector settings inside a project — which also means
+  there is no documented way to add one *to* a project; installation is account-level. Check 2
+  is the only thing that settles whether an account-installed plugin reaches a project chat, and
   [If the packaged skill does not load](#if-the-packaged-skill-does-not-load) covers both
   outcomes.
+- How the DCA plugin marketplace is connected to a Claude account or organisation. A working
+  route exists — DCA Core and DCA Relationship Data are reachable from a DCA Cowork session —
+  but the route itself is not recorded in this repository and was not established by this guide.
+  It is a prerequisite for installing any DCA plugin on any surface.
 - Connector availability inside projects, and which Mailchimp account and audience a project's
   connector is attached to. Checks 1 and 3 settle it for a given account.
 
