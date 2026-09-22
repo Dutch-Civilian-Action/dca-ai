@@ -250,14 +250,14 @@ unverified.
 
 ### Winter Chat — fresh-session run, 22 September 2026 (in progress)
 
-- Surface and actor: Anja, fresh chat in the shared Winter Project,
-  Claude Chat. Model/effort per model-selection.md default (Sonnet
-  5, Medium) — confirmed by the operator's selection; exact send
-  time and timezone not captured. Conversation link not captured.
-  Assessment performed in a separate configuration chat against this
-  specification; corrective input and environment repair are marked
-  below wherever they occurred.
-- Loaded revision: the skill files carry no version, revision or
+- **Surface and actor:** Anja, fresh chat in the shared Winter
+  Project, Claude Chat. Model/effort per model-selection.md default
+  (Sonnet 5, Medium) — confirmed by the operator's selection; exact
+  send time and timezone not captured. Conversation link not
+  captured. Assessment performed in a separate configuration chat
+  against this specification; corrective input and environment
+  repair are marked below wherever they occurred.
+- **Loaded revision:** the skill files carry no version, revision or
   date metadata (frontmatter is name + dca-workflow only), so the
   loaded revision is unverifiable from the runtime — a structural
   gap, not a capture omission (finding C below). The runtime
@@ -266,7 +266,7 @@ unverified.
   reviewing-dca-needs (finding D). Airtable reads were live (Needs
   lastModifiedTime 2026-09-16T08:53:37Z on all five records,
   observed).
-- Evidence basis: full first response with visible tool-activity
+- **Evidence basis:** full first response with visible tool-activity
   trace (screenshot captured); the runtime's own capability
   self-report in answer to a post-hoc meta-question; subsequent
   turns pasted into the configuration chat. Human-run and
@@ -275,25 +275,25 @@ unverified.
 
 Test 1 — cold trigger: FAIL on initial acceptance, diagnosed.
 
-- Met: routed reads first (trace shows source-routing/authority
+- **Met:** routed reads first (trace shows source-routing/authority
   searches, shared-structure-build, Airtable schema, live Need
   records, then Slack channel/thread); scope established from
   standing context and stated; Winter-scoped work proposal
   explicitly separated from the Needs' shared validation and
   fulfilment state; no redundant scope clarification.
-- Unmet: all five Needs presented at once with a prioritisation, not
-  one at a time; record IDs in Need headings and base/table IDs and
-  technical statuses inline (recorded finding 1 reproduced,
+- **Unmet:** all five Needs presented at once with a prioritisation,
+  not one at a time; record IDs in Need headings and base/table IDs
+  and technical statuses inline (recorded finding 1 reproduced,
   uncoached); no questions asked from the set — the response ended
   in action offers.
-- Diagnosis (from the runtime's own post-hoc self-report): the
+- **Diagnosis (from the runtime's own post-hoc self-report):** the
   reviewing-dca-needs skill never loaded. The per-Need structure was
   echoed from the live project instructions' description of the
   skill; one knowledge search for the SKILL.md missed and was not
   retried. TRIGGERING failure, not adapter-adherence failure — the
   adapter was never in play. The conversation-shape failures above
   therefore cannot yet be charged to the adapter's wording.
-- Recorded-findings recheck within this response: finding 1
+- **Recorded-findings recheck within this response:** finding 1
   reproduced (IDs exposed); finding 6 recurred (the ~2-month
   asking-comfort limit on Beelen/Kitemana was again treated as a
   supply cadence with an asserted usage excess against it); findings
@@ -302,8 +302,8 @@ Test 1 — cold trigger: FAIL on initial acceptance, diagnosed.
   surfaced with dataset-prerequisite framing, visible in the trace
   as "Flagging unrecorded supply evidence before updating shared
   records").
-- Status: Test 1 remains FAILED pending a fresh-session retest after
-  correction. Fresh-session consistency of the recorded run's
+- **Status:** Test 1 remains FAILED pending a fresh-session retest
+  after correction. Fresh-session consistency of the recorded run's
   coached improvements is now partially answered: finding 1 and
   finding 6 recur uncoached; findings 2 and 3 held.
 
@@ -348,26 +348,26 @@ remain untested.
 
 New findings (this run):
 
-- A. Trigger miss: a cold request matching the skill description
+- A. **Trigger miss:** a cold request matching the skill description
   verbatim did not fire the skill; the runtime satisfied the request
   from the project instructions' method paraphrase plus repository
   fragments, while reporting routed reads honestly.
-- B. Per-project knowledge-index divergence: the workflow file
+- B. **Per-project knowledge-index divergence:** the workflow file
   retrievable in one project's index and persistently missed in
   another's the same day; suspected stale sync of the Winter
   project's repository source (verification and refresh are an
   operator action, outside this record).
-- C. No revision identifiers in skill files: loaded-revision capture
-  is impossible at runtime until the SKILL.md carries version
-  metadata.
-- D. Duplicate provisioning observed at file level: two
+- C. **No revision identifiers in skill files:** loaded-revision
+  capture is impossible at runtime until the SKILL.md carries
+  version metadata.
+- D. **Duplicate provisioning observed at file level:** two
   byte-identical SKILL.md copies under distinct plugin paths on the
   runtime filesystem; account-level mirror of the kind the plugin
   README forbids in-repo; plausible contributor to the trigger miss.
-- E. Adapter-alone under-coverage: without the workflow file the
+- E. **Adapter-alone under-coverage:** without the workflow file the
   question set degrades to a subset (Q1/Q4/Q7 observed); the
   anti-duplication design makes workflow reachability load-bearing.
-- F. Paraphrase hazard: the live project instructions describe the
-  skill's method richly enough that a non-triggered runtime produced
-  a convincing partial imitation; a thinner pointer would fail
-  louder.
+- F. **Paraphrase hazard:** the live project instructions describe
+  the skill's method richly enough that a non-triggered runtime
+  produced a convincing partial imitation; a thinner pointer would
+  fail louder.
