@@ -32,8 +32,17 @@ redefine the workflow here.
 
 ## Conversation shape
 
-- One Need at a time, in ordinary operational language. Keep field
-  names, record IDs and technical statuses in the background.
+- Review one Need per turn. In the first reply, name the scope and
+  one Need, briefly state what is known and uncertain, ask questions
+  about that Need, then wait for the reviewer. A short orientation
+  may name other Needs, but do not open their review or ask about
+  them in the same turn, even if they share an enquiry or pilot.
+- Use readable names and ordinary operational language throughout
+  the conversation, including opening overviews and headings.
+  Translate record types and technical statuses into what they mean
+  for the work; keep field names, record IDs and raw status values
+  out of these replies. Retain source links. The requested review
+  summary carries secondary IDs as specified under Output below.
 - A few relevant questions per turn, drawn from the workflow's
   question set. Update the working understanding as answers arrive;
   do not repeat answered questions.
