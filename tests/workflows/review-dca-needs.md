@@ -683,3 +683,77 @@ the same checks. This repository change is not a runtime pass.
 Verification of the revised behaviour in a fresh Winter Chat remains
 pending, with loaded-content evidence where available. Preserve all
 earlier run results; Kees's account and Claude Tag remain separate.
+
+
+### Winter Chat — test-hold closure and Kees's review handoff, 22 September 2026
+
+This entry records a source review of the current Winter Slack threads and
+Kees's shared proposal. It is not a new Claude execution or a complete
+acceptance run. The repository revision inspected was
+`0202a162eae10784b7788d2e0950354e4efaee74`; it is not evidence of either
+actor's loaded revision.
+
+**Observed evidence**
+
+- Anja said at 08:38 CEST that she needed 5–10 minutes for a last test;
+  Kees replied at 08:42 that his Logistics meeting left about 1.5 hours.
+  At 11:03 Anja explicitly [reported the expected result][winter-2209-result]:
+  "Now it's tested. That last shared chat gives the expected results."
+  She then asked Kees to keep his chat shared for later review. The earlier
+  claim that no later Slack confirmation exists is therefore superseded
+  by the current thread. This establishes Anja's reported result and
+  operational handoff, not independently verified acceptance criteria.
+- The [10:57 handoff][winter-2209-handoff] scoped Kees's next work to
+  one-Need-at-a-time review and a summary for joint review. Its follow-up
+  allowed exploring additional Needs as proposals. Record changes and
+  supplier enquiries explicitly require separate approval.
+- At 11:35–11:38 Kees [shared his chat and proposed Needs restructure][winter-2209-proposal-thread],
+  said he was still reading it and might change it, and requested Anja's
+  review. Anja agreed to review the document. This establishes participation
+  and a review handoff; it does not establish approval of the proposal.
+- The [retrieved proposal][winter-2209-proposal] distinguishes five
+  item lines from the dated August request, three requests reported by
+  Kees as relayed by James by telephone, and nine lines based on Kees's
+  judgement. The two packing Needs and conditional gas-heating candidate
+  are left untouched, giving twenty proposed lines in total. It separately
+  proposes two existing-record scope edits, fifteen new records and a
+  category field. It explicitly presents new-record creation and schema
+  change as outside the Winter project's authority. These distinctions
+  are visible in the artifact; their presence does not validate demand,
+  prove source retrieval, or establish that the proposed changes are safe.
+
+**Evidence limits and acceptance**
+
+[PR #55][winter-2209-pr55] merged at 10:27 CEST and changed adapter
+instructions, not runtime evidence. Neither the Slack result statement
+nor the proposal identifies the exact loaded skill/workflow revision.
+The final successful chat is not unambiguously identified by that result
+statement. Full shared-chat transcripts were not accessible through this
+review session's retrieval path.
+
+Accordingly, no new pass is assigned to Tests 1–7 or findings G/H/I/J.
+The proposal supplies limited output evidence relevant to provenance and
+the new-Need proposal boundary, but does not demonstrate the designed
+fact/assumption challenge, duplicate lookup, cold-trigger sequence,
+read-permission behaviour or correction-retention cycle. It is a
+restructure proposal, not evidence of the complete Test 6 summary case.
+Its claim that no records changed or messages were sent remains a claim
+in the output: no tool trace, write audit or independent before/after
+comparison was inspected. Kees's account-specific runtime acceptance
+and Claude Tag remain unverified.
+
+**Bounded disposition**
+
+The morning hold was closed by Anja's later Slack statement for the
+review-preparation scope she explicitly handed over. Kees can continue
+that work under the existing handoff. The immediate outstanding item is
+Anja's review of his proposed Needs changes; the proposal is not approval
+to perform them. No broader retest, schema change, operational record
+write, outreach approval or capability promotion follows from this entry.
+All earlier test results and pending cases retain their recorded status.
+
+[winter-2209-result]: https://dcau.slack.com/archives/C0C48GQDCSC/p1790067805566969
+[winter-2209-handoff]: https://dcau.slack.com/archives/C0C48GQDCSC/p1790067447773879
+[winter-2209-proposal-thread]: https://dcau.slack.com/archives/C0C48GQDCSC/p1790069934402169
+[winter-2209-proposal]: https://docs.google.com/document/d/1VOuuHYpK8_bGP0C5QGORG6qsuJAoAi2vlcTXjTifTiA/edit
+[winter-2209-pr55]: https://github.com/Dutch-Civilian-Action/dca-ai/pull/55
