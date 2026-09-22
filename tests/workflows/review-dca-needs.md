@@ -248,32 +248,35 @@ unverified.
 
 [Winter packaging message]: https://dcau.slack.com/archives/C0C48GQDCSC/p1790015313240559
 
-### Winter Chat — fresh-session run, 22 September 2026 (in progress)
+### Winter Chat — fresh-session run, 22 September 2026 (Test 1)
 
 - **Surface and actor:** Anja, fresh chat in the shared Winter
   Project, Claude Chat. Model/effort per model-selection.md default
-  (Sonnet 5, Medium) — confirmed by the operator's selection; exact
-  send time and timezone not captured. Conversation link not
-  captured. Assessment performed in a separate configuration chat
-  against this specification; corrective input and environment
-  repair are marked below wherever they occurred.
-- **Loaded revision:** the skill files carry no version, revision or
-  date metadata (frontmatter is name + dca-workflow only), so the
-  loaded revision is unverifiable from the runtime — a structural
-  gap, not a capture omission (finding C below). The runtime
-  observed two byte-identical SKILL.md copies on its filesystem:
+  (Sonnet 5, Medium) — reported by the operator; exact send time and
+  timezone not captured. Conversation link not captured. Assessment
+  performed in a separate configuration chat against this
+  specification; corrective input and environment repair are marked
+  below wherever they occurred.
+- **Loaded revision:** the loaded revision was not established in
+  this run. The inspected skill files did not expose a revision
+  identifier (frontmatter is name + dca-workflow only); no other
+  provenance method was verified (finding C below). The runtime
+  reported two byte-identical SKILL.md copies on its filesystem:
   plugins path dca-needs-review:reviewing-dca-needs and a standalone
-  reviewing-dca-needs (finding D). Airtable reads were live (Needs
-  lastModifiedTime 2026-09-16T08:53:37Z on all five records,
-  observed).
+  reviewing-dca-needs (finding D; runtime self-report, not
+  independently verified by the repository editor). Airtable reads
+  appeared live in the supplied tool-activity trace (Needs
+  lastModifiedTime 2026-09-16T08:53:37Z on all five records).
 - **Evidence basis:** full first response with visible tool-activity
   trace (screenshot captured); the runtime's own capability
   self-report in answer to a post-hoc meta-question; subsequent
   turns pasted into the configuration chat. Human-run and
   operator-assessed; not an independent runtime execution by the
-  repository editor.
+  repository editor. The repository editor verified nothing inside
+  the runtime environment: every configuration and filesystem
+  statement here is operator-reported or runtime-reported.
 
-Test 1 — cold trigger: FAIL on initial acceptance, diagnosed.
+**Test 1 — cold trigger:** FAIL on initial acceptance.
 
 - **Met:** routed reads first (trace shows source-routing/authority
   searches, shared-structure-build, Airtable schema, live Need
@@ -286,13 +289,18 @@ Test 1 — cold trigger: FAIL on initial acceptance, diagnosed.
   and technical statuses inline (recorded finding 1 reproduced,
   uncoached); no questions asked from the set — the response ended
   in action offers.
-- **Diagnosis (from the runtime's own post-hoc self-report):** the
-  reviewing-dca-needs skill never loaded. The per-Need structure was
-  echoed from the live project instructions' description of the
-  skill; one knowledge search for the SKILL.md missed and was not
-  retried. TRIGGERING failure, not adapter-adherence failure — the
-  adapter was never in play. The conversation-shape failures above
-  therefore cannot yet be charged to the adapter's wording.
+- **Diagnosis:** the runtime stated retrospectively that the
+  reviewing-dca-needs skill did not load, that the per-Need
+  structure was echoed from the live project instructions'
+  description of the skill, and that one knowledge search for the
+  SKILL.md missed and was not retried. That statement is supporting
+  evidence for a loading or triggering diagnosis, not independent
+  proof of root cause: it was produced by the same runtime whose
+  behaviour is under assessment, and no independent trace of skill
+  loading was captured. It does not exclude behavioural failures,
+  and it does not establish that the adapter's wording is
+  exonerated. The unmet items above remain unattributed until a
+  fresh-session retest separates triggering from adherence.
 - **Recorded-findings recheck within this response:** finding 1
   reproduced (IDs exposed); finding 6 recurred (the ~2-month
   asking-comfort limit on Beelen/Kitemana was again treated as a
@@ -339,35 +347,45 @@ Session continuation (explicitly-invoked, not cold acceptance):
   missing/timing picture — correct sequencing judgment not spelled
   out by the workflow.
 
-Tests 2–7: PENDING. The session is positioned at the Test 2 input
-(reviewer's answers on the stretch-wrap Need). Results from this
-session will be recorded as explicitly-invoked evidence, distinct
-from cold acceptance; Test 1 cold acceptance additionally requires a
-fresh session after correction. Kees's own account and Claude Tag
-remain untested.
+Tests 2–7 at the time of this entry: PENDING, with the session
+positioned at the Test 2 input (reviewer's answers on the
+stretch-wrap Need). Their results are recorded in the continuation
+entry below as explicitly-invoked evidence, distinct from cold
+acceptance; Test 1 cold acceptance additionally requires a fresh
+session after correction. Kees's own account and Claude Tag remain
+untested.
 
 New findings (this run):
 
 - A. **Trigger miss:** a cold request matching the skill description
-  verbatim did not fire the skill; the runtime satisfied the request
-  from the project instructions' method paraphrase plus repository
-  fragments, while reporting routed reads honestly.
+  verbatim did not produce skill-conforming behaviour. On the
+  runtime's own account the skill did not load and the request was
+  satisfied from the project instructions' method paraphrase plus
+  repository fragments, while reporting routed reads honestly. That
+  account is consistent with the observed behaviour; it is not
+  independent confirmation of the cause.
 - B. **Per-project knowledge-index divergence:** the workflow file
   retrievable in one project's index and persistently missed in
   another's the same day; suspected stale sync of the Winter
   project's repository source (verification and refresh are an
-  operator action, outside this record).
-- C. **No revision identifiers in skill files:** loaded-revision
-  capture is impossible at runtime until the SKILL.md carries
-  version metadata.
-- D. **Duplicate provisioning observed at file level:** two
-  byte-identical SKILL.md copies under distinct plugin paths on the
-  runtime filesystem; account-level mirror of the kind the plugin
-  README forbids in-repo; plausible contributor to the trigger miss.
+  operator action; see the continuation entry below for the
+  operator's reported cause and repair).
+- C. **Loaded revision not established:** the inspected skill files
+  did not expose a revision identifier, and no other provenance
+  method was verified in this run. A revision identifier carried in
+  the skill files is one possible remedy; other provenance methods
+  were not assessed.
+- D. **Duplicate provisioning reported:** the runtime reported two
+  byte-identical SKILL.md copies under distinct installed paths on
+  its filesystem (runtime self-report, not independently verified by
+  the repository editor). The plugin README prohibits maintaining a
+  mirrored implementation inside the repository; it does not
+  establish that two installed copies breach that rule. Any
+  contribution to the trigger failure remains a hypothesis.
 - E. **Adapter-alone under-coverage:** without the workflow file the
   question set degrades to a subset (Q1/Q4/Q7 observed); the
   anti-duplication design makes workflow reachability load-bearing.
 - F. **Paraphrase hazard:** the live project instructions describe
-  the skill's method richly enough that a non-triggered runtime
-  produced a convincing partial imitation; a thinner pointer would
-  fail louder.
+  the skill's method richly enough that a runtime that did not load
+  it, as reported here, produced a convincing partial imitation; a
+  thinner pointer would fail louder.
