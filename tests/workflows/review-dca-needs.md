@@ -43,6 +43,14 @@ one Need at a time; ordinary operational language; no field names or
 record IDs surfaced; questions come a few at a time from the
 workflow's set.
 
+An opening orientation may name other Needs, but the first reply
+reviews and asks questions about only one, then waits. A shared
+enquiry or pilot does not justify reviewing two together. Opening
+overviews and headings also use ordinary operational language;
+raw record types and technical status values do not belong there.
+Keep source links; the requested summary's secondary IDs remain
+covered by Test 6.
+
 ## Test 2 — knowledge/assumption separation
 
 During a review, the reviewer states an operational fact, an
@@ -622,3 +630,56 @@ Session tally, Claude Chat:
 The session is closed; acceptance remains incomplete. Kees's account
 and Claude Tag remain separately untested. No workflow or skill fix
 was implemented by recording this session.
+
+### Winter Chat — cold retest with visible skill-read activity
+
+- **Surface and actor:** Anja, a new shared Winter Project chat in
+  Claude Chat, following the Test 1 prompt supplied in the review
+  conversation. The screenshot shows Sonnet 5 / Medium. Exact
+  runtime date, send time and timezone were not captured; the
+  repository commit date is not the runtime date.
+- **Evidence basis:** the full first response pasted by Anja and
+  a screenshot of its tool-activity list. The screenshot identifies
+  the chat as "Winter project needs assessment". It is human-run
+  evidence, not an independent runtime execution by the repository
+  editor. No later corrective response is assessed in this entry.
+- **Skill activity:** before the answer, the visible activity list
+  includes "Read the reviewing-dca-needs skill before starting the
+  Needs review" with a SKILL.md entry. This is evidence of a skill
+  read being invoked, not another observed trigger miss. The tool
+  result was collapsed; its returned content, path and exact loaded
+  revision were not supplied. Do not infer the deployed revision
+  from the repository revision or assume a successful full read.
+- **Routing and access:** the list shows project-knowledge searches
+  for routing/authority, the shared build and the review workflow,
+  followed by Airtable tool discovery and a record-fetch entry.
+  The response reports five live linked Needs. Returned sources and
+  records are not visible in the screenshot; complete retrieval and
+  source sufficiency are not independently verified.
+
+**Test 1 — cold trigger:** initial acceptance not met; skill-read
+activity observed, with conversation-shape and language failures.
+
+- **Met in the supplied answer:** Winter scope is stated without a
+  redundant clarification question. Quantities remain unknown and
+  the runtime asks operational questions about quantity and timing.
+- **Unmet — one Need at a time:** after the five-Need overview, the
+  response opens separate wrap and boxes sections, asks a question
+  under each, and ends by asking about "wrap/boxes quantities or
+  timing" together. This goes beyond a brief orientation.
+- **Unmet — operational language:** the overview exposes raw record
+  types and validation/processing values; scope and Need headings
+  expose record IDs. These are ordinary review replies, not a
+  requested closing summary or exact maintenance proposal.
+- **Limits:** skill-read activity does not prove adherence, and the
+  loaded revision remains unknown. This run does not establish the
+  cause of the failures or resolve earlier environment findings.
+  Tests 2–7 were not exercised in the supplied first-turn evidence;
+  no write audit or other surface's acceptance is established.
+
+Follow-up: the adapter now makes the first-turn sequence and the
+opening-overview language requirements explicit; Test 1 clarifies
+the same checks. This repository change is not a runtime pass.
+Verification of the revised behaviour in a fresh Winter Chat remains
+pending, with loaded-content evidence where available. Preserve all
+earlier run results; Kees's account and Claude Tag remain separate.
