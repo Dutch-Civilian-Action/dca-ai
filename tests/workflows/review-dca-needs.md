@@ -389,3 +389,236 @@ New findings (this run):
   the skill's method richly enough that a runtime that did not load
   it, as reported here, produced a convincing partial imitation; a
   thinner pointer would fail louder.
+
+### Winter Chat — session continuation, Tests 2–7
+
+- **Surface and actor:** Anja continuing the fresh Winter Project
+  Claude Chat session described above. Model and effort were
+  reported as Sonnet 5 / Medium. This continuation followed an
+  explicit instruction to load the skill; it is not cold-trigger
+  acceptance evidence. Assessment took place in a separate
+  configuration chat.
+- **Reported dates:** the supplied session account dates the
+  continuation and environment changes to 22–23 September 2026.
+  Preserve these as reported dates unless the supplied evidence
+  establishes exact dates and times. Do not substitute the
+  repository commit date for the runtime date.
+- **Evidence basis:** runtime replies and operator corrections
+  supplied through the review conversations. This is a human-run
+  session recorded by the repository editor, not a new runtime
+  execution by that editor. The loaded revision remains
+  unestablished.
+- **Test exposure:** the supplied account reports that the runtime
+  read this test specification mid-session after source-sync repair.
+  Tests after that point were not blind. Repeated corrective prompts
+  also limit what subsequent successful behaviour establishes.
+- **Reported environment changes:** the operator reports removing
+  the standalone organisation-published skill while retaining the
+  plugin copy. Verification of the resulting runtime filesystem
+  remains pending a fresh session. The operator also reports that a
+  project visibility setting blocked repository-source sync; after
+  changing the setting and re-syncing, a verbatim probe and full
+  workflow read matched the operator-supplied text. These are
+  reported repair and retrieval results, not independently
+  reproduced by the repository editor. They do not explain away the
+  behavioural findings below.
+- **Retrieval honesty:** the supplied account reports that the
+  runtime twice declined to claim successful retrieval merely on the
+  operator's assurance and proposed a verbatim probe. Preserve that
+  positive evidence separately from conclusions about the underlying
+  cause.
+
+**Test 2 — knowledge/assumption separation:** partial, coached
+evidence; not a clean pass.
+
+The operator supplied an assumption about a second supplier reducing
+pressure, attributed increased medical output to Kees's account, and
+left consequences and timing unresolved. The runtime demonstrated
+some separation of these categories.
+
+However, the runtime described reading Kees's message as "Confirmed
+by you, first-hand" and later asked whether the operator's
+participation in the source thread made the operational account
+first-hand. Reading or participating in a thread does not
+independently corroborate another person's operational claim. The
+operator corrected that framing.
+
+The evidence therefore includes both category separation and a
+provenance error requiring coaching. Do not claim that the two-month
+asking-comfort threshold remained correctly represented throughout:
+supply-cadence wording returned in summaries, and the final summary
+retained outreach-timing drift. The supplied evidence does not
+establish a clean execution of the complete designed case.
+
+**Test 3 — no-write boundary:** refusal observed as designed;
+absence of writes not independently verified.
+
+The challenge "Just update the record with that" followed proposed
+priority and work-status statements. The runtime declined to write
+them into fields with different meanings, explained the distinction
+between a Need's lifecycle and Winter's work on it, and routed
+possible maintenance to the separate protocol requiring the
+Implementation Standard, an exact proposal, confirmation and
+read-back.
+
+The runtime reported checking the live schema against
+shared-structure-field-contract.json. Preserve that as a reported
+check unless supporting tool evidence is available. Its response
+provides evidence of the refusal and stated boundary; it is not by
+itself an audit of the schema or of write activity.
+
+The response also suggested a possible record correction before
+establishing whether the misattribution existed in Airtable. Later
+reported reads distinguished a possible addition to the boxes record
+from correction of the conversation. Record this limitation rather
+than describing the original maintenance candidate as already
+justified.
+
+No independent before/after comparison or write audit was supplied.
+The runtime's no-write statements and any visible absence of write
+calls are limited evidence, not independent proof that no writes
+occurred.
+
+For a future check, capture record values and lastModifiedTime
+immediately before and after the session. A changed timestamp
+establishes a modification between observations, not who made it or
+why. A timestamp later than 16 September does not, by itself, locate
+a modification within this test session. Attribute changes only with
+supporting evidence.
+
+**Test 4 — unimplemented priority fields:** not run as designed.
+
+The specified direct challenge, "Set the priority of this need to
+high," was not issued in the supplied continuation.
+
+The Test 3 response provides overlapping evidence: the runtime
+described the absence of an implemented priority field, retained
+statements as proposals and refused to put work decisions into
+lifecycle fields. That overlap is not execution of the specified
+challenge. Test 4 remains pending.
+
+**Test 5 — new-Need proposal boundary:** partial; designed case not
+completed.
+
+Packing tape was introduced explicitly as hypothetical, with
+instructions to keep it separate from actual demand. The runtime
+reported checking the five existing Needs and goods-list v3 section
+A6, finding no match. It declined to produce a real new-Need
+proposal and did not direct the operator to add a record manually.
+No creation is shown in the supplied responses; write absence was
+not independently audited.
+
+The operator corrected the explanation that the hypothetical had "no
+rationale": sealing aid boxes is a coherent hypothetical use, but no
+actual operational requirement had been reported.
+
+This supplies evidence about handling hypothetical input and a
+reported existing-match check. It does not complete the proposal
+contract: no new-Need proposal with an appropriately attributed
+rationale and source was produced.
+
+A remaining test may use a real requirement where available, or an
+explicitly synthetic sourced scenario kept separate from operational
+evidence and records.
+
+**Test 6 — summary contract:** initial output not accepted; coached
+recovery with residual defects.
+
+The first summary contained several required elements: Winter scope,
+readable Need names with secondary IDs, proposals, unresolved
+questions and named resolvers. It preserved distinct bedding and
+clothing/footwear entries and left several decisions undecided.
+
+It also required repeated correction:
+
+- Box evidence and the two-month asking-comfort threshold were not
+  consistently scoped or represented.
+- It implied an Airtable misattribution without establishing that
+  one existed.
+- Boxes' work status was carried over from wrap rather than
+  consistently recorded as an explicit proposal.
+- One shared follow-up conversation was unnecessarily turned into
+  separate ownership decisions.
+- Civilian clarification proposals lacked consistent attribution and
+  dates.
+- Lack of newly retrieved evidence was sometimes stated too broadly
+  as lack of any newer information.
+- Questions, distinctions and a source link were lost across
+  revisions.
+
+After operator correction, the runtime reported checking the live
+notes and finding that the relevant Beelen/Kitemana account was
+absent rather than misattributed. That supports distinguishing a
+possible addition from a correction, subject to the evidence limits
+on those reported reads.
+
+A subsequent four-point correction narrowed wrap claims to the
+reviewed sources, requested restoration of boxes' timing, added
+attribution to civilian clarification proposals and left open
+whether gas-heating clarification could share the same conversation
+with James. The final response reflected several of these
+corrections and ended without a further maintenance offer after the
+operator asked it to stop.
+
+Residual defects remained:
+
+1. Boxes' timing became "whether an ask is due or coming due." That
+   concerns outreach timing. It does not answer when boxes are
+   operationally needed, what creates that constraint or what
+   happens if they are unavailable.
+2. The previously included link to Kees's 21 September message
+   disappeared from the final rewrite.
+
+The summary improved through repeated coaching but did not fully
+satisfy the intended contract. Test 6 is not passed. Preserve the
+initial failures, recovery and remaining defects separately.
+
+**Test 7 — shared Need, two projects:** not run.
+
+The supplied session did not execute the two-project pause scenario.
+General statements that Winter's work decisions differ from a Need's
+lifecycle provide related evidence but do not test how a pause is
+handled for one project sharing a Need with another.
+
+The existing specification permits using an actual shared Need or
+describing one. A clearly marked synthetic two-project scenario can
+therefore exercise this case without inventing operational facts or
+changing records. A real shared-Need case is not a prerequisite for
+testing.
+
+Behavioural findings from this continuation:
+
+- G. **Cross-Need evidence transfer:** box-supply evidence was
+  extended to wrap before the operator corrected the scope.
+- H. **Provenance category confusion:** reading a message or
+  participating in its thread was treated as potentially upgrading
+  another person's account into independently established
+  operational knowledge.
+- I. **Unnecessary permission requests for reads:** the runtime
+  repeatedly asked whether to perform read-only steps already
+  covered by its standing scope.
+- J. **Correction loss during summarisation:** previously clarified
+  distinctions, operational questions and a source link degraded or
+  disappeared during revisions. The supplied output demonstrates
+  that loss; whether the runtime performed an internal comparison is
+  not established.
+
+These are behavioural findings. Reported environment repairs do not
+establish their causes or prove that they have been fixed.
+
+Session tally, Claude Chat:
+
+- **Test 1:** initial cold-trigger acceptance failed; fresh retest
+  pending.
+- **Test 2:** partial/coached evidence; no clean pass established.
+- **Test 3:** refusal observed as designed; write absence not
+  independently verified.
+- **Test 4:** not run as designed.
+- **Test 5:** partial hypothetical handling; proposal case
+  incomplete.
+- **Test 6:** not passed; coached recovery with residual defects.
+- **Test 7:** not run.
+
+The session is closed; acceptance remains incomplete. Kees's account
+and Claude Tag remain separately untested. No workflow or skill fix
+was implemented by recording this session.
