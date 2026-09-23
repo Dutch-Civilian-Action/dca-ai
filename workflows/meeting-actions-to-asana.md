@@ -14,7 +14,7 @@ This is a provider-independent capture and validation workflow. It records work 
 
 Apply [authority rules](../governance/authority-rules.md), including the dataset prerequisite. This workflow directly establishes source-linked action records; it does not establish readiness for downstream automation such as contact subscription, valuation, or reporting.
 
-Asana remains the work/assignment/completion surface. Existing Ways of Working Meetings and Action Items may link the same tasks, preserving meeting and decision context without an independently maintained task list. Do not require a new table, project, or schema for this pilot.
+Asana remains the work/assignment/completion surface. Record each processed meeting in the existing production DCA Ways of Working **Meetings** table (`appZ1ngF9Hc0xeOoI`), and link distinct pending follow-ups through its existing **Action_Items** table. These records preserve meeting provenance and review state; they are not a second task tracker or approval surface. Do not create a new table, project, or schema for this pilot.
 
 ## Entry and source
 
@@ -29,6 +29,8 @@ Where a shared connection is known or suspected, ask one bounded attendance/attr
 Flag any action, first-person commitment or claimed approval that depends on that attribution. Ask who owns the concrete action; unaffected items may proceed. An authorised person may accept a task now without reconstructing every historical utterance: record that as a new explicit commitment, not proof of who originally spoke. Preserve original notes and source-qualified corrections together.
 
 Assign a stable reference to each candidate within the meeting and retain it across edits/retries. Do not regenerate references from changing checkbox order or titles. Preserve source wording alongside proposed wording when meaning differs.
+
+Before publishing the review batch, search the Ways of Working Meetings table for this meeting's original source URL and reuse its record on rerun. Record the meeting time and participants as supported; link the original thread, notes, transcript and review batch in `source_references`. Set `source_confidence` and `processing_status` to reflect actual coverage and pending review. Leave `raw_content` empty unless preserving genuinely raw notes or transcript text; a corrected summary is a derivative and belongs in `summary` with its source link. For distinct follow-ups, create or reuse one linked Action_Items row per stable reference with `Pending` status and no owner or date unless those are confirmed. Record duplicates in the meeting context rather than creating duplicate action rows. Do not manufacture Decisions, Test_Findings, Workflow_Changes or Procedures from discussion; those tables have their own evidence and validation boundaries. If the base is inaccessible, keep the source-thread review available and mark the meeting-record write pending for this executor, without pretending it succeeded.
 
 ## 0. Review and maintain the meeting notes
 
@@ -121,7 +123,7 @@ Keep personal contact lists and unrelated sensitive meeting content out of task 
 
 One designated runtime/executor owns writes for the batch. Another AI may assist with extraction or review but must hand off to that writer. If exclusive write ownership cannot be established, leave capture pending.
 
-Preserve the meeting/item reference in the task and retain the returned Asana task ID/URL in the batch. Check both before retrying. If a create request times out or returns an uncertain result, look for the task using the same reference; do not blindly create again. If existence cannot be resolved, mark capture unverified and pause that item. Partial success must not cause successful items to be recreated.
+Preserve the meeting/item reference in the task and retain the returned Asana task ID/URL in the batch. Reconcile the corresponding Ways of Working Action_Items row with the confirmation/disposition and link the verified Asana task through the existing External_References structure where supported; do not mark a pending candidate as operationally complete merely because capture succeeded. Check both before retrying. If a create request times out or returns an uncertain result, look for the task using the same reference; do not blindly create again. If existence cannot be resolved, mark capture unverified and pause that item. Partial success must not cause successful items to be recreated.
 
 Task capture does not authorise contact subscription, outreach, production changes, scheduling invitations or other downstream actions. Those retain their own existing authorisation and data prerequisites.
 
