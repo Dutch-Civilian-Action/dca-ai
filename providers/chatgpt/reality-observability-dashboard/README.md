@@ -47,3 +47,14 @@ Measurement failure never blocks maintained-reality reconciliation.
 Production now contains dedicated `Reality_Movement_Events` and `Reality_Metric_Snapshots` derived reporting tables in DCA Evidence & Reconciliation. The deterministic bounded backfill was re-run from source lineage rather than copied from Dev/Test and read back at 164 events: 74 Operational, 70 Capability and 20 Derived. Eight initial 7-day/30-day snapshot rows were read back.
 
 The existing DCA Operational Metrics interface now includes the published **Reality Movement** page. Validation reporting remains unchanged on its existing page. Reconstruction Health and Change / Improvement remain intentionally unpopulated until supported source clocks/denominators and comparable history are implemented.
+
+## Reconstruction Health baseline — 24 September 2026
+
+A second Dev/Test-to-production pass added the first four measures that are supportable from the bounded 30-day lineage without inventing clocks or denominators:
+
+- change-bearing persistence verification: 96 / 99 = 96.97%;
+- structured evidence-link presence: 45 / 153 = 29.41% — explicitly **not** provenance completeness;
+- explicit validation-state classification: 153 / 153 = 100% — explicitly **not** completed human validation;
+- unresolved maintained-reality outcomes: 7 / 153 source objects — explicitly not the DCA-wide validation backlog.
+
+The production DCA Operational Metrics interface now contains a published **Reconstruction Health** page with numerator, denominator, definition, coverage and interpretation limits visible. Metrics requiring unsupported historical clocks or denominators remain absent rather than inferred.
