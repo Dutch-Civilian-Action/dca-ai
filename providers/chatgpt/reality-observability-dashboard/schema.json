@@ -38,6 +38,23 @@
         "coverage",
         "interpretation_notes"
       ]
+    },
+    "Reality_Health_Snapshots": {
+      "identity": "metric_id",
+      "fields": [
+        "metric_display_name",
+        "metric_id",
+        "captured_at",
+        "window_days",
+        "metric_key",
+        "value",
+        "numerator",
+        "denominator",
+        "unit",
+        "coverage",
+        "definition",
+        "interpretation_notes"
+      ]
     }
   }
 }
