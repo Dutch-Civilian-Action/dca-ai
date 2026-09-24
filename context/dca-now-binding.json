@@ -1,31 +1,54 @@
 {
   "version": "dca-now/1",
   "status": "initial_live_bounded",
-  "base_id": "appPBY1g1rYKRHbDC",
-  "interface_id": "pbdktlUJ04O2mzPSm",
-  "pages": {
-    "now": "pagbSpEchRFua371y",
-    "people": "pagQyi39nIr4opPzE",
-    "projects": "pag8p8N4aHhv1GaCD",
-    "needs": "pag65XGsRWANYQplp"
+  "home": {
+    "base_name": "DCA Ways of Working",
+    "base_id": "appZ1ngF9Hc0xeOoI"
   },
-  "projections": {
+  "interface_id": "pbdcTNAP1fzTpWsmv",
+  "pages": {
+    "people": "pageFXpkasbRqT3dc",
+    "needs_attention": "pagZhOLrhRR6pGZo8",
+    "meetings": "pagJSR3Y5pNrMgUM9"
+  },
+  "native_sources": {
     "people": {
-      "table_id": "tbl5zRs1jalYFJnUy",
-      "canonical_source": {
-        "base_id": "appScO2P8fD8yprCW",
-        "table_id": "tblf1T3z8bBXGmjtD"
-      },
-      "initial_records": 5,
-      "status": "partial"
+      "table_id": "tbl0opjoLl3gZiBpb",
+      "records": 7
+    },
+    "action_items": {
+      "table_id": "tblPdYCRPnQYK0niY",
+      "records": 30
+    },
+    "meetings": {
+      "table_id": "tblbs9NCKfVdHhHRZ",
+      "records": 7
+    },
+    "decisions": {
+      "table_id": "tblL52DC1eUcQ9Kid",
+      "records": 0
+    },
+    "workflow_changes": {
+      "table_id": "tblc8X7gFVFub7i4Z",
+      "records": 0
+    },
+    "recurring_work": {
+      "table_id": "tblammBYO1e344UPB",
+      "records": 0
     }
+  },
+  "cross_system_authority": {
+    "canonical_identity": "DCA Shared Identity & Relationships",
+    "assigned_implementation_work": "Asana",
+    "projects_and_needs": "DCA Shared Structure",
+    "maintained_reality": "Operational / Derived / Capability Reality"
   },
   "authority_rules": [
     "DCA Now owns no organisational truth.",
-    "Canonical person identity remains in DCA Shared Identity & Relationships.",
-    "Ways of Working owns meeting/decision/recurring-work/workflow-change/follow-up lineage.",
-    "Asana owns assigned implementation tasks.",
-    "Maintained Reality owns established observed, derived and capability state.",
-    "Cross-base projections must preserve source references and may not silently become canonical."
-  ]
+    "Ways of Working People is internal participation context, not canonical identity.",
+    "Meeting-derived Action_Items are not a replacement for Asana.",
+    "Cross-system information shown in DCA Now preserves its owning source and authority boundary.",
+    "Do not create a projection table when an existing Ways of Working object already represents the needed concept."
+  ],
+  "correction_note": "Initial Shared Structure placement was incorrect. The extra Shared Structure DCA Now interface and People projection table were deleted on 24 September 2026."
 }
