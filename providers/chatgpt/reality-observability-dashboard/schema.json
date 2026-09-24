@@ -1,0 +1,43 @@
+{
+  "version": "dca-reality-observability/1",
+  "tables": {
+    "Reality_Movement_Events": {
+      "identity": "event_id",
+      "fields": [
+        "event_display_name",
+        "event_id",
+        "occurred_at",
+        "reality_view",
+        "organisational_function",
+        "reconciliation_outcome",
+        "change_class",
+        "correction_origin",
+        "capability_state",
+        "provenance_state",
+        "validation_state",
+        "persistence_verified",
+        "source_lineage_record",
+        "coverage_notes"
+      ]
+    },
+    "Reality_Metric_Snapshots": {
+      "identity": "snapshot_id",
+      "fields": [
+        "snapshot_display_name",
+        "snapshot_id",
+        "captured_at",
+        "window_days",
+        "reality_view",
+        "additions",
+        "corrections",
+        "qualifications",
+        "confirmations",
+        "unresolved",
+        "historical",
+        "proposed_future",
+        "coverage",
+        "interpretation_notes"
+      ]
+    }
+  }
+}
