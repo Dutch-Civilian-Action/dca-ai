@@ -1,6 +1,6 @@
 # Reality observability dashboard
 
-Status: Dev/Test verified; production promotion pending repository review.
+Status: Production initial backfill and Reality Movement dashboard verified on 24 September 2026.
 
 ## Purpose
 
@@ -41,3 +41,9 @@ The backfill deliberately leaves unsupported semantics unknown/partial:
 7. Extend Reality Watch to append newly verified reconciliation events after production binding exists; no new recurring automation.
 
 Measurement failure never blocks maintained-reality reconciliation.
+
+## Production promotion — 24 September 2026
+
+Production now contains dedicated `Reality_Movement_Events` and `Reality_Metric_Snapshots` derived reporting tables in DCA Evidence & Reconciliation. The deterministic bounded backfill was re-run from source lineage rather than copied from Dev/Test and read back at 164 events: 74 Operational, 70 Capability and 20 Derived. Eight initial 7-day/30-day snapshot rows were read back.
+
+The existing DCA Operational Metrics interface now includes the published **Reality Movement** page. Validation reporting remains unchanged on its existing page. Reconstruction Health and Change / Improvement remain intentionally unpopulated until supported source clocks/denominators and comparable history are implemented.
