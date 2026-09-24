@@ -13,14 +13,18 @@
     "interface_id": "pbdISvD5Ah7A2PT5d",
     "page_id": "pagtwFjyViFxxgTWP",
     "event_table_id": "tblABHHt08Rb5KeCR",
-    "snapshot_table_id": "tblN4biRAsMSk8y01"
+    "snapshot_table_id": "tblN4biRAsMSk8y01",
+    "health_table_id": "tbl2gRvNsa8pIqWJC",
+    "health_page_id": "pagPD1lMhhJxnkCTe"
   },
   "production": {
     "base_id": "appZ1Fv0YtZPbBbWa",
     "interface_id": "pbdRFe8EeQQAKdD5Q",
     "page_id": "pagRzxt4O2R3AEvZj",
     "event_table_id": "tblaDzlSSkSRgpXYx",
-    "snapshot_table_id": "tbllWKI5Wuxf4d8wg"
+    "snapshot_table_id": "tbllWKI5Wuxf4d8wg",
+    "health_table_id": "tblY1B0yz1P4IUjR7",
+    "health_page_id": "pagb7KPqQjPbCMVX7"
   },
   "known_limitations": [
     "Historical backfill can classify reality view only where routing_destination explicitly names operational_reality, ss_capability_reality, or derived_organisational_reality.",
@@ -28,7 +32,8 @@
     "Independent source counts and complete provenance state are not safely derivable from current Reconstruction_Objects structured fields; historical provenance_state remains partial.",
     "Capability state is a conservative mapping from capability_stage for exploratory backfill and must not be treated as a verified transition history.",
     "Source domain strings are heterogeneous and must not be presented as normalized organisational-function rankings.",
-    "Movement counts are not improvement scores."
+    "Movement counts are not improvement scores.",
+    "Initial Reconstruction Health metrics are intentionally limited to safely supported lineage integrity/coverage measures. Validation latency, evidence-to-maintained-reality latency, conflict age, repeated-question burden and reconstructable-without-human-reask rate remain unimplemented until their clocks/denominators are explicit."
   ],
   "dev_verification": {
     "source_records_inspected": 845,
@@ -50,6 +55,7 @@
     },
     "snapshot_rows": 8,
     "page_published": true,
-    "verified_at": "2026-09-24"
+    "verified_at": "2026-09-24",
+    "health_rows": 4
   }
 }
