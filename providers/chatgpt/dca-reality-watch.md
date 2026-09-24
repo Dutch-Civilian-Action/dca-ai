@@ -168,9 +168,10 @@ Use the production identities in `reality-observability-dashboard/binding.json`.
 1. identify newly reconciled lineage events not yet represented by deterministic `event_id`;
 2. append only supported event fields; leave unsupported semantics unknown/partial rather than inferring them;
 3. refresh the bounded 7-day and 30-day movement snapshots from accepted event lineage;
-4. read back event and snapshot writes before treating the reporting capture as current;
-5. keep movement distinct from improvement; do not manufacture an improvement interpretation from event volume;
-6. do not send extra reviewer messages or organisational Slack posts for routine metric capture.
+4. refresh only Reconstruction Health measures whose source population, numerator, denominator and clock semantics are explicitly supported; leave unsupported metrics absent rather than inferred;
+5. read back event, movement-snapshot and health-snapshot writes before treating the reporting capture as current;
+6. keep movement distinct from improvement; do not manufacture an improvement interpretation from event volume;
+7. do not send extra reviewer messages or organisational Slack posts for routine metric capture.
 
 The initial production backfill is explicitly partial historical coverage. It establishes a reporting baseline, not complete historical observability. Measurement failure does not block maintained-reality reconciliation; preserve the last verified dashboard state and surface the reporting failure as capability/runtime evidence.
 
