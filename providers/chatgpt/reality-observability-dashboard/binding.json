@@ -1,6 +1,6 @@
 {
   "version": "dca-reality-observability-dashboard/1",
-  "status": "dev-tested-production-pending",
+  "status": "production-active-initial-backfill",
   "source": {
     "base_id": "appZ1Fv0YtZPbBbWa",
     "reconstruction_objects_table_id": "tblv7wDJZjJRs34nU",
@@ -18,9 +18,9 @@
   "production": {
     "base_id": "appZ1Fv0YtZPbBbWa",
     "interface_id": "pbdRFe8EeQQAKdD5Q",
-    "page_id": "pagkoCY8BAabcX1zK",
-    "event_table_id": null,
-    "snapshot_table_id": null
+    "page_id": "pagRzxt4O2R3AEvZj",
+    "event_table_id": "tblaDzlSSkSRgpXYx",
+    "snapshot_table_id": "tbllWKI5Wuxf4d8wg"
   },
   "known_limitations": [
     "Historical backfill can classify reality view only where routing_destination explicitly names operational_reality, ss_capability_reality, or derived_organisational_reality.",
@@ -40,5 +40,16 @@
     },
     "snapshot_rows": 8,
     "published_dev_interface": true
+  },
+  "production_verification": {
+    "backfilled_events": 164,
+    "by_view": {
+      "operational": 74,
+      "capability": 70,
+      "derived": 20
+    },
+    "snapshot_rows": 8,
+    "page_published": true,
+    "verified_at": "2026-09-24"
   }
 }
