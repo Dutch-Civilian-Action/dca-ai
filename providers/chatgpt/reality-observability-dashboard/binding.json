@@ -1,0 +1,44 @@
+{
+  "version": "dca-reality-observability-dashboard/1",
+  "status": "dev-tested-production-pending",
+  "source": {
+    "base_id": "appZ1Fv0YtZPbBbWa",
+    "reconstruction_objects_table_id": "tblv7wDJZjJRs34nU",
+    "metric_version": "dca-reality-observability/1",
+    "backfill_start": "2026-08-25",
+    "backfill_rule": "reconciled_at within bounded window plus explicit maintained-reality routing_destination"
+  },
+  "development": {
+    "base_id": "appXI5DFgnCbWzbvz",
+    "interface_id": "pbdISvD5Ah7A2PT5d",
+    "page_id": "pagtwFjyViFxxgTWP",
+    "event_table_id": "tblABHHt08Rb5KeCR",
+    "snapshot_table_id": "tblN4biRAsMSk8y01"
+  },
+  "production": {
+    "base_id": "appZ1Fv0YtZPbBbWa",
+    "interface_id": "pbdRFe8EeQQAKdD5Q",
+    "page_id": "pagkoCY8BAabcX1zK",
+    "event_table_id": null,
+    "snapshot_table_id": null
+  },
+  "known_limitations": [
+    "Historical backfill can classify reality view only where routing_destination explicitly names operational_reality, ss_capability_reality, or derived_organisational_reality.",
+    "correction_origin is not safely derivable for the historical population and remains unknown.",
+    "Independent source counts and complete provenance state are not safely derivable from current Reconstruction_Objects structured fields; historical provenance_state remains partial.",
+    "Capability state is a conservative mapping from capability_stage for exploratory backfill and must not be treated as a verified transition history.",
+    "Source domain strings are heterogeneous and must not be presented as normalized organisational-function rankings.",
+    "Movement counts are not improvement scores."
+  ],
+  "dev_verification": {
+    "source_records_inspected": 845,
+    "backfilled_events": 164,
+    "by_view": {
+      "operational": 74,
+      "capability": 70,
+      "derived": 20
+    },
+    "snapshot_rows": 8,
+    "published_dev_interface": true
+  }
+}
