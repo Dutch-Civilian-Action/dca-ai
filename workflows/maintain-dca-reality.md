@@ -113,6 +113,47 @@ For material drift:
 
 Use the existing maintenance workflow, not another recurring monitor or parallel truth register. Determine coverage from meaning and provenance, not modification dates. If no material discrepancy exists, do not make cosmetic edits. Technical documentation repair alone does not require an organisational Slack publication; existing materiality and routing rules still apply.
 
+## Reality movement and improvement measurement
+
+Reality Watch also produces a derived observability layer from the maintenance and reconciliation work it already performs. The purpose is to make change in maintained reality visible over time without turning Reality documents into KPI scorecards or creating a second source of organisational truth.
+
+Measure **movement before improvement**. A correction, new uncertainty, or increased backlog is not automatically deterioration; it may reflect better observation. Likewise, fewer corrections are not automatically improvement if coverage has narrowed.
+
+For each accepted reconciliation event, retain enough structured lineage to derive, by reality view and time window:
+
+- Operational Reality: additions, corrections, qualifications, confirmations, conflicts/not-ready states, uncertainty exposed and resolved, validation-to-reconciliation latency where clocks are supported, and evidence/provenance coverage;
+- System & Structure Capability Reality: capability availability/configuration, demonstrated use, repeated use, verified persistence/recovery, blocked or failed capability, dependency gaps, and continuity/adoption evidence;
+- Derived Organisational Reality: findings added, strengthened, qualified, weakened/corrected, contradicted or superseded, together with the maintained evidence breadth supporting the change.
+
+Also derive **reconstruction-health** signals where evidence supports them: provenance completeness, unresolved uncertainty and age basis, evidence-to-maintained-reality latency, repeated-question/rework burden, conflict age, and whether a material state can be reconstructed from organisation-held evidence without asking a person again.
+
+Track **correction pressure** by correction origin (for example human correction, cross-source contradiction, validation, Reality Watch reconstruction, system/runtime evidence, external evidence) and affected organisational function. Treat this as a visibility/reconstruction signal, never a performance ranking of people or functions.
+
+Improvement indicators must remain conservative and directional. Call a trajectory improvement only when the underlying interpretation is supported, for example:
+
+- Operational Reality: reconstruction becomes faster or more evidence-complete, repeated questions fall, unresolved uncertainty closes faster, or previously person-held state becomes directly observable;
+- Capability Reality: capability moves from available/configured to demonstrated, repeated and operationally relied upon while failure/manual dependency/recovery burden decreases;
+- Derived Reality: important conclusions gain independent support, uncertainty narrows, contradictions are resolved rather than hidden, or findings remain stable under materially new evidence.
+
+Do not collapse these into one maturity score. Preserve denominators, coverage, missingness, lower-bound clocks, reclassification, and known Goodhart/proxy risks. A dashboard is a derived reporting surface only.
+
+Prefer deriving these measurements from existing Reconstruction_Objects, maintained-reality revisions and verified reconciliation lineage. Do not ask volunteers for additional metric input. Start with an explicitly bounded historical backfill (for example 30 days) and label it partial where historical lineage cannot support a field.
+
+The intended public/team-facing dashboard structure is:
+
+~~~text
+DCA Observability
+├── Validation
+├── Reality Movement
+│   ├── Operational
+│   ├── Capability
+│   └── Derived
+├── Reconstruction Health
+└── Change / Improvement
+~~~
+
+Reuse the existing DCA Evidence & Reconciliation reporting/dashboard implementation where practical. Extend its schema/bindings under review rather than inventing an independent reporting store or polling task. Reality Watch may feed the derived measurement from work already completed during the run; measurement failure must not alter maintained reality or block a supported reconciliation.
+
 ## Evidence boundaries
 
 Keep explicit:
