@@ -62,7 +62,7 @@ Use the existing huddle/meeting thread. Show only what reviewers need:
 |---|---|---|---|---|
 | Stable reference | Concrete bounded action | Named in source, proposed, or unknown | Source wording; unknown remains unknown | Confirm, correct, already done, defer, or not mine |
 
-Include the source link and passage/timestamp for each item. State that confirmation approves the displayed task scope, assignment, destination and any date for capture in Asana; it does not approve executing the underlying action. Show a proposed destination where task creation is requested; if routing is unresolved, keep that item pending.
+Include the source link and passage/timestamp for each item. State that confirmation approves the displayed task scope, assignment, destination and any date for capture in Asana; it does not approve executing the underlying action. Show a proposed destination where task creation is requested; if routing is unresolved, keep that item pending. Ask for a due date where useful, without making one up or holding an otherwise clear task solely because none was agreed. Name only source-supported relevant participants and their roles, and show any proposed Asana collaborators for review separately from the assignee. Invite an authenticated participant to reply with the item reference and a request such as "Add me as a collaborator on H17-02" or "Tag me for the H17-02 review question". A collaborator request does not approve that item's task scope or ownership.
 
 Request review shortly after the batch is published, while actions are current; this is a practical expectation, not an invented due date, immediate-response requirement or escalation rule. Delayed replies remain valid evidence. Before capture, compare them with current work, later corrections and completion reports. Use the existing already-done path rather than creating obsolete outstanding tasks. A new meeting test does not discard unresolved items from an earlier batch.
 
@@ -98,7 +98,7 @@ Handle replies per item:
 
 Approval of one item is not approval of the others. Ambiguous "looks good" replies or approval of this workflow are not approval of unspecified task mutations. Owners may confirm several explicitly identified items within their authority.
 
-An absent date does not block an otherwise clear task: leave the Asana date empty. Material uncertainty about ownership, scope, identity, destination or permission does block creation. Other unresolved facts may remain qualified if the confirmed task does not depend on treating them as settled. Do not convert "next week" or "next three weeks" into an exact date without agreement.
+A request to follow a task is independent of assignment approval. Resolve the requester's Asana identity and access; add them as a collaborator only to the matching existing or newly confirmed task, within the task's visibility and authority boundary. A specific request to be tagged for an input or decision calls for a targeted mention on that task when the question is ready, not an automatic follower grant. Do not add all meeting attendees, infer collaborators from mere participation, or treat another person's suggestion as their opt-in. Preserve a pending request if the task or access is not yet available, and check current followers before retrying so the same request does not notify twice. An absent date does not block an otherwise clear task: leave the Asana date empty. Material uncertainty about ownership, scope, identity, destination or permission does block creation. Other unresolved facts may remain qualified if the confirmed task does not depend on treating them as settled. Do not convert "next week" or "next three weeks" into an exact date without agreement.
 
 ## 3. Create or reuse the confirmed task
 
@@ -111,13 +111,14 @@ Follow the [Evidence → Validation → Live Use Loop](https://github.com/Dutch-
 
 Search for an existing equivalent task using the source/item mapping and bounded context. Read candidate matches before deciding: similar names alone do not establish identity. Reuse confirmed matches without overwriting unrelated assignees, dates, scope or completion history. Updating an existing task requires authority for that exact change.
 
-Minimum task content:
+Task format:
 
-- confirmed action and verified assignee;
-- agreed date only when supplied;
-- meeting source, stable item reference and passage/timestamp;
-- confirmation link, authoriser and confirmation time;
-- relevant dependency, qualification and known result.
+- **Title:** start with a concrete action verb and state the deliverable. Aim for five to eight words (roughly 50–60 characters) when clarity permits; move context to the description. Avoid vague verbs such as "handle" or "look into". The word count is guidance, not a reason to truncate meaning or delay capture.
+- **Assignee:** exactly one verified person responsible for the confirmed action. Keep the agreed due date when one exists; leave it empty otherwise. Do not invent a deadline to satisfy a template.
+- **Description:** give a brief objective, the confirmed requirements/scope, relevant accessible resources, and the expected result or definition of done if supported. Include the meeting source, stable item reference and passage/timestamp; the confirmation link, authoriser and time; and material dependencies, qualifications and known results. Mark an unknown outcome or dependency as such rather than writing an invented acceptance criterion.
+- **Relevant people:** record a participant's role only where it helps execution. Add verified, requested collaborators as Asana followers for ongoing updates; use a targeted mention for a specific question when requested or authorised. Collaborators are informed, not assigned or approving by virtue of being added.
+
+Keep the title and description readable for the assignee; source and approval lineage belongs in the description or appropriate existing task fields, not in a long title.
 
 Keep personal contact lists and unrelated sensitive meeting content out of task descriptions. Link to appropriately accessible sources.
 
@@ -129,7 +130,7 @@ Task capture does not authorise contact subscription, outreach, production chang
 
 ## 4. Verify and close the handoff
 
-Read back the task to verify its scope, assignee, date, source and confirmation references. Then update the original review batch with the task link or existing-task match.
+Read back the task to verify its title, objective, scope, assignee, date, source and confirmation references, plus any requested collaborator or targeted mention. Verify that each collaborator maps to the intended Asana person and that no unrelated meeting attendees were added. Then update the original review batch with the task link or existing-task match.
 
 If task creation succeeds but the Slack update fails, retain the verified task ID and retry only the thread update. Do not claim successful handoff until the mapping is visible. Keep confirmed-but-unwritten or unverified items distinct from items still awaiting human confirmation.
 
