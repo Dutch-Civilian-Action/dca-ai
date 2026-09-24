@@ -1,0 +1,31 @@
+{
+  "version": "dca-now/1",
+  "status": "initial_live_bounded",
+  "base_id": "appPBY1g1rYKRHbDC",
+  "interface_id": "pbdktlUJ04O2mzPSm",
+  "pages": {
+    "now": "pagbSpEchRFua371y",
+    "people": "pagQyi39nIr4opPzE",
+    "projects": "pag8p8N4aHhv1GaCD",
+    "needs": "pag65XGsRWANYQplp"
+  },
+  "projections": {
+    "people": {
+      "table_id": "tbl5zRs1jalYFJnUy",
+      "canonical_source": {
+        "base_id": "appScO2P8fD8yprCW",
+        "table_id": "tblf1T3z8bBXGmjtD"
+      },
+      "initial_records": 5,
+      "status": "partial"
+    }
+  },
+  "authority_rules": [
+    "DCA Now owns no organisational truth.",
+    "Canonical person identity remains in DCA Shared Identity & Relationships.",
+    "Ways of Working owns meeting/decision/recurring-work/workflow-change/follow-up lineage.",
+    "Asana owns assigned implementation tasks.",
+    "Maintained Reality owns established observed, derived and capability state.",
+    "Cross-base projections must preserve source references and may not silently become canonical."
+  ]
+}
