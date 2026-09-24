@@ -48,6 +48,9 @@ Use the 17 September 2026 huddle source and H17-01–H17-06 references in the co
 | Owner says "not mine", "later", or remains silent | Preserve the distinct disposition; no invented owner, deadline, reminders or default Anja follow-up. |
 | Owner supplies a precise replacement action | Preserve the original and correction; apply within authority without asking again. AI-generated material expansion still needs confirmation. |
 | Owner/date/project changes after confirmation | Re-check current state; do not apply stale approval to the changed proposal. |
+| Confirmed action has no agreed due date or fully specified definition of done | Capture the bounded action with an action-verb title, one verified assignee, source and confirmation links; leave date empty and qualify the missing outcome rather than inventing either. |
+| Authenticated participant asks in the review thread to follow a specific item | Keep the request separate from task approval; resolve their Asana identity/access and add them only to that item’s confirmed task, checking current followers on rerun. If capture is pending, retain the request for later. |
+| Participant asks to be tagged for a specific input; another participant is merely present | Mention the requester only when the relevant question is ready; do not add either person as a follower solely due to attendance or the tag request. |
 | Scope and owner confirmed, material permission or destination unresolved | No create; preserve exact gap. Incidental qualified uncertainty need not block unrelated clear work. |
 | Correct human name but ambiguous Asana identity, missing capability or wrong channel | No write; verified stable identity and existing access rules remain required. |
 | Task already exists with different scope/date/owner | Do not overwrite or create a duplicate; resolve the exact change needed. |
