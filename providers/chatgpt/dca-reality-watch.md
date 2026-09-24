@@ -15,6 +15,14 @@ Shared maintained-reality handoff:
 
 `../../workflows/reconcile-established-findings-into-maintained-reality.md`
 
+Reality observability measurement:
+
+`../../workflows/measure-reality-observability.md`
+
+Current reporting binding:
+
+`reality-observability-dashboard/binding.json`
+
 Validation-state monitoring caller:
 
 `../../workflows/monitor-validation-queue.md`
@@ -150,6 +158,21 @@ Resolve the implementation summary through `../../context/current-authority.md` 
 For an affected ChatGPT task, read its live configuration and apply only the authorised alignment patch. Preserve schedule, enabled state, source scope, validation and publication boundaries; read back the result. Continue an existing PR or unresolved correction instead of duplicating work.
 
 Report alignment complete only after the required default-branch change is verified, runtime differences are reconciled or explicitly blocked, and affected summary sections are persisted and read back. Preserve partial outcomes for recovery by the next daily sweep.
+
+## Reality observability reporting
+
+The daily broad Reality Watch sweep also maintains the derived Reality observability reporting layer defined by `../../workflows/measure-reality-observability.md`.
+
+Use the production identities in `reality-observability-dashboard/binding.json`. After reconciliation work for the sweep is persisted and verified:
+
+1. identify newly reconciled lineage events not yet represented by deterministic `event_id`;
+2. append only supported event fields; leave unsupported semantics unknown/partial rather than inferring them;
+3. refresh the bounded 7-day and 30-day movement snapshots from accepted event lineage;
+4. read back event and snapshot writes before treating the reporting capture as current;
+5. keep movement distinct from improvement; do not manufacture an improvement interpretation from event volume;
+6. do not send extra reviewer messages or organisational Slack posts for routine metric capture.
+
+The initial production backfill is explicitly partial historical coverage. It establishes a reporting baseline, not complete historical observability. Measurement failure does not block maintained-reality reconciliation; preserve the last verified dashboard state and surface the reporting failure as capability/runtime evidence.
 
 ## Validation-trigger boundary
 
