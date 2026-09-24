@@ -1,8 +1,8 @@
 ---
 document_type: dca_shared_structure_build_record
 status: under_construction
-scope: supervised_shared_structure_and_dca_now_build
-verified_date: 2026-09-24
+scope: supervised_projects_and_needs_build
+verified_date: 2026-09-16
 provider_independent: true
 ---
 
@@ -41,50 +41,6 @@ Anja corrected the ID fields to the DCA Airtable Implementation Standard: `proje
 | DCA pallet-compatible cardboard boxes | `NED-recN5jK82mbcbGH1l` |
 | Help Window winter clothing and footwear — candidate | `NED-recoJXZZUsg4lWqdL` |
 | Civilian gas-heating support — conditional candidate | `NED-recpebxRRJ1QYg0xY` |
-
-## DCA Now read layer — 24 September 2026
-
-DCA Now is now a bounded organisation-facing **read/projection layer** in DCA Shared Structure. It does not create organisational truth and must not become a parallel canonical store.
-
-Verified live identities:
-
-| Object | Verified ID / reference |
-|---|---|
-| DCA Now interface | `pbdktlUJ04O2mzPSm` |
-| Now page | `pagbSpEchRFua371y` |
-| People page | `pagQyi39nIr4opPzE` |
-| Projects page | `pag8p8N4aHhv1GaCD` |
-| Needs page | `pag65XGsRWANYQplp` |
-| People projection table | `tbl5zRs1jalYFJnUy` |
-
-The first People projection contains five currently evidenced DCA participants: Anja, Bas, Kees, James and Lieke Heil. Before creating that projection, their canonical person identities were created/read back in **DCA Shared Identity & Relationships** from verified Slack profiles. Canonical identity remains there. The Shared Structure People table stores only the canonical ID/record reference plus bounded DCA Now presentation fields.
-
-This is a deliberate exception to the earlier “no duplicate People table” implementation note: the new table is **not a second identity table**. It is a denormalised read model required because Airtable interfaces cannot compose live tables across separate bases. It must remain source-referenced, refreshable and disposable. Identity changes are made in the canonical identity base and then projected here.
-
-Current boundaries:
-
-- roles are shown only where directly supported by source; activity must not be converted into a global role;
-- functions and attention items are not yet projected where their owning systems have not been safely reconciled;
-- Ways of Working remains authoritative for meetings, decisions, recurring work, workflow changes and meeting-derived follow-ups;
-- Asana remains authoritative for assigned implementation tasks;
-- maintained Reality remains authoritative for established observed/derived/capability state;
-- DCA Now may compose those sources but owns none of them;
-- the initial Now page currently exposes Shared Structure Projects and Needs only; later cross-base sections require bounded projection tables rather than hidden duplication.
-
-The intended composition is:
-
-```text
-canonical/owning systems
-  Shared Identity & Relationships
-  Shared Structure
-  Ways of Working
-  maintained Reality
-  Asana / domain systems
-          ↓
-bounded read projections where cross-base composition is required
-          ↓
-DCA Now
-```
 
 ## Initial sourced records
 
