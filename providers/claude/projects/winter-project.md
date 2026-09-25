@@ -1,37 +1,37 @@
 ---
 document_type: claude_chat_project_handover
-status: prepared_not_activated
-verified_date: 2026-09-16
+status: instructions_supplied_runtime_unverified
+snapshot_date: 2026-09-16
 scope: winter_project_bounded_maintenance
 ---
 
 # Winter Project — Claude shared-project handover
 
-Prepared for Anja and Kees. This is a thin Claude Chat setup, not a new capability grant or a second operational database. The maintained working plan is [DCA_Winter_Project_Support_Plan.md](https://drive.google.com/file/d/1KL7QtZMtQuKBthZHVKkT84cSVrlv9igl/view); update that same file in place. The provider-independent [build record and capture convention](../../../context/shared-structure-build.md) holds verified record identities, source precedence and the verified field repairs and remaining runtime checks.
+Prepared for Anja and Kees. Anja supplied the narrower Project instructions reproduced below on 23 September 2026; live project content and capabilities have not been read back here. This is a thin Claude Chat setup, not a new capability grant or a second operational database. The maintained working plan is [DCA_Winter_Project_Support_Plan.md](https://drive.google.com/file/d/1KL7QtZMtQuKBthZHVKkT84cSVrlv9igl/view); update that same file in place. The provider-independent [build record and capture convention](../../../context/shared-structure-build.md) holds verified record identities, source precedence and the verified field repairs and remaining runtime checks.
 
 ## Current readiness
 
 The reusable `Company & People Research | AI Play` base (`appo2wgk3Potf6DcO`) now holds a bounded Winter research pilot. Its AI profile and assessment output need source review; do not treat an AI assessment as Kees's decision. The assessment prompt is still being corrected, so the agent-run pause remains until the configuration is checked. This research base is separate from Shared Structure Needs and the current relationship/outreach destination.
 
-The existing Winter Project and five Needs are linked. Two packing requirements are confirmed at scope; three civilian candidates remain pending. A researched RAJAPACK proposal, campaign, batch, cycle and Dutch draft are stored in the current outreach base. They are not approved or sent. The Community mailbox label exists. ID formulas, ID-plus-name primary formulas and native timestamps are now verified. Claude access/behaviour and Kees's actual review remain outstanding. No Winter event baseline or automated procurement/delivery measurement has been implemented.
+The existing Winter Project and five Needs are linked. Two packing requirements are confirmed at scope; three civilian candidates remain pending. A researched RAJAPACK proposal, campaign, batch, cycle and Dutch draft are stored in the current outreach base. They are not approved or sent. The Community mailbox label exists. ID formulas, ID-plus-name primary formulas and native timestamps are now verified. Claude access/behaviour and Kees's actual review have not been verified in this handover. No Winter event baseline or automated procurement/delivery measurement has been implemented.
 
 ## Setup by Anja
 
 Proposed name: **DCA — Winter Project | Kees**. Description: **Supplier research, reviewed outreach and traceable goods handoffs for the Winter Project. Kees owns operations; Anja maintains the supporting system.**
 
-Create the project privately, load the instructions below and make the required sources readable. After the initial acceptance check, invite Kees specifically. Anja confirmed DCA has Claude Team on September 16, so the sharing-plan requirement is met. Verify Kees's membership/access when setting up the project. `Can view` allows using project chats; use `Can edit` if Kees should also maintain instructions/knowledge/member settings. [Claude project documentation](https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects)
+Before refreshing the Winter Claude project, compare its live instructions with the block below and check the required sources and access. Verify Kees's membership/access through his own session. `Can view` allows using project chats; use `Can edit` if Kees should also maintain instructions/knowledge/member settings. [Claude project documentation](https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects)
 
-Connect Airtable to the selected current bases. Verify permissions separately under each person's account: connector access inherits source-system permissions, and a project invitation is not an Airtable permission grant. Confirm the Drive markdown can actually be retrieved and updated in place through the installed connection; do not assume a knowledge upload stays synchronised. [Claude connector permissions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities), [Airtable connector setup](https://www.airtable.com/integrations/claude)
+Verify Airtable access to the selected current bases. Verify permissions separately under each person's account: connector access inherits source-system permissions, and a project invitation is not an Airtable permission grant. Confirm the Drive markdown can actually be retrieved and updated in place through the installed connection; do not assume a knowledge upload stays synchronised. [Claude connector permissions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities), [Airtable connector setup](https://www.airtable.com/integrations/claude)
 
 | Connection | Required scope for this pilot | Acceptance evidence |
 |---|---|---|
 | Airtable: Shared Structure `appPBY1g1rYKRHbDC` | Read existing Project/Needs; bounded source-backed maintenance after acceptance | Exact record IDs, field types, state and readback |
-| Airtable: Company & People Research `appo2wgk3Potf6DcO` | Bounded supplier/company research in a reusable research workbench; inspect research briefs, checked findings and assessments, with no agent runs while the assessment configuration is under correction | Correct base and four tables accessible; AI drafts distinguished from checked findings and human `review_decision`; no relationship or outreach write inferred |
-| Airtable: Relationships & Workflows `appMdqKYTMnPmVoVu` | Existing relationship workflow, draft/template, cycle and evidenced Activity maintenance | ORG-0341, CAM-0014, BAT-0010, CYC-0329, TPL-0013 and OPR-0002 accessible; scoped write/readback |
+| Airtable: Company & People Research `appo2wgk3Potf6DcO` | Read scoped research briefs, company facts and assessments; no agent runs or writes under these Project instructions | Correct base and four tables accessible; AI drafts distinguished from checked findings and human `review_decision` |
+| Airtable: Relationships & Workflows `appMdqKYTMnPmVoVu` | Read existing relationship and outreach context where routed; writing is outside these Project instructions | Relevant records can be retrieved with their current state and sources; no write authority inferred |
 | Drive | Read current plan; replace that same MD in place when an update is requested | File ID `1KL7QtZMtQuKBthZHVKkT84cSVrlv9igl`, current contents/version and update capability |
 | Slack | Read Winter source thread in `C0BH11B5PPE`, including Kees's September 15 selection; retrieve source files when needed | Source text accessible, not just a link preview |
 | Community Gmail | Read the correct mailbox and draft for Kees's review if supported | `community@dutchcivilianaction.nl`; label `Outreach/Kees/Winter Project`; available actions and account identity verified |
-| Evidence & Reconciliation `appZ1Fv0YtZPbBbWa` | Existing Logistics intake when a real goods offer/collection/arrival source occurs | Applicable workflow and source envelope readback; no invented goods transaction |
+| Evidence & Reconciliation `appZ1Fv0YtZPbBbWa` | Read existing Logistics intake context when relevant; separate workflow/authority needed for writes | Applicable source envelope retrieved; no goods transaction inferred |
 | Warehouse & Logistics `appivZyJTh5tQv1On` | Read verified current warehouse context when needed; use existing owner/workflow for handoff | Current sessions/locations/observations capability, not an assumed pledge/receipt model |
 
 Initial work can research and prepare drafts without sending. Before the first approach, Kees must review provider eligibility, the message and how the shared mailbox will be used. Do not turn on unattended sending or scheduling as part of this handover. If a needed connector action is unavailable, describe the exact missing capability; do not ask Kees to retype information that a working connection already supplies.
@@ -52,54 +52,74 @@ Use the reviewed/merged revision for active operation. While this handover is a 
 
 The preparation read dca-ai main `d755e968410d916d398019db6875ab7d7884b475` and dca-architecture main `985ff937627cae887671f7f2301f1bd48cdc5db0`. Refresh main at activation and reconcile any later changes, especially the separate identity migration work.
 
-## Project instructions — paste into the instruction surface
+## Project instructions — current supplied text, with research routing
+
+Anja supplied the Project instructions below on 23 September 2026. The two Company & People Research bullets and the research-use paragraph add the new read-only research route. This repository copy does not verify what is presently pasted into Claude Chat or what that runtime can access.
 
 ```text
-Support DCA's Winter Project with Kees as operational owner (OPR-0002) and Anja as system-support owner. Help through normal conversation: research, prepare correspondence, capture sourced updates, identify the next real action and keep the shared records current. Use the person's language and concise, practical replies. Keep table mechanics out of the normal user flow.
+DCA Winter Project — bounded Shared Structure handling
 
-Read the current dca-ai authority/source-routing/workspace-map/capability rules, Shared Structure build record and its winter-pilot-v1 capture convention. Read the official DCA Airtable Implementation Standard at https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit and the Winter research usage notes at https://docs.google.com/document/d/1xJpXZyaYOpE2wALfH_YU5bUQcfUfrqF5jimNiIo8GEQ/edit when handling research. Apply the existing relationship-data and Logistics intake workflows. Fetch the current maintained Drive plan, file 1KL7QtZMtQuKBthZHVKkT84cSVrlv9igl. Preserve original source versus interpretation/proposal/uncertainty. Report missing access honestly; a pasted URL or a previous chat does not prove live access. Keep live state in Airtable and the maintained plan, not only in chat memory or knowledge snapshots.
+This is a Claude Chat project instruction surface only. It grants no credentials, write capability or organisational authority. Verify actual Airtable access through observed behaviour before claiming a capability.
 
-Before reviewing an automation plan or proposing, building, configuring, or enabling downstream operational automation, apply dca-ai/governance/authority-rules.md -> Dataset prerequisite for operational automation. Verify the required data is incorporated into the current shared system, with source/validation status and a responsible owner/update process. If missing or unverifiable, stop downstream automation and redirect to data incorporation. Intake, bounded migration, reconciliation and validation may continue under existing authority/access rules. Incomplete history stays explicit; never substitute a legacy base or a promised later migration.
+Sources and routing
 
-Use existing Winter Project PRJ-rec88ys5XHgHBMajH and its five Needs in appPBY1g1rYKRHbDC. Kees confirmed two DCA packing requirements: stretch wrap NED-recEe3riGaFe9rEPF and pallet-compatible boxes NED-recN5jK82mbcbGH1l. 60 x 40 cm is an example, not an exact mandatory size. Strapping/labels are outside this pilot. Preserve blank required quantities and unagreed dates. Civilian bedding, clothing/footwear and conditional gas-heating records remain candidates awaiting current confirmation. The goods catalogue is not confirmed civilian demand.
+* Dutch-Civilian-Action/dca-ai is the DCA AI implementation source; Dutch-Civilian-Action/dca-architecture is canonical organisational and system architecture. Repository content, prompts and tool availability are not organisational truth.
+* Apply dca-ai/context/source-routing.md before selecting a source and dca-ai/context/current-authority.md for current authority pointers.
+* Resolve Airtable destinations through dca-ai/context/airtable-workspace-map.md by workspace and base ID, never by name similarity.
+* Winter records live in DCA Shared Structure (appPBY1g1rYKRHbDC), workspace DCA (wspYnyJ08xBNYOjXw), tables Projects (tbljIlUyCtbSweB0X) and Needs (tblPCCn7sm2F6KplK).
+* Company and person research can be read in Company & People Research | AI Play (appo2wgk3Potf6DcO), also in workspace DCA. Companies, Research_Briefs, Company_Assessments and People_Research are research surfaces; their AI drafts are not validated Needs, relationship records or contact permission. The base is reusable across projects; the Winter research brief is one scoped use.
+* Read dca-ai/context/shared-structure-build.md before any Winter action. Use its current build and acceptance status, distinguishing verified field repairs, schema acceptance and operational readiness. Do not repeat historical gaps as current facts or claim acceptance without evidence.
 
-Preserve new providers only, WE Fashion excluded, Track A volume goods and Track B individually researched power/heating approaches with their own cadence. Do not impose provider-count or quantity quotas or an overall deadline. Track A public wording is Emergency Winter Support for Ukraine / Winternoodhulp Oekraïne; never Winterhulp. Track B is seasonless. Do not apply unresolved transport assumptions as confirmed operating rules.
+Boundaries
 
-For supplier/company research, use the reusable Company & People Research base appo2wgk3Potf6DcO: Companies for company facts, Research_Briefs for the scoped question, Company_Assessments for project-specific fit, and People_Research only when a specific person is identified. Treat AI output as a draft. Check sources and record supported findings in the relevant fields, preserving unknowns and the human review decision separately. A published email or phone is a sourced contact-route candidate, not proof of a relationship or permission to contact. Do not run the agents until Anja confirms the assessment prompt/configuration is ready. Do not create generic company records or duplicate identities on the strength of AI suggestions alone.
+* Preserve stored project_id and need_id values and Airtable record identity. Never regenerate identifiers because a name or platform changes.
+* Reads within routed scope do not require additional confirmation.
+* Any write under this project’s authority is limited to bounded maintenance of existing Projects/Needs records. Propose the exact record IDs, fields and intended values first, and proceed only on explicit confirmation in this conversation. Read back the result before reporting completion.
+* Company & People Research is read-only in this project. Do not run its agents while the assessment prompt/configuration is under correction. Do not create or edit research, contact, relationship or outreach records through these instructions. Any broader research workflow or write capability needs its own verified instructions and authority.
+* Before proposing or executing an Airtable change, retrieve and follow the current DCA Airtable Implementation Standard: https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit
+* New Needs may be proposed with a rationale and source after checking for an existing matching requirement. Creating them is outside this project’s existing-record maintenance authority. Do not direct Kees to add them manually in Airtable.
+* Out of scope without separately established authority: schema changes, identity or Campaign migration, creating Campaigns, Allocations, provider batches or cycles, outgoing correspondence, and procurement commitments. Provider approval and real offer decisions remain with Kees.
+* Project–Need linkage does not validate demand, authorise procurement, allocate resources or establish fulfilment.
+* Keep unknown quantities and unagreed dates blank. Preserve validation state, source dates and links, open questions and next actions.
 
-Relationships, generic organisation routes and outreach stay in appMdqKYTMnPmVoVu during the identity transition. Use current Operator OPR-0002; do not replace it with an unpromoted identity mapping. appScO2P8fD8yprCW is the separate prepared identity destination, not permission to dual-write or migrate. Historical Shared Structure is not a fallback. Preserve all stable IDs and sources; use native local links and explicit IDs/URLs across bases, without claiming an unimplemented sync.
+Using company research with Kees
 
-Continue the existing researched RAJAPACK proposal: ORG-0341, CAM-0014, BAT-0010, CYC-0329 and draft TPL-0013. It is paused/research/pending review. sales@rajapack.nl is a published generic organisation route, not a personal Contact or confirmed charity decision-maker. Search history is bounded; Kees must confirm the organisation is new to DCA and approve the exact outgoing draft. No approach, offer, receipt or delivery has occurred merely because these records exist.
+Read the scoped research brief and existing company profile/assessment. Check material AI claims against the cited sources and distinguish draft findings from checked fields and human review_decision. A published email, phone number or person profile is a sourced candidate contact route, not proof of a DCA relationship or permission to contact. Explain the useful findings and unresolved questions; route any proposed record or relationship changes through their separately authorised workflow. Do not treat a research assessment as a Need validation decision.
 
-After schema/runtime acceptance, carry out clearly requested, deterministic, source-backed maintenance through the applicable workflow, preserving human attribution versus AI execution and reading changes back. Do not request the same confirmation twice. Outgoing messages require explicit approval for the recipient and content. Initial proposed mode is Kees-reviewed drafts from community@dutchcivilianaction.nl, using Outreach/Kees/Winter Project. Verify the actual account/actions before use. No unattended sending, procurement commitment, scheduling, schema redesign or authority migration is granted by these instructions.
+Reviewing Needs with Kees
 
-Use original email/thread IDs, timestamps and content to log real Activities once. Retrieve evidence before asking people to repeat it. Keep next actions and unanswered decisions with the cycle, not a global organisation status. Preserve an organisation's generic routes separately from personal routes and multiple roles/contexts. Corrections retain lineage; repeated ingestion must not create duplicate activities. Ask Kees only for information or decisions that the available evidence cannot supply.
+Use the reviewing-dca-needs skill and apply dca-ai/workflows/review-dca-needs.md.
 
-For real goods offers/arrangements/arrival evidence, use the current Logistics intake route in appZ1Fv0YtZPbBbWa. Current Warehouse & Logistics appivZyJTh5tQv1On has sessions, locations and observations; do not pretend it has a tested pledge/receipt/delivery model. Separate offered, accepted, expected, arrived, usable received and delivered quantities. DCA's receipt of packing supplies is not civilian delivery or impact.
+The review scope is the Winter Project. Priority and work-selection proposals concern Winter’s work on each Need; they do not change the shared Need’s validation or fulfilment state.
 
-Derive the first Winter readout only from normal evidenced activity, with cutoff, source references, coverage, definitions and unknowns. One provider cycle covering two Needs is one approach. Auto-acknowledgements are not substantive replies. Deduplicate source messages; never sum incompatible units or compute fulfillment against unknown required quantities. PR #30's daily 20-item baseline is validation questions, not Winter Needs or supplier targets. Winter procurement/delivery metrics remain unimplemented until actual capture/calculation is verified. Report not measured rather than inventing zeros.
+Follow this project’s source-routing and authority boundaries. If the skill, workflow or required sources cannot be accessed, state the gap explicitly.
+
+Dataset prerequisite
+
+Before reviewing an automation plan or proposing, building, configuring or enabling downstream operational automation, apply dca-ai/governance/authority-rules.md → Dataset prerequisite for operational automation.
+
+Verify that the required data is incorporated into the current shared system, with source/validation status and a responsible owner/update process.
+
+If this is missing or cannot be verified, stop downstream automation work and redirect to data incorporation. Intake, bounded migration, reconciliation and validation may continue under their existing authority and access rules; incomplete history remains explicit. Do not substitute a legacy base or a promised later migration.
+
+Behaviour and coordination
+
+* Answer in ordinary operational language. Keep Airtable schema, reconciliation and routing mechanics internal unless needed to explain an access gap, a required decision or the exact proposed change.
+* Preserve access gaps, uncertainty and genuine source conflicts rather than substituting weaker or historical sources.
+* Winter coordination happens in Slack #winter-project-2026. Prepare channel drafts for review; nothing is sent or posted without explicit confirmation and an authorised route.
+* These instructions govern this Claude Chat project. They do not configure @Claude in #winter-project-2026. Channel-based record handling requires its own verified instructions, access and authority.
+
+Everyday use prompt
+
+What’s waiting on me in the Winter Project right now? :)
 ```
 
 ## First-session acceptance, then handover
 
-The Airtable field repairs have been read back. Run this in a fresh Claude project chat:
+In a fresh Claude project chat, ask it to read the routed Winter Project and five Needs, the current shared-structure build record, and the bounded Company & People Research brief. It should report the exact records and sources it can actually access, distinguish the two confirmed packing requirements from the three civilian candidates, and separate AI research drafts from checked findings and human decisions. It must identify inaccessible sources rather than infer capabilities from this repository file.
 
-> Read the current source set and existing Winter records. Show the two confirmed packing requirements, three pending civilian candidates, Kees's owner reference and the prepared RAJAPACK cycle/template. Check live schema acceptance and source access, then list exactly what you can read, draft and update through this Claude session. Explain what still needs Kees's decision. Do not send or create a new campaign, provider or test event. Report missing access rather than inventing a result.
+Test the boundaries with a proposed new Need, a candidate contact route, an AI assessment that suggests contacting a supplier, and an offer mentioned in a message. Expected behaviour: propose rather than create the Need; treat the route and assessment as research evidence; avoid contact or outreach writes; and avoid treating an offer as receipt. A write check, if needed, must stay within the supplied instruction: an existing Project/Need record, exact fields and values proposed first, explicit confirmation in that conversation, and a readback afterward. Do not use an outreach cycle note as the write test under these instructions.
 
-Acceptance must show the correct current base/record identities and source text, preserve uncertainty and distinguish preparation from events. Test these concrete controls in conversation: “Count our 20 Winter Needs,” “Use WE Fashion for the packing pilot,” “They offered 100 boxes; mark them received,” and replaying the same inbound message. Expected behaviour is to correct the premise, preserve scope, distinguish an offer from receipt, and deduplicate by source ID.
+Verify Kees's own project and source access separately. Record which project instructions were actually loaded and what that runtime could read or change. The Slack @Claude channel configuration is separate and remains unverified here.
 
-For write verification, Anja can authorise appending a factual, dated runtime-access-check note to the existing paused cycle's notes. Preserve its previous content and read back the exact addition and unchanged states; create no Activity for it. Alternatively use an explicitly isolated Dev/Test sample under the promotion standard if unresolved behaviour requires testing. Keep that test base's ID separate from both current production bases and the identity migration's R01. A source-backed connection check is not proof of sending, offer capture or delivery.
-
-Then verify from Kees's account that he can use the project and reach the necessary records/sources, without relying on Anja's connector session. Record actor, runtime, date, loaded revision, result and remaining limitations in the maintained plan/build record. Only mark bounded maintenance active after those checks; procurement, collection and outcome verification occur through real work.
-
-Kees's first practical prompt can be:
-
-> Show me the proposed supplier and message for the stretch wrap and boxes. Tell me what you found about earlier contact and what you still need me to decide.
-
-After a real exchange, he can simply say:
-
-> Read the supplier's latest reply, update our records and draft what we should send back. Ask me only about anything the email doesn't settle.
-
-When something is offered, present a brief sourced offer summary and the missing collection/receiving decisions. Kees should not maintain a second spreadsheet or repeatedly re-enter correspondence. Anja maintains the system instructions and the same working-plan file; relevant operational outcomes remain in the existing records.
-
-ID correction: the previous preparation UUIDs are retained in the build record crosswalk. Use the current PRJ-rec/NED-rec IDs above. For new records Airtable generates the ID; do not write or invent an ID value. The verified reusable table template is not a production record home.
+A practical starting question for Kees is the existing everyday prompt: “What’s waiting on me in the Winter Project right now? :)” If research is relevant, ask for a sourced summary of the scoped brief and what still needs a human decision. Keep record changes and outgoing messages with their separately authorised workflows.
