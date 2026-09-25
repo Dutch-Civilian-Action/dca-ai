@@ -18,11 +18,11 @@
     },
     "action_items": {
       "table_id": "tblPdYCRPnQYK0niY",
-      "records": 30
+      "records": 37
     },
     "meetings": {
       "table_id": "tblbs9NCKfVdHhHRZ",
-      "records": 7
+      "records": 8
     },
     "decisions": {
       "table_id": "tblL52DC1eUcQ9Kid",
@@ -50,5 +50,5 @@
     "Cross-system information shown in DCA Now preserves its owning source and authority boundary.",
     "Do not create a projection table when an existing Ways of Working object already represents the needed concept."
   ],
-  "correction_note": "Initial Shared Structure placement was incorrect. The extra Shared Structure DCA Now interface and People projection table were deleted on 24 September 2026."
+  "correction_note": "Initial Shared Structure placement was incorrect. The extra Shared Structure DCA Now interface and People projection table were deleted on 24 September 2026. Live Ways of Working counts were re-read on 25 September 2026."
 }
