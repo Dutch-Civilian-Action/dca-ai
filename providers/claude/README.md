@@ -69,6 +69,7 @@ See `../runtime-selection.md` for runtime/provider choice and `model-selection.m
 - `model-selection.md` — current Claude model and effort guidance by work type.
 - `projects/winter-project.md` — prepared Winter Project Chat handover and fresh-session acceptance checks; runtime activation remains pending.
 - `projects/fundraising-outreach.md` — manual setup guide for the `DCA — Fundraising & Outreach` Chat project: name, description, the minimal project-instruction block, required repositories, plugins, connectors and knowledge, sharing with Bas as *Can view*, and the checks that require his own session. Intended configuration only; no part of it is deployed.
+- `meeting-actions-to-asana.md` — proposed Claude implementation of the meeting-actions capture workflow: surface and executor identity, invocation model, required access (including the current Asana gap) and the checks required before it may be called current. Nothing in it is configured or verified.
 - `tag/access-bundles.md` — current Claude Tag access-bundle and channel-scope design.
 - `../../plugins/dca-core/` — packaged DCA source-routing and repository-navigation adapters for Claude runtimes.
 - `../../plugins/dca-relationship-data/` — packaged Claude implementation of the Relationship Data capability.
