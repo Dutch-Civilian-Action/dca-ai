@@ -1,8 +1,8 @@
 ---
 name: preparing-dca-fundraising-outreach
-description: Prepare DCA fundraising and outreach communication — outreach emails to churches, Rotary clubs, donors, funders and partners; funding asks and applications; presentation preparation; replies, thank-you messages and follow-up — built from the latest sent newsletter campaign, current DCA evidence and relationship history. Use when someone asks for an outreach or donor email, a funding request, a reply to a funder or partner, or material for a presentation. Do not use for newsletter subscription intake, contact-record maintenance, or logistics intake.
+description: Prepare DCA fundraising and outreach communication — outreach emails to churches, Rotary clubs, donors, funders and partners; funding asks and applications; campaign briefs with draft copy, a proposed ask, stat blocks, charts, cost tables and imagery; presentation preparation; replies, thank-you messages and follow-up — built from the latest sent newsletter campaign, current DCA evidence and relationship history. Use when someone asks for an outreach or donor email, a funding request, a campaign brief, a reply to a funder or partner, or material for a presentation. Do not use for newsletter subscription intake, contact-record maintenance, or logistics intake.
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   dca-workflow: prepare-fundraising-outreach
   mcp-server: mailchimp
 ---
@@ -22,6 +22,9 @@ Load a reference only when the task reaches it:
   relevant newsletter campaign, and the retrieval-only Mailchimp boundary.
 - [references/funding-asks.md](references/funding-asks.md) — funding-ask distinctions,
   applications, and follow-through after a reply or presentation.
+- [references/campaign-briefs.md](references/campaign-briefs.md) — campaign briefs:
+  where each value and image comes from, charts and tables, the Sources section and
+  the review ledger.
 
 ## Before drafting
 
@@ -63,6 +66,9 @@ and send readiness separately.
 
 On a requested correction, preserve scope, structure and wording except where the correction
 or a factual problem requires a change.
+
+For a campaign brief, `references/campaign-briefs.md` → Output replaces the subject
+line and clean draft above.
 
 ## Missing input
 

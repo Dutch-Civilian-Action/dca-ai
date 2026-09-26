@@ -11,8 +11,9 @@ provider_independent: true
 ## Purpose
 
 Prepare DCA fundraising and outreach communication from current evidence: outreach
-emails, funding asks and applications, presentation preparation, replies, thank-you
-messages and follow-up, for churches, Rotary clubs, donors, funders and partners.
+emails, funding asks and applications, campaign briefs, presentation preparation,
+replies, thank-you messages and follow-up, for churches, Rotary clubs, donors,
+funders and partners.
 
 This workflow defines what outreach preparation means. Provider adapters define how a
 runtime executes it. Preparation is drafting and record-reading work: it sends nothing,
@@ -32,6 +33,9 @@ Churches and Rotary clubs are audiences within this one scope, not separate work
   current-vs-historical status, and, where an Airtable destination is involved,
   `context/airtable-workspace-map.md` for base identity.
 - Current verified DCA communication guidance and approved communication material.
+- For a campaign brief: values and media the requester supplies, current shared DCA
+  sources routed through `context/source-routing.md`, and communication-production
+  media under `Dutch-Civilian-Action/dca-architecture/organisation/drive-architecture/`.
 - `governance/authority-rules.md` for evidence, authority and automation boundaries.
 
 ## Establish before drafting
@@ -136,6 +140,8 @@ different conclusions.
 On a requested correction, preserve scope, structure and wording except where the correction
 itself, or a factual problem, requires a change. Do not re-optimise the rest of the draft.
 
+A campaign brief has its own deliverable, defined under Campaign briefs.
+
 ## Authorization
 
 Authorization is governed by `governance/authority-rules.md`. Capability is never
@@ -203,6 +209,46 @@ action, owner and agreed timing. Preserve them through the existing authorised r
 where that is not possible, give a concise proposed record with source links and say it is
 unrecorded. Do not invent deadlines, and do not mark work complete from intent alone.
 
+## Campaign briefs
+
+A campaign brief is a draft for review, not a publication. It combines narrative copy,
+a proposed ask, stat blocks, charts, cost-allocation tables and imagery for one
+campaign.
+
+The deliverable has three parts:
+
+1. a draft brief ending with a Sources section, listing every value and asset with its
+   source, retrieval date and status;
+2. a review ledger outside the brief, listing every unverified claim, value, asset and
+   open decision, what would settle it, and who validates it;
+3. two readiness statements: text readiness, and publication readiness. Publication
+   readiness is reached outside this workflow.
+
+The draft is a review artifact, so unverified values are marked in its body. The
+recipient-facing rule in the output contract applies to the published version, which
+this workflow does not produce.
+
+Each value comes from the requester stating it as current, or from a current shared
+DCA source routed through `context/source-routing.md`, or it is not produced. A value
+that is not produced leaves a named missing dataset, not an estimate. Where sources
+disagree, show both and do not choose.
+
+Each image comes from the requester, or from communication-production media under the
+drive architecture, or it is a labelled placeholder. Images are shortlisted, never
+selected; conditions the requester attaches travel with them.
+
+Charts, stat blocks and tables use only values with reconciled underlying data and an
+as-of date. A public number states its period, source and DCA's role. Partner-reported
+figures need the partner's statement or records. Restricted-purpose funds do not count
+toward an unrelated ask. Donations, funded costs, shipments, missions, evacuation
+activities and people reached stay distinct.
+
+Prior-year proposals and earlier campaigns are source material only. They never define
+a current brief's figures or narrative.
+
+Copy, imagery, consent, timing and publication decisions for a brief fall under known
+gap 1: name them as open decisions and do not assign them.
+
 ## Boundary with other capabilities
 
 - Source routing, repository navigation and shared object boundaries → the Core routing
@@ -248,3 +294,7 @@ These remain open and must stay visible wherever this workflow is implemented:
    whether it is permitted is settled by the authority rules. State which of the two is the
    limit whenever a change does not proceed, and verify capability at the credential rather
    than by observing a session.
+4. **No routes for most brief figures.** `context/source-routing.md` routes no
+   financial, donation, mission, evacuation, housing or people-reached fact, and
+   `context/airtable-workspace-map.md` records no base for them. Until routes exist,
+   most brief values come from the requester or are not produced.

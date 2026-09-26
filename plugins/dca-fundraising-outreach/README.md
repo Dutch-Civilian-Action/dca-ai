@@ -11,6 +11,9 @@ Claude plugin packaging for the DCA fundraising and outreach preparation capabil
 - `skills/preparing-dca-fundraising-outreach/references/campaign-selection.md` — latest-sent
   versus newer-draft campaign selection, image and link handling, and the retrieval-only
   Mailchimp boundary.
+- `skills/preparing-dca-fundraising-outreach/references/campaign-briefs.md` — campaign
+  briefs: value and media sourcing, charts and tables, the Sources section and the
+  review ledger. Loaded only for briefs.
 - `skills/preparing-dca-fundraising-outreach/references/funding-asks.md` — funding-ask
   distinctions, applications, and follow-through after a reply or presentation.
 
@@ -49,7 +52,9 @@ Behavioural acceptance cases are in
 [`tests/providers/claude/fundraising-outreach.md`](../../tests/providers/claude/fundraising-outreach.md);
 none has been executed on any runtime.
 
-Skill version `0.1.0` is the first packaging of this capability. As with the other plugins in
+Skill version `0.2.0` adds campaign briefs; `0.1.0` was the first packaging of this
+capability. Campaign-brief acceptance cases are tests 13–34 in the tests file; none has
+been executed. As with the other plugins in
 this repository, the manifest carries no pinned `version` field, so a new commit is
 recognised as a new plugin version during internal testing rather than requiring a manual
 semantic-version bump.
