@@ -255,7 +255,7 @@ Where materially relevant, inspect:
 
 - Airtable;
 - GitHub;
-- DCA Master Calendar;
+- DCA Shared Calendar;
 - integrations, automations, and runtime evidence;
 - other connected organisational systems.
 

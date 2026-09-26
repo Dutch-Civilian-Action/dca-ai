@@ -146,6 +146,7 @@ See:
 - `providers/airtable-omni/relationship-data-agent.md`
 - `workflows/maintain-dca-reality.md`
 - `workflows/reconcile-relationship-data.md`
+- `governance/ai-coordination.md` — for when multiple DCA AI runtimes are present in the same live conversation, how they exchange corrections, and how they resolve conflicting claims
 
 ## Airtable workspace and base identity
 
