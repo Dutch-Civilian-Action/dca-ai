@@ -2,7 +2,7 @@
 document_type: dca_shared_structure_build_record
 status: under_construction
 scope: supervised_shared_structure_build
-verified_date: 2026-09-16
+verified_date: 2026-09-26
 provider_independent: true
 ---
 
@@ -63,15 +63,15 @@ Civilian bedding and clothing/footwear remain candidate bundles pending current 
 
 ## Bounded fundraising extension — 26 September 2026
 
-The live base now contains one Appeal, three Appeal_Routes and an 18-row Campaigns_Synced projection. Readback verified:
+The live base contains an Appeal, Appeal_Routes and Campaigns_Synced. These connect source campaigns to one shared fundraising goal. The Appeal stores the proposed €30,000 target and a rollup of eligible Donorbox donations through confirmed routes. Its separately maintained overall counting path remains `not_configured`. The Donorbox rollup is partial and is not a reconciled total across all sources or a public website meter. Read the live Appeal for its changing amount; this build record does not repeat it.
 
-- Appeal `APL-recHugvEcbprILdql` — “Help Evacuate 1,000 People” — records the proposed shared €30,000 evacuation appeal boundary. Its goal validation is pending and its counting status is `not_configured`; no combined raised amount is maintained.
-- Route `APR-recFfQ5CKfvIoWd9A` maps Donorbox campaign `931475` as the direct DCA page.
-- Route `APR-rec5HieJgqElYW8CO` maps Donorbox campaign `968308` as Ina's supporter page. Donorbox exposes the page as active at its URL, while DCA's projection keeps the campaign in a draft working state because content, Finance, privacy/legal and release review are incomplete.
-- Route `APR-recRXF7pOJpmWBxuW` preserves Asja's supporter page as planned with no external campaign ID.
-- Campaigns_Synced contains 18 projected rows. It is a read/composition surface for current campaign records and values, not a new campaign authority or proof of correct totals, Finance allocation, publication, use or impact.
+- Appeal `APL-recHugvEcbprILdql` — “Help Evacuate 1,000 People”. Goal and outcome claims still need their respective validation.
+- Confirmed route `APR-recFfQ5CKfvIoWd9A` maps DCA's direct donation campaign `931475`.
+- Confirmed route `APR-rec5HieJgqElYW8CO` maps Ina's birthday campaign `968308`.
+- Confirmed route `APR-recRXF7pOJpmWBxuW` maps Asja's birthday campaign `968351`.
+- Campaigns_Synced is an Airtable sync projection of the operational `Campaigns` table. The birthday campaign rows are `draft` in DCA's working status, although their Donorbox URLs are reachable. Neither page has been shared. The projection is not a second campaign authority, and its campaign totals alone do not validate designation, allocation, bank reconciliation, publication, use or impact.
 
-The source material is the “Birthday Donorbox setup — open inputs and decisions” handoff and the “Donorbox setup checklist — Ina Roestenberg birthday” execution record in DCA Drive, together with live Donorbox-derived campaign records in DCA Evidence & Reconciliation. The checklist records desktop and partial checkout checks, no payment, no public sharing, several explicit holds and unverified mobile/test-gift behaviour. A €92.60 one-time donation posted in Slack on 26 September belongs to campaign 931475 and does not validate the new supporter page, the €30,000 appeal target, the €30-per-life public claim, route aggregation or evacuation outcomes.
+The source material is the “Birthday Donorbox setup — open inputs and decisions” handoff and the page-specific execution checklists in DCA Drive, plus live Airtable readback on 26 September. The checklists preserve remaining content, Finance, privacy and checkout holds. A Donorbox donation export has been backfilled into the operational Donations table for 2026; older history, bank gifts and mixed-purpose campaign designation still need separate reconciliation. This does not change the Appeal's public-readiness boundary.
 
 This extension corrects the earlier statement that Shared Structure contained only Projects and Needs. It does not reverse the DCA Now placement correction: People, meeting-derived Action_Items and Meetings remain in DCA Ways of Working, canonical identity remains outside Shared Structure, and assigned implementation work remains in Asana.
 
