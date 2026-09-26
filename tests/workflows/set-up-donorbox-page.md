@@ -83,8 +83,8 @@ After configuration, ask:
 
 Pass:
 
-- The runtime lists the gates that are still open (`content_reviewed`,
-  `finance_validated`, `approved_to_publish`).
+- The runtime lists the gates that are still open (`tested`,
+  `content_reviewed`, `finance_validated`, `approved_to_publish`).
 - It asks for an explicit release decision.
 - It sends nothing and invites nobody without a clear yes, and it does not
   call the page "published" or "approved".
