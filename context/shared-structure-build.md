@@ -1,18 +1,18 @@
 ---
 document_type: dca_shared_structure_build_record
 status: under_construction
-scope: supervised_projects_and_needs_build
-verified_date: 2026-09-16
+scope: supervised_shared_structure_build
+verified_date: 2026-09-26
 provider_independent: true
 ---
 
-# Shared Structure — supervised Projects and Needs build
+# Shared Structure — supervised Projects, Needs, Appeals and Routes build
 
 ## Authority and present state
 
 Anja selected a new Shared Structure direction and then requested building it together in ChatGPT through the Airtable plugin, with a Claude project for further handling after completion. That instruction supersedes the earlier Winter handoff's proposed Claude Code build path for this bounded task.
 
-The base now exists and contains sourced preparation records. It is **under construction**, with the corrected ID/display/timestamp fields verified and Claude routine maintenance capability still pending. Creating the base and these records does not activate any autonomous workflow, migrate Campaigns or identities, or establish a completed procurement/delivery cycle.
+The base now exists and contains sourced preparation records. It is **under construction**, with the corrected Project/Need ID, display and timestamp fields verified and Claude routine maintenance capability still pending. On 26 September 2026, a bounded fundraising extension added Appeals, Appeal_Routes and Campaigns_Synced after supervised campaign setup work. Creating these tables and records does not activate an autonomous workflow, migrate Campaigns or identities, validate appeal claims or totals, approve publication, or establish fundraising outcomes.
 
 The [canonical structural rules](https://github.com/Dutch-Civilian-Action/dca-architecture/blob/main/systems/shared-system-structural-rules.md), [workspace map](airtable-workspace-map.md), [source routing](source-routing.md), [capability/access boundaries](capability-access-boundaries.md) and [Schema Guard conventions](../providers/airtable-schema-guard/rules/dca-airtable-rules.json) continue to apply.
 
@@ -26,6 +26,9 @@ The DCA workspace was returned by live `list_workspaces` with owner access. The 
 | [DCA Shared Structure](https://airtable.com/appPBY1g1rYKRHbDC) | `appPBY1g1rYKRHbDC` |
 | Projects | `tbljIlUyCtbSweB0X` |
 | Needs | `tblPCCn7sm2F6KplK` |
+| Appeals | `tblkexBaTyTcGtPM4` |
+| Appeal_Routes | `tbl3jbXk3NvzA3apB` |
+| Campaigns_Synced | `tbleszwrDCrLFvkA5` |
 | [Winter Project](https://airtable.com/appPBY1g1rYKRHbDC/tbljIlUyCtbSweB0X/rec88ys5XHgHBMajH) | `rec88ys5XHgHBMajH` |
 | Projects.needs | `fld0NeU6a3sMRFUkG`; native reciprocal link to Needs |
 | Needs.projects | `fldqj2t3CXWZHyRVk`; native reciprocal link to Projects |
@@ -58,12 +61,26 @@ All five Needs link to the same Project. Linkage does not validate demand, autho
 
 Civilian bedding and clothing/footwear remain candidate bundles pending current Help Window confirmation; refine independently fulfillable lines before measuring fulfillment. The gas-heating source is conditional and has unresolved recipients/specifications. Power stations and generators remain research scope without invented confirmed demand records. Strapping and labels are excluded from the first packing pilot.
 
+## Bounded fundraising extension — 26 September 2026
+
+The live base contains an Appeal, Appeal_Routes and Campaigns_Synced. These connect source campaigns to one shared fundraising goal. The Appeal stores the proposed €30,000 target and a rollup of eligible Donorbox donations through confirmed routes. Its separately maintained overall counting path remains `not_configured`. The Donorbox rollup is partial and is not a reconciled total across all sources or a public website meter. Read the live Appeal for its changing amount; this build record does not repeat it.
+
+- Appeal `APL-recHugvEcbprILdql` — “Help Evacuate 1,000 People”. Goal and outcome claims still need their respective validation.
+- Confirmed route `APR-recFfQ5CKfvIoWd9A` maps DCA's direct donation campaign `931475`.
+- Confirmed route `APR-rec5HieJgqElYW8CO` maps Ina's birthday campaign `968308`.
+- Confirmed route `APR-recRXF7pOJpmWBxuW` maps Asja's birthday campaign `968351`.
+- Campaigns_Synced is an Airtable sync projection of the operational `Campaigns` table. The birthday campaign rows are `draft` in DCA's working status, although their Donorbox URLs are reachable. Neither page has been shared. The projection is not a second campaign authority, and its campaign totals alone do not validate designation, allocation, bank reconciliation, publication, use or impact.
+
+The source material is the “Birthday Donorbox setup — open inputs and decisions” handoff and the page-specific execution checklists in DCA Drive, plus live Airtable readback on 26 September. The checklists preserve remaining content, Finance, privacy and checkout holds. A Donorbox donation export has been backfilled into the operational Donations table for 2026; older history, bank gifts and mixed-purpose campaign designation still need separate reconciliation. This does not change the Appeal's public-readiness boundary.
+
+This extension corrects the earlier statement that Shared Structure contained only Projects and Needs. It does not reverse the DCA Now placement correction: People, meeting-derived Action_Items and Meetings remain in DCA Ways of Working, canonical identity remains outside Shared Structure, and assigned implementation work remains in Asana.
+
 ## Existing connections and remaining integration
 
 - The native Projects ↔ Needs links are built and verified.
 - The Project and the two DCA requirements reference Kees through `owner_id` plus `owner_source_link`. No duplicate People/Organisations tables were created.
 - Current relationship/outreach records remain in `appMdqKYTMnPmVoVu`. The prepared Identity & Relationships base `appScO2P8fD8yprCW` awaits its own adoption and mapping.
-- Campaigns and Allocations remain distinct shared objects in the intended design. Campaigns stay in their current operational table until a controlled transition. The September 15 build created neither. On September 16, Anja requested completion of the Winter preparation: the draft Campaign, batch, provider proposal and template below were added to the existing outreach tables. The Project's `campaign_references` now points to them. No Allocation was created.
+- Campaigns remain in their established operational sources. The 26 September Campaigns_Synced table is a bounded projection, not a migration or write authority. Appeals and Appeal_Routes add a shared composition layer for one evacuation appeal and its routes; their presence does not validate campaign facts, totals or publication. Allocations remain unimplemented. On September 16, Anja requested completion of the Winter preparation: the draft Campaign, batch, provider proposal and template below were added to the existing outreach tables. The Project's `campaign_references` now points to them. No Allocation was created.
 - The first provider proposal preserves the stable Project/Need IDs and record URLs in existing source-reference fields. The bounded capture convention below reuses native links within a base and IDs/URLs across bases; it does not claim a sync or cross-base linked-record implementation. Activity counts cannot be derived from preparation records.
 - Mixed offers, pickup and receipt evidence continue through the established Logistics intake route in `appZ1Fv0YtZPbBbWa`. The operational Warehouse & Logistics base remains `appivZyJTh5tQv1On`; its sessions, locations and observations do not constitute an implemented pledge/receipt/delivery model.
 - Reusable work and findings continue in Ways of Working. No parallel workflow or metric register was added.
