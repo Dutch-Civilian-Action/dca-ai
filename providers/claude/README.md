@@ -73,6 +73,7 @@ See `../runtime-selection.md` for runtime/provider choice and `model-selection.m
 - `../../plugins/dca-core/` — packaged DCA source-routing and repository-navigation adapters for Claude runtimes.
 - `../../plugins/dca-relationship-data/` — packaged Claude implementation of the Relationship Data capability.
 - `../../plugins/dca-fundraising-outreach/` — packaged Claude implementation of the fundraising and outreach preparation capability, with progressive references for audiences, campaign selection and funding asks.
+- `../../plugins/dca-donorbox-setup/` — packaged Claude implementation of supervised Donorbox page setup, with progressive references for the birthday page type and observed Donorbox interface behaviour.
 
 The packaged plugin skill is the maintained Claude implementation of Relationship Data. Do not maintain a second mirrored `SKILL.md` under `providers/claude/skills/`.
 

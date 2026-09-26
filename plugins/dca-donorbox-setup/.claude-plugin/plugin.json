@@ -1,0 +1,7 @@
+{
+  "name": "dca-donorbox-setup",
+  "description": "Packaged Claude capability for supervised DCA Donorbox page setup: source-bound setup checklist per page, review stop, new-campaign entry with the responsible person supervising, and recording of the actual UI state. Implements the provider-independent set-up-donorbox-page workflow. Grants no data access, no publication authority and no write authority by itself.",
+  "author": {
+    "name": "Dutch Civilian Action"
+  }
+}
