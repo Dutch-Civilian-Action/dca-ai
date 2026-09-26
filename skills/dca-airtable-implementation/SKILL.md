@@ -20,7 +20,7 @@ Use this skill for any work that may create, assess, or change DCA Airtable impl
 
 Before proposing or executing Airtable implementation, retrieve and read the current **DCA Airtable Implementation Standard**:
 
-https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit
+https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit?usp=drivesdk
 
 The live document is authoritative for Airtable implementation. Do not substitute this skill, remembered conventions, existing Airtable structures, Schema Guard rules, or an earlier copy of the standard for the current document.
 

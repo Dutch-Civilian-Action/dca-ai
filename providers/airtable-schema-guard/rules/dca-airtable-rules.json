@@ -2,6 +2,7 @@
   "version": "0.1.0",
   "authority": {
     "name": "DCA Airtable Implementation Standard",
+    "documentUrl": "https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit?usp=drivesdk",
     "scope": "Airtable implementation only",
     "architectureRepository": "Dutch-Civilian-Action/dca-architecture"
   },

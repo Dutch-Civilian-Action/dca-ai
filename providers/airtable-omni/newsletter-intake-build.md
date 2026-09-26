@@ -91,7 +91,7 @@ Read the reviewed PR #44 revision of:
 - skills/dca-airtable-implementation/SKILL.md
 Also read the current architecture systems/development-testing-and-promotion.md
 and the live standard:
-https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit
+https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit?usp=drivesdk
 If any required instruction is inaccessible, stop and report the gap.
 
 Inspect appMdqKYTMnPmVoVu / Contact_Intake tblsMQmCUeRiUiY3F.

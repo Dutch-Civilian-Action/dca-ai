@@ -1,5 +1,5 @@
 {
-  "standard": "https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit",
+  "standard": "https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit?usp=drivesdk",
   "tables": [
     {
       "description": "Derived daily summaries of reviewed dca-validation-metrics/1 snapshots. One record per capture, preserving partial coverage and historical counts. Reporting only; never classifies or closes validation work.",

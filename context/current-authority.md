@@ -151,6 +151,8 @@ See:
 
 When a routed destination is an Airtable base, resolve which workspace and base it actually is from `airtable-workspace-map.md`, not from a document title, a plugin's historical description, or search ranking. That file identifies current routing destinations and adjacent migration boundaries (including the canonical `DCA Warehouse & Logistics` base and the staging-only `DCA Evidence & Reconciliation` base) and the non-production `DCA Dev/Test` workspace's bases, which must never be selected for production work.
 
+For Airtable design, builds, migration, and schema audits, read the current [DCA Airtable Implementation Standard](https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit?usp=drivesdk) and apply [`dca-airtable-implementation`](../skills/dca-airtable-implementation/SKILL.md) after establishing the relevant DCA architecture and requirements. The Schema Guard rules implement only a subset of the live document.
+
 ## Current technical implementation record
 
 - **DCA AI & Shared Operational Reality — Current Technical Implementation**

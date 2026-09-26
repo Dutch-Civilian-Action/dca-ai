@@ -72,7 +72,7 @@ Review-required does not mean that a human must manually perform the eventual Ai
 
 ## Source of truth
 
-Human standard: **DCA Airtable Implementation Standard** in Google Drive.
+Human standard: [**DCA Airtable Implementation Standard**](https://docs.google.com/document/d/17yO7HdChXXvlxekLJjSqiHNgDWmKQm2VstpErtSJ_4c/edit?usp=drivesdk). Read the live document for Airtable builds and audits; the rules here implement only a subset.
 
 Architecture boundary: `Dutch-Civilian-Action/dca-architecture`, especially the Shared System structural rules.
 
