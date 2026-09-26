@@ -73,6 +73,20 @@
         "funders",
         "newsletter"
       ]
+    },
+    {
+      "name": "dca-donorbox-setup",
+      "displayName": "DCA Donorbox Setup",
+      "source": "./plugins/dca-donorbox-setup",
+      "description": "Supervised DCA Donorbox page setup: generate a source-bound setup checklist for one page, stop for review, create a new campaign with the responsible person supervising and record what the UI actually shows. Implements the provider-independent set-up-donorbox-page workflow. Grants no data access, no publication authority and no write authority by itself.",
+      "category": "operations",
+      "tags": [
+        "dca",
+        "fundraising",
+        "donorbox",
+        "campaigns",
+        "checklist"
+      ]
     }
   ]
 }

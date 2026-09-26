@@ -16,5 +16,6 @@ Current workflows:
 - `reconcile-relationship-data.md` — preserve, reconcile, persist, and retrieve bounded DCA relationship information with provenance, uncertainty, and validation boundaries.
 - `intake-newsletter-contacts.md` — intake names/email lists into current DCA relationship records before any authorized Mailchimp subscription, preserving consent evidence, audience-specific results and migration continuity.
 - `prepare-fundraising-outreach.md` — prepare fundraising and outreach communication for churches, Rotary clubs, donors, funders and partners from established audience, relationship stage, purpose, need and ask, with campaign selection, evidence discipline, distinct content/recipient/send authorization and funding-ask distinctions; preparation only, sending nothing and mutating nothing.
+- `set-up-donorbox-page.md` — generate a source-bound setup checklist for one Donorbox page, stop for review, create a new campaign under the responsible person's supervision and record the actual interface state, with release gates kept separate; experimental, two supervised birthday-page runs (26 Sep 2026), no publication authority.
 
 Provider-specific scheduled tasks, prompts, tool bindings, trigger mechanics, polling cadence, or runtime configuration belong under `providers/` and must not redefine the workflow itself.

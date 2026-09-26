@@ -26,6 +26,7 @@ Current workflow tests:
 - `workflows/identity-migration-r01/README.md` — the bounded 16 September R01 mapping test: exact Dev/Test identity, source-qualified IDs, personal/organisation route separation, uncertainty controls, private evidence replay, observed results and unverified runtime/promotion gates.
 - `workflows/relationship-data-reconciliation.md` — relationship identity, provenance, uncertainty, conflict handling, retrieval, write boundaries, privacy, and provider portability. Concrete live cases are developed separately from the workflow definition.
 - `workflows/logistics-intake-reconstruction.md` — reconstruction-first mixed Logistics intake, source preservation, operational people/organisation/location/route context, non-premature modelling, relationship write boundaries, and later reconciliation.
+- `workflows/set-up-donorbox-page.md` — supervised Donorbox page setup: review stop before any change, new campaign only, no inherited personal fields, visible provider defaults, recorded effective state, release boundary, source conflicts and held content. Two 26 September pilot runs are recorded as design evidence; no acceptance run.
 
 Current provider tests:
 
