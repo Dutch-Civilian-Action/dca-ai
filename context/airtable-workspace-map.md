@@ -66,6 +66,10 @@ Review the structure and mapping with System & Structure and the relevant operat
 
 Its intended production candidate is separately identified as `DCA Shared Identity & Relationships` (`appScO2P8fD8yprCW`) in DCA. R01 passed the recorded technical mapping checks; computed-primary/native-timestamp repairs, scoped mapping review and intended-runtime verification remain pending. Current Relationship Data routing stays `appMdqKYTMnPmVoVu`. See [R01 build and test record](identity-migration-r01.md).
 
+### GOODS-R01 designated development base
+
+`[DEV] DCA Goods Lines — R01` (`appKeml5cgS1mRXxq`) was created in this workspace on 26 September 2026 for a bounded, source-linked test of goods-line granularity, recipient/CMR allocation, split shipment units and persistent LU identity. Its intended production destination, if the structure is accepted, is `DCA Warehouse & Logistics` (`appivZyJTh5tQv1On`). The R01 base is neither the current operational dataset nor the Evidence & Reconciliation layer. It contains four test consignments, seven sample goods lines, one shipment-scoped unit and zero persistent Logistics_Units; see the [R01 build and test record](../handoffs/goods-reconstruction/DEV-TEST-R01.md). The sample does not establish schema acceptance or validate the full workbook.
+
 ### Dated Dev/Test inventory
 
 Names and membership below were observed during the authorised 16 September investigation; R01 was created afterwards in the exact workspace above. Content observations are bounded samples, not blanket validation, a standing read/write grant, or a finding that a base is disposable.
@@ -84,6 +88,7 @@ Names and membership below were observed during the authorised 16 September inve
 | `SOP Template` | `app6OhvZacoqfq8AR` | Name/membership only; contents not inspected |
 | `Bug tracker` | `appjt4FWAtliQL14D` | Name/membership only; contents not inspected |
 | `[DEV] DCA Identity Migration — R01` | `appTpzRmniNpMv35Q` | Created for this identity test only; source-linked real sample, no synthetic fixtures |
+| `[DEV] DCA Goods Lines — R01` | `appKeml5cgS1mRXxq` | Created 26 September for a bounded goods-line mapping test; source-linked copies, no production route; see GOODS-R01 above |
 
 No existing base was renamed, moved, consolidated or archived by this investigation or R01 execution. Proposed physical cleanup remains separate from changing the authoritative home of records.
 
