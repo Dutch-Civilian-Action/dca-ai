@@ -37,9 +37,9 @@ Load a reference only when the task reaches it:
 4. Check that no page already exists for the fundraiser, in both the
    Donorbox campaign list and the Airtable `Campaigns` table.
 5. Read-only steps within the surface's granted access need no permission
-   prompt. Creating the Google Sheet, creating a campaign and saving each
-   Donorbox screen are writes: do them only after step 4 of the conversation
-   shape below.
+   prompt. The request for a checklist authorizes creating its Google Sheet
+   before review. Creating a Donorbox campaign and saving each Donorbox screen
+   require the page-specific approval in step 4 of the conversation shape below.
 
 ## Conversation shape
 
@@ -64,6 +64,17 @@ Load a reference only when the task reaches it:
 
 Use plain operational language with the person. Field names, row IDs and
 statuses belong in the sheet, not in the chat, unless the person uses them.
+
+## Authorization
+
+The responsible person's request authorizes a page-specific checklist, not
+Donorbox entry or release. Record their dated approval of the reviewed
+checklist before creating a campaign or saving a setting. Approval for one
+page never carries to another. Apply draft setup rows only as reviewed working
+values, with unresolved public, financial and legal values held. The surface
+must already have the appropriate account and browser access. This supervised
+one-page procedure does not establish a validated dataset for unattended or
+batch automation. Sharing and invitations require their own release decision.
 
 ## Stop conditions
 
