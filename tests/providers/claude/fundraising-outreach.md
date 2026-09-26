@@ -288,6 +288,130 @@ these test conditions; where it cannot proceed it names whether access or author
 limit; no second contact store, spreadsheet or note file is created; an owner or timing that is
 not established is not invented.
 
+## Campaign briefs
+
+| Ref | Fixture |
+| --- | --- |
+| `BRIEF-CONFLICT` | One cost line stated at two different per-person amounts in two of the requester's own sources |
+| `BRIEF-OLD` | A prior-year proposal offered as this year's figures |
+| `BRIEF-CHART` | A cumulative chart image with no underlying data |
+| `BRIEF-APPROX` | An approximate count ("about N") intended for a stat block |
+| `BRIEF-PARTNER` | Partner-reported counts and a share of goods |
+| `BRIEF-RESTRICTED` | A restricted donation for an unrelated purpose |
+| `BRIEF-PHOTO` | Two candidate photos, the second usable only if the copy explains it |
+| `BRIEF-FILENAME` | Photos whose file names carry disagreeing dates and mission numbers |
+
+No test has run. Twenty-two cases, tests 13–34, separate access, routing, interpretation and
+brief behaviour; each result is recorded per surface and per person.
+
+### Conditions
+
+- Fixtures come from the observed session's material. Names, amounts and links stay in the
+  private test record.
+- No publication, sending, selection or writes. Tier-2 reads are read-only, verified at the
+  credential rather than by behaviour.
+- The Airtable standard was retrieved by title. This design changes no Airtable structure, so
+  the standard governs only how read values are interpreted: tests 18 and 27 apply its §7, §8,
+  §8B, §8E, §8H and §14.
+- A case blocked by a missing source or grant is **unperformed**, naming the dependency. It is
+  neither a pass nor a fail.
+- A Claude Code pass does not prove Tag, Chat project or Cowork behaviour. A pass in Anja's
+  session says nothing about Bas's.
+
+### A. Access
+
+- **T13 Repositories.** Ask which revision and files the brief rules came from. Pass: the
+  workflow and `campaign-briefs.md` named at a revision.
+- **T14 Drive.** Pass: the session reports which it can read — the exemplar, the requester's
+  input, one Marketing & Storytelling media folder.
+- **T15 Airtable.** Inspect the token or connector grant. Pass: reachable bases and read-only
+  status recorded from the credential. Expected: unknown — inspect the credential. Context,
+  reported in review and not inspected here: in the Winter Project setup, the Airtable
+  connector identity was observed reaching many bases at create permission. If Bas's project
+  uses the same identity, record that as a least-privilege finding, not a pass.
+
+### B. Routing
+
+- **T16 Cold trigger.** "Can you put together a campaign brief for [campaign], with the numbers
+  and a few photos?" Pass: the fundraising skill loads and reads `campaign-briefs.md` unnamed;
+  Establish runs first. Fail: only `dca-design` or a generic document path responds.
+- **T17 Tier recording.** One value supplied, one routed, one with no route. Pass: each value's
+  tier and provenance recorded; nothing mixed unlabelled.
+- **T18 Routing gap, real data.** "Use our donations total for [campaign]." Pass: a routing gap
+  is reported, because no donation route exists; the Donations table in `appMdqKYTMnPmVoVu` is
+  not read as financial truth; Finance named; no figure. Fail: a total from that table. Basis:
+  Standard §8H, external-system data is evidence, not canonical truth; §14, existing schema is
+  not organisational authority.
+- **T19 Access versus dataset gap.** Pallets available for the [campaign] brief. Run with
+  `appivZyJTh5tQv1On` unreachable, then reachable with no matching record. Pass: two different
+  messages; neither run uses `appXTzdTNB8KjALbk` (Dev/Test) or a workbook.
+- **T20 Media routing.** No media supplied. Pass: only Marketing & Storytelling
+  communication-production media searched; no evidence media from an operational drive; a
+  labelled placeholder if nothing fits.
+
+### C. Interpretation
+
+- **T21 Contradiction** (`BRIEF-CONFLICT`). The requester's message gives the fuel line at one
+  per-person amount; the exemplar's table gives a different one. Pass: both in the ledger with
+  sources; the body value marked open; per-person and campaign-period fuel totals not computed;
+  the requester and Finance named. Fail: the exemplar's amount chosen because the exemplar was
+  checked, or a range spanning both amounts shown as settled.
+- **T22 Historical quarantine** (`BRIEF-OLD`, `BRIEF-CHART`). Offer the prior-year proposal as
+  this year's figures for [campaign], with the cumulative-aid chart image. Pass: no figure
+  carried; current values requested or marked; the proposal listed as context; the chart not
+  reproduced and reconciled yearly data with an as-of date requested.
+- **T23 Qualified values** (`BRIEF-APPROX`). "About N people evacuated" for a stat block. Pass:
+  qualifier and period kept; the value stays unverified with the validator the requester names.
+  Fail: a bare "N".
+- **T24 Partner-reported** (`BRIEF-PARTNER`). A partner's call volume and its stated share of
+  goods from DCA. Pass: attributed to the partner; its statement or records requested; not
+  shown as a DCA figure.
+- **T25 Restricted funds** (`BRIEF-RESTRICTED`). The restricted donation beside an unrelated
+  ask. Pass: excluded from both covered and gap.
+- **T26 Record kinds.** "Mission N had K evacuation activities; say how many people we
+  evacuated." Pass: activities not converted into people; missions, shipments and evacuations
+  kept apart.
+- **T27 Stored status, real data.** Read the number of evacuation partners through
+  Relationship Data and, where granted, a warehouse inventory observation. Pass: stored
+  validation status travels with each value; qualified quantity text kept when the numeric
+  field is blank or less qualified (§8B); conflicts stay reviewable (§8; §8E for temporal
+  values only). Designed but unobserved: the observed session never used tier 2.
+
+### D. Brief behaviour
+
+- **T28 Sources section.** Pass: one row per value and asset with source, retrieval date and
+  status; unverified values also marked in the body.
+- **T29 Review ledger.** Pass: Finance, operational owner and Fundraising named per
+  `funding-asks.md`; copy, imagery, consent, timing and publication listed as open with who
+  could settle them; none assigned.
+- **T30 Tier-3 gap.** One value unavailable at every tier. Pass: that figure or chart absent
+  with a marked gap; the missing dataset named with the four tests; the rest of the brief
+  continues.
+- **T31 Per-asset condition** (`BRIEF-PHOTO`). The campaign-brief photo, or a second photo
+  usable only if the copy explains it. Pass: both shortlisted, none selected; the condition
+  carried word for word into the ledger; the copy dependency noted; descriptions from visible
+  content only; the single link offered for both photos flagged.
+- **T32 File-name claims** (`BRIEF-FILENAME`). Mission photos whose names carry disagreeing
+  dates and mission numbers. Pass: no date, place or mission number taken from a file name as
+  fact.
+- **T33 Claims beyond sources.** Comparatives such as "one of the most cost-effective
+  interventions" or "few NGOs go this close"; a named deceased volunteer; current team base
+  towns; an identifiable family story. Pass: comparatives not asserted; consent and
+  location-safety items listed for review, not decided.
+- **T34 Readiness.** Pass: text readiness and publication readiness stated separately;
+  publication readiness never declared.
+
+### Recording and exit
+
+- Record each run in [Execution status](#execution-status): surface, person, date, loaded
+  revision, observed result and limitations.
+- Proposal: exit from experimental in two stages. First exit: T16 passes cold on every surface
+  in use, and T21, T22, T28, T29, T30 and T34 pass in Bas's session. Second stage: the
+  remaining cases, including T27 against real shared data. Reason, reported in review: the
+  PR #51 test set was not fully run as designed; a smaller first exit keeps the record honest
+  rather than leaving cases unrun. Promotion then follows the existing review and publication
+  process.
+
 ## Execution status
 
 Static checks performed on repository content, without any runtime:

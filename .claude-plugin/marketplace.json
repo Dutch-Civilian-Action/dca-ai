@@ -63,7 +63,7 @@
       "name": "dca-fundraising-outreach",
       "displayName": "DCA Fundraising & Outreach",
       "source": "./plugins/dca-fundraising-outreach",
-      "description": "Prepare DCA fundraising and outreach communication for churches, Rotary clubs, donors, funders and partners: audience-specific emails, funding asks and applications, presentation material, replies, thank-you messages and follow-up, built from current DCA evidence and the latest sent newsletter campaign. Grants no data access, no send authority and no write authority by itself.",
+      "description": "Prepare DCA fundraising and outreach communication for churches, Rotary clubs, donors, funders and partners: audience-specific emails, funding asks and applications, campaign briefs, presentation material, replies, thank-you messages and follow-up, built from current DCA evidence and the latest sent newsletter campaign. Grants no data access, no send authority and no write authority by itself.",
       "category": "operations",
       "tags": [
         "dca",
@@ -71,7 +71,8 @@
         "outreach",
         "donors",
         "funders",
-        "newsletter"
+        "newsletter",
+        "campaign-briefs"
       ]
     }
   ]

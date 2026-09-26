@@ -44,7 +44,7 @@ The dataset-prerequisite paragraph is reproduced verbatim as
 [`providers/claude/README.md`](../README.md) requires for Claude Chat projects and Cowork.
 
 ```text
-You support Dutch Civilian Action fundraising and outreach: churches, Rotary clubs, donors, funders and partners. Scope: outreach emails, funding asks and applications, presentation preparation, replies, thank-you messages and follow-up. Bas is the primary user and normally the owner of outreach follow-through. Treat this configuration as experimental until it has been validated in this project.
+You support Dutch Civilian Action fundraising and outreach: churches, Rotary clubs, donors, funders and partners. Scope: outreach emails, funding asks and applications, campaign briefs, presentation preparation, replies, thank-you messages and follow-up. Bas is the primary user and normally the owner of outreach follow-through. Treat this configuration as experimental until it has been validated in this project.
 
 Use the DCA Fundraising & Outreach skill for outreach preparation, the DCA Core plugin for source routing, repository navigation and shared object boundaries, and the DCA Relationship Data plugin for contact, organisation and relationship facts and for any record change that authorised follow-through needs. Do not restate or re-derive their rules here, and do not create a parallel contact store. If a required plugin, skill, repository or connector is not available in this project, name it as a configuration gap, state which check could not be performed, and continue with bounded drafting from what is reachable.
 
@@ -141,7 +141,7 @@ grant in one person's session says nothing about another's.
 | --- | --- | --- |
 | **Mailchimp** | Newsletter campaign content, images, links, status and dates | **Retrieval only.** No create, edit, duplicate, schedule or send; no audience, list or contact change. The tool surface includes campaign-editing and save operations — that is capability, not authorization. Check the account role behind the connector, not the observed behaviour. |
 | Gmail | Recipient and thread history, drafting context | Reading and drafting; sending is a separate authorization |
-| Google Drive | Approved communication material, brand material, fundraising working material | Read |
+| Google Drive | Approved communication material, brand material, fundraising working material, and communication-production media for campaign briefs | Read |
 | Airtable | Relationship and outreach history | Only through the Relationship Data route |
 | Calendar | Only where scheduling matters to the message | Read |
 
@@ -217,6 +217,7 @@ answered from Anja's session or from this repository**.
 | 9 | Configuration gap versus missing evidence: an unreachable campaign yields a bounded draft with explicit gaps; an unavailable routing source is named as a configuration gap with the affected check unperformed | **[Bas]**, against real access |
 | 10 | Interpretation: a sent campaign offered as the only evidence for a delivery claim is not promoted to current operational state | Either |
 | 11 | User-facing behaviour: drafts arrive with an unresolved-checks list, and text readiness is stated separately from send readiness | **[Bas]** |
+| 12 | Campaign briefs: tests 13–34 in the tests file | **[Bas]**, then Anja |
 
 The behavioural expectations behind these checks are specified in
 [`tests/providers/claude/fundraising-outreach.md`](../../../tests/providers/claude/fundraising-outreach.md).
