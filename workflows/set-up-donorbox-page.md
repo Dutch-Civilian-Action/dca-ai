@@ -49,8 +49,9 @@ only template exercised so far.
   automation*. Do not build unattended page creation from this workflow
   until that prerequisite is met.
 - **Airtable is read-only here.** This workflow reads setup settings and the
-  Donorbox-synced `Campaigns` table. It creates no `Campaigns` row; the
-  Donorbox sync creates that row after the page exists. Any Airtable schema
+  operational `Campaigns` table, which includes both Donorbox-derived and
+  manually entered records. It creates no `Campaigns` row; the Donorbox sync
+  creates the page's row after the page exists. Any Airtable schema
   or record change belongs to its own authorised workflow and follows the
   current DCA Airtable Implementation Standard.
 
